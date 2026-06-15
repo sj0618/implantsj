@@ -1,0 +1,5 @@
+.env
+.env.*
+!.env.azure.example
+*.jpg
+*.jpng
