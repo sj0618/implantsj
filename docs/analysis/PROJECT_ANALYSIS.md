@@ -121,40 +121,40 @@ VLM JSONL/summary CSV
 
 | 파일 | 주요 역할 |
 |---|---|
-| `USAGE.py` | 사용 예시/가이드 성격의 Python 텍스트 파일. 실행 로직보다 문서에 가깝다. |
-| `check_environment.py` | Python 버전, torch/timm/PIL/sklearn/pandas 등 필수 패키지 import 가능 여부, CUDA 여부 점검. |
-| `install_requirements.py` | 기본 패키지를 pip로 설치하고, 옵션으로 torch CPU/CUDA variant를 설치. |
+| `docs/usage/USAGE.py` | 사용 예시/가이드 성격의 Python 텍스트 파일. 실행 로직보다 문서에 가깝다. |
+| `tools/setup/check_environment.py` | Python 버전, torch/timm/PIL/sklearn/pandas 등 필수 패키지 import 가능 여부, CUDA 여부 점검. |
+| `tools/setup/install_requirements.py` | 기본 패키지를 pip로 설치하고, 옵션으로 torch CPU/CUDA variant를 설치. |
 | `settings.py` | 프로젝트 루트, 기본 data/output/manifest 경로 상수. |
-| `run.py` | 대표 workflow command 모음. `make_manifest`, `train_supervised`, `evaluate`, `predict` 등을 subprocess로 실행. |
-| `make_manifest.py` | 이미지 폴더에서 manifest CSV 생성. |
-| `make_splits.py` | 기존 manifest에 stratified split 추가/재생성. |
-| `smoke_test.py` | 합성 이미지 데이터를 만들고 짧은 supervised 학습으로 pipeline smoke test 수행. |
-| `finetune_small_data.py` | small dataset manifest를 만들고 large pretrain checkpoint에서 fine-tuning. |
-| `train_supervised.py` | 범용 supervised ViT 학습 CLI. |
-| `train_metric.py` | 범용 SupCon/triplet metric learning 학습 CLI. |
-| `evaluate.py` | classifier checkpoint를 특정 manifest split에서 평가. |
-| `predict_vit.py` | classifier checkpoint로 prediction CSV 생성. |
-| `summarize_runs.py` | run 디렉터리의 metrics JSON을 모아 summary CSV 생성. |
-| `train_vit_3label.py` | COCO/split 폴더 기반 3-label(Bego/Bicon/ITI) manifest 생성 및 supervised ViT 학습. |
-| `train_vit_7label.py` | 7-label(ADIN, Dentium, DIONAVI, MIS, NORIS, nobel, osstem) manifest 생성 및 supervised ViT 학습. |
-| `train_vit_10label.py` | 3-label + 7-label을 합쳐 10-label supervised ViT 학습. |
-| `train_vit_6label.py` | large multiclass에서 6개 label만 필터링해 metric learning 학습. 이름은 6label이지만 내부는 `train_metric` 사용. |
-| `train_vit_7label_supcon.py` | 7-label manifest 기반 SupCon metric learning 학습. |
-| `evaluate_3label_metric_from_7label.py` | 7-label metric checkpoint를 3-label dataset에 적용해 prototype 방식으로 transfer 평가. |
-| `evaluate_3label_metric_from_6label.py` | 위 7-label 평가 스크립트의 thin wrapper. |
-| `evaluate_3label_metric_from_7label_supcon.py` | 위 7-label 평가 스크립트의 thin wrapper. |
-| `evaluate_3label_twostage_metric_from_7label.py` | 1단계 group KNN + 2단계 group 내부 prototype으로 3-label transfer를 보정. |
-| `test_7label_supcon_to_3label_metric.py` | fake timm/transform과 synthetic image로 7-label SupCon→3-label 평가 script를 검증하는 테스트. |
-| `visualize_attention.py` | classifier ViT checkpoint의 attention rollout heatmap/overlay 저장. |
-| `visualize_classifier_tsne.py` | classifier backbone feature를 추출해 PCA+t-SNE plot/CSV 저장. |
-| `visualize_metric_attention.py` | metric model checkpoint의 attention rollout과 prototype prediction 기반 sample 분석. |
-| `visualize_metric_tsne.py` | metric embedding t-SNE plot/CSV 저장. |
-| `visualize_umap_from_tsne.py` | 기존 `tsne_*.npz` 임베딩 아티팩트를 재사용해 UMAP plot/CSV 저장. |
-| `generate_vlm_features_azure_6label.py` | Azure OpenAI vision deployment로 6-label 이미지의 5개 구조 feature를 JSONL로 생성. |
-| `generate_vlm_feature_presence.py` | 21개 supporting visual feature의 present/absent/not_assessable을 VLM으로 추출. |
-| `generate_13feature_21reason_7label.py` | 13개 core attribute + 21개 supporting feature를 VLM으로 추출하고 decision rule로 feature_status/usable flag를 정리. |
-| `sort_vlm_feature_presence_jsonl.py` | VLM JSONL을 원본 이미지 discovery 순서대로 정렬하고 backup 생성. |
-| `train_vlm_fusion_5feature.py` | 5개 VLM feature group을 vector화해 image-only, VLM-only, fusion, shuffled, ablation suite 학습/평가. |
+| `tools/run.py` | 대표 workflow command 모음. `make_manifest`, `train_supervised`, `evaluate`, `predict` 등을 subprocess로 실행. |
+| `pipelines/data/make_manifest.py` | 이미지 폴더에서 manifest CSV 생성. |
+| `pipelines/data/make_splits.py` | 기존 manifest에 stratified split 추가/재생성. |
+| `tests/smoke_test.py` | 합성 이미지 데이터를 만들고 짧은 supervised 학습으로 pipeline smoke test 수행. |
+| `pipelines/train/finetune_small_data.py` | small dataset manifest를 만들고 large pretrain checkpoint에서 fine-tuning. |
+| `pipelines/train/train_supervised.py` | 범용 supervised ViT 학습 CLI. |
+| `pipelines/train/train_metric.py` | 범용 SupCon/triplet metric learning 학습 CLI. |
+| `pipelines/eval/evaluate.py` | classifier checkpoint를 특정 manifest split에서 평가. |
+| `pipelines/eval/predict_vit.py` | classifier checkpoint로 prediction CSV 생성. |
+| `pipelines/report/summarize_runs.py` | run 디렉터리의 metrics JSON을 모아 summary CSV 생성. |
+| `pipelines/train/train_vit_3label.py` | COCO/split 폴더 기반 3-label(Bego/Bicon/ITI) manifest 생성 및 supervised ViT 학습. |
+| `pipelines/train/train_vit_7label.py` | 7-label(ADIN, Dentium, DIONAVI, MIS, NORIS, nobel, osstem) manifest 생성 및 supervised ViT 학습. |
+| `pipelines/train/train_vit_10label.py` | 3-label + 7-label을 합쳐 10-label supervised ViT 학습. |
+| `pipelines/train/train_vit_6label.py` | large multiclass에서 6개 label만 필터링해 metric learning 학습. 이름은 6label이지만 내부는 `train_metric` 사용. |
+| `pipelines/train/train_vit_7label_supcon.py` | 7-label manifest 기반 SupCon metric learning 학습. |
+| `pipelines/eval/evaluate_3label_metric_from_7label.py` | 7-label metric checkpoint를 3-label dataset에 적용해 prototype 방식으로 transfer 평가. |
+| `pipelines/eval/evaluate_3label_metric_from_6label.py` | 위 7-label 평가 스크립트의 thin wrapper. |
+| `pipelines/eval/evaluate_3label_metric_from_7label_supcon.py` | 위 7-label 평가 스크립트의 thin wrapper. |
+| `pipelines/eval/evaluate_3label_twostage_metric_from_7label.py` | 1단계 group KNN + 2단계 group 내부 prototype으로 3-label transfer를 보정. |
+| `tests/test_7label_supcon_to_3label_metric.py` | fake timm/transform과 synthetic image로 7-label SupCon→3-label 평가 script를 검증하는 테스트. |
+| `pipelines/visualize/visualize_attention.py` | classifier ViT checkpoint의 attention rollout heatmap/overlay 저장. |
+| `pipelines/visualize/visualize_classifier_tsne.py` | classifier backbone feature를 추출해 PCA+t-SNE plot/CSV 저장. |
+| `pipelines/visualize/visualize_metric_attention.py` | metric model checkpoint의 attention rollout과 prototype prediction 기반 sample 분석. |
+| `pipelines/visualize/visualize_metric_tsne.py` | metric embedding t-SNE plot/CSV 저장. |
+| `pipelines/visualize/visualize_umap_from_tsne.py` | 기존 `tsne_*.npz` 임베딩 아티팩트를 재사용해 UMAP plot/CSV 저장. |
+| `pipelines/vlm/generate_vlm_features_azure_6label.py` | Azure OpenAI vision deployment로 6-label 이미지의 5개 구조 feature를 JSONL로 생성. |
+| `pipelines/vlm/generate_vlm_feature_presence.py` | 21개 supporting visual feature의 present/absent/not_assessable을 VLM으로 추출. |
+| `pipelines/vlm/generate_13feature_21reason_7label.py` | 13개 core attribute + 21개 supporting feature를 VLM으로 추출하고 decision rule로 feature_status/usable flag를 정리. |
+| `pipelines/vlm/sort_vlm_feature_presence_jsonl.py` | VLM JSONL을 원본 이미지 discovery 순서대로 정렬하고 backup 생성. |
+| `pipelines/vlm/train_vlm_fusion_5feature.py` | 5개 VLM feature group을 vector화해 image-only, VLM-only, fusion, shuffled, ablation suite 학습/평가. |
 
 ## 7. `experiments/` 분석
 
@@ -221,15 +221,15 @@ VLM JSONL/summary CSV
 |---|---:|---|---|
 | `data/manifests/3label.csv` | 2,075 | Bicon 1,135 / ITI 794 / Bego 146 | 3-label canonical manifest |
 | `data/manifests/7label.csv` | 3,280 | ADIN 1,078 / NORIS 780 / osstem 727 / Dentium 519 / MIS 146 / DIONAVI 18 / nobel 12 | 7-label canonical manifest |
-| `data/manifests/plain_vit_3label.csv` | 2,075 | 3-label supervised ViT용 | `train_vit_3label.py` 출력 |
-| `data/manifests/plain_vit_7label.csv` | 3,280 | 7-label supervised ViT용 | `train_vit_7label.py` 출력 |
-| `data/manifests/plain_vit_10label.csv` | 5,355 | 3-label+7-label 통합 | `train_vit_10label.py` 출력 |
-| `data/manifests/supcon_vit_7label.csv` | 3,280 | 7-label metric/SupCon용 | `train_vit_7label_supcon.py` 입력 |
+| `data/manifests/plain_vit_3label.csv` | 2,075 | 3-label supervised ViT용 | `pipelines/train/train_vit_3label.py` 출력 |
+| `data/manifests/plain_vit_7label.csv` | 3,280 | 7-label supervised ViT용 | `pipelines/train/train_vit_7label.py` 출력 |
+| `data/manifests/plain_vit_10label.csv` | 5,355 | 3-label+7-label 통합 | `pipelines/train/train_vit_10label.py` 출력 |
+| `data/manifests/supcon_vit_7label.csv` | 3,280 | 7-label metric/SupCon용 | `pipelines/train/train_vit_7label_supcon.py` 입력 |
 | `data/manifests/NORIS_osstem.csv` | 1,507 | NORIS 780 / osstem 727 | two-stage submodel용 |
 | `data/manifests/ADIN_MIS.csv` | 1,224 | ADIN 1,078 / MIS 146 | two-stage submodel용 |
 | `data/manifests/13feature_21reason_7label_all.jsonl` | 3,312 lines | VLM 13+21 extraction 결과 | 7-label 이미지 + 일부 추가 row 포함 |
 | `data/manifests/13feature_21reason_7label_all.summary.csv` | 3,312 | feature_status/usable/failure_reason 포함 | VLM 품질 분석용 |
-| `data/manifests/vlm_feature_presence_7label_all.jsonl` | 3,280 lines | 21 supporting feature extraction | `generate_vlm_feature_presence.py` 결과 |
+| `data/manifests/vlm_feature_presence_7label_all.jsonl` | 3,280 lines | 21 supporting feature extraction | `pipelines/vlm/generate_vlm_feature_presence.py` 결과 |
 | `data/manifests/vlm_feature_presence_7label_all.summary.csv` | 3,280 | feature presence summary | VLM feature-only/fusion 입력 후보 |
 | `data/manifests/vlm_5feature_7label.jsonl` | 3,279 lines | 5-feature VLM result | 과거 5-feature schema 결과 |
 | `data/manifests/vlm_5feature_7label.summary.csv` | 225 | ADIN train만 summary | 부분 생성/초기 실험 artifact로 보임 |
@@ -240,7 +240,7 @@ VLM JSONL/summary CSV
 
 ### 11.1 기존 5-feature schema
 
-`vlm_feature_prompt_5feature.md`와 `train_vlm_fusion_5feature.py`는 다음 5개 그룹을 사용한다.
+`vlm_feature_prompt_5feature.md`와 `pipelines/vlm/train_vlm_fusion_5feature.py`는 다음 5개 그룹을 사용한다.
 
 1. `connection_type`
 2. `platform`
@@ -248,7 +248,7 @@ VLM JSONL/summary CSV
 4. `outline`
 5. `image_quality`
 
-각 그룹은 categorical/boolean/numeric confidence를 vector화한다. `train_vlm_fusion_5feature.py`는 다음 비교군을 지원한다.
+각 그룹은 categorical/boolean/numeric confidence를 vector화한다. `pipelines/vlm/train_vlm_fusion_5feature.py`는 다음 비교군을 지원한다.
 
 - image-only
 - VLM feature-only
@@ -260,7 +260,7 @@ VLM JSONL/summary CSV
 
 ### 11.2 개선된 13 core + 21 supporting schema
 
-`13feature_21reason.md`와 `generate_13feature_21reason_7label.py`는 고수준 label 직접 예측이 실패한 뒤 설계를 바꾼 버전이다.
+`13feature_21reason.md`와 `pipelines/vlm/generate_13feature_21reason_7label.py`는 고수준 label 직접 예측이 실패한 뒤 설계를 바꾼 버전이다.
 
 - 13 core attributes: `Company`, `Name`, `System`, `Connection_1`, `Connection_2`, `Flange`, `Collar`, `Microthread`, `Body_Shape`, `Body_Type`, `Thread_Shape`, `Apex_Shape`, `Apex_Hole`
 - 21 supporting features: `implant_visible`, `connection_region_visible`, `thread_region_visible`, `abutment_or_prosthesis_present`, `positive_connection_region_present`, `straight_screw_entry_space_present`, `negative_internal_connection_space_present`, `platform_step_present`, `internal_small_void_present`, `smooth_no_thread_collar_present`, `machined_surface_present`, `platform_boundary_visible`, `platform_switching_step_present`, `thread_lines_visible`, `regular_thread_pitch_visible`, `deep_thread_relief_present`, `micro_thread_zone_present`, `macro_thread_zone_present`, `body_taper_present`, `parallel_body_wall_present`, `apex_boundary_visible`
@@ -328,7 +328,7 @@ VLM JSONL/summary CSV
 
 주의사항:
 
-- 현재 base Python에는 `pandas`가 없어서 전역 `python`으로 일부 분석 스크립트가 실패했다. 프로젝트 실행은 가상환경 또는 `install_requirements.py`로 dependency 설치 후 해야 한다.
+- 현재 base Python에는 `pandas`가 없어서 전역 `python`으로 일부 분석 스크립트가 실패했다. 프로젝트 실행은 가상환경 또는 `tools/setup/install_requirements.py`로 dependency 설치 후 해야 한다.
 - GPU 사용을 기본 가정하는 코드가 많으며, 대부분 `--allow-cpu` 옵션이 있다.
 - `.env`에는 Azure OpenAI endpoint/key/deployment 관련 값이 들어 있다. gitignore에는 `.env`가 포함되어 있지만 현재 많은 파일이 untracked라 별도 commit 시 주의해야 한다.
 
@@ -344,7 +344,7 @@ VLM JSONL/summary CSV
 | `.gitignore` 오타 | `*.jpng` 존재 | `*.png` 의도였는지 확인 필요. 현재는 `.jpg`만 ignore됨 |
 | VLM feature leakage 가능성 | answer-key `Name` 사용 시 성능 1.0 가능 | 구조 feature 검증과 label identity feature를 분리 |
 | class imbalance | nobel/DIONAVI/MIS 매우 적음 | macro-F1 중심 평가, class-balanced sampling/thresholding 검토 |
-| 테스트 부족 | 명시적 테스트는 `test_7label_supcon_to_3label_metric.py` 중심 | smoke/unit test 추가, CLI import/argparse test 추가 |
+| 테스트 부족 | 명시적 테스트는 `tests/test_7label_supcon_to_3label_metric.py` 중심 | smoke/unit test 추가, CLI import/argparse test 추가 |
 
 ## 16. 실행 예시
 
@@ -352,13 +352,13 @@ VLM JSONL/summary CSV
 
 ```bash
 cd /workspace/implant_python_only_final
-python check_environment.py
+python3 tools/setup/check_environment.py
 ```
 
 ### 3-label supervised ViT 학습
 
 ```bash
-python train_vit_3label.py \
+python3 -m pipelines.train.train_vit_3label \
   --manifest data/manifests/plain_vit_3label.csv \
   --output-root outputs \
   --epochs 80 \
@@ -368,7 +368,7 @@ python train_vit_3label.py \
 ### 7-label supervised ViT 학습
 
 ```bash
-python train_vit_7label.py \
+python3 -m pipelines.train.train_vit_7label \
   --manifest data/manifests/plain_vit_7label.csv \
   --output-root outputs \
   --epochs 80 \
@@ -378,7 +378,7 @@ python train_vit_7label.py \
 ### 10-label baseline 학습
 
 ```bash
-python train_vit_10label.py \
+python3 -m pipelines.train.train_vit_10label \
   --manifest data/manifests/plain_vit_10label.csv \
   --output-root outputs \
   --epochs 80 \

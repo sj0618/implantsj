@@ -10,8 +10,6 @@ from pathlib import Path
 from typing import Any, Dict, Optional
 
 import numpy as np
-
-
 def add_project_root_to_path(file: str) -> Path:
     root = Path(file).resolve().parent
     if root.name == 'src':

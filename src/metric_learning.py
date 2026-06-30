@@ -38,13 +38,31 @@ class SupConLoss(nn.Module):
         # features: [2B, D], labels: [2B]
         features = nn.functional.normalize(features, dim=1)
         logits = torch.matmul(features, features.T) / self.temperature
+        # 배치크기만큼의 이미지들끼리 유사도 계산 표. 총 2B * 2B 크기로 나옴.
+        
         logits = logits - logits.max(dim=1, keepdim=True).values.detach()
+        #모든 값에서 같은 값을 빼도 softmax 값은 변하지 않음. (상대적인 값을 측정하기에)
+        
         mask = torch.eq(labels[:, None], labels[None, :]).float().to(features.device)
+        #자기 자신과 같으면 1로 mask, 다르면 0으로 mask 함. 
         self_mask = torch.eye(mask.size(0), device=features.device)
-        mask = mask * (1.0 - self_mask)
+        #torch.eye 주어진 크기의 단위행렬을 생성하는 함수. 대각행렬만 1인 행렬 생성.
+        mask = mask * (1.0 - self_mask) 
+        ####
+        #1.0 - self_mask =
+         #   [0 1 1
+         #   1 0 1
+         #   1 1 0]
+        ####
+        
         exp_logits = torch.exp(logits) * (1.0 - self_mask)
+        
+        
         log_prob = logits - torch.log(exp_logits.sum(dim=1, keepdim=True).clamp_min(1e-12))
-        mean_log_prob_pos = (mask * log_prob).sum(dim=1) / mask.sum(dim=1).clamp_min(1.0)
+        #각 pair 의 log_softmax값을 구한다. -> log_prob은 logits 기준으로 i번째 이미지에서 j번째 이미지 선택 확률.
+        mean_log_prob_pos = (mask * log_prob).sum(dim=1) / mask.sum(dim=1).clamp_min(1.0) 
+        #mask = 0이면 버리고 , 1이면 같은 라벨이라는 뜻이므로 전부다 더함(같은 라벨들의 평균 구하기 위해)
+        #positive pair 의 평균 log 확률만 남긴다.
         loss = -mean_log_prob_pos.mean()
         return loss
 
@@ -112,12 +130,17 @@ def prototype_predict(train_z, train_y, query_z):
     classes = sorted(set(train_y.tolist()))
     protos = []
     for c in classes:
-        proto = train_z[train_y == c].mean(axis=0)
-        proto = proto / max(1e-12, np.linalg.norm(proto))
-        protos.append(proto)
+        proto = train_z[train_y == c].mean(axis=0) #클래스별 평균 임베딩(proto) 제작
+        proto = proto / max(1e-12, np.linalg.norm(proto)) #코사인 비교 위해 정규화.
+        protos.append(proto)                #protos에 추가.
     protos = np.stack(protos, axis=0)
+    # protos를 하나의 행렬로 묶음.예를 들어 클래스 7개, embedding 128차원이면: protos.shape = [7, 128]
+    
     q = query_z / np.maximum(1e-12, np.linalg.norm(query_z, axis=1, keepdims=True))
+    #예측할 쿼리 이미지 q도 정규화한다.
     sims = q @ protos.T
+    #q와 protos의 유사도 계산.
+    
     pred_class_positions = sims.argmax(axis=1)
     pred = np.asarray([classes[i] for i in pred_class_positions])
     conf = sims.max(axis=1)
