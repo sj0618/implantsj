@@ -2,21 +2,26 @@
 
 Dental implant classification / visualization playground.
 
-## What is here
+## Layout
 
-- `train_*.py` — classifier and metric-learning training scripts
-- `evaluate_*.py` — evaluation and transfer experiments
-- `visualize_*tsne.py` — t-SNE embedding visualizations
-- `visualize_umap_from_tsne.py` — UMAP projection from saved t-SNE artifacts
-- `visualize_attention.py` / `visualize_metric_attention.py` — attention overlays
+- `src/` — shared dataset, model, metric, and training utilities
+- `pipelines/data/` — manifest and split builders
+- `pipelines/train/` — supervised, metric-learning, fine-tune, and ViT training workflows
+- `pipelines/eval/` — evaluation, prediction, and transfer-learning checks
+- `pipelines/visualize/` — attention overlays and embedding plots
+- `pipelines/vlm/` — VLM feature extraction and fusion experiments
+- `pipelines/report/` — run summaries
+- `tools/` — setup and command dispatch
+- `tests/` — smoke tests and runnable regression checks
+- `two_stage/` — confusion-group refinement pipeline
+- `docs/` — usage notes, analysis, and VLM references
 
 ## Current research notes
 
-- `RESEARCH_PLAN_TSNE_UMAP.md`
-- `PROJECT_ANALYSIS.md`
-- `EXPERIMENT_SUMMARY.md`
+- `docs/analysis/RESEARCH_PLAN_TSNE_UMAP.md`
+- `docs/analysis/PROJECT_ANALYSIS.md`
+- `docs/analysis/EXPERIMENT_SUMMARY.md`
 
 ## Quick start
 
-See `USAGE.py` for copy-paste command examples.
-
+See `docs/usage/USAGE.py` for copy-paste command examples.

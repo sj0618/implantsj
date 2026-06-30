@@ -6,8 +6,10 @@ import os
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
+
+from tools.setup.dependencies import IMPORT_CHECKS
 
 
 def main():
@@ -16,7 +18,7 @@ def main():
     print('CWD:', Path.cwd())
     print('Project root:', ROOT)
     print('PYTHONPATH:', os.environ.get('PYTHONPATH', ''))
-    mods = ['torch', 'torchvision', 'timm', 'numpy', 'pandas', 'sklearn', 'matplotlib', 'PIL', 'yaml', 'tqdm', 'src']
+    mods = IMPORT_CHECKS
     failed = []
     for name in mods:
         try:
@@ -26,7 +28,7 @@ def main():
             failed.append((name, repr(e)))
             print('FAIL', f'{name:<12}', repr(e))
     try:
-        import torch
+        torch = importlib.import_module('torch')
         print('cuda_available:', torch.cuda.is_available())
         if torch.cuda.is_available():
             print('cuda_device_count:', torch.cuda.device_count())

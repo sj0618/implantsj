@@ -3,8 +3,8 @@
 NO-VENV installer for RunPod Web Terminal.
 
 Usage:
-  python3 install_requirements.py
-  python3 install_requirements.py --install-torch cu126
+  python3 tools/setup/install_requirements.py
+  python3 tools/setup/install_requirements.py --install-torch cu126
 
 This script installs packages into the current container Python. It does not create or use a virtual environment.
 """
@@ -13,20 +13,12 @@ from __future__ import annotations
 import argparse
 import subprocess
 import sys
+from pathlib import Path
 
-BASE_PACKAGES = [
-    'numpy',
-    'pandas',
-    'scikit-learn',
-    'matplotlib',
-    'umap-learn',
-    'Pillow',
-    'PyYAML',
-    'tqdm',
-    'timm',
-    'openai',
-    'python-dotenv',
-]
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
+
+from tools.setup.dependencies import BASE_PACKAGES, IMPORT_CHECKS
 
 
 def run(cmd):
@@ -65,7 +57,8 @@ def main():
 
     print('\nChecking imports...')
     import importlib
-    mods = ['torch', 'torchvision', 'timm', 'numpy', 'pandas', 'sklearn', 'matplotlib', 'PIL', 'yaml', 'tqdm']
+
+    mods = IMPORT_CHECKS
     failed = []
     for m in mods:
         try:
@@ -76,7 +69,7 @@ def main():
             failed.append((m, e))
     if failed:
         print('\nSome imports failed. If torch/torchvision failed, rerun with:')
-        print('  python3 install_requirements.py --install-torch cu126')
+        print('  python3 tools/setup/install_requirements.py --install-torch cu126')
         raise SystemExit(1)
     print('INSTALL_OK')
 
