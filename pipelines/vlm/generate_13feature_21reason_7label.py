@@ -631,6 +631,97 @@ def feature_vector(feature: Dict[str, Any]) -> Tuple[List[float], List[str]]:
     return values, names
 
 
+def local_model_path(args: argparse.Namespace) -> Optional[str]:
+    raw = (
+        args.local_model_path
+        or os.getenv("LOCAL_QWEN_MODEL_PATH")
+        or os.getenv("QWEN_3B_VLM_MODEL_PATH")
+        or ""
+    ).strip()
+    if not raw:
+        return None
+    return str(Path(raw).expanduser())
+
+
+class LocalQwenVLRunner:
+    def __init__(self, model_path: str | Path, torch_dtype: str = "auto", device_map: str = "auto") -> None:
+        self.model_path = str(Path(model_path).expanduser())
+        self.torch_dtype = torch_dtype
+        self.device_map = device_map
+        self._model = None
+        self._processor = None
+
+    def _resolve_dtype(self, torch_module):
+        key = str(self.torch_dtype).strip().lower()
+        if key == "auto":
+            return "auto"
+        if key not in {"float16", "bfloat16", "float32"}:
+            raise ValueError(f"Unsupported local torch dtype: {self.torch_dtype}")
+        return getattr(torch_module, key)
+
+    def load(self) -> None:
+        if self._model is not None and self._processor is not None:
+            return
+        import torch
+        from transformers import AutoProcessor, Qwen2_5_VLForConditionalGeneration
+
+        dtype = self._resolve_dtype(torch)
+        kwargs: Dict[str, Any] = {
+            "device_map": self.device_map,
+            "local_files_only": True,
+        }
+        if dtype != "auto":
+            kwargs["torch_dtype"] = dtype
+        self._model = Qwen2_5_VLForConditionalGeneration.from_pretrained(self.model_path, **kwargs)
+        self._processor = AutoProcessor.from_pretrained(self.model_path, local_files_only=True)
+
+    @property
+    def model(self):
+        self.load()
+        return self._model
+
+    @property
+    def processor(self):
+        self.load()
+        return self._processor
+
+    def generate_text(self, image_path: Path, prompt: str, max_new_tokens: int) -> str:
+        import torch
+        from qwen_vl_utils import process_vision_info
+
+        messages = [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image", "image": str(image_path)},
+                    {"type": "text", "text": prompt},
+                ],
+            }
+        ]
+        text = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        image_inputs, video_inputs = process_vision_info(messages)
+        inputs = self.processor(
+            text=[text],
+            images=image_inputs,
+            videos=video_inputs,
+            padding=True,
+            return_tensors="pt",
+        ).to(self.model.device)
+        with torch.no_grad():
+            output_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=max_new_tokens,
+                do_sample=False,
+            )
+        trimmed = [out[len(inp) :] for inp, out in zip(inputs.input_ids, output_ids)]
+        return self.processor.batch_decode(
+            trimmed,
+            skip_special_tokens=True,
+            clean_up_tokenization_spaces=False,
+        )[0]
+
+
+
 def create_azure_client(args: argparse.Namespace) -> Any:
     from openai import AzureOpenAI
 
@@ -645,8 +736,23 @@ def create_azure_client(args: argparse.Namespace) -> Any:
     if not api_version:
         raise RuntimeError("Missing Azure API version. Set AZURE_OPENAI_API_VERSION or pass --azure-api-version.")
     client = AzureOpenAI(azure_endpoint=endpoint.rstrip("/"), api_key=api_key, api_version=api_version)
-    client._implant_endpoint_mode = "azure_deployments"
+    client._implant_provider = "azure"
     return client
+
+
+
+def create_vlm_client(args: argparse.Namespace) -> Any:
+    model_path = local_model_path(args)
+    if model_path:
+        runner = LocalQwenVLRunner(
+            model_path=model_path,
+            torch_dtype=args.local_torch_dtype,
+            device_map=args.local_device_map,
+        )
+        runner._implant_provider = "qwen_3B_VLM"
+        return runner
+    return create_azure_client(args)
+
 
 
 def azure_deployment_name(args: argparse.Namespace) -> str:
@@ -663,7 +769,67 @@ def azure_deployment_name(args: argparse.Namespace) -> str:
     return deployment
 
 
+
+def provider_record_base(args: argparse.Namespace) -> Dict[str, Any]:
+    model_path = local_model_path(args)
+    if model_path:
+        return {
+            "provider": "qwen_3B_VLM",
+            "local_model_path": model_path,
+        }
+    return {
+        "provider": "azure",
+        "azure_deployment": azure_deployment_name(args),
+    }
+
+
+def build_row_record_base(args: argparse.Namespace, index: int, row: Dict[str, str], image_path: Path) -> Dict[str, Any]:
+    return {
+        "path": str(image_path),
+        "label": row.get("label", ""),
+        "split": row.get("split", ""),
+        "original_idx": index,
+        **provider_record_base(args),
+    }
+
+
+
+def normalize_generated_json_text(text: str, min_mean_confidence: float) -> Dict[str, Any]:
+    raw = extract_json_object(text)
+    return validate_and_complete_response(raw, min_mean_confidence)
+
+
+
+def build_success_record(record_base: Dict[str, Any], feature: Dict[str, Any]) -> Dict[str, Any]:
+    vector, vector_names = feature_vector(feature)
+    return {
+        **record_base,
+        "status": "ok",
+        "feature": feature,
+        "feature_vector_names": vector_names,
+        "feature_vector": vector,
+        "mean_confidence": mean_confidence(feature),
+    }
+
+
+
+def build_error_record(record_base: Dict[str, Any], exc: Exception) -> Dict[str, Any]:
+    return {
+        **record_base,
+        "status": "error",
+        "feature": default_response(api_status="error", failure_reason="low_confidence"),
+        "error": repr(exc),
+    }
+
+
+
+
 def call_vlm(client: Any, args: argparse.Namespace, image_path: Path) -> Dict[str, Any]:
+    if getattr(client, "_implant_provider", "") == "qwen_3B_VLM":
+        content = client.generate_text(image_path=image_path, prompt=VLM_PROMPT, max_new_tokens=args.max_tokens)
+        return normalize_generated_json_text(content, args.min_mean_confidence)
+
+
     data_url = image_to_data_url(image_path, args.max_image_side, args.jpeg_quality)
     messages = [
         {
@@ -688,8 +854,9 @@ def call_vlm(client: Any, args: argparse.Namespace, image_path: Path) -> Dict[st
         response_format={"type": "json_object"},
     )
     content = response.choices[0].message.content or "{}"
-    raw = extract_json_object(content)
-    return validate_and_complete_response(raw, args.min_mean_confidence)
+    return normalize_generated_json_text(content, args.min_mean_confidence)
+
+
 
 
 def read_manifest(path: Path, path_column: str) -> List[Dict[str, str]]:
@@ -866,20 +1033,14 @@ def run(args: argparse.Namespace) -> Path:
     def get_client() -> Any:
         client = getattr(thread_local, "client", None)
         if client is None:
-            client = create_azure_client(args)
+            client = create_vlm_client(args)
             thread_local.client = client
         return client
 
     def process_row(index: int, row: Dict[str, str]) -> Dict[str, Any]:
         image_path = Path(row["path"])
-        record_base = {
-            "path": str(image_path),
-            "label": row.get("label", ""),
-            "split": row.get("split", ""),
-            "original_idx": index,
-            "provider": "azure",
-            "azure_deployment": azure_deployment_name(args),
-        }
+        record_base = build_row_record_base(args, index, row, image_path)
+
         try:
             if not image_path.exists():
                 raise FileNotFoundError(image_path)
@@ -905,22 +1066,9 @@ def run(args: argparse.Namespace) -> Path:
                         raise last_error
 
             assert feature is not None
-            vector, vector_names = feature_vector(feature)
-            return {
-                **record_base,
-                "status": "ok",
-                "feature": feature,
-                "feature_vector_names": vector_names,
-                "feature_vector": vector,
-                "mean_confidence": mean_confidence(feature),
-            }
+            return build_success_record(record_base, feature)
         except Exception as exc:
-            return {
-                **record_base,
-                "status": "error",
-                "feature": default_response(api_status="error", failure_reason="low_confidence"),
-                "error": repr(exc),
-            }
+            return build_error_record(record_base, exc)
 
     worker_count = max(1, int(args.workers))
     print(f"Workers: {worker_count}")
@@ -988,6 +1136,9 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
     parser.add_argument("--azure-api-key", default=None)
     parser.add_argument("--azure-api-version", default=None)
     parser.add_argument("--azure-deployment", default=None)
+    parser.add_argument("--local-model-path", default=None)
+    parser.add_argument("--local-torch-dtype", choices=["auto", "float16", "bfloat16", "float32"], default="auto")
+    parser.add_argument("--local-device-map", default="auto")
     parser.add_argument("--env-file", default=None)
 
     parser.add_argument("--image-detail", choices=["low", "high", "auto"], default="high")
