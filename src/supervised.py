@@ -115,6 +115,7 @@ def train_supervised(args: SupervisedArgs) -> Path:
 
     train_loader = create_loader(args.manifest, 'train', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=True, strong_aug=args.strong_aug)
     valid_loader = create_loader(args.manifest, 'valid', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=False, strong_aug=False, return_path=True)
+    test_loader = create_loader(args.manifest, 'test', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=False, strong_aug=False, return_path=True)
 
     model = create_classifier(
         model_name=args.model_name,
@@ -176,6 +177,7 @@ def train_supervised(args: SupervisedArgs) -> Path:
         scheduler.step()
         train_loss = epoch_loss / max(1, n_seen)
         valid_metrics = evaluate_classifier(model, valid_loader, device, idx_to_class, 'valid', out_dir=None)
+        test_metrics = evaluate_classifier(model, test_loader, device, idx_to_class, 'test', out_dir=None)
         score = float(valid_metrics.get(args.monitor, valid_metrics.get('macro_f1', 0.0)))
         row = {
             'epoch': epoch,
@@ -183,6 +185,9 @@ def train_supervised(args: SupervisedArgs) -> Path:
             'valid_accuracy': valid_metrics['accuracy'],
             'valid_macro_f1': valid_metrics['macro_f1'],
             'valid_weighted_f1': valid_metrics['weighted_f1'],
+            'test_accuracy': test_metrics['accuracy'],
+            'test_macro_f1': test_metrics['macro_f1'],
+            'test_weighted_f1': test_metrics['weighted_f1'],
             'valid_macro_precision': valid_metrics['macro_precision'],
             'valid_macro_recall': valid_metrics['macro_recall'],
             'lr': optimizer.param_groups[0]['lr'],

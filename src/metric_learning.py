@@ -12,7 +12,7 @@ from torch import nn
 from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data import DataLoader, Dataset
 
-from .data import ImageClassificationDataset, build_transforms, label_mapping, load_manifest
+from .data import ImageClassificationDataset, build_transforms, create_loader, label_mapping, load_manifest
 from .metrics import compute_metrics, save_confusion_matrix, save_metrics_json, save_predictions
 from .models import MetricModel, save_checkpoint
 from .utils import count_parameters, log, make_run_dir, seed_everything, write_json
@@ -147,13 +147,15 @@ def prototype_predict(train_z, train_y, query_z):
     return pred, conf
 
 
-def evaluate_metric_model(model, manifest: str, class_to_idx: Dict[str, int], image_size: int, batch_size: int, num_workers: int, device, out_dir: Optional[Path] = None, split: str = 'valid'):
-    from .data import create_loader
+def evaluate_metric_model(model, manifest: str, class_to_idx: Dict[str, int], image_size: int, batch_size: int, num_workers: int, device, out_dir: Optional[Path] = None, split: str = 'valid', support=None):
     idx_to_class = {i: c for c, i in class_to_idx.items()}
     class_names = [idx_to_class[i] for i in range(len(idx_to_class))]
-    train_loader = create_loader(manifest, 'train', class_to_idx, image_size, batch_size, num_workers, train=False, return_path=True)
     query_loader = create_loader(manifest, split, class_to_idx, image_size, batch_size, num_workers, train=False, return_path=True)
-    train_z, train_y, _ = extract_embeddings(model, train_loader, device)
+    if support is None:
+        train_loader = create_loader(manifest, 'train', class_to_idx, image_size, batch_size, num_workers, train=False, return_path=True)
+        train_z, train_y, _ = extract_embeddings(model, train_loader, device)
+    else:
+        train_z, train_y = support
     query_z, query_y, paths = extract_embeddings(model, query_loader, device)
     pred, conf = prototype_predict(train_z, train_y, query_z)
     metrics = compute_metrics(query_y, pred, class_names)
@@ -183,6 +185,7 @@ def train_metric(args: MetricArgs) -> Path:
 
     ds = TwoViewDataset(args.manifest, 'train', class_to_idx, args.image_size)
     loader = DataLoader(ds, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=torch.cuda.is_available(), drop_last=True)
+    eval_train_loader = create_loader(args.manifest, 'train', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=False, return_path=True)
     model = MetricModel(args.model_name, embedding_dim=args.embedding_dim, pretrained=args.pretrained, dropout=args.dropout, drop_path_rate=args.drop_path_rate).to(device)
     log(f'Trainable parameters: {count_parameters(model):,}')
 
@@ -228,9 +231,16 @@ def train_metric(args: MetricArgs) -> Path:
             n += bs
         scheduler.step()
         train_loss = total_loss / max(1, n)
-        valid_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=None, split='valid')
+        support = extract_embeddings(model, eval_train_loader, device)[:2]
+        valid_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=None, split='valid', support=support)
+        test_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=None, split='test', support=support)
         score = valid_metrics['macro_f1']
-        row = {'epoch': epoch, 'train_loss': train_loss, 'valid_accuracy': valid_metrics['accuracy'], 'valid_macro_f1': valid_metrics['macro_f1'], 'lr': optimizer.param_groups[0]['lr'], 'seconds': time.time()-t0}
+        row = {
+            'epoch': epoch, 'train_loss': train_loss,
+            'valid_accuracy': valid_metrics['accuracy'], 'valid_macro_f1': valid_metrics['macro_f1'], 'valid_weighted_f1': valid_metrics['weighted_f1'],
+            'test_accuracy': test_metrics['accuracy'], 'test_macro_f1': test_metrics['macro_f1'], 'test_weighted_f1': test_metrics['weighted_f1'],
+            'lr': optimizer.param_groups[0]['lr'], 'seconds': time.time()-t0,
+        }
         history.append(row)
         pd.DataFrame(history).to_csv(run_dir / 'metrics' / 'history.csv', index=False)
         log(f"epoch={epoch:03d} loss={train_loss:.4f} valid_acc={valid_metrics['accuracy']:.4f} valid_macro_f1={valid_metrics['macro_f1']:.4f}")
@@ -249,9 +259,10 @@ def train_metric(args: MetricArgs) -> Path:
 
     best = torch.load(run_dir / 'checkpoints' / 'best.pt', map_location='cpu')
     model.load_state_dict(best['model_state_dict'], strict=True)
-    evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=run_dir, split='valid')
+    support = extract_embeddings(model, eval_train_loader, device)[:2]
+    evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=run_dir, split='valid', support=support)
     try:
-        test_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=run_dir, split='test')
+        test_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=run_dir, split='test', support=support)
         log(f"TEST prototype accuracy={test_metrics['accuracy']:.4f} macro_f1={test_metrics['macro_f1']:.4f}")
     except Exception as e:
         log(f'Skipped test metric evaluation: {repr(e)}')
