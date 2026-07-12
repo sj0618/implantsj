@@ -94,7 +94,7 @@ def check_visual_artifacts(root):
         caches[part] = {"features": rng.normal(size=(len(labels), 8)).astype(np.float32), "labels": np.asarray(labels, object), "splits": np.asarray(splits, object), "paths": np.asarray(paths, object)}
     meta = ev.save_tsne("Synthetic", caches, tsne, 42, 24)
     assert meta["total_features"] == 36 and meta["sampled"] == 24
-    assert (tsne / "Synthetic.png").is_file() and (tsne / "Synthetic_valid.png").is_file() and (tsne / "Synthetic.sampling.json").is_file()
+    assert (tsne / "Synthetic_common_backbone.png").is_file() and (tsne / "Synthetic_common_backbone_valid.png").is_file() and (tsne / "Synthetic_common_backbone.sampling.json").is_file()
     checkpoint = root / "run" / "checkpoints" / "best.pt"; checkpoint.parent.mkdir(parents=True); checkpoint.write_bytes(b"x")
     history = checkpoint.parent.parent / "metrics" / "history.csv"; history.parent.mkdir()
     pd.DataFrame({"epoch":[1,2],"train_loss":[1.0,.5],"valid_accuracy":[.4,.6],"test_accuracy":[.3,.5],"valid_macro_f1":[.35,.55],"test_macro_f1":[.25,.45]}).to_csv(history,index=False)
@@ -160,7 +160,9 @@ def check_inventory(root):
         return {"backbone":cache,"deployed":cache}
     ev.map_gt_label_folders = fake_map
     ev.extract = fake_extract
-    def fake_tsne(name,caches,out,seed,limit):
+    tsne_calls=[]
+    def fake_tsne(name,caches,out,seed,limit,representation="common_backbone"):
+        tsne_calls.append((name,representation))
         total=sum(len(c["labels"]) for c in caches.values()); return {"total_features":total,"sampled":total if limit<=0 else min(total,limit),"max_samples":limit}
     ev.save_tsne = fake_tsne
     ev.save_curve = lambda name, item, out: {"model": name, "history": "", "status": "not_applicable", "png": ""}
@@ -189,12 +191,15 @@ def check_inventory(root):
         backbone_summary=pd.read_csv(complete_output/"backbone_summary.csv"); assert len(backbone_summary)==120
         assert complete_summary[complete_summary.model=="ViT Base"].accuracy.mean()<backbone_summary[backbone_summary.model=="ViT Base"].accuracy.mean()
         complete_progress=json.loads((complete_output/"progress.json").read_text()); assert all(item["tsne"]["sampled"]==item["tsne"]["total_features"] for item in complete_progress["models"].values())
+        assert all((name,"common_backbone") in tsne_calls for name in ev.MODELS)
+        assert ("ViT Base","deployed") in tsne_calls and ("ViT-ClosedFT-SupCon","deployed") in tsne_calls and ("ViT-FullFT-SupCon","deployed") in tsne_calls
         fingerprint=json.loads((complete_output/"run_fingerprint.json").read_text())
         assert fingerprint["config"]["tsne_max_samples"]==0
         assert fingerprint["schema"]==2 and fingerprint["sources"]["src/models.py"]["sha256"]==ev.digest(REPO/"src/models.py")
-        assert {"python","torch","torchvision","timm","sklearn","numpy","pandas"}<=set(fingerprint["runtime"])
+        assert {"python","torch","torchvision","timm","sklearn","numpy","pandas","matplotlib","pillow"}<=set(fingerprint["runtime"])
+        selected_results=pd.read_csv(complete_output/"selected_results.csv"); assert len(selected_results)==10
         report = (complete_output / "REPORT.md").read_text()
-        assert "t-SNE: all features" in report and "## Curve coverage" in report
+        assert "t-SNE: all features" in report and "## Training curves" in report and "## Artifact index" in report and "## SHA-256 provenance" in report
         assert "## Held-out test performance by partition" in report and "### Closed" in report and "### Open" in report
         closed_section = report.split("### Closed", 1)[1].split("### Open", 1)[0]; open_section = report.split("### Open", 1)[1].split("## Matched held-out test comparisons", 1)[0]
         assert all(name in closed_section and name in open_section for name in ev.MODELS)
