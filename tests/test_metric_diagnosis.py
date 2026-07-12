@@ -5,6 +5,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -12,8 +13,7 @@ import pandas as pd
 import torch
 
 REPO = next(path for path in [Path.cwd(), Path(__file__).resolve().parents[1]] if (path / "src").is_dir())
-EVALUATOR = Path(__file__).with_name("evaluator_v5.py")
-if not EVALUATOR.is_file(): EVALUATOR = REPO / "pipelines" / "eval" / "evaluate_metric_diagnosis.py"
+EVALUATOR = REPO / "pipelines" / "eval" / "evaluate_metric_diagnosis.py"
 sys.path.insert(0, str(REPO))
 spec = importlib.util.spec_from_file_location("evaluator_v5", EVALUATOR)
 ev = importlib.util.module_from_spec(spec)
@@ -21,13 +21,16 @@ spec.loader.exec_module(ev)
 
 
 def write_manifest(path, labels):
-    pd.DataFrame([
-        {"path": f"/unused/{label}/{split}.png", "label": label, "split": split}
-        for label in labels for split in ("train", "valid", "test")
-    ]).to_csv(path, index=False)
+    images = path.parent / "images"; images.mkdir(exist_ok=True)
+    rows = []
+    for label in labels:
+        for split in ("train", "valid", "test"):
+            image = images / f"{ev.normalize_label_name(label)}-{split}.png"; image.write_bytes(f"{label}:{split}".encode())
+            rows.append({"path": str(image.resolve()), "label": label, "split": split})
+    pd.DataFrame(rows).to_csv(path, index=False)
 
 
-def write_checkpoint(path, labels, manifest, supcon=False, score=0.5, epoch=10):
+def write_checkpoint(path, labels, manifest, supcon=False, score=0.5, epoch=10, history_epochs=10):
     path.parent.mkdir(parents=True, exist_ok=True)
     state = {"projector.3.weight": torch.zeros((2, 2))} if supcon else {"head.weight": torch.zeros((2, 2))}
     torch.save({
@@ -37,6 +40,8 @@ def write_checkpoint(path, labels, manifest, supcon=False, score=0.5, epoch=10):
         "metrics": {"macro_f1": score},
         "epoch": epoch,
     }, path)
+    history = path.parent.parent / "metrics" / "history.csv"; history.parent.mkdir(exist_ok=True)
+    pd.DataFrame({"epoch":range(1,history_epochs+1),"train_loss":np.linspace(1,.1,history_epochs),"valid_accuracy":np.linspace(.1,.9,history_epochs),"test_accuracy":np.linspace(.1,.8,history_epochs),"valid_macro_f1":np.linspace(.1,.9,history_epochs),"test_macro_f1":np.linspace(.1,.8,history_epochs)}).to_csv(history,index=False)
 
 
 def check_normalization_and_gt(root):
@@ -52,6 +57,11 @@ def check_normalization_and_gt(root):
     mapped, rows = ev.map_gt_label_folders(root, ["1.Simpleline(sl)", "13.3i(i3)", "23.55 III(55l)"])
     assert len(mapped["1.Simpleline(sl)"]) == 2
     assert {row["status"] for row in rows} == {"matched"}
+    leak=root/"leak"; leak.mkdir(); first=leak/"train.jpg"; second=leak/"test.jpg"; gt_image=leak/"gt.jpg"; first.write_bytes(b"same"); second.write_bytes(b"same"); gt_image.write_bytes(b"gt")
+    frames={"closed":pd.DataFrame([{"path":first,"label":"a","split":"train"},{"path":second,"label":"a","split":"test"}]),"open":pd.DataFrame(columns=["path","label","split"])}
+    try: ev.content_audit(frames,{"a":[gt_image]},leak)
+    except RuntimeError as error: assert "leakage" in str(error)
+    else: raise AssertionError("content leakage was not rejected")
 
 
 def check_distances_and_sampling():
@@ -64,6 +74,13 @@ def check_distances_and_sampling():
     assert [row[3] for row in first] == [row[3] for row in second]
     assert len({row[:3] for row in first}) == 12
     assert len(ev.MODELS) * len(ev.PROTOS) * len(ev.DISTS) * 2 * len(ev.SPLITS) == 120
+
+
+def check_checkpoint_provenance(root):
+    from src.models import save_checkpoint
+    manifest=root/"manifest.csv"; manifest.parent.mkdir(parents=True); manifest.write_text("path,label,split\n/a,a,train\n")
+    checkpoint=root/"best.pt"; save_checkpoint(checkpoint,torch.nn.Linear(2,2),None,1,{}, {"manifest":str(manifest)}, {"a":0})
+    assert torch.load(checkpoint,map_location="cpu")["args"]["manifest_sha256"]==ev.digest(manifest)
 
 
 def check_visual_artifacts(root):
@@ -91,13 +108,13 @@ def check_visual_artifacts(root):
 def check_inventory(root):
     manifests = root / "manifests"; checkpoints = root / "checkpoints"; manifests.mkdir(parents=True); checkpoints.mkdir()
     closed = ["20.TS III(ts3)"] + [f"closed{i:02d}" for i in range(26)]
-    opened = [f"open{i:02d}" for i in range(15)]; full = closed + opened
+    opened = ["Simpleline","exfeel internal","SS III","Biohorizon external","TSV","S clean tapered","GS III","screw vent","atlas internal","stella","3i","ankylos","iu","replace select","core1"]; full = closed + opened
     closed_manifest = manifests / "closed27.csv"; open_manifest = manifests / "open15.csv"; full_manifest = manifests / "full42.csv"; old26_manifest = manifests / "old26.csv"
     write_manifest(closed_manifest, closed); write_manifest(open_manifest, opened); write_manifest(full_manifest, full); write_manifest(old26_manifest, closed[1:])
     old_high = checkpoints / "old_high" / "best.pt"; old26 = checkpoints / "old26" / "best.pt"
     fresh_closed = checkpoints / "fresh_closed" / "best.pt"; fresh_closed_supcon = checkpoints / "fresh_closed_supcon" / "best.pt"
     fresh_full = checkpoints / "fresh_full" / "best.pt"; fresh_full_supcon = checkpoints / "fresh_full_supcon" / "best.pt"
-    write_checkpoint(old_high, closed, closed_manifest, score=0.99, epoch=5); write_checkpoint(old26, closed[1:], old26_manifest, score=1.0)
+    write_checkpoint(old_high, closed, closed_manifest, score=0.99, epoch=5, history_epochs=5); write_checkpoint(old26, closed[1:], old26_manifest, score=1.0)
     write_checkpoint(fresh_closed, closed, closed_manifest, score=0.1); write_checkpoint(fresh_closed_supcon, closed, closed_manifest, True, score=0.1)
     write_checkpoint(fresh_full, full, full_manifest, score=0.1); write_checkpoint(fresh_full_supcon, full, full_manifest, True, score=0.1)
     output = root / "inventory"
@@ -119,28 +136,42 @@ def check_inventory(root):
     assert bad.returncode != 0
     audit = json.loads((bad_output / "manifest_audit.json").read_text())
     assert "closed label count is not 27" in audit["errors"]
+    wrong_open=opened[:-1]+["wrong label"]; wrong_open_manifest=manifests/"wrong_open.csv"; wrong_full_manifest=manifests/"wrong_full.csv"
+    write_manifest(wrong_open_manifest,wrong_open); write_manifest(wrong_full_manifest,closed+wrong_open)
+    wrong_output=root/"wrong_open_inventory"; wrong=subprocess.run([sys.executable,str(EVALUATOR),"--closed-manifest",str(closed_manifest),"--open-manifest",str(wrong_open_manifest),"--full-manifest",str(wrong_full_manifest),"--checkpoint-root",str(checkpoints),"--output-dir",str(wrong_output),"--inventory-only"],cwd=REPO,env=env,text=True,capture_output=True)
+    assert wrong.returncode!=0
+    assert "open labels do not match the required Open15 English names" in json.loads((wrong_output/"manifest_audit.json").read_text())["errors"]
 
     originals = ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_curve
-    gt_root = root / "gt"; gt_root.mkdir(); (gt_root / "ready").write_text("x")
+    gt_root = root / "gt"; gt_zip = root / "unused.zip"
+    with zipfile.ZipFile(gt_zip,"w") as archive: archive.writestr("seed/readme.txt","synthetic")
     def fake_map(_root, labels, report_csv=None):
-        mapped = {label: [Path(f"/unused/gt/{label}.jpg")] for label in labels}
-        return mapped, [{"label": label, "status": "matched"} for label in labels]
-    def fake_extract(_model, _forward, manifest, _size, _batch, _workers, _device):
+        folder=Path(_root)/"fake_gt"; folder.mkdir(exist_ok=True); mapped={}
+        for label in labels:
+            image=folder/f"{ev.normalize_label_name(label)}.jpg"; image.write_bytes(f"gt:{label}".encode()); mapped[label]=[image.resolve()]
+        rows=[{"label":label,"status":"matched"} for label in labels]
+        if report_csv: pd.DataFrame(rows).to_csv(report_csv,index=False)
+        return mapped,rows
+    def fake_extract(_model, _forward, manifest, _transform, _batch, _workers, _device):
         frame = pd.read_csv(manifest); values = frame.label.astype(str).tolist()
         features = np.asarray([[sum(map(ord, label)) % 997, (sum(map(ord, label)) ** 2) % 991] for label in values], dtype=np.float32)
-        return {"features": features, "labels": np.asarray(values, dtype=object), "splits": frame.split.astype(str).to_numpy(object), "paths": frame.path.astype(str).to_numpy(object)}
+        if _transform=="native": features=np.zeros_like(features)
+        cache={"features":features,"labels":np.asarray(values,dtype=object),"splits":frame.split.astype(str).to_numpy(object),"paths":frame.path.astype(str).to_numpy(object)}
+        return {"backbone":cache,"deployed":cache}
     ev.map_gt_label_folders = fake_map
     ev.extract = fake_extract
-    ev.save_tsne = lambda name, caches, out, seed, limit: {"total_features": sum(len(c["labels"]) for c in caches.values()), "sampled": 10, "max_samples": limit}
+    def fake_tsne(name,caches,out,seed,limit):
+        total=sum(len(c["labels"]) for c in caches.values()); return {"total_features":total,"sampled":total if limit<=0 else min(total,limit),"max_samples":limit}
+    ev.save_tsne = fake_tsne
     ev.save_curve = lambda name, item, out: {"model": name, "history": "", "status": "not_applicable", "png": ""}
     base_args = [
         "evaluator_v5.py", "--closed-manifest", str(closed_manifest), "--open-manifest", str(open_manifest), "--full-manifest", str(full_manifest),
         "--checkpoint-root", str(checkpoints), "--closed-checkpoint", str(fresh_closed), "--closed-supcon-checkpoint", str(fresh_closed_supcon),
-        "--full-checkpoint", str(fresh_full), "--full-supcon-checkpoint", str(fresh_full_supcon), "--gt-zip", str(root / "unused.zip"), "--gt-root", str(gt_root), "--allow-cpu",
+        "--full-checkpoint", str(fresh_full), "--full-supcon-checkpoint", str(fresh_full_supcon), "--gt-zip", str(gt_zip), "--gt-root", str(gt_root), "--allow-cpu",
     ]
     old_argv = sys.argv
     try:
-        ev.make_model = lambda item, device: (_ for _ in ()).throw(RuntimeError("base unavailable")) if item["kind"] == "pretrained_base" else (object(), lambda x: x, 224)
+        ev.make_model = lambda item, device: (_ for _ in ()).throw(RuntimeError("base unavailable")) if item["kind"] == "pretrained_base" else (object(), lambda x: x, "common", "common", {"source":"fake"})
         failed_output = root / "failed_full"; sys.argv = base_args + ["--output-dir", str(failed_output)]
         try: ev.main()
         except RuntimeError as error: assert "96/120" in str(error)
@@ -150,18 +181,33 @@ def check_inventory(root):
         assert failed_progress["tsne_max_samples"] == 0
         assert failed_progress["models"]["ViT Base"]["status"] == "unavailable"
         assert all(failed_progress["models"][name]["status"] == "ok" for name in ev.MODELS[1:])
-        ev.make_model = lambda item, device: (object(), lambda x: x, 224)
+        ev.make_model = lambda item, device: (object(),lambda x:x,"native","common",{"source":"fake"}) if item["kind"]=="pretrained_base" else (object(),lambda x:x,"common","common",{"source":"fake"})
         complete_output = root / "complete_full"; sys.argv = base_args + ["--output-dir", str(complete_output)]
         ev.main()
         complete_summary = pd.read_csv(complete_output / "summary.csv")
         assert len(complete_summary) == 120 and (complete_summary.status == "ok").sum() == 120
+        backbone_summary=pd.read_csv(complete_output/"backbone_summary.csv"); assert len(backbone_summary)==120
+        assert complete_summary[complete_summary.model=="ViT Base"].accuracy.mean()<backbone_summary[backbone_summary.model=="ViT Base"].accuracy.mean()
+        complete_progress=json.loads((complete_output/"progress.json").read_text()); assert all(item["tsne"]["sampled"]==item["tsne"]["total_features"] for item in complete_progress["models"].values())
+        assert json.loads((complete_output/"run_fingerprint.json").read_text())["config"]["tsne_max_samples"]==0
         report = (complete_output / "REPORT.md").read_text()
         assert "t-SNE: all features" in report and "## Curve coverage" in report
-        assert "## Mean performance by partition" in report and "### Closed" in report and "### Open" in report
-        closed_section = report.split("### Closed", 1)[1].split("### Open", 1)[0]; open_section = report.split("### Open", 1)[1].split("## Matched model comparisons", 1)[0]
+        assert "## Held-out test performance by partition" in report and "### Closed" in report and "### Open" in report
+        closed_section = report.split("### Closed", 1)[1].split("### Open", 1)[0]; open_section = report.split("### Open", 1)[1].split("## Matched held-out test comparisons", 1)[0]
         assert all(name in closed_section and name in open_section for name in ev.MODELS)
-        assert report.count("  - closed:") == 4 and report.count("  - open:") == 4
         assert all(f"- {scope} best {setting}:" in report for scope in ("Overall", "Closed", "Open") for setting in ("distance", "prototype"))
+        assert "Completed common-backbone rows: 120/120" in report
+        ev.save_tsne=lambda *args,**kwargs: (_ for _ in ()).throw(RuntimeError("visual failure"))
+        visual_output=root/"visual_failure"; sys.argv=base_args+["--output-dir",str(visual_output)]
+        try: ev.main()
+        except RuntimeError as error: assert "t-SNE complete=False" in str(error)
+        else: raise AssertionError("visual failure was not reported")
+        assert (pd.read_csv(visual_output/"summary.csv").status=="ok").sum()==120
+        assert all(item["tsne"]["status"]=="unavailable" for item in json.loads((visual_output/"progress.json").read_text())["models"].values())
+        assert "## t-SNE coverage\n- ViT Base: unavailable" in (visual_output/"REPORT.md").read_text()
+        ev.save_tsne=fake_tsne; sys.argv=base_args+["--output-dir",str(visual_output),"--resume-tsne"]; ev.main()
+        assert all(item["tsne"]["status"]=="ok" for item in json.loads((visual_output/"progress.json").read_text())["models"].values())
+        assert "## t-SNE coverage\n- ViT Base: ok" in (visual_output/"REPORT.md").read_text()
     finally:
         sys.argv = old_argv
         ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_curve = originals
@@ -172,6 +218,7 @@ def test_metric_diagnosis():
         root = Path(directory)
         check_normalization_and_gt(root / "gt")
         check_distances_and_sampling()
+        check_checkpoint_provenance(root / "provenance")
         check_visual_artifacts(root / "visuals")
         check_inventory(root / "inventory_case")
 

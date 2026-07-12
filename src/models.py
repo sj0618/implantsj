@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 from pathlib import Path
 from typing import Dict, Tuple
 
@@ -96,12 +97,20 @@ def load_matching_weights(model: nn.Module, checkpoint_path: str | Path, strict:
 def save_checkpoint(path: str | Path, model, optimizer, epoch: int, metrics: Dict, args: Dict, class_to_idx: Dict[str, int]) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
+    checkpoint_args = dict(args)
+    manifest = Path(checkpoint_args.get('manifest', ''))
+    if manifest.is_file() and 'manifest_sha256' not in checkpoint_args:
+        checksum = hashlib.sha256()
+        with manifest.open('rb') as stream:
+            for block in iter(lambda: stream.read(1048576), b''):
+                checksum.update(block)
+        checkpoint_args['manifest_sha256'] = checksum.hexdigest()
     torch.save({
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict() if optimizer is not None else None,
         'metrics': metrics,
-        'args': args,
+        'args': checkpoint_args,
         'class_to_idx': class_to_idx,
     }, path)
 
