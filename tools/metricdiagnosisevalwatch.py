@@ -5,13 +5,14 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from pipelines.eval.evaluate_metric_diagnosis import run_fingerprint
+from pipelines.eval.evaluate_metric_diagnosis import digest, run_fingerprint
 
 OUTPUTS = Path("/home/ubuntu/workspace/outputs")
 DATA = Path("/home/ubuntu/workspace/data")
@@ -70,7 +71,20 @@ def ensure_base_checkpoint():
     return BASE.resolve()
 
 
-def complete(path, checkpoints, fingerprint, require_tsne=True):
+def completion_valid(path):
+    marker=path/"completion.json"; fingerprint=path/"run_fingerprint.json"
+    if not marker.is_file() or not fingerprint.is_file(): return False
+    try: completion=json.loads(marker.read_text(encoding="utf-8"))
+    except (OSError,json.JSONDecodeError): return False
+    if completion.get("schema")!=1 or completion.get("fingerprint_sha256")!=digest(fingerprint): return False
+    root=path.resolve()
+    for relative,expected in completion.get("artifacts",{}).items():
+        target=(root/relative).resolve()
+        if (target!=root and root not in target.parents) or not target.is_file() or digest(target)!=expected: return False
+    return completion.get("result_rows")==completion.get("backbone_rows")==120 and completion.get("selected_rows")==10
+
+
+def complete(path, checkpoints, fingerprint, require_tsne=True, require_completion=True):
     summary = path / "summary.csv"
     backbone = path / "backbone_summary.csv"
     inventory = path / "checkpoint_selection.json"
@@ -101,6 +115,7 @@ def complete(path, checkpoints, fingerprint, require_tsne=True):
         and provenance.get("manifests", {}).get("row_union_exact") is True
         and provenance.get("content", {}).get("conflicts") == 0
         and recorded_fingerprint == fingerprint
+        and (completion_valid(path) or not require_completion)
     )
 
 
@@ -129,6 +144,10 @@ def self_check():
     assert args[args.index("--batch-size") + 1] == "64"
     assert args[args.index("--base-checkpoint") + 1] == "/tmp/base.pt"
     assert all(flag in args for flag in NAMES.values())
+    with tempfile.TemporaryDirectory() as directory:
+        root=Path(directory); artifact=root/"REPORT.md"; fingerprint=root/"run_fingerprint.json"; artifact.write_text("ok"); fingerprint.write_text("{}")
+        (root/"completion.json").write_text(json.dumps({"schema":1,"result_rows":120,"backbone_rows":120,"selected_rows":10,"fingerprint_sha256":digest(fingerprint),"artifacts":{"REPORT.md":digest(artifact)}}))
+        assert completion_valid(root); artifact.write_text("changed"); assert not completion_valid(root)
     print("METRIC_DIAGNOSIS_EVAL_WATCH_OK")
 
 
@@ -157,7 +176,7 @@ def main():
     if complete(RESULT,checkpoints,fingerprint): print(f"complete: {RESULT}"); return
     completed=subprocess.run(command(checkpoints,base_checkpoint),cwd=ROOT,env=env)
     if completed.returncode:
-        if not complete(RESULT,checkpoints,fingerprint,False): completed.check_returncode()
+        if not complete(RESULT,checkpoints,fingerprint,False,False): completed.check_returncode()
         subprocess.run(command(checkpoints,base_checkpoint)+["--resume-tsne"],cwd=ROOT,env=env,check=True)
     if not complete(RESULT, checkpoints, fingerprint):
         raise RuntimeError(f"evaluation did not produce 120 successful rows: {RESULT}")
