@@ -79,7 +79,7 @@ def run_fingerprint(checkpoints, manifests, gt_zip, config, base_checkpoint=None
         import timm
         base={"kind":"implicit_timm_pretrained","timm_version":timm.__version__,"pretrained_cfg":json.loads(json.dumps(timm.get_pretrained_cfg(config["base_model_name"]).to_dict(),default=str))}
     sources={str(path.relative_to(ROOT)):facts(path) for path in [Path(__file__),ROOT/"src/data.py",ROOT/"src/models.py",ROOT/"src/metrics.py"]}
-    packages={"torch":"torch","torchvision":"torchvision","timm":"timm","sklearn":"scikit-learn","numpy":"numpy","pandas":"pandas"}
+    packages={"torch":"torch","torchvision":"torchvision","timm":"timm","sklearn":"scikit-learn","numpy":"numpy","pandas":"pandas","matplotlib":"matplotlib","pillow":"Pillow"}
     runtime={"python":platform.python_version(),**{name:importlib.metadata.version(package) for name,package in packages.items()}}
     return {"schema":2,"evaluator":facts(__file__),"sources":sources,"runtime":runtime,"base":base,"checkpoints":{name:facts(path) for name,path in sorted(checkpoints.items())},"manifests":{name:facts(path) for name,path in sorted(manifests.items())},"gt_zip":facts(gt_zip),"config":config}
 
@@ -215,7 +215,7 @@ def stratified_rows(rows, limit, seed):
         if not moved: break
     return [rows[i] for i in chosen]
 
-def save_tsne(name, caches, out, seed, limit):
+def save_tsne(name, caches, out, seed, limit, representation="common_backbone"):
     from sklearn.decomposition import PCA
     from sklearn.manifold import TSNE
     rows = [(part,c["labels"][i],c["splits"][i],c["paths"][i],c["features"][i]) for part,c in caches.items() for i in range(len(c["labels"]))]
@@ -223,8 +223,11 @@ def save_tsne(name, caches, out, seed, limit):
     x = np.stack([r[4] for r in rows]); x = PCA(min(50,x.shape[1],len(x)-1),random_state=seed).fit_transform(x) if x.shape[1]>50 else x
     xy = TSNE(2,perplexity=min(30,max(1,(len(x)-1)/3)),init="pca",learning_rate="auto",random_state=seed).fit_transform(x)
     df = pd.DataFrame({"partition":[r[0] for r in rows],"label":[r[1] for r in rows],"split":[r[2] for r in rows],"path":[r[3] for r in rows],"x":xy[:,0],"y":xy[:,1]})
-    stem = name.replace(" ","_"); df.to_csv(out/f"{stem}.csv",index=False); np.savez_compressed(out/f"{stem}.npz",features=x,coords=xy,**{c:df[c].to_numpy() for c in ["partition","label","split","path"]})
-    counts={"/".join(map(str,k)):int(v) for k,v in df.groupby(["partition","split","label"]).size().items()}; meta={"total_features":total,"sampled":len(df),"max_samples":limit,"seed":seed,"method":"deterministic round-robin by partition/split/label","counts":counts}; (out/f"{stem}.sampling.json").write_text(json.dumps(meta,indent=2))
+    stem = name.replace(" ","_")+"_"+representation
+    csv_path,npz_path,sampling_path=out/f"{stem}.csv",out/f"{stem}.npz",out/f"{stem}.sampling.json"
+    train_test_png,valid_png=out/f"{stem}.png",out/f"{stem}_valid.png"
+    df.to_csv(csv_path,index=False); np.savez_compressed(npz_path,features=x,coords=xy,**{c:df[c].to_numpy() for c in ["partition","label","split","path"]})
+    counts={"/".join(map(str,k)):int(v) for k,v in df.groupby(["partition","split","label"]).size().items()}; meta={"representation":representation,"total_features":total,"sampled":len(df),"max_samples":limit,"seed":seed,"method":"deterministic round-robin by partition/split/label","counts":counts,"csv":str(csv_path),"npz":str(npz_path),"sampling":str(sampling_path),"train_test_png":str(train_test_png),"valid_png":str(valid_png)}; sampling_path.write_text(json.dumps(meta,indent=2))
     import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
     label_names=sorted(df.label.unique()); colors={label:plt.cm.turbo(i/max(1,len(label_names)-1)) for i,label in enumerate(label_names)}
@@ -234,16 +237,20 @@ def save_tsne(name, caches, out, seed, limit):
             for col,split in enumerate(splits):
                 ax=axes[row,col]; q=df[(df.partition==part)&(df.split==split)]
                 for label,g in q.groupby("label",sort=True): ax.scatter(g.x,g.y,s=9,alpha=.65,color=colors[label])
-                ax.set_title(f"{name} [common backbone]: {part} / {split}"); ax.set_xticks([]); ax.set_yticks([])
+                ax.set_title(f"{name} [{representation.replace('_',' ')}]: {part} / {split}"); ax.set_xticks([]); ax.set_yticks([])
         handles=[Line2D([0],[0],marker="o",linestyle="",markersize=5,color=colors[label],label=label) for label in label_names]
         fig.legend(handles=handles,loc="center left",bbox_to_anchor=(.99,.5),fontsize=7); fig.tight_layout(rect=(0,0,.86,1)); fig.savefig(path,dpi=180,bbox_inches="tight"); plt.close(fig)
-    panels(["train","test"],out/f"{stem}.png"); panels(["valid"],out/f"{stem}_valid.png")
+    panels(["train","test"],train_test_png); panels(["valid"],valid_png)
     return meta
 
+def axis_limits(values, bounded):
+    low,high=float(values.min()),float(values.max()); span=high-low or max(abs(high)*.05,.02); pad=max(span*.12,.005 if bounded else span*.05)
+    return (max(0.,low-pad),min(1.,high+pad)) if bounded else (low-pad,high+pad)
+
 def save_curve(name, item, out):
-    if not item.get("checkpoint"): return {"model":name,"history":"","status":"not_applicable","png":""}
+    if not item.get("checkpoint"): return {"model":name,"history":"","status":"not_applicable","png":"","csv":"","epochs":0}
     history=Path(item["checkpoint"]).parent.parent/"metrics"/"history.csv"; stem=name.replace(" ","_")
-    if not history.is_file(): return {"model":name,"history":str(history),"status":"missing","png":""}
+    if not history.is_file(): return {"model":name,"history":str(history),"status":"missing","png":"","csv":"","epochs":0}
     df=pd.read_csv(history); copy=out/f"{stem}.csv"; df.to_csv(copy,index=False)
     groups=[("loss",["train_loss"]),("accuracy",[c for c in ["valid_accuracy","test_accuracy"] if c in df]),("macro-F1",[c for c in ["valid_macro_f1","test_macro_f1"] if c in df])]; groups=[g for g in groups if g[1] and all(c in df for c in g[1])]
     png=""
@@ -252,11 +259,16 @@ def save_curve(name, item, out):
         x=df["epoch"] if "epoch" in df else np.arange(1,len(df)+1); fig,axes=plt.subplots(1,len(groups),figsize=(5*len(groups),4),squeeze=False)
         for ax,(title,columns) in zip(axes[0],groups):
             for column in columns: ax.plot(x,df[column],marker="o",label=column)
+            values=pd.concat([df[column] for column in columns]).dropna()
+            if len(values): ax.set_ylim(*axis_limits(values,title!="loss"))
             ax.set_title(title); ax.set_xlabel("epoch"); ax.legend()
         fig.tight_layout(); target=out/f"{stem}.png"; fig.savefig(target,dpi=180); plt.close(fig); png=str(target)
     missing=sorted({"test_accuracy","test_macro_f1"}-set(df.columns)); status="partial" if missing else "ok"
     reason=f"history lacks per-epoch {', '.join(missing)}; available curves only" if missing else ""
-    return {"model":name,"history":str(history),"status":status,"csv":str(copy),"png":png,"reason":reason}
+    ranking=[column for column in ["valid_macro_f1","valid_accuracy"] if column in df]; best=df.sort_values(ranking,ascending=False).iloc[0] if ranking else df.iloc[-1]
+    result={"model":name,"history":str(history),"status":status,"csv":str(copy),"png":png,"reason":reason,"epochs":len(df),"best_epoch":int(best["epoch"]) if "epoch" in best else int(best.name)+1}
+    for column in ["valid_accuracy","valid_macro_f1","test_accuracy","test_macro_f1"]: result[f"best_{column}"]=float(best[column]) if column in best and pd.notna(best[column]) else ""
+    return result
 
 def evaluate_caches(name, caches, gtc, args, representation, details=True):
     summary,predictions,members=[],[],[]
@@ -290,29 +302,60 @@ def save_partial(out, summary, backbone, predictions, members, curves, progress)
 def resume_tsne(out, seed, limit):
     progress_path=out/"progress.json"; progress=json.loads(progress_path.read_text()); failures=[]
     for name in MODELS:
-        folder=out/"features"/name.replace(" ","_"); caches={}
+        folder=out/"features"/name.replace(" ","_"); common={}; deployed={}
         try:
             for part in ["closed","open"]:
                 path=folder/f"{part}_backbone.npz" if (folder/f"{part}_backbone.npz").is_file() else folder/f"{part}.npz"
-                with np.load(path,allow_pickle=True) as archive: caches[part]={key:archive[key] for key in archive.files}
-            progress["models"].setdefault(name,{})["tsne"]={"status":"ok","representation":"common_backbone",**save_tsne(name,caches,out/"tsne",seed,limit)}
+                with np.load(path,allow_pickle=True) as archive: common[part]={key:archive[key] for key in archive.files}
+            common_meta=save_tsne(name,common,out/"tsne",seed,limit,"common_backbone")
+            if all((folder/f"{part}_backbone.npz").is_file() for part in ["closed","open"]):
+                for part in ["closed","open"]:
+                    with np.load(folder/f"{part}.npz",allow_pickle=True) as archive: deployed[part]={key:archive[key] for key in archive.files}
+                deployed_meta={"status":"ok",**save_tsne(name,deployed,out/"tsne",seed,limit,"deployed")}
+            else: deployed_meta={"status":"same_as_common_backbone",**common_meta}
+            progress["models"].setdefault(name,{})["tsne"]={"status":"ok",**common_meta,"common_backbone":common_meta,"deployed":deployed_meta}
         except Exception as error:
-            progress["models"].setdefault(name,{})["tsne"]={"status":"unavailable","representation":"common_backbone","reason":repr(error)}; failures.append(name)
+            progress["models"].setdefault(name,{})["tsne"]={"status":"unavailable","reason":repr(error)}; failures.append(name)
         progress_path.write_text(json.dumps(progress,indent=2))
     if failures: raise RuntimeError(f"t-SNE incomplete for {failures}; saved features can be resumed")
     return progress
 
+def validation_selected_results(ok):
+    rows=[]; valid,test=ok[ok.split=="valid"],ok[ok.split=="test"]
+    for (model,partition),group in valid.groupby(["model","partition"]):
+        best=group.sort_values(["accuracy","macro_f1","prototype","distance"],ascending=[False,False,True,True]).iloc[0]
+        held=test[(test.model==model)&(test.partition==partition)&(test.prototype==best.prototype)&(test.distance==best.distance)]
+        if held.empty: continue
+        held=held.iloc[0]; rows.append({"model":model,"partition":partition,"prototype":best.prototype,"distance":best.distance,"valid_accuracy":best.accuracy,"valid_macro_f1":best.macro_f1,"test_accuracy":held.accuracy,"test_macro_f1":held.macro_f1,"test_weighted_f1":held.weighted_f1})
+    return pd.DataFrame(rows)
+
 def write_report(out, args):
     result=pd.read_csv(out/"summary.csv"); ok=result[result.status=="ok"]; backbone_result=pd.read_csv(out/"backbone_summary.csv"); backbone_ok=backbone_result[backbone_result.status=="ok"]
     valid_ok,test_ok=ok[ok.split=="valid"],ok[ok.split=="test"]; backbone_test=backbone_ok[backbone_ok.split=="test"]; selected=json.loads((out/"checkpoint_selection.json").read_text()); progress=json.loads((out/"progress.json").read_text()); curves=pd.read_csv(out/"curve_inventory.csv").fillna("").to_dict("records")
+    chosen=validation_selected_results(ok); chosen.to_csv(out/"selected_results.csv",index=False)
+    fingerprint=json.loads((out/"run_fingerprint.json").read_text())
     unverified=[name for name in MODELS if name!="ViT Base" and not selected.get(name,{}).get("own_manifest_backed")]
-    tsne_note="all features" if args.tsne_max_samples<=0 else f"deterministic stratified sample, maximum {args.tsne_max_samples} per model"
-    lines=["# Metric Learning Diagnosis","",f"Artifacts: `{out.resolve()}`",f"Seed: {args.seed}; SS: {args.ss_per_label}; GT unmatched: 0; content leakage: 0",f"t-SNE: {tsne_note} in the common-backbone representation; full features remain in NPZ","Preprocessing: ViT Base deployed results use its timm pretrained configuration; all common-backbone comparisons use the repository transform. Fine-tuned deployed results use that same training transform. Exact values are in progress.json.","SupCon deployed results use the model's L2-normalized projector output. Common-backbone results remove projector dimension/normalization confounding, but remain a training-configuration comparison because CE and SupCon runs also differ in batch size, LR, and augmentation.",f"Manifest provenance limitation: current manifest path/content is exact, but training-time manifest hashes are unavailable for {', '.join(unverified) if unverified else 'none'}.","","## Held-out test performance by partition"]
+    tsne_note="all features" if args.tsne_max_samples<=0 else f"deterministic stratified sample, maximum {args.tsne_max_samples} per representation"
+    def link(path,label):
+        if not path: return ""
+        path=Path(path)
+        try: target=path.resolve().relative_to(out.resolve()).as_posix()
+        except ValueError: target=str(path)
+        return f"[{label}]({target})"
+    lines=["# Metric Learning Diagnosis","",f"Artifacts: `{out.resolve()}`",f"Seed: {args.seed}; SS: {args.ss_per_label}; GT unmatched: 0; content leakage: 0",f"t-SNE: {tsne_note}; common-backbone plots cover all models, and deployed plots additionally cover representations that differ (Base preprocessing and SupCon projector). Full features remain in NPZ.","Preprocessing: ViT Base deployed results use its timm pretrained configuration; all common-backbone comparisons use the repository transform. Fine-tuned deployed results use that same training transform. Exact values are in progress.json.","SupCon deployed results use the model's L2-normalized projector output. Common-backbone results remove projector dimension/normalization confounding, but remain a training-configuration comparison because CE and SupCon runs also differ in batch size, LR, and augmentation.",f"Manifest provenance limitation: current manifest path/content is exact, but training-time manifest hashes are unavailable for {', '.join(unverified) if unverified else 'none'}.","","## Artifact index","- "+" · ".join([link(out/"summary.csv","deployed metrics"),link(out/"backbone_summary.csv","common-backbone metrics"),link(out/"selected_results.csv","validation-selected test results"),link(out/"predictions.csv","predictions")]),"- "+" · ".join([link(out/"curve_inventory.csv","curve inventory"),link(out/"prototype_membership.csv","prototype membership"),link(out/"checkpoint_selection.json","checkpoint selection"),link(out/"checkpoint_inventory.csv","checkpoint inventory")]),"- "+" · ".join([link(out/"run_fingerprint.json","full SHA-256 fingerprint"),link(out/"manifest_audit.json","manifest audit"),link(out/"provenance_audit.json","provenance audit"),link(out/"content_audit.csv","content hashes")]),"","## SHA-256 provenance","| Group | Item | SHA-256 |","|---|---|---|"]
+    hash_groups=[("source",fingerprint.get("sources",{})),("checkpoint",fingerprint.get("checkpoints",{})),("manifest",fingerprint.get("manifests",{}))]
+    if fingerprint.get("base",{}).get("sha256"): hash_groups.append(("base",{"ViT Base":fingerprint["base"]}))
+    hash_groups.append(("GT",{"AI Hub zip":fingerprint.get("gt_zip",{})}))
+    for group,items in hash_groups:
+        for item,facts in items.items(): lines.append(f"| {group} | {item} | `{facts.get('sha256','unavailable')}` |")
+    lines += ["","## Validation-selected joint setting, held-out test"]
+    for row in chosen.itertuples(): lines.append(f"- {row.model} / {row.partition}: {row.prototype} + {row.distance}; validation accuracy {row.valid_accuracy:.4f}, macro-F1 {row.valid_macro_f1:.4f}; test accuracy {row.test_accuracy:.4f}, macro-F1 {row.test_macro_f1:.4f}")
+    lines += ["","## Held-out test performance by partition","Values below are marginal means across all six prototype × distance settings."]
     for partition in ["closed","open"]:
         lines += ["",f"### {partition.title()}"]
         for name in MODELS:
             q=test_ok[(test_ok.model==name)&(test_ok.partition==partition)]; lines.append(f"- {name}: "+("unavailable" if q.empty else f"accuracy {q.accuracy.mean():.4f}, macro-F1 {q.macro_f1.mean():.4f}"))
-    lines += ["","## Matched held-out test comparisons"]
+    lines += ["","## Matched held-out test comparisons","Deltas are marginal means across matched prototype × distance settings."]
     for left,right,title,table in [("ViT-ClosedFT","ViT Base","Closed FT vs Base, model-native preprocessing",test_ok),("ViT-ClosedFT","ViT Base","Closed FT vs Base, common preprocessing/backbone",backbone_test),("ViT-ClosedFT-SupCon","ViT-ClosedFT","Closed SupCon backbone vs FT backbone",backbone_test),("ViT-FullFT","ViT-ClosedFT","Full vs Closed FT",test_ok),("ViT-FullFT-SupCon","ViT-FullFT","Full SupCon backbone vs FT backbone",backbone_test)]:
         lines.append(f"- {title}")
         for partition in ["closed","open"]:
@@ -322,14 +365,25 @@ def write_report(out, args):
         lines.append(f"- {name} projected-normalized vs backbone")
         for partition in ["closed","open"]:
             x=test_ok[(test_ok.model==name)&(test_ok.partition==partition)]; y=backbone_test[(backbone_test.model==name)&(backbone_test.partition==partition)]; paired=x.merge(y,on=["prototype","distance"],suffixes=("_projected","_backbone")); lines.append(f"  - {partition}: "+("unavailable" if paired.empty else f"accuracy {(paired.accuracy_projected-paired.accuracy_backbone).mean():+.4f}, macro-F1 {(paired.macro_f1_projected-paired.macro_f1_backbone).mean():+.4f}"))
-    lines += ["","## Settings selected on validation, reported on test"]
+    lines += ["","## Marginal settings selected on validation, reported on test"]
     for scope,partition in [("Overall",None),("Closed","closed"),("Open","open")]:
         validation=valid_ok if partition is None else valid_ok[valid_ok.partition==partition]; heldout=test_ok if partition is None else test_ok[test_ok.partition==partition]
         for col in ["distance","prototype"]:
             score=validation.groupby(col)[["accuracy","macro_f1"]].mean().sort_values(["accuracy","macro_f1"],ascending=False); winner=score.index[0] if len(score) else None; test_score=heldout[heldout[col]==winner][["accuracy","macro_f1"]].mean() if winner else None; lines.append(f"- {scope} best {col}: "+("unavailable" if winner is None else f"{winner} (validation accuracy {score.iloc[0].accuracy:.4f}; test accuracy {test_score.accuracy:.4f}, macro-F1 {test_score.macro_f1:.4f})"))
-    lines += ["","## Curve coverage"]
-    for curve in curves: lines.append(f"- {curve['model']}: {curve['status']}"+(f" ({curve['reason']})" if curve.get("reason") else ""))
-    lines += ["","## t-SNE coverage"]+[f"- {name}: {progress['models'].get(name,{}).get('tsne',{}).get('status','unavailable')}" for name in MODELS]
+    lines += ["","## Training curves"]
+    for curve in curves:
+        details=f"{curve['status']}; {int(curve.get('epochs') or 0)} epochs"
+        if curve.get("best_epoch") not in (None,""): details+=f"; best validation epoch {int(curve['best_epoch'])}"
+        for label,column in [("valid acc","best_valid_accuracy"),("valid F1","best_valid_macro_f1"),("test acc","best_test_accuracy"),("test F1","best_test_macro_f1")]:
+            if curve.get(column) not in (None,""): details+=f"; {label} {float(curve[column]):.4f}"
+        assets=" · ".join(x for x in [link(curve.get("png"),"curve"),link(curve.get("csv"),"history")] if x)
+        lines.append(f"- {curve['model']}: {details}"+(f"; {assets}" if assets else "")+(f" ({curve['reason']})" if curve.get("reason") else ""))
+    lines += ["","## t-SNE coverage"]
+    for name in MODELS:
+        info=progress["models"].get(name,{}).get("tsne",{}); common=info.get("common_backbone",{}); deployed=info.get("deployed",{})
+        assets=[link(common.get("train_test_png"),"common train/test"),link(common.get("valid_png"),"common valid")]
+        if deployed.get("status")!="same_as_common_backbone": assets += [link(deployed.get("train_test_png"),"deployed train/test"),link(deployed.get("valid_png"),"deployed valid")]
+        lines.append(f"- {name}: {info.get('status','unavailable')}"+("; "+" · ".join(x for x in assets if x) if any(assets) else ""))
     lines += ["",f"Completed deployed result rows: {len(ok)}/120",f"Completed common-backbone rows: {len(backbone_ok)}/120"]
     (out/"REPORT.md").write_text("\n".join(lines)+"\n"); print(f"RESULT_ROWS={len(result)} OK_ROWS={len(ok)} BACKBONE_OK_ROWS={len(backbone_ok)}")
     return len(result)==len(ok)==len(backbone_result)==len(backbone_ok)==120,all(progress["models"].get(name,{}).get("tsne",{}).get("status")=="ok" for name in MODELS),len(ok),len(backbone_ok)
