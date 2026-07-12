@@ -29,7 +29,7 @@ Status: **최종 metric-learning 진단 결과가 아님**
 
 ### ViT-ClosedFT — complete 10 epochs
 
-![ViT-ClosedFT learning curves](../../../outputs/metricdiag-viz/vit-closedft.png)
+![ViT-ClosedFT learning curves](images/vit-closedft-curves.png)
 
 | Epoch | Train loss | Valid acc | Valid macro-F1 | Test acc | Test macro-F1 |
 |---:|---:|---:|---:|---:|---:|
@@ -54,7 +54,7 @@ Epoch 1→10 변화:
 
 ### ViT-ClosedFT-SupCon — partial 3/10 epochs
 
-![ViT-ClosedFT-SupCon partial learning curves](../../../outputs/metricdiag-viz/vit-closedft-supcon.png)
+![ViT-ClosedFT-SupCon partial learning curves](images/vit-closedft-supcon-partial-curves.png)
 
 | Epoch | Train loss | Valid acc | Valid macro-F1 | Test acc | Test macro-F1 |
 |---:|---:|---:|---:|---:|---:|
@@ -72,7 +72,7 @@ Epoch 1→3 변화:
 
 ### ViT-FullFT — reused existing 54-epoch run
 
-![ViT-FullFT validation learning curves](../../../outputs/metricdiag-viz/vit-fullft.png)
+![ViT-FullFT selected validation epochs](images/vit-fullft-selected-epochs.png)
 
 | Selection | Epoch | Train loss | Valid accuracy | Valid macro-F1 |
 |---|---:|---:|---:|---:|
