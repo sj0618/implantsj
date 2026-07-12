@@ -3,3 +3,7 @@
 !.env.azure.example
 *.jpg
 *.jpng
+.DS_Store
+__pycache__/
+*.py[cod]
+/tools/codec/
