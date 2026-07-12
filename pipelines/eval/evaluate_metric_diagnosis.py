@@ -388,16 +388,42 @@ def write_report(out, args):
     (out/"REPORT.md").write_text("\n".join(lines)+"\n"); print(f"RESULT_ROWS={len(result)} OK_ROWS={len(ok)} BACKBONE_OK_ROWS={len(backbone_ok)}")
     return len(result)==len(ok)==len(backbone_result)==len(backbone_ok)==120,all(progress["models"].get(name,{}).get("tsne",{}).get("status")=="ok" for name in MODELS),len(ok),len(backbone_ok)
 
+def write_completion(out):
+    required=["REPORT.md","summary.csv","backbone_summary.csv","selected_results.csv","predictions.csv","prototype_membership.csv","curve_inventory.csv","checkpoint_selection.json","checkpoint_inventory.csv","run_fingerprint.json","manifest_audit.json","provenance_audit.json","content_audit.csv","content_conflicts.json","gt_mapping.csv","gt_manifest.csv","progress.json"]
+    artifacts=set(out/name for name in required); curves=pd.read_csv(out/"curve_inventory.csv").fillna(""); progress=json.loads((out/"progress.json").read_text())
+    selected_results=pd.read_csv(out/"selected_results.csv")
+    if len(selected_results)!=10: raise RuntimeError(f"expected 10 validation-selected results, got {len(selected_results)}")
+    for name in MODELS[1:]:
+        rows=curves[curves.model==name]
+        if len(rows)!=1 or rows.iloc[0].status not in {"ok","partial"}: raise RuntimeError(f"curve artifacts incomplete for {name}")
+        artifacts.update([Path(rows.iloc[0].csv),Path(rows.iloc[0].png)])
+    for name in MODELS:
+        info=progress["models"].get(name,{}).get("tsne",{})
+        if info.get("status")!="ok": raise RuntimeError(f"t-SNE incomplete for {name}")
+        for representation in ["common_backbone","deployed"]:
+            details=info.get(representation,{})
+            if representation=="deployed" and details.get("status")=="same_as_common_backbone": continue
+            for key in ["csv","npz","sampling","train_test_png","valid_png"]: artifacts.add(Path(details.get(key,"")))
+    root=out.resolve(); recorded={}
+    for path in artifacts:
+        path=path.resolve()
+        if not path.is_file() or (path!=root and root not in path.parents): raise RuntimeError(f"required report artifact missing or outside output: {path}")
+        recorded[str(path.relative_to(root))]=digest(path)
+    completion={"schema":1,"result_rows":120,"backbone_rows":120,"selected_rows":10,"fingerprint_sha256":digest(out/"run_fingerprint.json"),"artifacts":dict(sorted(recorded.items()))}
+    temporary=out/".completion.json.tmp"; temporary.write_text(json.dumps(completion,indent=2)); temporary.replace(out/"completion.json")
+    return completion
+
 def main():
     p=argparse.ArgumentParser(); p.add_argument("--closed-manifest",required=True); p.add_argument("--open-manifest",required=True); p.add_argument("--full-manifest",required=True)
     p.add_argument("--checkpoint-root",action="append",required=True); p.add_argument("--base-checkpoint"); p.add_argument("--base-model-name",default="vit_large_patch16_224.augreg_in21k_ft_in1k")
     p.add_argument("--closed-checkpoint"); p.add_argument("--closed-supcon-checkpoint"); p.add_argument("--full-checkpoint"); p.add_argument("--full-supcon-checkpoint")
     p.add_argument("--gt-zip"); p.add_argument("--gt-root"); p.add_argument("--output-dir",required=True)
     p.add_argument("--ss-per-label",type=int,default=5); p.add_argument("--seed",type=int,default=42); p.add_argument("--batch-size",type=int,default=64); p.add_argument("--num-workers",type=int,default=8); p.add_argument("--tsne-max-samples",type=int,default=0); p.add_argument("--allow-cpu",action="store_true"); p.add_argument("--inventory-only",action="store_true"); p.add_argument("--resume-tsne",action="store_true"); a=p.parse_args()
-    out=Path(a.output_dir); out.mkdir(parents=True,exist_ok=True); (out/"features").mkdir(exist_ok=True); (out/"tsne").mkdir(exist_ok=True); (out/"curves").mkdir(exist_ok=True)
+    out=Path(a.output_dir); out.mkdir(parents=True,exist_ok=True); (out/"completion.json").unlink(missing_ok=True); (out/"features").mkdir(exist_ok=True); (out/"tsne").mkdir(exist_ok=True); (out/"curves").mkdir(exist_ok=True)
     if a.resume_tsne:
         resume_tsne(out,a.seed,a.tsne_max_samples); numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
         if not numeric_ok or not visual_ok: raise RuntimeError(f"experiment incomplete after t-SNE resume: deployed {ok_rows}/120, backbone {backbone_rows}/120")
+        write_completion(out)
         print("TSNE_RESUME_OK"); return
     manifests={"closed":Path(a.closed_manifest),"open":Path(a.open_manifest),"full":Path(a.full_manifest)}; frames={k:load_manifest(v) for k,v in manifests.items()}; labels={k:set(v.label.astype(str)) for k,v in frames.items()}; rows={k:manifest_rows(v) if "split" in v else [] for k,v in frames.items()}
     errors=[]; split_errors={}
@@ -493,5 +519,6 @@ def main():
     except RuntimeError: progress=json.loads((out/"progress.json").read_text())
     numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
     if not numeric_ok or not visual_ok: raise RuntimeError(f"experiment incomplete: deployed {ok_rows}/120, backbone {backbone_rows}/120, t-SNE complete={visual_ok}; partial artifacts preserved in {out}")
+    write_completion(out)
 
 if __name__ == "__main__": main()

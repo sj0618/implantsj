@@ -163,9 +163,16 @@ def check_inventory(root):
     tsne_calls=[]
     def fake_tsne(name,caches,out,seed,limit,representation="common_backbone"):
         tsne_calls.append((name,representation))
-        total=sum(len(c["labels"]) for c in caches.values()); return {"total_features":total,"sampled":total if limit<=0 else min(total,limit),"max_samples":limit}
+        out.mkdir(exist_ok=True); stem=name.replace(" ","_")+"_"+representation; paths={}
+        for key,suffix in [("csv",".csv"),("npz",".npz"),("sampling",".sampling.json"),("train_test_png",".png"),("valid_png","_valid.png")]:
+            path=out/f"{stem}{suffix}"; path.write_bytes(b"artifact"); paths[key]=str(path)
+        total=sum(len(c["labels"]) for c in caches.values()); return {"representation":representation,"total_features":total,"sampled":total if limit<=0 else min(total,limit),"max_samples":limit,**paths}
     ev.save_tsne = fake_tsne
-    ev.save_curve = lambda name, item, out: {"model": name, "history": "", "status": "not_applicable", "png": ""}
+    def fake_curve(name,item,out):
+        if not item.get("checkpoint"): return {"model":name,"history":"","status":"not_applicable","png":"","csv":"","epochs":0}
+        out.mkdir(exist_ok=True); stem=name.replace(" ","_"); csv_path=out/f"{stem}.csv"; png_path=out/f"{stem}.png"; csv_path.write_text("epoch\n1\n"); png_path.write_bytes(b"png")
+        return {"model":name,"history":"","status":"ok","png":str(png_path),"csv":str(csv_path),"epochs":10,"best_epoch":10}
+    ev.save_curve = fake_curve
     base_args = [
         "evaluator_v5.py", "--closed-manifest", str(closed_manifest), "--open-manifest", str(open_manifest), "--full-manifest", str(full_manifest),
         "--checkpoint-root", str(checkpoints), "--closed-checkpoint", str(fresh_closed), "--closed-supcon-checkpoint", str(fresh_closed_supcon),
@@ -198,6 +205,7 @@ def check_inventory(root):
         assert fingerprint["schema"]==2 and fingerprint["sources"]["src/models.py"]["sha256"]==ev.digest(REPO/"src/models.py")
         assert {"python","torch","torchvision","timm","sklearn","numpy","pandas","matplotlib","pillow"}<=set(fingerprint["runtime"])
         selected_results=pd.read_csv(complete_output/"selected_results.csv"); assert len(selected_results)==10
+        completion=json.loads((complete_output/"completion.json").read_text()); assert completion["selected_rows"]==10 and completion["artifacts"]["REPORT.md"]==ev.digest(complete_output/"REPORT.md")
         report = (complete_output / "REPORT.md").read_text()
         assert "t-SNE: all features" in report and "## Training curves" in report and "## Artifact index" in report and "## SHA-256 provenance" in report
         assert "## Held-out test performance by partition" in report and "### Closed" in report and "### Open" in report
@@ -212,9 +220,11 @@ def check_inventory(root):
         else: raise AssertionError("visual failure was not reported")
         assert (pd.read_csv(visual_output/"summary.csv").status=="ok").sum()==120
         assert all(item["tsne"]["status"]=="unavailable" for item in json.loads((visual_output/"progress.json").read_text())["models"].values())
+        assert not (visual_output/"completion.json").exists()
         assert "## t-SNE coverage\n- ViT Base: unavailable" in (visual_output/"REPORT.md").read_text()
         ev.save_tsne=fake_tsne; sys.argv=base_args+["--output-dir",str(visual_output),"--resume-tsne"]; ev.main()
         assert all(item["tsne"]["status"]=="ok" for item in json.loads((visual_output/"progress.json").read_text())["models"].values())
+        assert (visual_output/"completion.json").is_file()
         assert "## t-SNE coverage\n- ViT Base: ok" in (visual_output/"REPORT.md").read_text()
     finally:
         sys.argv = old_argv
