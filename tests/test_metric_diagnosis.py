@@ -189,7 +189,10 @@ def check_inventory(root):
         backbone_summary=pd.read_csv(complete_output/"backbone_summary.csv"); assert len(backbone_summary)==120
         assert complete_summary[complete_summary.model=="ViT Base"].accuracy.mean()<backbone_summary[backbone_summary.model=="ViT Base"].accuracy.mean()
         complete_progress=json.loads((complete_output/"progress.json").read_text()); assert all(item["tsne"]["sampled"]==item["tsne"]["total_features"] for item in complete_progress["models"].values())
-        assert json.loads((complete_output/"run_fingerprint.json").read_text())["config"]["tsne_max_samples"]==0
+        fingerprint=json.loads((complete_output/"run_fingerprint.json").read_text())
+        assert fingerprint["config"]["tsne_max_samples"]==0
+        assert fingerprint["schema"]==2 and fingerprint["sources"]["src/models.py"]["sha256"]==ev.digest(REPO/"src/models.py")
+        assert {"python","torch","torchvision","timm","sklearn","numpy","pandas"}<=set(fingerprint["runtime"])
         report = (complete_output / "REPORT.md").read_text()
         assert "t-SNE: all features" in report and "## Curve coverage" in report
         assert "## Held-out test performance by partition" in report and "### Closed" in report and "### Open" in report

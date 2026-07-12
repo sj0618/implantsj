@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compact 42-label metric-representation diagnosis."""
-import argparse, hashlib, json, re, sys, unicodedata, zipfile
+import argparse, hashlib, importlib.metadata, json, platform, re, sys, unicodedata, zipfile
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -78,7 +78,10 @@ def run_fingerprint(checkpoints, manifests, gt_zip, config, base_checkpoint=None
     else:
         import timm
         base={"kind":"implicit_timm_pretrained","timm_version":timm.__version__,"pretrained_cfg":json.loads(json.dumps(timm.get_pretrained_cfg(config["base_model_name"]).to_dict(),default=str))}
-    return {"schema":1,"evaluator":facts(__file__),"base":base,"checkpoints":{name:facts(path) for name,path in sorted(checkpoints.items())},"manifests":{name:facts(path) for name,path in sorted(manifests.items())},"gt_zip":facts(gt_zip),"config":config}
+    sources={str(path.relative_to(ROOT)):facts(path) for path in [Path(__file__),ROOT/"src/data.py",ROOT/"src/models.py",ROOT/"src/metrics.py"]}
+    packages={"torch":"torch","torchvision":"torchvision","timm":"timm","sklearn":"scikit-learn","numpy":"numpy","pandas":"pandas"}
+    runtime={"python":platform.python_version(),**{name:importlib.metadata.version(package) for name,package in packages.items()}}
+    return {"schema":2,"evaluator":facts(__file__),"sources":sources,"runtime":runtime,"base":base,"checkpoints":{name:facts(path) for name,path in sorted(checkpoints.items())},"manifests":{name:facts(path) for name,path in sorted(manifests.items())},"gt_zip":facts(gt_zip),"config":config}
 
 def manifest_rows(frame):
     return [(str(Path(row.path).resolve()),str(row.label),str(row.split)) for row in frame.itertuples()]
