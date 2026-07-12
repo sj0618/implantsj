@@ -10,10 +10,17 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from pipelines.eval.evaluate_metric_diagnosis import run_fingerprint
+
 OUTPUTS = Path("/home/ubuntu/workspace/outputs")
 DATA = Path("/home/ubuntu/workspace/data")
 SELECTION = OUTPUTS / "metricdiag_fresh_checkpoints.json"
 RESULT = OUTPUTS / "metricdiag-final"
+BASE = OUTPUTS / "metricdiag-base" / "vit-large-pretrained.pt"
+MANIFESTS = {"closed":DATA/"manifests/metric-closed27-corrected.csv","open":DATA/"manifests/metric-open15-corrected.csv","full":DATA/"manifests/models_vit.csv"}
+GT_ZIP = DATA / "AI Hub Data.zip"
+CONFIG = {"base_model_name":"vit_large_patch16_224.augreg_in21k_ft_in1k","batch_size":64,"num_workers":8,"seed":42,"ss_per_label":5,"tsne_max_samples":0,"representations":"deployed_and_common_backbone_v1"}
 NAMES = {
     "ViT-ClosedFT": "--closed-checkpoint",
     "ViT-ClosedFT-SupCon": "--closed-supcon-checkpoint",
@@ -53,32 +60,59 @@ def gpu_idle():
     return utilization <= 10 and memory <= 1500
 
 
-def complete(path, checkpoints):
+def ensure_base_checkpoint():
+    if BASE.is_file():
+        return BASE.resolve()
+    import torch
+    from src.models import create_classifier
+    BASE.parent.mkdir(parents=True,exist_ok=True); temporary=BASE.with_suffix(".tmp")
+    model=create_classifier(CONFIG["base_model_name"],0,True); torch.save({"model_state_dict":model.state_dict()},temporary); os.replace(temporary,BASE)
+    return BASE.resolve()
+
+
+def complete(path, checkpoints, fingerprint, require_tsne=True):
     summary = path / "summary.csv"
+    backbone = path / "backbone_summary.csv"
     inventory = path / "checkpoint_selection.json"
-    if not summary.is_file() or not inventory.is_file():
+    progress_path = path / "progress.json"
+    provenance_path = path / "provenance_audit.json"
+    fingerprint_path = path / "run_fingerprint.json"
+    if not all(item.is_file() for item in [summary, backbone, inventory, progress_path, provenance_path, fingerprint_path]):
         return False
     with summary.open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
+    with backbone.open(newline="", encoding="utf-8") as stream:
+        backbone_rows = list(csv.DictReader(stream))
     try:
         selected = json.loads(inventory.read_text(encoding="utf-8"))
+        progress = json.loads(progress_path.read_text(encoding="utf-8"))
+        provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+        recorded_fingerprint = json.loads(fingerprint_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return False
+    tsne_ok=all(progress.get("models", {}).get(name, {}).get("tsne", {}).get("status") == "ok" and progress["models"][name]["tsne"].get("sampled")==progress["models"][name]["tsne"].get("total_features") and progress["models"][name]["tsne"].get("max_samples")==0 for name in set(NAMES) | {"ViT Base"})
     return (
         len(rows) == 120
         and all(row.get("status") == "ok" for row in rows)
+        and len(backbone_rows) == 120
+        and all(row.get("status") == "ok" for row in backbone_rows)
         and all(Path(selected.get(name, {}).get("checkpoint", "")).resolve() == checkpoint for name, checkpoint in checkpoints.items())
+        and (tsne_ok or not require_tsne)
+        and provenance.get("manifests", {}).get("row_union_exact") is True
+        and provenance.get("content", {}).get("conflicts") == 0
+        and recorded_fingerprint == fingerprint
     )
 
 
-def command(checkpoints):
+def command(checkpoints, base_checkpoint):
     args = [
         sys.executable, str(ROOT / "pipelines/eval/evaluate_metric_diagnosis.py"),
-        "--closed-manifest", str(DATA / "manifests/metric-closed27-corrected.csv"),
-        "--open-manifest", str(DATA / "manifests/metric-open15-corrected.csv"),
-        "--full-manifest", str(DATA / "manifests/models_vit.csv"),
+        "--closed-manifest", str(MANIFESTS["closed"]),
+        "--open-manifest", str(MANIFESTS["open"]),
+        "--full-manifest", str(MANIFESTS["full"]),
         "--checkpoint-root", str(checkpoints["ViT-ClosedFT"].parents[1]),
-        "--gt-zip", str(DATA / "AI Hub Data.zip"),
+        "--base-checkpoint", str(base_checkpoint),
+        "--gt-zip", str(GT_ZIP),
         "--gt-root", str(DATA / "aihub-gt"),
         "--output-dir", str(RESULT),
         "--batch-size", "64", "--num-workers", "8", "--tsne-max-samples", "0", "--seed", "42",
@@ -90,9 +124,10 @@ def command(checkpoints):
 
 def self_check():
     checkpoints = {name: Path(f"/tmp/{index}/checkpoints/best.pt") for index, name in enumerate(NAMES)}
-    args = command(checkpoints)
+    args = command(checkpoints,Path("/tmp/base.pt"))
     assert args[args.index("--tsne-max-samples") + 1] == "0"
     assert args[args.index("--batch-size") + 1] == "64"
+    assert args[args.index("--base-checkpoint") + 1] == "/tmp/base.pt"
     assert all(flag in args for flag in NAMES.values())
     print("METRIC_DIAGNOSIS_EVAL_WATCH_OK")
 
@@ -114,15 +149,17 @@ def main():
         except (OSError, ValueError, RuntimeError) as error:
             print(f"waiting for completed checkpoints: {error}", flush=True)
             time.sleep(args.poll_seconds)
-    if complete(RESULT, checkpoints):
-        print(f"complete: {RESULT}")
-        return
     while not gpu_idle():
         print("gpu0 busy; waiting without stopping any process", flush=True)
         time.sleep(args.poll_seconds)
     env = {**os.environ, "CUDA_VISIBLE_DEVICES": "0", "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1"}
-    subprocess.run(command(checkpoints), cwd=ROOT, env=env, check=True)
-    if not complete(RESULT, checkpoints):
+    os.environ.update({"HF_HUB_OFFLINE":"1","TRANSFORMERS_OFFLINE":"1"}); base_checkpoint=ensure_base_checkpoint(); fingerprint=run_fingerprint(checkpoints,MANIFESTS,GT_ZIP,CONFIG,base_checkpoint)
+    if complete(RESULT,checkpoints,fingerprint): print(f"complete: {RESULT}"); return
+    completed=subprocess.run(command(checkpoints,base_checkpoint),cwd=ROOT,env=env)
+    if completed.returncode:
+        if not complete(RESULT,checkpoints,fingerprint,False): completed.check_returncode()
+        subprocess.run(command(checkpoints,base_checkpoint)+["--resume-tsne"],cwd=ROOT,env=env,check=True)
+    if not complete(RESULT, checkpoints, fingerprint):
         raise RuntimeError(f"evaluation did not produce 120 successful rows: {RESULT}")
 
 
