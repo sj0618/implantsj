@@ -25,6 +25,16 @@
 !exp.conf
 !README.md
 
+# 문서도 이미지에 넣는다. 폐쇄망 경계를 넘는 복붙이 불가능하므로,
+# 안에서 복사해 쓸 수 있는 텍스트는 이미지에 구워 보내는 수밖에 없다.
+# 실행 가이드와 긴 명령 예시가 여기 들어 있다.
+# docs/reports 는 3.2GB(모델 가중치·PNG)라 제외하고 md 문서만 넣는다.
+!docs/usage/
+!docs/analysis/
+!docs/vlm/
+!docs/references/
+!md/
+
 # 3) 포함한 트리 안의 잡동사니는 다시 제외
 **/__pycache__/
 **/*.py[cod]
