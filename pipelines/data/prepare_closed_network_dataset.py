@@ -37,15 +37,33 @@ def main() -> None:
     parser.add_argument("--label-key", default="모델명")
     parser.add_argument("--valid-ratio", type=float, default=0.1, help="Validation split ratio drawn from original train only.")
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--seen-label-count", type=int, default=27)
-    parser.add_argument("--unseen-label-count", type=int, default=15)
+    parser.add_argument(
+        "--seen-label-count", type=int, default=None,
+        help="Usually leave unset: seen becomes whatever is not unseen.",
+    )
+    parser.add_argument(
+        "--unseen-label-count", type=int, default=15,
+        help="Hold out the N rarest labels as unseen. Set 0 to keep every label seen.",
+    )
+    parser.add_argument(
+        "--min-train-count", type=int, default=None,
+        help="Alternative to --unseen-label-count: any label with fewer train images becomes unseen.",
+    )
+    parser.add_argument(
+        "--allow-missing-json",
+        action="store_true",
+        help="Skip images that have no readable JSON label instead of aborting the build.",
+    )
     parser.add_argument(
         "--materialize-imagefolders",
         action="store_true",
-        help="Also build ImageFolder-style directories for 42-label / seen27 / unseen15.",
+        help="Also build ImageFolder-style directories for all-label / seen / unseen.",
     )
     parser.add_argument("--index-class-folders", action="store_true", help="Use 01.label style class folders.")
-    parser.add_argument("--link-mode", choices=["symlink", "copy"], default="symlink")
+    parser.add_argument(
+        "--link-mode", choices=["hardlink", "copy", "symlink"], default="hardlink",
+        help="How to place images into the ImageFolder tree. hardlink survives changed mount paths.",
+    )
     args = parser.parse_args()
 
     output_root = Path(args.output_root)
@@ -55,12 +73,15 @@ def main() -> None:
     manifests_dir.mkdir(parents=True, exist_ok=True)
     labels_dir.mkdir(parents=True, exist_ok=True)
 
+    skip_report: dict[str, list[str]] = {}
     base_df = build_closed_network_dataframe(
         train_image_root=args.train_image_root,
         train_json_root=args.train_json_root,
         test_image_root=args.test_image_root,
         test_json_root=args.test_json_root,
         label_keys=(args.label_key,),
+        allow_missing=args.allow_missing_json,
+        report=skip_report,
     )
     split_df = split_train_valid(base_df, valid_ratio=args.valid_ratio, seed=args.seed)
 
@@ -68,22 +89,28 @@ def main() -> None:
         split_df,
         seen_label_count=args.seen_label_count,
         unseen_label_count=args.unseen_label_count,
+        min_train_count=args.min_train_count,
     )
     manifest_42 = split_df.copy()
     manifest_seen27 = build_seen27_manifest(split_df, seen_labels)
     manifest_unseen15 = build_unseen15_manifest(split_df, unseen_labels)
 
-    out_42 = write_manifest(manifest_42, manifests_dir / "closed_network_42label.csv")
-    out_seen27 = write_manifest(manifest_seen27, manifests_dir / "closed_network_seen27.csv")
-    out_unseen15 = write_manifest(manifest_unseen15, manifests_dir / "closed_network_unseen15.csv")
+    # Name the artifacts after the label counts actually found, not an assumed 42/27/15.
+    n_all = int(split_df["label"].astype(str).nunique())
+    n_seen = len(seen_labels)
+    n_unseen = len(unseen_labels)
+
+    out_42 = write_manifest(manifest_42, manifests_dir / f"closed_network_{n_all}label.csv")
+    out_seen27 = write_manifest(manifest_seen27, manifests_dir / f"closed_network_seen{n_seen}.csv")
+    out_unseen15 = write_manifest(manifest_unseen15, manifests_dir / f"closed_network_unseen{n_unseen}.csv")
 
     stats_df["selected_split"] = stats_df["label"].map(
         lambda x: "unseen15" if str(x) in set(unseen_labels) else "seen27"
     )
     stats_path = labels_dir / "label_counts_train_source.csv"
     stats_df.to_csv(stats_path, index=False)
-    seen_labels_path = write_label_list(seen_labels, labels_dir / "seen27_labels.txt")
-    unseen_labels_path = write_label_list(unseen_labels, labels_dir / "unseen15_labels.txt")
+    seen_labels_path = write_label_list(seen_labels, labels_dir / f"seen{n_seen}_labels.txt")
+    unseen_labels_path = write_label_list(unseen_labels, labels_dir / f"unseen{n_unseen}_labels.txt")
 
     summary = {
         "train_json_root": str(args.train_json_root),
@@ -94,20 +121,25 @@ def main() -> None:
         "valid_ratio": args.valid_ratio,
         "seed": args.seed,
         "total_rows": int(len(split_df)),
-        "total_labels": int(split_df["label"].astype(str).nunique()),
-        "seen_label_count": len(seen_labels),
-        "unseen_label_count": len(unseen_labels),
+        "total_labels": n_all,
+        "seen_label_count": n_seen,
+        "unseen_label_count": n_unseen,
+        "skipped_images": {
+            "missing_json": len(skip_report.get("missing_json", [])),
+            "unreadable_json": len(skip_report.get("unreadable_json", [])),
+            "sample": (skip_report.get("missing_json", []) + skip_report.get("unreadable_json", []))[:20],
+        },
         "manifests": {
-            "all_42": str(out_42),
-            "seen_27": str(out_seen27),
-            "unseen_15": str(out_unseen15),
+            "all": str(out_42),
+            "seen": str(out_seen27),
+            "unseen": str(out_unseen15),
         },
         "label_files": {
             "stats": str(stats_path),
-            "seen_27": str(seen_labels_path),
-            "unseen_15": str(unseen_labels_path),
+            "seen": str(seen_labels_path),
+            "unseen": str(unseen_labels_path),
         },
-        "split_counts_42": {
+        "split_counts_all": {
             split: {str(k): int(v) for k, v in counts.items()}
             for split, counts in {
                 "train": label_counts(manifest_42, split="train"),
@@ -122,49 +154,45 @@ def main() -> None:
         class_map_27 = build_class_folder_map(seen_labels, indexed=args.index_class_folders)
         class_map_15 = build_class_folder_map(unseen_labels, indexed=args.index_class_folders)
 
+        dir_all = image_root / f"data_{n_all}label"
+        dir_seen = image_root / f"data_metric_seen{n_seen}"
+        dir_unseen = image_root / f"data_metric_unseen{n_unseen}"
+
         materialize_imagefolder(
-            manifest_42,
-            image_root / "data_42label",
-            class_folder_map=class_map_42,
-            link_mode=args.link_mode,
+            manifest_42, dir_all, class_folder_map=class_map_42, link_mode=args.link_mode,
         )
         materialize_imagefolder(
-            manifest_seen27,
-            image_root / "data_metric_seen27",
-            class_folder_map=class_map_27,
-            link_mode=args.link_mode,
+            manifest_seen27, dir_seen, class_folder_map=class_map_27, link_mode=args.link_mode,
         )
-        materialize_imagefolder(
-            manifest_unseen15,
-            image_root / "data_metric_unseen15",
-            class_folder_map=class_map_15,
-            split_name_map={"test": "test"},
-            link_mode=args.link_mode,
-        )
+        if n_unseen:
+            materialize_imagefolder(
+                manifest_unseen15, dir_unseen, class_folder_map=class_map_15,
+                split_name_map={"test": "test"}, link_mode=args.link_mode,
+            )
         pd.DataFrame(
             [{"raw_label": k, "folder_name": v} for k, v in sorted(class_map_42.items())]
-        ).to_csv(labels_dir / "class_folder_map_42label.csv", index=False)
+        ).to_csv(labels_dir / f"class_folder_map_{n_all}label.csv", index=False)
         pd.DataFrame(
             [{"raw_label": k, "folder_name": v} for k, v in sorted(class_map_27.items())]
-        ).to_csv(labels_dir / "class_folder_map_seen27.csv", index=False)
+        ).to_csv(labels_dir / f"class_folder_map_seen{n_seen}.csv", index=False)
         pd.DataFrame(
             [{"raw_label": k, "folder_name": v} for k, v in sorted(class_map_15.items())]
-        ).to_csv(labels_dir / "class_folder_map_unseen15.csv", index=False)
+        ).to_csv(labels_dir / f"class_folder_map_unseen{n_unseen}.csv", index=False)
         summary["imagefolders"] = {
-            "all_42": str(image_root / "data_42label"),
-            "seen_27": str(image_root / "data_metric_seen27"),
-            "unseen_15": str(image_root / "data_metric_unseen15"),
+            "all": str(dir_all),
+            "seen": str(dir_seen),
+            "unseen": str(dir_unseen) if n_unseen else "",
         }
 
     summary_path = output_root / "summary.json"
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"SUMMARY={summary_path}")
-    print(f"MANIFEST_42={out_42}")
-    print(f"MANIFEST_SEEN27={out_seen27}")
-    print(f"MANIFEST_UNSEEN15={out_unseen15}")
-    print(f"SEEN27_LABELS={seen_labels_path}")
-    print(f"UNSEEN15_LABELS={unseen_labels_path}")
+    print(f"MANIFEST_ALL={out_42}")
+    print(f"MANIFEST_SEEN={out_seen27}")
+    print(f"MANIFEST_UNSEEN={out_unseen15}")
+    print(f"SEEN_LABELS={seen_labels_path}")
+    print(f"UNSEEN_LABELS={unseen_labels_path}")
 
 
 if __name__ == "__main__":

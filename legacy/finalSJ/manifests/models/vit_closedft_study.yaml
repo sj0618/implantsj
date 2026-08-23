@@ -1,0 +1,10 @@
+schema_version: 1
+kind: model
+id: vit-closedft-study
+architecture: vit_base_patch16_224
+adapter: classifier_checkpoint
+pretrained: false
+embedding_source: encoder
+input_size: 224
+checkpoint_format: auto
+num_classes: 27

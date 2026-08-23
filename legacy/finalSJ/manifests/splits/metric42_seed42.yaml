@@ -1,0 +1,32 @@
+schema_version: 1
+kind: split
+id: metric42-seed42
+seed: 42
+label_reference_view: train
+split:
+  strategy: predefined
+  mapping:
+    train: train
+    validation: validation
+    test: test
+views:
+  - id: train
+    from: all
+    usage: train
+    filters: {source_role: sample, split: train}
+  - id: validation
+    from: all
+    usage: validation
+    filters: {source_role: sample, split: validation}
+  - id: test
+    from: all
+    usage: test
+    filters: {source_role: sample, split: test}
+  - id: gt_all
+    from: all
+    usage: prototype
+    filters: {source_role: prototype}
+  - id: all_train_test
+    from: all
+    usage: analysis
+    filters: {source_role: [sample, prototype]}

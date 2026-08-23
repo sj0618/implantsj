@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Small Python-only command dispatcher.
-Examples:
-  python3 tools/run.py install
+"""Single Python command dispatcher for implantsj.
+
+`run.sh` (the interactive menu) calls into this file; you can also call it
+directly. Every command below is a thin alias for `python3 -m <module>`, so
+the underlying pipeline scripts keep their own `--flags`.
+
   python3 tools/run.py check
-  python3 tools/run.py supcon7 --data-root /workspace/implant_python_only_final/data/7label --epochs 80
-  python3 tools/run.py eval3metric7 --checkpoint /workspace/implant_python_only_final/outputs/<run>/checkpoints/best.pt
-  python3 tools/run.py supcon6 --data-root /workspace/data/large_multiclass --epochs 80
-  python3 tools/run.py vit7 --data-root /workspace/data/large_multiclass --epochs 80
-  python3 tools/run.py vlm5 --data-root /workspace/data/large_multiclass --output data/manifests/vlm_5feature_6label.jsonl --resume
+  python3 tools/run.py manifest --data-root /workspace/data/7label --out m.csv
+  python3 tools/run.py train  --manifest m.csv --model-name resnet50.a1_in1k
+  python3 tools/run.py metric --manifest m.csv --model-name vit_base_patch16_224
+  python3 tools/run.py maha   --checkpoint best.pt --manifest m.csv --output-dir out/
 """
 from __future__ import annotations
 
@@ -16,37 +18,52 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+# 명령 이름 -> 실행할 python 모듈.
 COMMANDS: dict[str, str] = {
+    # 환경
     'install': 'tools.setup.install_requirements',
     'check': 'tools.setup.check_environment',
+    # 데이터 준비
     'manifest': 'pipelines.data.make_manifest',
     'split': 'pipelines.data.make_splits',
-    'supcon7': 'pipelines.train.train_vit_7label_supcon',
-    'eval3metric7': 'pipelines.eval.evaluate_3label_metric_from_7label_supcon',
-    'supcon6': 'pipelines.train.train_vit_6label',
-    'eval3metric6': 'pipelines.eval.evaluate_3label_metric_from_6label',
-    'vit7': 'pipelines.train.train_vit_7label',
-    'vlm5': 'pipelines.vlm.generate_vlm_features_azure_6label',
-    'vlm5json': 'pipelines.vlm.generate_vlm_features_azure_6label',
+    # 폐쇄망 원본(TL1/TS1/VL1/VS1) -> ImageFolder + manifest
+    'prepare': 'pipelines.data.prepare_closed_network_dataset',
+    # 학습 (모델은 --model-name 으로 교체: vit / resnet / convnext ...)
     'train': 'pipelines.train.train_supervised',
     'metric': 'pipelines.train.train_metric',
     'finetune': 'pipelines.train.finetune_small_data',
+    # 평가
     'eval': 'pipelines.eval.evaluate',
+    'maha': 'tools.evaluate_unseen_mahalanobis',
+    # YOLO 검출 / crop 전처리
+    'yolotrain': 'pipelines.yolo.train_yolo',
+    'yolocrop': 'pipelines.yolo.crop_yolo',
+    'yolotest': 'pipelines.yolo.test_yolo',
+    # 시각화 / 리포트
     'attention': 'pipelines.visualize.visualize_attention',
+    'tsne': 'pipelines.visualize.visualize_classifier_tsne',
     'summary': 'pipelines.report.summarize_runs',
+    # src/ 를 직접 부르는 예전 진입점. tests/test_dynamic_experiment.py 가
+    # 이 두 이름을 검사하므로 유지한다.
+    'experiment': 'src.training',
+    'visualize': 'src.visualization',
 }
 
 
 def main() -> None:
-    if len(sys.argv) < 2 or sys.argv[1] not in COMMANDS:
+    if len(sys.argv) < 2 or sys.argv[1] in ('-h', '--help', 'help'):
         print('Usage: python3 tools/run.py <command> [args...]')
         print('Commands:')
-        for k in COMMANDS:
-            print(' ', k)
-        raise SystemExit(2)
+        for name, module in COMMANDS.items():
+            print(f'  {name:<10} -> {module}')
+        raise SystemExit(0 if len(sys.argv) >= 2 else 2)
     cmd = sys.argv[1]
-    module = COMMANDS[cmd]
-    args = [sys.executable, '-m', module] + sys.argv[2:]
+    if cmd not in COMMANDS:
+        print(f'Unknown command: {cmd}', file=sys.stderr)
+        print('Run "python3 tools/run.py --help" for the list.', file=sys.stderr)
+        raise SystemExit(2)
+    args = [sys.executable, '-m', COMMANDS[cmd]] + sys.argv[2:]
     raise SystemExit(subprocess.call(args, cwd=str(REPO_ROOT)))
 
 

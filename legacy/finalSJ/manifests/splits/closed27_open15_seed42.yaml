@@ -1,0 +1,46 @@
+schema_version: 1
+kind: split
+id: closed27-open15-seed42
+seed: 42
+label_reference_view: train
+split:
+  strategy: stratified_hash
+  seed: 42
+  ratios:
+    train: 0.7
+    validation: 0.15
+    test: 0.15
+views:
+  - id: train
+    from: all
+    usage: train
+    filters:
+      source_role: sample
+      split: train
+  - id: validation
+    from: all
+    usage: validation
+    filters:
+      source_role: sample
+      split: validation
+  - id: closed_test
+    from: all
+    usage: test
+    filters:
+      source_role: sample
+      split: test
+  - id: gt_closed
+    from: all
+    usage: prototype
+    filters:
+      source_role: prototype
+  - id: open_test
+    from: all
+    usage: unknown_test
+    filters:
+      source_role: unknown
+  - id: all_train_test
+    from: all
+    usage: analysis
+    filters:
+      source_role: [sample, unknown]

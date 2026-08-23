@@ -1,0 +1,18 @@
+schema_version: 1
+kind: training
+id: vit-closedft-supcon-study
+inputs: {train: train, validation: validation}
+scope: closed
+model:
+  architecture: vit_base_patch16_224
+  pretrained: false
+  input_size: 224
+  projection_dim: 128
+  projection_hidden_dim: 512
+objective: {type: supcon, temperature: 0.07}
+optimizer: {type: adamw, learning_rate: 0.00005, weight_decay: 0.05}
+scheduler: {type: cosine}
+budget: {epochs: 15}
+loader: {batch_size: 32, num_workers: 4, samples_per_class: 2}
+checkpoint: {input_format: auto, save_format: ckpt}
+device: auto
