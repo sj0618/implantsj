@@ -3,7 +3,7 @@ from __future__ import annotations
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import numpy as np
 import pandas as pd
@@ -171,9 +171,13 @@ def evaluate_metric_model(model, manifest: str, class_to_idx: Dict[str, int], im
 
 def train_metric(args: MetricArgs) -> Path:
     seed_everything(args.seed)
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    if device.type != 'cuda' and not args.allow_cpu:
-        raise RuntimeError('CUDA is not available. Pass --allow-cpu only for debugging.')
+    device = torch.device(
+        'cuda' if torch.cuda.is_available()
+        else 'mps' if torch.backends.mps.is_available()
+        else 'cpu'
+    )
+    if device.type == 'cpu' and not args.allow_cpu:
+        raise RuntimeError('CUDA/MPS is not available. Pass --allow-cpu only for debugging.')
 
     df = load_manifest(args.manifest, split=None)
     class_to_idx, idx_to_class = label_mapping(df)
@@ -206,6 +210,7 @@ def train_metric(args: MetricArgs) -> Path:
         model.train()
         total_loss = 0.0
         n = 0
+        nonfinite_batches = 0
         t0 = time.time()
         for x1, x2, y in loader:
             x1 = x1.to(device, non_blocking=True)
@@ -221,6 +226,14 @@ def train_metric(args: MetricArgs) -> Path:
                 else:
                     z = model(x1)
                     loss = criterion(z, y)
+            # A SupCon batch with no positive pair yields a non-finite loss, and
+            # stepping on it turns the whole network into NaN while the run keeps
+            # reporting plausible metrics. Skip the batch instead of poisoning
+            # the weights.
+            if not torch.isfinite(loss):
+                nonfinite_batches += 1
+                optimizer.zero_grad(set_to_none=True)
+                continue
             scaler.scale(loss).backward()
             scaler.unscale_(optimizer)
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -230,6 +243,14 @@ def train_metric(args: MetricArgs) -> Path:
             total_loss += float(loss.item()) * bs
             n += bs
         scheduler.step()
+        if n == 0:
+            raise RuntimeError(
+                f"epoch={epoch}: every batch produced a non-finite loss "
+                f"({nonfinite_batches} batches). SupCon needs at least two samples of "
+                f"the same label per batch, so raise --batch-size or reduce the class count."
+            )
+        if nonfinite_batches:
+            log(f'WARNING skipped {nonfinite_batches} batches with non-finite loss')
         train_loss = total_loss / max(1, n)
         support = extract_embeddings(model, eval_train_loader, device)[:2]
         valid_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=None, split='valid', support=support)
@@ -244,6 +265,19 @@ def train_metric(args: MetricArgs) -> Path:
         history.append(row)
         pd.DataFrame(history).to_csv(run_dir / 'metrics' / 'history.csv', index=False)
         log(f"epoch={epoch:03d} loss={train_loss:.4f} valid_acc={valid_metrics['accuracy']:.4f} valid_macro_f1={valid_metrics['macro_f1']:.4f}")
+        # Last line of defence: never write a checkpoint whose weights are NaN.
+        # Such a file loads fine and only fails much later, during evaluation,
+        # with an error that points at sklearn rather than at training.
+        bad_tensors = [
+            name for name, tensor in model.state_dict().items()
+            if torch.is_tensor(tensor) and not torch.isfinite(tensor.float()).all()
+        ]
+        if bad_tensors:
+            raise RuntimeError(
+                f"epoch={epoch}: {len(bad_tensors)} model tensors are NaN/Inf "
+                f"(e.g. {bad_tensors[:3]}). Refusing to save a corrupt checkpoint. "
+                f"Lower --lr or raise --batch-size and re-run."
+            )
         save_checkpoint(run_dir / 'checkpoints' / 'last.pt', model, optimizer, epoch, valid_metrics, asdict(args), class_to_idx)
         if score > best_score:
             best_score = score

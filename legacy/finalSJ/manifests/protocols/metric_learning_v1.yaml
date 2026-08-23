@@ -1,0 +1,76 @@
+protocol_version: metric-learning-full42-v1
+supcon_intent: pure_supcon
+architecture: vit_base_patch16_224
+base_checkpoint:
+  path: ${BASE_CHECKPOINT}
+  sha256: ${BASE_CHECKPOINT_SHA256}
+preprocessing:
+  input_size: 224
+  interpolation: bicubic
+  normalization: imagenet
+labels:
+  ordered: [IS I, IS II, IS III, EB, Branemark, Astra, Xive, Implantium, Superline, UF, UF II, Any ridge, Anyone internal, Anyone external, Exfeel external, TS standard, TS standard plus, Bone level, Luna, GS II, SS II, TS III, US II, US III, Hexplant, Internal, IT, Simpleline, exfeel internal, 55 III, Biohorizon external, TSV, 5 clean tapered, GS III, screw vent, atlas internal, stella, 3i, ankylos, iu, replace select, core1]
+  closed_count: 27
+  open_count: 15
+  total_count: 42
+seed_bindings:
+  42:
+    dataset_manifest: ../data/implant_metric42_seed42_v1.yaml
+    dataset_sha256: 17dcb41e9133f5d994f6ad3741e4b6e26c700eee0f11e1f4e5770e7663cd569c
+    assignment_csv_sha256: ${SEED42_ASSIGNMENT_CSV_SHA256}
+    normalized_assignment_sha256: ${SEED42_ASSIGNMENT_SHA256}
+    split_manifest: ../splits/metric42_seed42.yaml
+    split_sha256: e16e4ecfcab688b36c8f826730df7c66b6a50bc6a0375630e01dbd38cec0425b
+  43:
+    dataset_manifest: ../data/implant_metric42_seed43_v1.yaml
+    dataset_sha256: 025399b109ace8030e12e14d3a7aebc4b8e423babcd925cf5a1dd12c623ea57b
+    assignment_csv_sha256: ${SEED43_ASSIGNMENT_CSV_SHA256}
+    normalized_assignment_sha256: ${SEED43_ASSIGNMENT_SHA256}
+    split_manifest: ../splits/metric42_seed43.yaml
+    split_sha256: 11d08733e2c23ffc90af2a7d6d4096a83ad5fe1263d6adc37d3f9a749b10d35a
+  44:
+    dataset_manifest: ../data/implant_metric42_seed44_v1.yaml
+    dataset_sha256: e89c7ac33ef313e9b9e5d384ceb31ba2247bec1d8d0dd07724e6c9751522d711
+    assignment_csv_sha256: ${SEED44_ASSIGNMENT_CSV_SHA256}
+    normalized_assignment_sha256: ${SEED44_ASSIGNMENT_SHA256}
+    split_manifest: ../splits/metric42_seed44.yaml
+    split_sha256: 81384fa4e235d853159e2c8e7870ebf3eeb4818032e1aa7c4255aac7e1645584
+budget:
+  epochs: 15
+  optimizer: adamw
+  scheduler: cosine
+  batch_size: 32
+  checkpoint_selector: last
+encoder_output: encoder
+prototypes:
+  methods: [gt, mean, ss]
+  distances: [euclidean, cosine]
+  ss_samples_per_label: 5
+  ss_seed_policy: paired_seed
+evaluation:
+  candidate_space: full42
+  queries: [validation, test]
+  slices: [all, closed, open]
+  expected_evaluations_per_seed: 60
+  expected_metric_rows_per_seed: 180
+  expected_comparisons_per_seed: 72
+  expected_delta_rows_per_seed: 216
+model_roles:
+  Base: {training_applied: false, scope: all, objective: none}
+  ClosedFT: {training_applied: true, scope: closed, objective: ce}
+  ClosedFT-SupCon: {training_applied: true, scope: closed, objective: supcon}
+  FullFT: {training_applied: true, scope: all, objective: ce}
+  FullFT-SupCon: {training_applied: true, scope: all, objective: supcon}
+treatment_pairs:
+  - {experiment_id: 1a, left_model: Base, right_model: ClosedFT, distance: euclidean}
+  - {experiment_id: 1a, left_model: Base, right_model: ClosedFT-SupCon, distance: euclidean}
+  - {experiment_id: 1a, left_model: ClosedFT, right_model: ClosedFT-SupCon, distance: euclidean}
+  - {experiment_id: 1b, left_model: Base, right_model: ClosedFT, distance: cosine}
+  - {experiment_id: 1b, left_model: Base, right_model: ClosedFT-SupCon, distance: cosine}
+  - {experiment_id: 1b, left_model: ClosedFT, right_model: ClosedFT-SupCon, distance: cosine}
+  - {experiment_id: 2a, left_model: ClosedFT, right_model: FullFT, distance: euclidean}
+  - {experiment_id: 2b, left_model: ClosedFT, right_model: FullFT, distance: cosine}
+  - {experiment_id: 4a, left_model: ClosedFT, right_model: ClosedFT-SupCon, distance: euclidean}
+  - {experiment_id: 4b, left_model: ClosedFT, right_model: ClosedFT-SupCon, distance: cosine}
+  - {experiment_id: 5a, left_model: FullFT, right_model: FullFT-SupCon, distance: euclidean}
+  - {experiment_id: 5b, left_model: FullFT, right_model: FullFT-SupCon, distance: cosine}

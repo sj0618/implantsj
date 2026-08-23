@@ -1,9 +1,47 @@
+# --- 시크릿 ---------------------------------------------------------
 .env
 .env.*
 !.env.azure.example
-*.jpg
-*.jpng
+*.pem
+*.key
+
+# --- OS / 에디터 / 캐시 ---------------------------------------------
 .DS_Store
+.gjc/
+.omx/
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# --- 산출물 ---------------------------------------------------------
+/outputs/
 /tools/codec/
+/tmp/
+
+# --- 대용량: git 에 올리지 않는다 ------------------------------------
+# 이 저장소는 .git 만 65GB 다. 아래 항목이 실수로 커밋되면 clone 이
+# 불가능해지므로 명시적으로 막는다. 모델 가중치와 데이터셋은 git 이
+# 아니라 별도 반입 경로로 옮긴다.
+/AI_HUB_model_download/
+/data/
+
+# 학습 산출물 바이너리 (docs/reports 안에 섞여 있음)
+*.pt
+*.pth
+*.safetensors
+*.npz
+*.npy
+*.ckpt
+*.onnx
+*.zip
+*.tar
+*.tar.gz
+
+# 리포트에 딸린 대량 이미지
+*.jpg
+*.jpeg
+*.jpng
+*.png
+!docs/**/*.md

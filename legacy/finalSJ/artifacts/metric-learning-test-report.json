@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "kind": "algorithm-boundary-test-report",
+  "surface": "algorithm",
+  "status": "passed",
+  "commands": [
+    "python -m ruff check implantsj/protocol.py implantsj/evaluation.py implantsj/training.py implantsj/losses.py implantsj/models.py implantsj/workflow/individual.py implantsj/workflow/materialize.py tests/test_protocol.py tests/test_individual_commands.py tests/test_pipeline.py tests/test_workflow_v1.py",
+    "python -m ruff format --check implantsj/protocol.py implantsj/evaluation.py implantsj/training.py implantsj/losses.py implantsj/models.py implantsj/workflow/individual.py implantsj/workflow/materialize.py tests/test_protocol.py tests/test_individual_commands.py tests/test_pipeline.py tests/test_workflow_v1.py",
+    "python -m compileall -q implantsj tests",
+    "python -m pytest -q tests",
+    "for script in scripts/*.sh; do bash \"$script\" --help >/dev/null || exit 1; done"
+  ],
+  "results": {
+    "ruffCheck": "passed",
+    "ruffFormat": "11 files already formatted",
+    "compileall": "passed",
+    "pytest": "50 passed in 10.02s",
+    "scriptHelp": "all 13 script interfaces passed"
+  },
+  "contracts": [
+    "strict pure-SupCon protocol and SHA validation",
+    "42-label/27-closed/15-open canonical isolation",
+    "five model roles, three prototypes, two distances",
+    "scalar validation-freeze-test-audit workflow",
+    "60 evaluation artifacts/180 metric rows per seed",
+    "72 comparison artifacts/216 delta rows per seed",
+    "three-seed paired Student-t uncertainty"
+  ]
+}

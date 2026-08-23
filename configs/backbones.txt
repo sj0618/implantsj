@@ -1,0 +1,10 @@
+# 실험에 사용할 timm 백본 목록 (한 줄에 하나).
+# 이 파일이 유일한 출처다: run.sh 메뉴의 "모델 선택"과
+# docker/prefetch_weights.py(빌드 타임 pretrained 다운로드)가 모두 이 파일을 읽는다.
+# '#' 로 시작하는 줄과 빈 줄은 무시한다.
+vit_base_patch16_224.augreg2_in21k_ft_in1k
+vit_small_patch16_224.augreg_in21k_ft_in1k
+resnet50.a1_in1k
+resnet18.a1_in1k
+convnext_tiny.fb_in22k_ft_in1k
+efficientnet_b0.ra_in1k

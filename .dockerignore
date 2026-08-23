@@ -1,0 +1,41 @@
+# =====================================================================
+# Docker build context 화이트리스트
+# ---------------------------------------------------------------------
+# 이 저장소는 .git 65GB, AI_HUB_model_download 21GB, docs/reports 3.2GB 를
+# 포함해 전체 91GB 다. 블랙리스트 방식이면 새 대용량 폴더가 생길 때마다
+# build context 가 조용히 불어난다. 그래서 "전부 제외 후 코드만 다시 포함"
+# 하는 화이트리스트로 둔다. 이미지에는 코드만 들어가고, 데이터·산출물은
+# 런타임 volume mount 로 붙인다.
+# =====================================================================
+
+# 1) 일단 전부 제외
+*
+
+# 2) 실행에 필요한 코드/설정만 다시 포함
+!src/
+!pipelines/
+!tools/
+!configs/
+!two_stage/
+!tests/
+!docker/
+!requirements.txt
+!settings.py
+!run.sh
+!exp.conf
+!README.md
+
+# 3) 포함한 트리 안의 잡동사니는 다시 제외
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.ruff_cache/
+**/.DS_Store
+**/.ipynb_checkpoints/
+tools/codec/
+
+# 4) 시크릿은 절대 이미지에 넣지 않는다
+**/.env
+**/.env.*
+**/*.pem
+**/*.key

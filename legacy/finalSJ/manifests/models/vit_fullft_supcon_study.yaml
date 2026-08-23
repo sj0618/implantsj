@@ -1,0 +1,12 @@
+schema_version: 1
+kind: model
+id: vit-fullft-supcon-study
+architecture: vit_base_patch16_224
+adapter: supcon_checkpoint
+pretrained: false
+embedding_source: encoder
+input_size: 224
+projection_dim: 128
+projection_hidden_dim: 512
+checkpoint_format: auto
+num_classes: 42

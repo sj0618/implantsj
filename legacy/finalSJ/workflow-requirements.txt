@@ -1,0 +1,5 @@
+-r requirements.txt
+PyYAML>=6.0
+pyarrow>=14.0
+umap-learn>=0.5
+

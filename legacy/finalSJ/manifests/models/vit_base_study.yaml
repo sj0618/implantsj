@@ -1,0 +1,9 @@
+schema_version: 1
+kind: model
+id: vit-base-study
+architecture: vit_base_patch16_224
+adapter: timm_pretrained
+pretrained: false
+embedding_source: encoder
+input_size: 224
+checkpoint_format: auto

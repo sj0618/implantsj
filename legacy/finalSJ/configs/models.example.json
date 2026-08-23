@@ -1,0 +1,72 @@
+{
+  "models": [
+    {
+      "name": "ViT-Base",
+      "adapter": "timm_pretrained",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": "../outputs/_shared/initial/vit_base_patch16_224.pt",
+      "checkpoint_format": "ckpt",
+      "pretrained": false,
+      "training_kind": "none",
+      "train_scope": "none",
+      "embedding_source": "backbone",
+      "input_size": 224
+    },
+    {
+      "name": "ViT-ClosedFT",
+      "adapter": "classifier_checkpoint",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": "../outputs/ViT-ClosedFT/checkpoints/last.pt",
+      "initial_checkpoint": "../outputs/_shared/initial/vit_base_patch16_224.pt",
+      "checkpoint_format": "ckpt",
+      "pretrained": false,
+      "training_kind": "ce",
+      "train_scope": "closed",
+      "embedding_source": "backbone",
+      "input_size": 224
+    },
+    {
+      "name": "ViT-ClosedFT-SupCon",
+      "adapter": "supcon_checkpoint",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": "../outputs/ViT-ClosedFT-SupCon/checkpoints/last.pt",
+      "initial_checkpoint": "../outputs/_shared/initial/vit_base_patch16_224.pt",
+      "checkpoint_format": "ckpt",
+      "pretrained": false,
+      "training_kind": "supcon",
+      "train_scope": "closed",
+      "embedding_source": "backbone",
+      "input_size": 224,
+      "projection_dim": 128,
+      "projection_hidden_dim": 512
+    },
+    {
+      "name": "ViT-FullFT",
+      "adapter": "classifier_checkpoint",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": "../outputs/ViT-FullFT/checkpoints/last.pt",
+      "initial_checkpoint": "../outputs/_shared/initial/vit_base_patch16_224.pt",
+      "checkpoint_format": "ckpt",
+      "pretrained": false,
+      "training_kind": "ce",
+      "train_scope": "all",
+      "embedding_source": "backbone",
+      "input_size": 224
+    },
+    {
+      "name": "ViT-FullFT-SupCon",
+      "adapter": "supcon_checkpoint",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": "../outputs/ViT-FullFT-SupCon/checkpoints/last.pt",
+      "initial_checkpoint": "../outputs/_shared/initial/vit_base_patch16_224.pt",
+      "checkpoint_format": "ckpt",
+      "pretrained": false,
+      "training_kind": "supcon",
+      "train_scope": "all",
+      "embedding_source": "backbone",
+      "input_size": 224,
+      "projection_dim": 128,
+      "projection_hidden_dim": 512
+    }
+  ]
+}

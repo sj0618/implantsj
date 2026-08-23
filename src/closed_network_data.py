@@ -29,11 +29,31 @@ def _find_first_key(obj: Any, target_keys: Sequence[str]) -> Optional[Any]:
     return None
 
 
+def _read_json_text(path: Path) -> str:
+    """Read a label JSON tolerating the encodings Korean annotation tools emit.
+
+    Closed-network label files are frequently UTF-8 with a BOM or CP949 rather
+    than plain UTF-8, and json.loads() rejects a leading BOM outright.
+    """
+    raw = path.read_bytes()
+    for encoding in ("utf-8-sig", "utf-8", "cp949", "euc-kr"):
+        try:
+            return raw.decode(encoding)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+
+def normalize_label(text: str) -> str:
+    """Collapse whitespace so 'TS  III' and 'TS III' do not become two classes."""
+    return " ".join(str(text).split()).strip()
+
+
 def load_label_from_json(json_path: str | Path, label_keys: Sequence[str] = ("모델명",)) -> str:
     path = Path(json_path)
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(_read_json_text(path))
     value = _find_first_key(data, tuple(label_keys))
-    label = "" if value is None else str(value).strip()
+    label = "" if value is None else normalize_label(value)
     if not label:
         raise RuntimeError(f"Could not find label key {list(label_keys)} in {path}")
     return label
@@ -44,7 +64,16 @@ def scan_split_pairs(
     json_root: str | Path,
     split_name: str,
     label_keys: Sequence[str] = ("모델명",),
+    allow_missing: bool = False,
+    progress_every: int = 2000,
+    report: Optional[Dict[str, List[str]]] = None,
 ) -> pd.DataFrame:
+    """Pair every image under image_root with its JSON label under json_root.
+
+    With allow_missing=True, images whose JSON is absent or unreadable are
+    skipped and recorded in `report` instead of aborting the whole scan; a
+    single stray file should not cost a multi-hour dataset build.
+    """
     image_root = Path(image_root)
     json_root = Path(json_root)
     if not image_root.is_dir():
@@ -54,15 +83,26 @@ def scan_split_pairs(
 
     rows: List[Dict[str, str]] = []
     missing_json: List[str] = []
+    unreadable_json: List[str] = []
+    scanned = 0
+    print(f"[scan:{split_name}] images={image_root}", flush=True)
+    print(f"[scan:{split_name}] labels={json_root}", flush=True)
     for image_path in sorted(image_root.rglob("*")):
         if not image_path.is_file() or image_path.suffix.lower() not in IMAGE_EXTENSIONS:
             continue
+        scanned += 1
+        if progress_every and scanned % progress_every == 0:
+            print(f"[scan:{split_name}] {scanned} images, {len(rows)} paired", flush=True)
         rel = image_path.relative_to(image_root)
         json_path = (json_root / rel).with_suffix(".json")
         if not json_path.is_file():
             missing_json.append(str(rel))
             continue
-        label = load_label_from_json(json_path, label_keys=label_keys)
+        try:
+            label = load_label_from_json(json_path, label_keys=label_keys)
+        except Exception as exc:  # unparseable JSON or absent label key
+            unreadable_json.append(f"{rel}: {exc}")
+            continue
         rel_parts = rel.parts
         hospital = rel_parts[0] if len(rel_parts) >= 1 else ""
         case_id = rel_parts[1] if len(rel_parts) >= 2 else ""
@@ -78,13 +118,27 @@ def scan_split_pairs(
                 "json_path": str(json_path.resolve()),
             }
         )
-    if missing_json:
-        sample = missing_json[:10]
+
+    skipped = missing_json + unreadable_json
+    if report is not None:
+        report.setdefault("missing_json", []).extend(missing_json)
+        report.setdefault("unreadable_json", []).extend(unreadable_json)
+    if skipped and not allow_missing:
         raise RuntimeError(
-            f"Missing matching JSON files under {json_root} for {len(missing_json)} images. Sample: {sample}"
+            f"{len(skipped)} images under {image_root} have no usable JSON label "
+            f"(missing={len(missing_json)}, unreadable={len(unreadable_json)}). "
+            f"Sample: {skipped[:10]}. "
+            f"Pass --allow-missing-json to skip them instead."
+        )
+    if skipped:
+        print(
+            f"[scan:{split_name}] WARNING skipped {len(skipped)} images "
+            f"(missing={len(missing_json)}, unreadable={len(unreadable_json)})",
+            flush=True,
         )
     if not rows:
         raise RuntimeError(f"No image/json pairs found under image_root={image_root}, json_root={json_root}")
+    print(f"[scan:{split_name}] done: {len(rows)} paired from {scanned} images", flush=True)
     return pd.DataFrame(rows)
 
 
@@ -94,9 +148,17 @@ def build_closed_network_dataframe(
     test_image_root: str | Path,
     test_json_root: str | Path,
     label_keys: Sequence[str] = ("모델명",),
+    allow_missing: bool = False,
+    report: Optional[Dict[str, List[str]]] = None,
 ) -> pd.DataFrame:
-    train_df = scan_split_pairs(train_image_root, train_json_root, split_name="train", label_keys=label_keys)
-    test_df = scan_split_pairs(test_image_root, test_json_root, split_name="test", label_keys=label_keys)
+    train_df = scan_split_pairs(
+        train_image_root, train_json_root, split_name="train",
+        label_keys=label_keys, allow_missing=allow_missing, report=report,
+    )
+    test_df = scan_split_pairs(
+        test_image_root, test_json_root, split_name="test",
+        label_keys=label_keys, allow_missing=allow_missing, report=report,
+    )
     df = pd.concat([train_df, test_df], ignore_index=True)
     df["label"] = df["label"].astype(str)
     return df.reset_index(drop=True)
@@ -143,28 +205,56 @@ def label_counts(df: pd.DataFrame, split: Optional[str] = None) -> pd.Series:
 
 def infer_seen_unseen_labels(
     df: pd.DataFrame,
-    seen_label_count: int = 27,
-    unseen_label_count: int = 15,
+    seen_label_count: Optional[int] = None,
+    unseen_label_count: Optional[int] = 15,
+    min_train_count: Optional[int] = None,
 ) -> Tuple[List[str], List[str], pd.DataFrame]:
+    """Split labels into seen (many train images) and unseen (fewest) groups.
+
+    The closed-network label set is not guaranteed to be exactly 42, so the
+    counts are derived from the data instead of asserted. Give either
+    `unseen_label_count` (take the N rarest labels as unseen) or
+    `min_train_count` (any label below the threshold becomes unseen). If both
+    seen and unseen counts are given they must add up to the labels actually
+    present, and a mismatch is reported with the real total.
+    """
     train_side = df[df["origin_split"].astype(str) == "train"].copy()
     counts = train_side["label"].astype(str).value_counts()
     labels = sorted(counts.index.tolist())
     total = len(labels)
-    if seen_label_count + unseen_label_count != total:
-        raise RuntimeError(
-            f"seen_label_count + unseen_label_count must equal total labels. "
-            f"got seen={seen_label_count}, unseen={unseen_label_count}, total={total}"
-        )
 
     stats = pd.DataFrame(
         [{"label": str(label), "train_count": int(counts.get(label, 0))} for label in labels]
     ).sort_values(["train_count", "label"], ascending=[True, True], ignore_index=True)
 
-    unseen = stats.head(unseen_label_count)["label"].astype(str).tolist()
+    if min_train_count is not None:
+        unseen = stats[stats["train_count"] < min_train_count]["label"].astype(str).tolist()
+    else:
+        if seen_label_count is not None and unseen_label_count is not None:
+            if seen_label_count + unseen_label_count != total:
+                raise RuntimeError(
+                    f"seen({seen_label_count}) + unseen({unseen_label_count}) = "
+                    f"{seen_label_count + unseen_label_count}, but the data has {total} labels. "
+                    f"Pass only --unseen-label-count (or --min-train-count) and let seen be the rest."
+                )
+        elif seen_label_count is not None:
+            unseen_label_count = total - seen_label_count
+        if unseen_label_count is None:
+            unseen_label_count = 0
+        unseen_label_count = max(0, min(int(unseen_label_count), total))
+        unseen = stats.head(unseen_label_count)["label"].astype(str).tolist()
+
     seen = sorted(set(labels) - set(unseen))
-    if len(seen) != seen_label_count:
-        raise RuntimeError(f"Expected {seen_label_count} seen labels, got {len(seen)}")
-    return seen, unseen, stats
+    if not seen:
+        raise RuntimeError(
+            f"Every one of the {total} labels was classified as unseen; nothing left to train on. "
+            f"Lower --unseen-label-count or --min-train-count."
+        )
+    print(
+        f"[labels] total={total} seen={len(seen)} unseen={len(unseen)}",
+        flush=True,
+    )
+    return seen, sorted(unseen), stats
 
 
 def build_seen27_manifest(df: pd.DataFrame, seen_labels: Sequence[str]) -> pd.DataFrame:
@@ -222,13 +312,29 @@ def materialize_imagefolder(
     out_root: str | Path,
     class_folder_map: Dict[str, str],
     split_name_map: Optional[Dict[str, str]] = None,
-    link_mode: str = "symlink",
+    link_mode: str = "hardlink",
 ) -> Path:
+    """Lay images out as <out_root>/<split>/<class>/... for ImageFolder readers.
+
+    link_mode choices, in order of robustness inside a container:
+      hardlink - no extra disk, survives a changed mount path, same filesystem only
+      copy     - always works, costs a full second copy of the dataset
+      symlink  - cheapest, but the links are relative and break if the image tree
+                 and this output tree stop being reachable from one another
+
+    Absolute symlinks were the previous default and silently broke whenever the
+    dataset was mounted at a different path than when it was materialized; the
+    resulting dangling links are then skipped by the image scanner, so training
+    quietly ran on a fraction of the data. hardlink avoids that failure mode.
+    """
     out_root = Path(out_root)
     split_name_map = split_name_map or {"train": "train", "valid": "val", "test": "test"}
-    if link_mode not in {"symlink", "copy"}:
+    if link_mode not in {"symlink", "copy", "hardlink"}:
         raise ValueError(f"Unsupported link_mode: {link_mode}")
 
+    linked = 0
+    skipped_existing = 0
+    missing_src: List[str] = []
     for row in df.itertuples(index=False):
         label = str(row.label)
         split = str(row.split)
@@ -237,13 +343,39 @@ def materialize_imagefolder(
         class_dir = class_folder_map[label]
         rel = Path(str(row.relative_path))
         dest = out_root / split_name_map[split] / class_dir / rel
-        dest.parent.mkdir(parents=True, exist_ok=True)
         src = Path(str(row.path))
-        if dest.exists():
+        if not src.is_file():
+            missing_src.append(str(src))
             continue
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        # exists() follows symlinks, so a dangling link reads as absent while
+        # still occupying the name; lstat-based checks catch that case.
+        if dest.is_symlink() or dest.exists():
+            if dest.is_symlink() and not dest.exists():
+                dest.unlink()  # replace a link left dangling by an earlier run
+            else:
+                skipped_existing += 1
+                continue
         if link_mode == "copy":
             shutil.copy2(src, dest)
+        elif link_mode == "hardlink":
+            try:
+                os.link(src, dest)
+            except OSError:
+                shutil.copy2(src, dest)  # cross-device or unsupported: fall back
         else:
-            dest.symlink_to(src)
+            os.symlink(os.path.relpath(src, dest.parent), dest)
+        linked += 1
+
+    if missing_src:
+        print(
+            f"[materialize] WARNING {len(missing_src)} source images were missing. "
+            f"Sample: {missing_src[:5]}",
+            flush=True,
+        )
+    print(
+        f"[materialize] {out_root}: {linked} new, {skipped_existing} already present ({link_mode})",
+        flush=True,
+    )
     return out_root
 
