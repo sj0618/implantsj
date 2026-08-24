@@ -234,6 +234,116 @@ done
 
 ---
 
+## 3.6. ViT + VLM feature 패치 주입 실험
+
+VLM 이 뽑은 feature 를 ViT 에 **패치 토큰으로 붙여** 학습한다. 기존
+`train_vlm_fusion_5feature.py` 는 late fusion(이미지 로짓 + feature 로짓)이라
+feature 가 이미지의 어느 부분과 관련되는지 transformer 가 볼 수 없다. 이쪽은
+같은 시퀀스에 넣어 첫 블록부터 상호 attention 이 걸린다.
+
+```
+[CLS] [이미지 패치 1..196] [feature 토큰 1..21]
+```
+
+feature jsonl 의 `feature_vector` 는 21개 feature x 3성분(value,
+assessable_mask, confidence) = 63차원이다. feature 하나가 토큰 하나가 되고
+3성분이 그 토큰의 입력이 된다.
+
+### 실행
+
+메뉴 `8) 학습 · ViT + VLM feature 패치 주입` 을 고르면 주입 방식을 묻는다.
+비대화형은 아래와 같다.
+
+```bash
+./run.sh patch data_metric_seen27 vit_base_patch16_224.augreg2_in21k_ft_in1k patch
+```
+
+feature 파일 경로는 `exp.conf` 의 `VLM_FEATURES` 를 쓴다. 다른 파일을 쓰려면
+`VLM_FEATURES=/path/to/other.jsonl ./run.sh ...` 로 덮어쓴다.
+
+### 대조군 — 이게 실험의 핵심이다
+
+feature 를 넣어서 성능이 올랐다는 주장은 대조군 없이는 성립하지 않는다.
+토큰을 21개 더 붙였다는 것만으로 파라미터와 연산이 늘기 때문이다. 네 가지를
+모두 돌려야 "feature 의 내용이 기여했다"고 말할 수 있다.
+
+| 모드 | 무엇을 통제하는가 |
+|---|---|
+| `patch` | 본 실험. feature 를 그대로 주입 |
+| `none` | 이미지만. baseline |
+| `zero` | 토큰은 붙이되 입력을 0 으로. **늘어난 파라미터 효과만** 분리 |
+| `shuffle` | feature 를 남의 이미지 것과 섞음. **내용이 실제로 쓰이는지** 검증 |
+
+```bash
+for m in patch none zero shuffle; do
+  ./run.sh patch data_metric_seen27 vit_base_patch16_224.augreg2_in21k_ft_in1k $m
+done
+```
+
+해석 기준은 이렇다.
+
+- `patch` > `zero` 여야 한다. 아니면 성능 차이는 파라미터가 늘어난 효과다.
+- `patch` > `shuffle` 여야 한다. 아니면 모델은 feature 의 **내용**을 안 쓰고
+  있다(있다는 사실만 쓰거나, 그냥 노이즈로 취급).
+- `patch` > `none` 만 보고 결론 내지 않는다.
+
+### 같은 가중치로 하는 ablation
+
+학습은 한 번만 하고, 평가할 때 주입 방식만 바꿔 볼 수도 있다. 메뉴 `11)` 또는:
+
+```bash
+python3 tools/run.py patcheval \
+  --checkpoint /workspace/outputs/<run>/checkpoints/best.pt \
+  --manifest   /workspace/outputs/manifests/<ds>.csv \
+  --vlm-features /workspace/data/aihub_all_13feature_21reason_vlm.jsonl \
+  --split test --feature-mode shuffle
+```
+
+평가 결과에는 **feature 가 붙은 샘플과 안 붙은 샘플의 정확도가 따로** 찍힌다.
+VLM 을 전체 데이터에 못 돌렸을 때 어느 쪽에서 이득이 났는지 볼 수 있다.
+
+### feature 커버리지
+
+전체 이미지에 VLM 을 돌리지 못했어도 동작한다. feature 가 없는 이미지는
+학습되는 null 토큰을 받는다. 학습 시작 전에 split 별 커버리지가 찍힌다.
+
+```
+[features] train: 96/96 (100.0%) 에 VLM feature 가 붙음
+[features] test:  20/32 (62.5%) 에 VLM feature 가 붙음
+```
+
+train 커버리지가 0 이면 시작하지 않고 멈춘다. manifest 의 `path` 와 feature
+jsonl 의 `path` 표기가 다를 때 조용히 전부 null 토큰으로 학습되는 사고를
+막기 위해서다. 최소 커버리지를 강제하려면
+`--require-feature-coverage 0.8` 처럼 준다.
+
+### 수렴에 관한 주의
+
+이 구조는 **충분히 학습시키지 않으면 baseline 과 구분되지 않는다.** CLS 토큰이
+196개 이미지 패치 틈에서 feature 토큰 21개를 참조하는 법을 배워야 하기
+때문이다.
+
+합성 데이터로 확인한 결과다. 이미지를 순수 노이즈로 만들고 feature 에만
+라벨 신호를 넣었다(4 class, chance = 0.25). 같은 조건에서 epoch 만 바꿨다.
+
+| 모드 | 8 epoch | 40 epoch |
+|---|---|---|
+| `patch` | 0.2500 | **1.0000** |
+| `none` | 0.2500 | 0.3125 |
+| `shuffle` | 0.2500 | 0.2083 |
+| `zero` | 0.2500 | 0.2917 |
+
+8 epoch 에서는 네 모드가 전부 chance 라 아무것도 구분되지 않았다. 40 epoch
+에서 `patch` 만 1.00 으로 갈라졌고 세 대조군은 chance 근처에 남았다.
+`patch`(1.00) > `shuffle`(0.21) 이 특히 중요하다. 토큰을 21개 더 붙였다는
+사실만으로는 설명되지 않고, feature 의 **내용**이 실제로 쓰인다는 뜻이다.
+
+따라서 `patch` 가 `none` 과 비슷하게 나왔을 때 곧바로 "feature 가 쓸모없다"고
+결론내면 안 된다. epoch 를 늘려 보고, 그래도 같으면 그때 판단한다. 사전학습
+가중치를 쓰면(기본값) 랜덤 초기화보다 훨씬 빨리 갈라진다.
+
+---
+
 ## 4. 결과 확인
 
 ### 4-1. 결과 폴더 하나 안에 뭐가 있나

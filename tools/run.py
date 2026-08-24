@@ -10,6 +10,7 @@ the underlying pipeline scripts keep their own `--flags`.
   python3 tools/run.py train  --manifest m.csv --model-name resnet50.a1_in1k
   python3 tools/run.py metric --manifest m.csv --model-name vit_base_patch16_224
   python3 tools/run.py maha   --checkpoint best.pt --manifest m.csv --output-dir out/
+  python3 tools/run.py patchtrain --manifest m.csv --vlm-features f.jsonl
 """
 from __future__ import annotations
 
@@ -33,6 +34,9 @@ COMMANDS: dict[str, str] = {
     'train': 'pipelines.train.train_supervised',
     'metric': 'pipelines.train.train_metric',
     'finetune': 'pipelines.train.finetune_small_data',
+    # VLM feature 를 ViT 패치 토큰으로 주입하는 실험
+    'patchtrain': 'pipelines.train.train_vit_patch_feature',
+    'patcheval': 'pipelines.eval.evaluate_vit_patch_feature',
     # 평가
     'eval': 'pipelines.eval.evaluate',
     'maha': 'tools.evaluate_unseen_mahalanobis',

@@ -263,6 +263,48 @@ act_train_metric() {
     --num-workers "$NUM_WORKERS" $(allow_cpu_flag)
 }
 
+# VLM feature 를 ViT 패치 토큰으로 붙여 학습한다.
+# 대조군(none/zero/shuffle)을 같은 명령으로 고를 수 있어야 실험이 성립한다.
+act_train_patch_feature() {
+  need_dataset || return 1
+  if [[ ! -f "$VLM_FEATURES" ]]; then
+    err "VLM feature 파일이 없습니다: $VLM_FEATURES"
+    say "${C_DIM}exp.conf 의 VLM_FEATURES 를 고치거나 VLM_FEATURES=... ./run.sh 로 실행하세요.${C_OFF}"
+    return 1
+  fi
+  pick_from_list "feature 주입 방식" \
+    "patch    - feature 를 패치 토큰으로 주입 (본 실험)" \
+    "none     - 이미지만 (baseline)" \
+    "zero     - 토큰만 붙이고 입력 0 (파라미터 효과 대조)" \
+    "shuffle  - feature 를 남의 것과 섞음 (진짜 쓰는지 검증)" || return 1
+  local fmode="${REPLY_PICK%% *}"
+
+  local mani; mani="$(ensure_manifest "$DATASET")" || return 1
+  local name; name="$(sanitize "${DATASET}__${MODEL}")_patch_${fmode}"
+  py patchtrain \
+    --manifest "$mani" --vlm-features "$VLM_FEATURES" \
+    --model-name "$MODEL" --feature-mode "$fmode" \
+    --output-root "$OUTPUT_ROOT" --experiment-name "$name" \
+    --epochs "$EPOCHS" --batch-size "$BATCH_SIZE" --image-size "$IMAGE_SIZE" \
+    --lr "$LR" --seed "$SEED" --num-workers "$NUM_WORKERS" $(allow_cpu_flag)
+}
+
+# 학습된 패치-feature 모델을 평가한다. 학습 때와 다른 주입 방식을 골라
+# 같은 가중치로 ablation 을 볼 수 있다.
+act_eval_patch_feature() {
+  need_dataset || return 1
+  _pick_checkpoint || return 1
+  local mani; mani="$(ensure_manifest "$DATASET")" || return 1
+  pick_from_list "평가할 feature 주입 방식 (학습 때와 달라도 됨)" \
+    "(학습 때 설정 그대로)" "patch" "none" "zero" "shuffle" || return 1
+  local extra=()
+  [[ "$REPLY_PICK" != "(학습 때 설정 그대로)" ]] && extra=(--feature-mode "$REPLY_PICK")
+  py patcheval \
+    --checkpoint "$CHECKPOINT" --manifest "$mani" \
+    --vlm-features "$VLM_FEATURES" --split test \
+    "${extra[@]+"${extra[@]}"}" $(allow_cpu_flag)
+}
+
 _pick_checkpoint() {
   collect discover_checkpoints
   pick_from_list "체크포인트 선택  ($OUTPUT_ROOT)" "${PICK_ITEMS[@]}" || return 1
@@ -357,13 +399,15 @@ menu() {
     say "  ${C_DIM}--- 학습/평가 ---${C_OFF}"
     say "  6) 학습 · supervised 분류"
     say "  7) 학습 · SupCon metric"
-    say "  8) 평가 · 분류 (checkpoint)"
-    say "  9) 평가 · Mahalanobis (unseen)"
+    say "  8) 학습 · ViT + VLM feature 패치 주입"
+    say "  9) 평가 · 분류 (checkpoint)"
+    say " 10) 평가 · Mahalanobis (unseen)"
+    say " 11) 평가 · ViT + feature 패치 (ablation)"
     say "  ${C_DIM}--- YOLO ---${C_OFF}"
-    say " 10) YOLO · 검출 학습"
-    say " 11) YOLO · crop 전처리"
+    say " 12) YOLO · 검출 학습"
+    say " 13) YOLO · crop 전처리"
     say "  ${C_DIM}---${C_OFF}"
-    say " 12) 설정 보기/임시 변경"
+    say " 14) 설정 보기/임시 변경"
     say "  0) 종료"
     hr
     local c
@@ -376,11 +420,13 @@ menu() {
       5) act_prepare ;;
       6) act_train_supervised ;;
       7) act_train_metric ;;
-      8) act_eval_classifier ;;
-      9) act_eval_mahalanobis ;;
-      10) act_yolo_train ;;
-      11) act_yolo_crop ;;
-      12) act_settings ;;
+      8) act_train_patch_feature ;;
+      9) act_eval_classifier ;;
+      10) act_eval_mahalanobis ;;
+      11) act_eval_patch_feature ;;
+      12) act_yolo_train ;;
+      13) act_yolo_crop ;;
+      14) act_settings ;;
       0|q|quit|exit) ok "종료"; break ;;
       "") ;;
       *) err "메뉴에 없는 선택: $c" ;;
@@ -398,6 +444,8 @@ implantsj 실험 실행기
   ./run.sh metric <ds> <model>   SupCon metric 학습
   ./run.sh eval   <ds> <ckpt>    분류 평가
   ./run.sh maha   <ds> <ckpt>    Mahalanobis 평가
+  ./run.sh patch  <ds> <model> [patch|none|zero|shuffle]
+                                 ViT + VLM feature 패치 주입 학습
   ds  = $DATA_ROOT 아래 데이터셋 폴더 이름
   model = configs/backbones.txt 의 timm 모델 이름
 EOF
@@ -422,6 +470,14 @@ main() {
              py maha --checkpoint "$CHECKPOINT" --manifest "$mani" \
                --output-dir "$OUTPUT_ROOT/mahalanobis/$(sanitize "$DATASET")_$(date +%Y%m%d_%H%M%S)" \
                --device "$DEVICE" ;;
+    patch)   DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; FMODE="${4:-patch}"
+             mani="$(ensure_manifest "$DATASET")" || exit 1
+             py patchtrain --manifest "$mani" --vlm-features "$VLM_FEATURES" \
+               --model-name "$MODEL" --feature-mode "$FMODE" \
+               --output-root "$OUTPUT_ROOT" \
+               --experiment-name "$(sanitize "${DATASET}__${MODEL}")_patch_${FMODE}" \
+               --epochs "$EPOCHS" --batch-size "$BATCH_SIZE" --image-size "$IMAGE_SIZE" \
+               --lr "$LR" --seed "$SEED" --num-workers "$NUM_WORKERS" $(allow_cpu_flag) ;;
     -h|--help|help) usage ;;
     *) err "알 수 없는 명령: $sub"; usage; exit 2 ;;
   esac
