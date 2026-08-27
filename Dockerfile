@@ -28,9 +28,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     # 런타임에는 여기서만 읽는다.
     TORCH_HOME=/opt/torch \
     HF_HOME=/opt/hf \
-    # 폐쇄망에서 실수로 네트워크를 두드리지 않도록 오프라인 모드를 고정한다.
-    HF_HUB_OFFLINE=1 \
-    TRANSFORMERS_OFFLINE=1 \
     PYTHONPATH=/workspace/implantsj
 
 # OpenCV(ultralytics 의존)와 이미지 디코딩에 필요한 최소 시스템 패키지.
@@ -58,6 +55,12 @@ RUN python -m pip install -r requirements.txt
 COPY configs/ ./configs/
 COPY docker/prefetch_weights.py ./docker/prefetch_weights.py
 RUN python docker/prefetch_weights.py
+
+# 오프라인 고정은 prefetch 가 끝난 *뒤에* 건다. 위에 두면 빌드 중에도 적용돼
+# prefetch 자체가 다운로드를 못 한다. 런타임에는 이 값이 남아 폐쇄망에서
+# 실수로 네트워크를 두드리는 것을 막는다.
+ENV HF_HUB_OFFLINE=1 \
+    TRANSFORMERS_OFFLINE=1
 
 # --- 4) 실험 코드 (가장 자주 바뀌므로 마지막) ---
 COPY . .
