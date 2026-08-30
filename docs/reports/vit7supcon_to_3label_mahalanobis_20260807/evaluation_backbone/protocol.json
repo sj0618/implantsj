@@ -1,0 +1,25 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7supcon_to_3label_mahalanobis_20260807/training/20260807_095246_vit_small_supcon7_e30_seed42/checkpoints/best.pt",
+  "checkpoint_sha256": "462573864f1e964f3bcf6644c4a1ebbc426607d16114c89c7b57a6bd0bfaf4bb",
+  "manifest": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/manifests/target_3.csv",
+  "manifest_sha256": "3aa4071c3fb1b2bf0e8f76fdbc8ee68c9d71727d0f3141787017130cba36ac40",
+  "embedding": "backbone",
+  "model_metadata": {
+    "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7supcon_to_3label_mahalanobis_20260807/training/20260807_095246_vit_small_supcon7_e30_seed42/checkpoints/best.pt",
+    "model_kind": "metric_model_projector",
+    "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+    "image_size": 224,
+    "projection_hidden_dim": 128,
+    "projection_dim": 128,
+    "loaded_keys": 159,
+    "skipped_keys": 0,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "use_projection": false
+  },
+  "prototype": "target-train class mean",
+  "covariance": "target-train pooled within-class residual Ledoit-Wolf",
+  "target_valid_test_used_for_fitting": false,
+  "scipy_max_absolute_error": 2.842170943040401e-14,
+  "excluded_exact_duplicates": 5
+}

@@ -1,10 +1,10 @@
-# VLM 5-Feature Fusion Experiment
+# VLM 5-feature fusion experiment
 
-이 실험은 VLM이 추출한 5개 구조 feature가 implant system classification에 실제 signal을 주는지 확인하기 위한 baseline입니다.
+이 실험은 VLM이 추출한 구조 feature 5개가 implant system classification에 실제로 도움이 되는지 확인하는 baseline이다.
 
-## 1. VLM Feature 추출
+## 1. VLM feature 추출
 
-브랜드명이나 system class를 묻지 말고 ROI 이미지만 넣어 아래 prompt로 JSON만 저장합니다.
+브랜드명이나 system class는 묻지 않는다. ROI 이미지만 입력하고 아래 prompt의 JSON을 저장한다.
 
 ```bash
 python train_vlm_fusion_5feature.py --write-prompt-only
@@ -22,7 +22,7 @@ outputs/vlm_feature_prompt_5feature.md
 - 모든 이미지에 동일 prompt 사용
 - output은 설명문 없이 structured JSON only
 
-## 2. VLM Feature 파일 형식
+## 2. VLM feature 파일 형식
 
 JSONL 권장:
 
@@ -32,7 +32,7 @@ JSONL 권장:
 
 CSV도 사용할 수 있습니다. `vlm_json` 컬럼에 위 JSON을 넣거나, `connection_type`, `thread_pitch`, `body_shape` 같은 flattened column을 사용할 수 있습니다.
 
-## 3. 전체 실험 Suite 실행
+## 3. 전체 실험 suite 실행
 
 ```bash
 python train_vlm_fusion_5feature.py \
@@ -68,7 +68,7 @@ python train_vlm_fusion_5feature.py \
 --finetune-image-encoder
 ```
 
-기본값은 image encoder freeze입니다. `--finetune-image-encoder`를 주면 encoder도 함께 학습합니다.
+기본 설정에서는 image encoder를 고정한다. `--finetune-image-encoder`를 주면 encoder도 함께 학습한다.
 
 ## 5. 출력
 

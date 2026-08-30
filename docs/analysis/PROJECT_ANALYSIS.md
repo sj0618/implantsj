@@ -5,9 +5,9 @@
 - 산출물: 이 파일 (`PROJECT_ANALYSIS.md`)
 - 보안 처리: `.env`는 존재와 변수명만 확인했고, 값은 분석 문서에 포함하지 않았다.
 
-## 1. 한 줄 요약
+## 1. 개요
 
-이 폴더는 **치과 임플란트 ROI 방사선 이미지 분류 실험 플랫폼**이다. 핵심은 ViT 기반 이미지 분류/metric learning이고, 보조 축으로 Azure OpenAI VLM이 추출한 구조적 feature를 JSONL/CSV로 저장한 뒤 logistic regression, feature-only ML, image+VLM fusion, two-stage classifier 개선 실험을 수행한다.
+이 폴더는 치과 임플란트 ROI 방사선 이미지 분류 실험 플랫폼이다. ViT 기반 이미지 분류와 metric learning이 중심이며, Azure OpenAI VLM이 추출한 구조 feature를 JSONL/CSV로 저장해 logistic regression, feature-only ML, image+VLM fusion, two-stage classifier 실험에도 사용한다.
 
 ## 2. 전체 구조와 역할
 
@@ -31,7 +31,7 @@
 | `.png` | 492 | 약 91MB | confusion matrix, attention map, t-SNE 등 시각화 결과 |
 | `.csv` | 205 | 약 17MB | manifest, prediction, metric summary, confusion matrix |
 | `.json` | 93 | 약 46MB | args, metrics, VLM JSON array, label map, config |
-| `.py` | 48 | 약 388KB | 핵심 코드 |
+| `.py` | 48 | 약 388KB | 주요 코드 |
 | `.pt` | 20 | 약 19.8GB | PyTorch checkpoint |
 | `.joblib` | 12 | 약 99MB | scikit-learn model 저장물 |
 | `.npz` | 9 | 약 20MB | embedding/feature cache 추정 |
@@ -39,7 +39,7 @@
 | `.jsonl` | 5 | 약 63MB | VLM feature extraction 결과 |
 | `.onnx` | 1 | 약 343MB | ONNX model artifact |
 
-## 4. 프로젝트의 큰 흐름
+## 4. 처리 흐름
 
 ```text
 이미지 데이터
@@ -63,7 +63,7 @@ VLM JSONL/summary CSV
   └─ experiments/run_*_ml.py: VLM feature-only ML/logistic regression 검증
 ```
 
-## 5. 핵심 코드 모듈 분석
+## 5. 공통 코드 모듈
 
 ### 5.1 `src/data.py`
 
@@ -179,7 +179,7 @@ VLM JSONL/summary CSV
 | 파일 | 내용 |
 |---|---|
 | `README.md` | 현재는 `# implantsj`만 있는 최소 README. 실제 사용법은 다른 문서에 분산됨. |
-| `EXPERIMENT_SUMMARY.md` | 2026-05-07 기준 주요 ViT/metric/two-stage 실험 결과와 추천 baseline 정리. 가장 중요한 결과 문서. |
+| `EXPERIMENT_SUMMARY.md` | 2026-05-07 기준 주요 ViT/metric/two-stage 실험 결과와 추천 baseline 정리. |
 | `VLM_5FEATURE_FUSION_USAGE.md` | 5-feature VLM fusion 실험 목적, JSONL 형식, suite 실행법, 판단 기준 설명. |
 | `AZURE_VLM_6LABEL_FEATURE_PIPELINE.md` | Azure OpenAI endpoint/API key/deployment 설정과 6-label VLM feature extraction 실행법. |
 | `13feature_21reason.md` | 기존 고수준 VLM feature 실패를 계기로 13 core attributes + 21 supporting features 체계로 전환한 설계 문서. |
@@ -213,7 +213,7 @@ VLM JSONL/summary CSV
 
 #### `data/AI Hub Data`
 
-42개 제조사/시스템 label folder가 있다. 이 데이터는 VLM 13-feature/answer-key/logistic-regression 실험의 기반으로 보인다.
+42개 제조사/시스템 label folder가 있다. VLM 13-feature, answer-key, logistic-regression 실험에서 이 데이터를 사용한다.
 
 ### 10.2 주요 manifest
 
@@ -265,11 +265,11 @@ VLM JSONL/summary CSV
 - 13 core attributes: `Company`, `Name`, `System`, `Connection_1`, `Connection_2`, `Flange`, `Collar`, `Microthread`, `Body_Shape`, `Body_Type`, `Thread_Shape`, `Apex_Shape`, `Apex_Hole`
 - 21 supporting features: `implant_visible`, `connection_region_visible`, `thread_region_visible`, `abutment_or_prosthesis_present`, `positive_connection_region_present`, `straight_screw_entry_space_present`, `negative_internal_connection_space_present`, `platform_step_present`, `internal_small_void_present`, `smooth_no_thread_collar_present`, `machined_surface_present`, `platform_boundary_visible`, `platform_switching_step_present`, `thread_lines_visible`, `regular_thread_pitch_visible`, `deep_thread_relief_present`, `micro_thread_zone_present`, `macro_thread_zone_present`, `body_taper_present`, `parallel_body_wall_present`, `apex_boundary_visible`
 
-핵심 설계는 `present/absent/not_assessable`을 구분하고, feature vector에는 `value`, `assessable_mask`, `confidence`를 넣어 not-assessable leakage를 줄이는 것이다.
+`present/absent/not_assessable`을 구분하고, feature vector에 `value`, `assessable_mask`, `confidence`를 넣어 not-assessable leakage를 줄인다.
 
 ## 12. 실험 결과 요약
 
-이미 존재하는 `EXPERIMENT_SUMMARY.md`와 metrics JSON을 기준으로 보면 다음 결론이다.
+`EXPERIMENT_SUMMARY.md`와 metrics JSON에서 확인한 결과는 다음과 같다.
 
 | 카테고리 | 대표 run | Test Accuracy | Test Macro-F1 | 해석 |
 |---|---|---:|---:|---|
@@ -296,18 +296,18 @@ VLM JSONL/summary CSV
 
 `outputs/`는 크게 네 종류다.
 
-1. **ViT run directory**  
+1. ViT run directory  
    예: `20260507_095713_plain_vit_7label`, `20260507_134640_plain_vit_10label`  
    포함: `args.json`, `checkpoints/best.pt`, `metrics/*.json`, `metrics/*predictions.csv`, `confusion_matrices/*`, `embeddings/tsne_*`, `attention_maps/`.
 
-2. **Metric/SupCon run directory**  
+2. Metric/SupCon run directory  
    예: `20260507_101426_supcon_vit_7label`, `20260507_142544_metric_7label_supcon_to_3label`  
    포함: prototype metrics, embedding t-SNE, metric attention map.
 
-3. **Two-stage 결과**  
+3. Two-stage 결과  
    예: `two_stage_predictions.csv`, `two_stage_metrics.json`, `two_stage_eval_7label_full/`, `20260507_134640_plain_vit_10label/two_stage_NORIS_osstem_test/`.
 
-4. **Tabular/VLM ML 실험 결과**  
+4. Tabular/VLM ML 실험 결과  
    예: `effective10_ml*`, `aihub_logistic_regression*`  
    포함: `metrics_summary.csv`, `classification_report_*.csv`, `confusion_matrix_*.csv/png`, `encoder_categories.json`, `feature_distribution.csv`, model `.joblib`.
 
@@ -424,33 +424,33 @@ python two_stage/predict_two_stage.py \
   --output outputs/two_stage_predictions.csv
 ```
 
-## 17. 현재 기준 추천 사용 방향
+## 17. 권장 사용 방향
 
-1. **이미지 분류 baseline**: `outputs/20260507_134640_plain_vit_10label`를 10-label baseline으로 유지.
-2. **7-label baseline**: `outputs/20260507_095713_plain_vit_7label`를 plain 7-label 기준점으로 유지.
-3. **3-label 작업**: dedicated `20260507_104805_plain_vit_3label` 사용. 7-label metric transfer는 성능이 낮다.
-4. **SupCon embedding**: classification replacement보다는 embedding/prototype/visualization 분석 용도로 활용.
-5. **Two-stage**: 현재 NORIS/osstem two-stage는 baseline보다 낮으므로 기본 적용하지 말고 low-confidence trigger 조건을 추가한 후 재평가.
-6. **VLM feature**: 최종 판단 모델보다는 구조 feature 설명/보조 signal/ablation 분석 용도로 쓰는 것이 안전하다.
-7. **정리 우선순위**: README 확장, dependency 파일 작성, `.gitignore` 수정, output/model artifact 분리, CLI path 정리.
+1. 이미지 분류 baseline: `outputs/20260507_134640_plain_vit_10label`를 10-label baseline으로 유지.
+2. 7-label baseline: `outputs/20260507_095713_plain_vit_7label`를 plain 7-label 기준점으로 유지.
+3. 3-label 작업: dedicated `20260507_104805_plain_vit_3label` 사용. 7-label metric transfer는 성능이 낮다.
+4. SupCon embedding: classification replacement보다는 embedding/prototype/visualization 분석 용도로 활용.
+5. Two-stage: 현재 NORIS/osstem two-stage는 baseline보다 낮으므로 기본 적용하지 말고 low-confidence trigger 조건을 추가한 후 재평가.
+6. VLM feature: 최종 판단 모델보다는 구조 feature 설명/보조 signal/ablation 분석 용도로 쓰는 것이 안전하다.
+7. 정리 우선순위: README 확장, dependency 파일 작성, `.gitignore` 수정, output/model artifact 분리, CLI path 정리.
 
-## 18. 전체 이해 결론
+## 18. 분석 결과
 
 이 프로젝트는 단순한 학습 스크립트 모음이 아니라, 다음 질문을 단계적으로 검증한 실험 저장소다.
 
 1. 임플란트 ROI 이미지만으로 ViT가 브랜드/시스템을 잘 분류하는가?  
-   → 예. 7-label/10-label supervised ViT는 test accuracy 약 0.94~0.96 수준.
+   → 7-label/10-label supervised ViT의 test accuracy는 약 0.94~0.96다.
 
 2. metric learning/SupCon embedding이 label transfer나 소수 class 문제를 해결하는가?  
    → 7-label 자체 prototype accuracy는 높지만 macro-F1과 3-label transfer는 제한적.
 
 3. VLM이 구조 feature를 뽑아 분류 성능을 보조할 수 있는가?  
-   → feature-only 성능은 제한적이며, VLM feature는 image-only ViT를 대체하기 어렵다. 다만 구조 설명과 보조/ablation 용도로 가치가 있다.
+   → feature-only 성능은 제한적이며, VLM feature는 image-only ViT를 대체하기 어렵다. 구조 설명과 보조 ablation에는 사용할 수 있다.
 
 4. 혼동되는 class만 submodel로 재분류하면 좋아지는가?  
    → submodel 자체는 좋지만 현재 handoff 조건에서는 overall 성능이 약간 하락했다. confidence/threshold 기반 trigger가 필요하다.
 
-따라서 현재 repo의 실용적 핵심은 **ViT image-only baseline + 실험적 VLM structural feature 분석 + 선택적 two-stage refinement 연구**로 이해하면 된다.
+현재 저장소는 ViT image-only baseline을 기준으로 VLM structural feature와 선택적 two-stage refinement를 검증하는 실험 저장소다.
 
 ## 19. 검증 메모
 
@@ -458,4 +458,4 @@ python two_stage/predict_two_stage.py \
 - 이미지/PNG/checkpoint/joblib/onnx 같은 binary file은 직접 내용을 해석하지 않고 파일 수, 크기, 경로, 주변 metadata/metrics 기준으로 분석했다.
 - `.env`는 값 노출을 피하고 변수명만 확인했다.
 - Python 파일은 AST 수준으로 함수/class/import 구조를 훑고, 주요 entrypoint/CLI argument를 확인했다.
-- Manifest/metrics는 CSV/JSON header와 row count, label/split 분포, 핵심 metric 값을 직접 집계했다.
+- Manifest/metrics는 CSV/JSON header와 row count, label/split 분포, 주요 metric 값을 직접 집계했다.

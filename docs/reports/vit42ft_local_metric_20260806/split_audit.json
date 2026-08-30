@@ -1,0 +1,107 @@
+{
+  "3label": {
+    "root": "/Users/yunseojune/TRIA_LAB/implant_project/data/Bego_Bicon_ITI_3label_cropped",
+    "rows": 4464,
+    "labels": [
+      "Bego",
+      "Bicon",
+      "ITI"
+    ],
+    "split_rows": {
+      "train": 3572,
+      "valid": 446,
+      "test": 446
+    },
+    "test_labels_present": [
+      "Bego",
+      "Bicon",
+      "ITI"
+    ],
+    "test_labels_missing": [],
+    "majority_baseline_accuracy": 0.8609865470852018,
+    "exact_sha256_overlap": {
+      "train_valid": 6,
+      "train_test": 5,
+      "valid_test": 0
+    }
+  },
+  "7label": {
+    "root": "/Users/yunseojune/TRIA_LAB/implant_project/data/7label_0721_cropped",
+    "rows": 1411,
+    "labels": [
+      "ADIN",
+      "DIONAVI",
+      "Dentium",
+      "MIS",
+      "NORIS",
+      "nobel",
+      "osstem"
+    ],
+    "split_rows": {
+      "train": 1127,
+      "valid": 143,
+      "test": 141
+    },
+    "test_labels_present": [
+      "ADIN",
+      "DIONAVI",
+      "Dentium",
+      "MIS",
+      "NORIS",
+      "osstem"
+    ],
+    "test_labels_missing": [
+      "nobel"
+    ],
+    "majority_baseline_accuracy": 0.5177304964539007,
+    "exact_sha256_overlap": {
+      "train_valid": 0,
+      "train_test": 0,
+      "valid_test": 0
+    }
+  },
+  "12label": {
+    "root": "/Users/yunseojune/TRIA_LAB/implant_project/data/implant_yolo26_12label_cropped",
+    "rows": 5127,
+    "labels": [
+      "3I",
+      "BEGO",
+      "BILIM",
+      "BIOHORIZON",
+      "IMPLANCE",
+      "MEDENTIKA",
+      "MEGAGEN",
+      "NOBEL",
+      "NTA",
+      "NUCLEOSS",
+      "STRAUMANN",
+      "SWISS"
+    ],
+    "split_rows": {
+      "train": 4103,
+      "valid": 512,
+      "test": 512
+    },
+    "test_labels_present": [
+      "3I",
+      "BEGO",
+      "BILIM",
+      "BIOHORIZON",
+      "IMPLANCE",
+      "MEDENTIKA",
+      "MEGAGEN",
+      "NOBEL",
+      "NTA",
+      "NUCLEOSS",
+      "STRAUMANN",
+      "SWISS"
+    ],
+    "test_labels_missing": [],
+    "majority_baseline_accuracy": 0.345703125,
+    "exact_sha256_overlap": {
+      "train_valid": 0,
+      "train_test": 0,
+      "valid_test": 0
+    }
+  }
+}

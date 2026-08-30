@@ -8,18 +8,15 @@
 - macro_f1 = 0.1466
 - weighted_f1 = 0.2266
 
-이 수치는 **27개 seen label로 학습한 metric space를 15개 unseen label에 그대로 적용했을 때** 충분히 낮게 나올 수 있는 값이다.
+27개 seen label로 학습한 metric space를 15개 unseen label에 그대로 적용하면 이 정도로 낮은 값이 나올 수 있다.
 
 ## 왜 낮은 것이 정상에 가까운가
 
 ### 1. unseen 15라벨은 학습 목표에 없었다
 
-SupCon / Triplet 기반 metric learning은 기본적으로 **학습에 사용한 seen class끼리 잘 분리되도록** embedding space를 만든다.
+SupCon과 Triplet 기반 metric learning은 학습에 사용한 seen class가 잘 분리되도록 embedding space를 만든다.
 
-즉,
-
-- 27 seen class는 잘 분리되도록 학습되었지만
-- 학습에 등장하지 않은 15 unseen class를 각각 독립 class로 구분하도록 학습된 것은 아니다.
+27개 seen class는 잘 분리되도록 학습됐지만, 학습에 등장하지 않은 15개 unseen class를 각각 구분하도록 학습된 것은 아니다.
 
 따라서 unseen 15라벨 분류 성능이 낮아도 이상하지 않다.
 
@@ -27,16 +24,13 @@ SupCon / Triplet 기반 metric learning은 기본적으로 **학습에 사용한
 
 현재 ViT + SupCon / Triplet 구조는 CLIP처럼 text embedding을 이용해 class name 자체로 zero-shot 분류를 수행하는 구조가 아니다.
 
-즉,
-
-- `stella`, `iu`, `Simpleline` 같은 이름을 보고 분류하는 구조가 아니고
-- 학습되지 않은 새 class를 자동으로 semantic하게 분리하는 구조도 아니다.
+이 구조는 `stella`, `iu`, `Simpleline` 같은 이름을 보고 분류하지 않으며, 학습되지 않은 새 class를 의미적으로 자동 분리하지도 않는다.
 
 그래서 이 실험을 "진짜 zero-shot classification"으로 해석하면 안 된다.
 
 ### 3. prototype이 없으면 unseen class를 제대로 맞추기 어렵다
 
-metric learning에서 분류는 보통 **class prototype** 또는 support embedding이 있어야 안정적이다.
+Metric learning 분류는 class prototype이나 support embedding이 있어야 안정적이다.
 
 그런데 unseen 15 class는 학습 중 prototype이 형성되지 않았기 때문에, 평가 시점에 다음 문제가 발생한다.
 
@@ -60,12 +54,7 @@ metric learning에서 분류는 보통 **class prototype** 또는 support embedd
 
 임플란트 구조가 유사한 class들은 unseen일수록 기존 seen class 중 가장 가까운 cluster로 흡수되기 쉽다.
 
-즉 낮은 정확도는 단순 실패라기보다,
-
-- 어떤 unseen class가
-- 어떤 seen class 근처로 붙는지
-
-를 보여주는 분석 결과일 가능성이 높다.
+낮은 정확도는 단순 실패라기보다 각 unseen class가 어떤 seen class 근처에 놓이는지 보여주는 분석 결과일 가능성이 높다.
 
 ## 가장 가능성 높은 원인 우선순위
 
@@ -80,13 +69,13 @@ metric learning에서 분류는 보통 **class prototype** 또는 support embedd
 
 ## 이 결과를 어떻게 해석해야 하는가
 
-이 실험은 **정확한 unseen class 분류 성능 평가**로 보기보다,
+이 실험은 정확한 unseen class 분류 성능 평가보다,
 
 > unseen sample이 기존 seen class embedding space에서 어디로 매핑되는지 확인하는 분석 실험
 
 으로 해석하는 것이 더 타당하다.
 
-즉 봐야 할 것은 accuracy 하나가 아니라 아래 항목들이다.
+Accuracy 하나보다 아래 항목을 함께 봐야 한다.
 
 - true unseen label별 nearest seen label 분포
 - cosine similarity 평균
@@ -107,7 +96,7 @@ metric learning에서 분류는 보통 **class prototype** 또는 support embedd
 
 ### 경우 B. unseen 15 내부에서 few-shot prototype을 만든 경우
 
-이 경우는 zero-shot이 아니라 **few-shot metric classification**에 가깝다.
+이 경우는 zero-shot보다 few-shot metric classification에 가깝다.
 
 그래도 낮다면 아래를 본다.
 
@@ -125,7 +114,7 @@ metric learning에서 분류는 보통 **class prototype** 또는 support embedd
 
 ## 실무 결론
 
-1. 현재 수치는 비정상이라기보다 **실험 설정상 자연스러운 결과**에 가깝다.
+1. 현재 수치는 비정상이라기보다 실험 설정상 자연스러운 결과에 가깝다.
 2. 이 결과만으로 metric model이 고장났다고 결론내리면 안 된다.
-3. unseen15 평가는 분류 accuracy보다 **mapping 분석**으로 해석하는 것이 맞다.
-4. 현재 우선 작업은 unseen15 학습이 아니라 **전체 데이터 13feature 추가**다.
+3. Unseen15 평가는 분류 accuracy보다 mapping 분석으로 해석하는 것이 맞다.
+4. 현재 우선 작업은 unseen15 학습이 아니라 전체 데이터 13feature 추가다.

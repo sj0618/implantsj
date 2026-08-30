@@ -1,0 +1,18 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/legacy_7to3_reproduction_20260807/20260807_101835_legacy_vitsmall_supcon7_to_3label/checkpoint_epoch15.pt",
+  "checkpoint_sha256": "21d11b421eb33c9d23e7a0426d98b407ca91cf9c4613f5947abaac725748b820",
+  "manifest": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/legacy_7to3_reproduction_20260807/manifests/target_3.csv",
+  "manifest_sha256": "d2381c0b27936fe047e22a5d460bb585be25226027ba9f98655079d8d31d7941",
+  "embedding": "backbone",
+  "device": "mps",
+  "model_metadata": {
+    "embedding_cache": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/mahalanobis_improvement_20260813/legacy_backbone/embedding_cache.npz"
+  },
+  "fit_data": "target train only",
+  "selection_data": "target validation only",
+  "test_used_for_selection": false,
+  "selection_metric": "validation macro_f1; balanced_accuracy, accuracy tie-break",
+  "candidate_count": 28,
+  "selected_method": "balanced_pca_256",
+  "excluded_exact_duplicates": 0
+}

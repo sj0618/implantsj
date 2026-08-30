@@ -1,0 +1,11 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/AI_HUB_model_download/vit42class_best.pt",
+  "predictions": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit42ft_local_metric_20260806/predictions.csv.gz",
+  "device": "mps",
+  "method": "ViT attention rollout over all blocks, head mean, residual identity",
+  "discard_ratio": 0.0,
+  "samples_per_setting": 100,
+  "unique_attention_computations": 300,
+  "linked_overlays": 1800,
+  "note": "Attention depends on the frozen backbone and image, not the prototype or distance; identical maps are hard-linked across matched settings."
+}

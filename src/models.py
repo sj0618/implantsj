@@ -124,3 +124,38 @@ def get_class_to_idx_from_checkpoint(path: str | Path) -> Dict[str, int]:
     if 'class_to_idx' not in ckpt:
         raise KeyError('Checkpoint has no class_to_idx.')
     return {str(k): int(v) for k, v in ckpt['class_to_idx'].items()}
+
+
+class AttributeModel(nn.Module):
+    """backbone 하나 + attribute 마다 분류 head 하나.
+
+    13 feature 를 각각 자기 값 집합 위의 softmax 로 푼다. 상호배타성이 구조에
+    들어 있어 "Bone Level 이면서 Tissue Level" 같은 예측이 나올 수 없다.
+    """
+
+    def __init__(
+        self,
+        model_name: str,
+        head_sizes: Dict[str, int],
+        pretrained: bool = True,
+        dropout: float = 0.0,
+        drop_path_rate: float = 0.0,
+    ):
+        super().__init__()
+        import timm
+        self.backbone = timm.create_model(
+            model_name,
+            pretrained=pretrained,
+            num_classes=0,
+            drop_rate=dropout,
+            drop_path_rate=drop_path_rate,
+        )
+        in_dim = getattr(self.backbone, 'num_features', None)
+        if in_dim is None:
+            raise RuntimeError(f'Could not infer num_features for {model_name}')
+        self.attributes = list(head_sizes.keys())
+        self.heads = nn.ModuleDict({a: nn.Linear(in_dim, k) for a, k in head_sizes.items()})
+
+    def forward(self, x):
+        feat = self.backbone(x)
+        return {a: self.heads[a](feat) for a in self.attributes}

@@ -1,0 +1,25 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/legacy_7to3_reproduction_20260807/20260807_101835_legacy_vitsmall_supcon7_to_3label/checkpoint_epoch15.pt",
+  "checkpoint_sha256": "21d11b421eb33c9d23e7a0426d98b407ca91cf9c4613f5947abaac725748b820",
+  "manifest": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/legacy_7to3_reproduction_20260807/manifests/target_3.csv",
+  "manifest_sha256": "d2381c0b27936fe047e22a5d460bb585be25226027ba9f98655079d8d31d7941",
+  "embedding": "backbone",
+  "model_metadata": {
+    "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/legacy_7to3_reproduction_20260807/20260807_101835_legacy_vitsmall_supcon7_to_3label/checkpoint_epoch15.pt",
+    "model_kind": "metric_model_projector",
+    "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+    "image_size": 224,
+    "projection_hidden_dim": 128,
+    "projection_dim": 128,
+    "loaded_keys": 159,
+    "skipped_keys": 0,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "use_projection": false
+  },
+  "prototype": "target-train class mean",
+  "covariance": "target-train pooled within-class residual Ledoit-Wolf",
+  "target_valid_test_used_for_fitting": false,
+  "scipy_max_absolute_error": 3.197442310920451e-14,
+  "excluded_exact_duplicates": 0
+}

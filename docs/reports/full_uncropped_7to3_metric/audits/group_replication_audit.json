@@ -1,0 +1,62 @@
+{
+  "support_3": {
+    "Bego": {
+      "images": 172,
+      "unique_source_groups": 29,
+      "groups_with_multiple_augmentations": 29,
+      "max_images_per_group": 9
+    },
+    "Bicon": {
+      "images": 1520,
+      "unique_source_groups": 244,
+      "groups_with_multiple_augmentations": 242,
+      "max_images_per_group": 9
+    },
+    "ITI": {
+      "images": 147,
+      "unique_source_groups": 59,
+      "groups_with_multiple_augmentations": 44,
+      "max_images_per_group": 3
+    }
+  },
+  "gt_3": {
+    "Bego": {
+      "images": 56,
+      "unique_source_groups": 8,
+      "groups_with_multiple_augmentations": 8,
+      "max_images_per_group": 9
+    },
+    "Bicon": {
+      "images": 375,
+      "unique_source_groups": 58,
+      "groups_with_multiple_augmentations": 57,
+      "max_images_per_group": 9
+    },
+    "ITI": {
+      "images": 29,
+      "unique_source_groups": 11,
+      "groups_with_multiple_augmentations": 9,
+      "max_images_per_group": 3
+    }
+  },
+  "test_3": {
+    "Bego": {
+      "images": 14,
+      "unique_source_groups": 12,
+      "groups_with_multiple_augmentations": 2,
+      "max_images_per_group": 2
+    },
+    "Bicon": {
+      "images": 95,
+      "unique_source_groups": 87,
+      "groups_with_multiple_augmentations": 8,
+      "max_images_per_group": 2
+    },
+    "ITI": {
+      "images": 7,
+      "unique_source_groups": 7,
+      "groups_with_multiple_augmentations": 0,
+      "max_images_per_group": 1
+    }
+  }
+}

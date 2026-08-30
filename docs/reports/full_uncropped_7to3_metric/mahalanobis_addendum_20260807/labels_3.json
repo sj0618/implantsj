@@ -1,0 +1,18 @@
+{
+  "all": [
+    "Bego",
+    "Bicon",
+    "ITI"
+  ],
+  "closed": [],
+  "open": [
+    "Bego",
+    "Bicon",
+    "ITI"
+  ],
+  "contract": {
+    "total": 3,
+    "closed": 0,
+    "open": 3
+  }
+}

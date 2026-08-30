@@ -5,13 +5,13 @@
 이 문서는 로컬에서 수정한 `pipelines/vlm/generate_13feature_21reason_7label.py`를
 원격 서버에서 `qwen_3B_VLM`으로 실제 실행할 때 필요한 최소 정보만 정리한 문서다.
 
-현재 원칙:
+현재 범위는 다음과 같다.
 
-- 목표는 **전체 42-label 데이터에 13feature 추가**
+- 목표는 전체 42-label 데이터에 13feature 추가
 - `unseen15` 재학습은 범위 밖
 - 로컬 머신에는 실제 VLM 모델이 없음
-- 실제 추론은 **원격 서버**에서 수행
-- 구현 경로는 오직 **in-script local transport/provenance lift**
+- 실제 추론은 원격 서버에서 수행
+- 구현 경로는 in-script local transport/provenance lift로 한정
 - wrapper / 별도 local_qwen runner 재도입은 하지 않음
 
 ## 현재 코드가 기대하는 로컬 런타임 형태
@@ -26,7 +26,7 @@
 - 모델 출력: **텍스트**
 - 텍스트를 `json.loads(...)` 해서 dict로 변환
 
-## 원격 서버에서 확인해야 할 필수 항목
+## 원격 서버에서 확인할 항목
 
 실행 전에 아래만 확인하면 된다.
 
@@ -91,7 +91,7 @@ python3 pipelines/vlm/generate_13feature_21reason_7label.py \
   --resume
 ```
 
-## 원격 실행 후 반드시 볼 것
+## 원격 실행 후 확인할 값
 
 성공 기록에서 아래를 확인한다.
 

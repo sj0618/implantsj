@@ -1,10 +1,10 @@
-# Azure OpenAI VLM 5-Feature Pipeline for 6label Data
+# Azure OpenAI VLM 5-feature pipeline for 6-label data
 
-이 파이프라인은 6label 이미지 전체를 Azure OpenAI vision deployment에 보내서, 이미지별 5개 구조 feature JSON과 숫자 feature vector를 JSONL로 저장합니다.
+이 파이프라인은 6-label 이미지 전체를 Azure OpenAI vision deployment로 전송하고, 이미지별 구조 feature 5개와 숫자 feature vector를 JSONL로 저장한다.
 
 ## 1. Azure 설정
 
-`.env.azure.example`을 참고해서 실제 값은 `.env`에 넣습니다. `.env`는 git에 올리지 마세요.
+`.env.azure.example`을 참고해 실제 값은 `.env`에 넣는다. `.env`는 git에 올리지 않는다.
 
 ```bash
 AZURE_OPENAI_ENDPOINT=https://YOUR-RESOURCE-NAME.openai.azure.com/
@@ -13,9 +13,9 @@ AZURE_OPENAI_API_VERSION=2024-10-21
 AZURE_OPENAI_DEPLOYMENT=YOUR_VISION_CHAT_DEPLOYMENT_NAME
 ```
 
-`AZURE_OPENAI_DEPLOYMENT`에는 Azure Portal에서 만든 vision-capable chat model deployment 이름을 넣습니다.
+`AZURE_OPENAI_DEPLOYMENT`에는 Azure Portal에서 만든 vision-capable chat model deployment 이름을 넣는다.
 
-## 2. Prompt만 확인
+## 2. Prompt 확인
 
 ```bash
 python generate_vlm_features_azure_6label.py \
@@ -23,9 +23,9 @@ python generate_vlm_features_azure_6label.py \
   --write-prompt-only
 ```
 
-## 3. Dry Run
+## 3. Dry run
 
-실제 API 호출 없이 manifest와 처리 대상만 확인합니다.
+실제 API를 호출하지 않고 manifest와 처리 대상만 확인한다.
 
 ```bash
 python generate_vlm_features_azure_6label.py \
@@ -44,7 +44,7 @@ python generate_vlm_features_azure_6label.py \
   --dry-run
 ```
 
-## 4. 전체 생성
+## 4. 전체 데이터 처리
 
 ```bash
 python generate_vlm_features_azure_6label.py \
@@ -53,11 +53,11 @@ python generate_vlm_features_azure_6label.py \
   --summary-csv data/manifests/vlm_5feature_6label.summary.csv
 ```
 
-중간에 끊겨도 기본값이 `--resume`이라, 이미 `status=ok`로 저장된 이미지는 건너뜁니다.
+중간에 작업이 끊겨도 기본값인 `--resume`이 이미 `status=ok`로 저장된 이미지를 건너뛴다.
 
 ## 5. 출력 JSONL
 
-각 줄은 이미지 하나입니다.
+한 줄에 이미지 하나를 기록한다.
 
 ```json
 {
@@ -78,7 +78,7 @@ python generate_vlm_features_azure_6label.py \
 }
 ```
 
-이 파일은 fusion 실험에 바로 넣을 수 있습니다.
+생성한 파일은 fusion 실험에 바로 사용할 수 있다.
 
 ```bash
 python train_vlm_fusion_5feature.py \

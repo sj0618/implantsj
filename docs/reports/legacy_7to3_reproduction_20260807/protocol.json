@@ -1,0 +1,43 @@
+{
+  "name": "legacy_vitsmall_supcon7_to_unseen3_reproduction",
+  "source_labels": ["ADIN", "DIONAVI", "Dentium", "MIS", "NORIS", "nobel", "osstem"],
+  "target_labels": ["Bego", "Bicon", "ITI"],
+  "source_counts": {"train": 2603, "valid": 338, "test": 338},
+  "target_counts": {"train": 1765, "valid": 201, "test": 109},
+  "model": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+  "input_size": 224,
+  "training": {
+    "loss": "supcon",
+    "batch_size": 16,
+    "learning_rate": 0.00003,
+    "weight_decay": 0.05,
+    "temperature": 0.07,
+    "embedding_dim": 128,
+    "dropout": 0.1,
+    "drop_path_rate": 0.1,
+    "seed": 42,
+    "checkpoint_epoch": 15
+  },
+  "evaluation": {
+    "prototype": "target-train per-class mean",
+    "distance": ["cosine", "mahalanobis"],
+    "query_splits": ["valid", "test"],
+    "projection_test": {
+      "cosine": {"accuracy": 0.3119266055045872, "macro_f1": 0.2974629019405139, "balanced_accuracy": 0.44684550422255337},
+      "mahalanobis": {"accuracy": 0.6055045871559633, "macro_f1": 0.44774801416167637, "balanced_accuracy": 0.4765275707898659}
+    },
+    "backbone_test": {
+      "cosine": {"accuracy": 0.27522935779816515, "macro_f1": 0.2686995252825014, "balanced_accuracy": 0.5134128166915052},
+      "mahalanobis": {"accuracy": 0.6330275229357798, "macro_f1": 0.4822894982057535, "balanced_accuracy": 0.5076999503229012}
+    },
+    "mahalanobis_covariance": "target-train pooled within-class residual Ledoit-Wolf",
+    "target_valid_test_used_for_fitting": false,
+    "excluded_exact_train_test_duplicates": 0
+  },
+  "sha256": {
+    "checkpoint": "21d11b421eb33c9d23e7a0426d98b407ca91cf9c4613f5947abaac725748b820",
+    "training_manifest": "bbada5e9ad642fa26da7da1630cc7a1fda5eb50916e71e69efb490c7daa184dd",
+    "target_manifest": "d2381c0b27936fe047e22a5d460bb585be25226027ba9f98655079d8d31d7941"
+  },
+  "caveat": "The historical best_stage1.pth is unavailable; this is a fresh condition reconstruction, not a byte-identical checkpoint rerun."
+}

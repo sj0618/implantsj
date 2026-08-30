@@ -1,0 +1,62 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/AI_HUB_model_download/vit42class_best.pt",
+  "checkpoint_sha256": "96a77906a8eb2a04c88a0432e4afefef51ae9995b87a781b2eff67aa7fe8186d",
+  "checkpoint_epoch": 42,
+  "architecture": "vit_large_patch16_224.augreg_in21k_ft_in1k",
+  "checkpoint_classes": 42,
+  "embedding": "frozen pre-logit backbone, 1024 dimensions",
+  "preprocessing": {
+    "deployed": {
+      "source": "repository training transform",
+      "input_size": [
+        3,
+        224,
+        224
+      ],
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "common_backbone": {
+      "source": "repository training transform",
+      "input_size": [
+        3,
+        224,
+        224
+      ],
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    }
+  },
+  "device": "mps",
+  "prototype_definitions": {
+    "GT": "target valid split, class-wise mean",
+    "Mean": "target train split, class-wise mean",
+    "SS": "target train split, deterministic up-to-5 samples per label, seed 42"
+  },
+  "distances": [
+    "euclidean",
+    "cosine"
+  ],
+  "query": "target test split only",
+  "selection_note": "all six settings are reported; observed maxima are not validation-selected",
+  "zero_shot_note": "not zero-shot: labeled target train/valid images form prototypes",
+  "training_overlap_note": "cannot prove target images were absent from 42-class FT training because the internal training manifest is not local",
+  "requested_11label_note": "no local 11-label dataset was found; the intact 12-label dataset was evaluated without dropping a class",
+  "elapsed_seconds": 649.8731050491333
+}

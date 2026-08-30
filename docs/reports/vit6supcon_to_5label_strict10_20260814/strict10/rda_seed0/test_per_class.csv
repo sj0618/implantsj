@@ -1,0 +1,11 @@
+method,label,precision,recall,f1,support
+pooled_ledoit_wolf,bego,0.8,1.0,0.8888888888888888,4
+pooled_ledoit_wolf,bilim,0.0,0.0,0.0,3
+pooled_ledoit_wolf,implance,0.8,1.0,0.8888888888888888,4
+pooled_ledoit_wolf,iti,0.75,0.75,0.75,4
+pooled_ledoit_wolf,nucleoss,0.0,0.0,0.0,2
+rda_0.75_logdet_1,bego,0.6666666666666666,0.5,0.5714285714285714,4
+rda_0.75_logdet_1,bilim,0.6666666666666666,0.6666666666666666,0.6666666666666666,3
+rda_0.75_logdet_1,implance,1.0,1.0,1.0,4
+rda_0.75_logdet_1,iti,0.5,0.75,0.6,4
+rda_0.75_logdet_1,nucleoss,0.0,0.0,0.0,2

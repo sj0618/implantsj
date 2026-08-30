@@ -263,6 +263,37 @@ act_train_metric() {
     --num-workers "$NUM_WORKERS" $(allow_cpu_flag)
 }
 
+# 클래스->13feature 표(configs/class_features.csv)를 정답으로 써서
+# "처음 보는 클래스도 13 feature 값을 말하는" 모델을 학습한다. VLM 은 쓰지 않는다.
+act_train_feature_attr() {
+  need_dataset || return 1
+  local tbl="${FEATURE_TABLE:-$ROOT/configs/class_features.csv}"
+  if [[ ! -f "$tbl" ]]; then
+    err "feature 표가 없습니다: $tbl"
+    return 1
+  fi
+  local mani; mani="$(ensure_manifest "$DATASET")" || return 1
+  local name; name="$(sanitize "${DATASET}__${MODEL}")_featattr"
+  py featattr \
+    --manifest "$mani" --feature-table "$tbl" --model-name "$MODEL" \
+    --output-root "$OUTPUT_ROOT" --experiment-name "$name" \
+    --epochs "$EPOCHS" --batch-size "$BATCH_SIZE" --image-size "$IMAGE_SIZE" \
+    --lr "$LR" --seed "$SEED" --num-workers "$NUM_WORKERS" $(allow_cpu_flag)
+}
+
+# 학습에 없던 클래스의 13 feature 표를 채운다.
+# 먼저 메뉴 3 에서 unseen 데이터셋을 고른 뒤 실행한다.
+act_eval_feature_attr() {
+  say "${C_DIM}학습에 없던 클래스가 든 데이터셋을 메뉴 3 에서 먼저 고르세요. 현재: ${DATASET:-없음}${C_OFF}"
+  need_dataset || return 1
+  _pick_checkpoint || return 1
+  local mani; mani="$(ensure_manifest "$DATASET")" || return 1
+  py featattreval \
+    --checkpoint "$CHECKPOINT" --manifest "$mani" --split test \
+    --image-size "$IMAGE_SIZE" --batch-size "$BATCH_SIZE" \
+    --num-workers "$NUM_WORKERS" $(allow_cpu_flag)
+}
+
 # VLM feature 를 ViT 패치 토큰으로 붙여 학습한다.
 # 대조군(none/zero/shuffle)을 같은 명령으로 고를 수 있어야 실험이 성립한다.
 act_train_patch_feature() {
@@ -407,6 +438,10 @@ menu() {
     say " 12) YOLO · 검출 학습"
     say " 13) YOLO · crop 전처리"
     say "  ${C_DIM}---${C_OFF}"
+    say "  ${C_DIM}--- 13 feature 표 채우기 (VLM 미사용) ---${C_OFF}"
+    say " 15) 학습 · 클래스->13feature attribute"
+    say " 16) 평가 · 처음 보는 클래스의 13feature 표 채우기"
+    say "  ${C_DIM}---${C_OFF}"
     say " 14) 설정 보기/임시 변경"
     say "  0) 종료"
     hr
@@ -426,6 +461,8 @@ menu() {
       11) act_eval_patch_feature ;;
       12) act_yolo_train ;;
       13) act_yolo_crop ;;
+      15) act_train_feature_attr ;;
+      16) act_eval_feature_attr ;;
       14) act_settings ;;
       0|q|quit|exit) ok "종료"; break ;;
       "") ;;
@@ -460,6 +497,7 @@ main() {
     check)   act_check ;;
     prep)    DATASET="${2:?ds required}"; act_prepare ;;
     train)   DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_train_supervised ;;
+    featattr) DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_train_feature_attr ;;
     metric)  DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_train_metric ;;
     eval)    DATASET="${2:?ds required}"; CHECKPOINT="${3:?ckpt required}";
              mani="$(ensure_manifest "$DATASET")" || exit 1

@@ -1,0 +1,3 @@
+method,split,n,accuracy,macro_f1,balanced_accuracy,excluded_exact_duplicates
+pooled_ledoit_wolf,test,446,0.6031390134529148,0.44838334449937695,0.6075755070546737,
+pooled_ledoit_wolf,test_duplicate_free,446,0.6031390134529148,0.44838334449937695,0.6075755070546737,0.0

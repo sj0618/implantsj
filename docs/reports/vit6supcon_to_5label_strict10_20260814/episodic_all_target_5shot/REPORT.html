@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unseen 5-label strict 5-shot 평가</title>
+  <style>
+    :root { --ink:#172033; --muted:#637083; --line:#dfe5ec; --panel:#f6f8fb; --accent:#175cd3; --good:#067647; --warn:#b54708; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:#eef2f6; font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif; }
+    main { max-width:980px; margin:36px auto; padding:44px 52px; background:#fff; border-radius:18px; box-shadow:0 12px 36px #1d293914; }
+    h1 { margin:0 0 8px; font-size:31px; line-height:1.25; letter-spacing:-.04em; }
+    h2 { margin:42px 0 14px; padding-bottom:9px; border-bottom:2px solid var(--ink); font-size:21px; }
+    p { margin:10px 0; }
+    .subtitle { margin-bottom:26px; color:var(--muted); }
+    .result-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:22px 0 14px; }
+    .result { padding:18px; border:1px solid #b9d2ff; border-radius:12px; background:#f4f8ff; }
+    .result span { display:block; color:var(--muted); font-size:13px; }
+    .result strong { display:block; margin-top:2px; color:var(--accent); font-size:27px; line-height:1.25; }
+    .callout { margin:18px 0; padding:16px 18px; border-left:4px solid var(--accent); background:var(--panel); }
+    table { width:100%; margin:14px 0 22px; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:right; }
+    th:first-child, td:first-child { text-align:left; }
+    thead th { color:#344054; background:var(--panel); font-weight:700; }
+    tbody tr:hover { background:#fafcff; }
+    .best { color:var(--good); font-weight:800; background:#f2fbf7; }
+    .weak { color:var(--warn); font-weight:800; }
+    ul { margin:10px 0; padding-left:22px; }
+    code { padding:2px 5px; border-radius:4px; background:#eef2f6; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em; }
+    .note { color:var(--muted); font-size:13px; }
+    footer { margin-top:42px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+    @media (max-width:720px) { main { margin:0; padding:28px 18px; border-radius:0; } .result-grid { grid-template-columns:1fr; } table { font-size:13px; } th,td { padding:8px 6px; } }
+    @media print { body { background:#fff; } main { max-width:none; margin:0; padding:18mm; box-shadow:none; } .result, .callout, thead th, .best { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Unseen 5-label 전체 데이터 pool · strict 5-shot 평가</h1>
+    <p class="subtitle">6-label SupCon ViT-Small → 학습에 없던 5개 임플란트 클래스 전이 평가</p>
+  </header>
+
+  <section>
+    <div class="callout">
+      Unseen 데이터 152장을 모두 합친 뒤 클래스당 5장, 총 25장으로 prototype과 covariance를 만들고, 이를 제외한 127장 전체를 평가했다. 대표값은 6개 support seed의 산술평균이다.
+    </div>
+    <div class="result-grid">
+      <div class="result"><span>Accuracy</span><strong>67.98%</strong></div>
+      <div class="result"><span>Macro-F1</span><strong>63.30%</strong></div>
+      <div class="result"><span>Balanced Accuracy</span><strong>64.49%</strong></div>
+    </div>
+    <p class="note">대표 방법: 고정 Pooled Ledoit–Wolf Mahalanobis</p>
+  </section>
+
+  <section>
+    <h2>평가 구성</h2>
+    <table>
+      <thead><tr><th>클래스</th><th>전체</th><th>Support</th><th>Query</th></tr></thead>
+      <tbody>
+        <tr><td>BEGO</td><td>35</td><td>5</td><td>30</td></tr>
+        <tr><td>BILIM</td><td>30</td><td>5</td><td>25</td></tr>
+        <tr><td>IMPLANCE</td><td>34</td><td>5</td><td>29</td></tr>
+        <tr><td>ITI</td><td>38</td><td>5</td><td>33</td></tr>
+        <tr><td>NUCLEOSS</td><td>15</td><td>5</td><td>10</td></tr>
+        <tr><td><strong>합계</strong></td><td><strong>152</strong></td><td><strong>25</strong></td><td><strong>127</strong></td></tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Encoder 학습 클래스: ADIN, BICON, DENTIUM, MIS, NORIS, OSSTEM</li>
+      <li>Prototype과 covariance 모두 동일한 support 5장/클래스만 사용</li>
+      <li>Target validation을 이용한 방법 선택이나 hyperparameter 튜닝 없음</li>
+      <li>각 seed 내부에서 support와 query 이미지 중복 없음</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>거리별 대표 결과</h2>
+    <table>
+      <thead><tr><th>거리</th><th>Accuracy</th><th>Macro-F1</th><th>Balanced Accuracy</th></tr></thead>
+      <tbody>
+        <tr><td>Euclidean</td><td>55.64%</td><td>52.50%</td><td>54.05%</td></tr>
+        <tr><td>Manhattan</td><td>55.91%</td><td>52.92%</td><td>54.40%</td></tr>
+        <tr><td>Cosine</td><td>56.56%</td><td>53.62%</td><td>55.63%</td></tr>
+        <tr class="best"><td>Pooled Ledoit–Wolf Mahalanobis</td><td>67.98%</td><td>63.30%</td><td>64.49%</td></tr>
+        <tr><td>고정 RDA λ=0.75 + logdet</td><td>63.25%</td><td>58.98%</td><td>61.25%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>클래스별 Pooled Mahalanobis 결과</h2>
+    <table>
+      <thead><tr><th>클래스</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead>
+      <tbody>
+        <tr><td>BEGO</td><td>78.81%</td><td>73.89%</td><td>75.39%</td></tr>
+        <tr><td>BILIM</td><td>80.32%</td><td>60.67%</td><td>66.67%</td></tr>
+        <tr><td>IMPLANCE</td><td>68.79%</td><td>75.86%</td><td>71.66%</td></tr>
+        <tr><td>ITI</td><td>73.67%</td><td>68.69%</td><td>70.64%</td></tr>
+        <tr><td>NUCLEOSS</td><td>29.18%</td><td>43.33%</td><td class="weak">32.12%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>해석</h2>
+    <p>기존 test 17장 평가에서는 한 장이 Accuracy를 5.88%p 움직였지만, 이번 query 127장에서는 약 0.79%p만 움직인다. 따라서 전체 pool을 사용한 이번 결과가 더 안정적이다.</p>
+    <p>다만 NUCLEOSS는 전체 15장 중 support 5장을 제외한 query가 10장뿐이고 F1도 가장 낮다. 또한 patient/source-group 독립성이 입증되지 않았으므로 patient-unseen 성능으로 단정하지 않는다.</p>
+  </section>
+
+  <footer>실험: 6-label SupCon → unseen 5-label · strict 5-shot · 6-seed 산술평균</footer>
+</main>
+</body>
+</html>

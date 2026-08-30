@@ -15,7 +15,7 @@
 - `visualize_umap_from_tsne.py`
   - 이미 저장된 `embeddings/tsne_*.npz` 아티팩트를 재사용해 UMAP 시각화를 생성한다.
 
-즉, 현재 구조는 다음 흐름이다.
+현재 구조는 세 단계로 이어진다.
 
 1. checkpoint에서 feature / embedding 추출
 2. t-SNE 결과와 메타데이터 저장
@@ -25,11 +25,7 @@
 
 - t-SNE는 클래스 간 국소 분리와 이상치 확인에 강하다.
 - UMAP은 전역 구조와 클래스 간 거리 관계를 더 안정적으로 보여줄 가능성이 있다.
-- 두 방법을 함께 보면,
-  - 클래스 내부 응집도
-  - 클래스 경계의 혼동
-  - split 별 분포 차이
-  를 더 빠르게 판단할 수 있다.
+- 두 방법을 함께 사용하면 클래스 내부 응집도, 클래스 경계의 혼동, split별 분포 차이를 함께 확인할 수 있다.
 
 ## 4. 실행 계획
 
@@ -85,5 +81,4 @@
 2. `visualize_umap_from_tsne.py`로 동일 아티팩트의 UMAP을 생성한다.
 3. class confusion이 큰 run을 우선 비교한다.
 4. 시각적으로 가장 안정적인 파라미터 조합을 기록한다.
-5. 최종적으로 research summary 문서에 t-SNE / UMAP 비교 결과를 남긴다.
-
+5. Research summary 문서에 t-SNE와 UMAP 비교 결과를 남긴다.

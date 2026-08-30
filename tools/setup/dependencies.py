@@ -8,6 +8,7 @@ BASE_PACKAGES = [
     'umap-learn',
     'Pillow',
     'timm',
+    'safetensors',
     'openai',
     'python-dotenv',
 ]
@@ -16,6 +17,7 @@ IMPORT_CHECKS = [
     'torch',
     'torchvision',
     'timm',
+    'safetensors',
     'numpy',
     'pandas',
     'sklearn',

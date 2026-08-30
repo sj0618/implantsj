@@ -1,10 +1,10 @@
-# Current Context Handoff
+# Current context handoff
 
 - Saved at UTC: 2026-05-26T12:58:26Z
 - Project dir: `/workspace/implant_python_only_final`
-- Purpose: Preserve current session context, running jobs, outputs, commands, and conclusions.
+- Purpose: Preserve the session context, running jobs, outputs, commands, and conclusions.
 
-## 1. Active / Recent User Requests
+## 1. Active and recent user requests
 
 1. Analyze all files in `implant_python_only_final` and save as Markdown.
 2. Apply latest VLM analysis to 3-label data.
@@ -13,7 +13,7 @@
 5. Analyze completed 3-label fine-tuning result.
 6. Save current context.
 
-## 2. Important Saved Documents
+## 2. Saved documents
 
 - Full project analysis: `PROJECT_ANALYSIS.md`
 - 3-label VLM run commands: `VLM_3LABEL_RUN_COMMANDS.md`
@@ -21,11 +21,11 @@
 - Fine-tune result analysis: `outputs/20260526_123524_3label_ft_from_10label_vit_base/RESULT_ANALYSIS.md`
 - This handoff: `CURRENT_CONTEXT_HANDOFF.md`
 
-## 3. Latest VLM 3-label Application
+## 3. Latest VLM 3-label application
 
 ### Schema
 
-- Latest schema applied: **13 core attributes + 21 supporting visual features**
+- Latest schema applied: 13 core attributes + 21 supporting visual features
 - Source script reused: `generate_13feature_21reason_7label.py`
 - Target manifest: `data/manifests/plain_vit_3label.csv`
 - Total images: 2,075
@@ -40,7 +40,7 @@
 - Latest log marker: `logs/13feature_21reason_3label.latest_log`
 - Latest log: `logs/13feature_21reason_3label_tmux_20260526_115230_workers12.log`
 
-### Current execution state at save time
+### Execution state at save time
 
 - tmux session: `vlm3label`
 - tmux alive: `yes`
@@ -51,7 +51,7 @@
 40550 python -u generate_13feature_21reason_7label.py --input data/manifests/plain_vit_3label.csv --expected-label-count 3 --output data/manifests/13feature_21reason_3label_all.jsonl --json-output data/manifests/13feature_21reason_3label_all.json --summary-csv data/manifests/13feature_21reason_3label_all.summary.csv --prompt-output data/manifests/13feature_21reason_3label.prompt.md --azure-endpoint https://ktx06-mowm0s0q-eastus2.cognitiveservices.azure.com --workers 12 --summary-every 25 --resume
 ```
 
-### Current VLM progress snapshot
+### VLM progress snapshot
 
 ```text
 VLM_JSONL_RECORDS=1277
@@ -83,9 +83,9 @@ tmux kill-session -t vlm3label
 
 Resume: use commands in `VLM_3LABEL_RUN_COMMANDS.md`. The generator uses `--resume`, so already saved `status=ok` lines are skipped.
 
-## 4. 3-label Fine-tuning Run
+## 4. 3-label fine-tuning run
 
-### Run details
+### Run configuration
 
 - Run dir: `outputs/20260526_123524_3label_ft_from_10label_vit_base`
 - Log: `logs/gpu_3label_ft_from_10label_20260526_123521.log`
@@ -126,9 +126,9 @@ BASE_EPOCHS=41
 BASE_BEST_EPOCH={"epoch": "29", "train_loss": "0.5431575411102252", "valid_accuracy": "0.9353233830845771", "valid_macro_f1": "0.8976924102974523", "valid_weighted_f1": "0.934180637429101", "valid_macro_precision": "0.9196573751451801", "valid_macro_recall": "0.879737331911245", "lr": "3.5466493438435696e-05", "seconds": "16.42832350730896"}
 ```
 
-### Key conclusion
+### Result interpretation
 
-The fine-tuned model **should not replace** the existing 3-label baseline on the current test split.
+The fine-tuned model should not replace the existing 3-label baseline on the current test split.
 
 Comparison:
 
@@ -146,7 +146,7 @@ Interpretation:
 - Fine-tune fixed 0 existing errors and introduced 3 new ITI-related errors.
 - Main issue: Bego/ITI boundary instability; test Bego support is only 4.
 
-Preferred current model:
+Current preferred model:
 
 ```text
 outputs/20260507_104805_plain_vit_3label/checkpoints/best.pt
@@ -158,7 +158,7 @@ Fine-tune checkpoint kept for reference:
 outputs/20260526_123524_3label_ft_from_10label_vit_base/checkpoints/best.pt
 ```
 
-## 5. Environment / Dependencies Changed
+## 5. Environment and dependency changes
 
 Installed into current Python during this session:
 
@@ -179,7 +179,7 @@ torchvision 0.19.1+cu124
 CUDA available: NVIDIA RTX 4000 Ada Generation
 ```
 
-## 6. Azure Endpoint Note
+## 6. Azure endpoint note
 
 The `.env` endpoint includes `/openai/v1`, which caused 404 with `AzureOpenAI(azure_endpoint=...)`. The working pattern is to pass only the root endpoint with:
 
@@ -189,7 +189,7 @@ ROOT_ENDPOINT=https://ktx06-mowm0s0q-eastus2.cognitiveservices.azure.com
 
 Use `--azure-endpoint ""`.
 
-## 7. Suggested Next Steps
+## 7. Suggested next steps
 
 1. Let VLM 3-label generation finish.
 2. After VLM completion, validate:
@@ -205,7 +205,7 @@ Use `--azure-endpoint ""`.
    - use k-fold/repeated split due tiny Bego test support.
 5. Once VLM 3-label completes, consider feature quality analysis by class/split before any VLM-fusion training.
 
-## 8. One-line Health Check
+## 8. One-line health check
 
 ```bash
 cd /workspace/implant_python_only_final && echo "VLM tmux_alive=yes" && wc -l data/manifests/13feature_21reason_3label_all.jsonl && ls -lh outputs/20260526_123524_3label_ft_from_10label_vit_base/RESULT_ANALYSIS.md PROJECT_ANALYSIS.md VLM_3LABEL_RUN_COMMANDS.md CURRENT_CONTEXT_HANDOFF.md

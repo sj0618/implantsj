@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Download every pretrained backbone into the image at build time.
+"""Build-time download of every pretrained backbone used by the image.
 
-The closed network has no internet, so any timm/torch weight that is not
-already inside the image is unreachable at run time — training would die
-partway through with a download error. This runs during `docker build`
-(while the network is still up) and populates the torch/timm cache that
-`TORCH_HOME`/`HF_HOME` point at, so `pretrained=True` resolves offline later.
+The closed network has no internet. A timm or torch weight that is missing from
+the image would make training fail when it tries to download the file. This
+script runs during ``docker build`` and fills the cache paths used by
+``TORCH_HOME`` and ``HF_HOME``. Later, ``pretrained=True`` can load the weights
+without network access.
 
-The backbone list comes from configs/backbones.txt, the same file the run.sh
-menu reads, so adding a model there is enough to get it baked in.
+The model list comes from ``configs/backbones.txt``, which is also used by the
+``run.sh`` menu. Adding a model there includes it in the next image build.
 """
 from __future__ import annotations
 

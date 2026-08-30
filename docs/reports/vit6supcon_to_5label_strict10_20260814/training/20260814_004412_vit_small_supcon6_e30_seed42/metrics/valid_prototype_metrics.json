@@ -1,0 +1,58 @@
+{
+  "accuracy": 0.5568181818181818,
+  "macro_f1": 0.5529052046699106,
+  "weighted_f1": 0.5536116184244526,
+  "macro_precision": 0.533103881649278,
+  "macro_recall": 0.598709315375982,
+  "classification_report": {
+    "adin": {
+      "precision": 0.6086956521739131,
+      "recall": 0.5185185185185185,
+      "f1-score": 0.56,
+      "support": 27.0
+    },
+    "bicon": {
+      "precision": 0.5625,
+      "recall": 0.8181818181818182,
+      "f1-score": 0.6666666666666666,
+      "support": 11.0
+    },
+    "dentium": {
+      "precision": 0.4444444444444444,
+      "recall": 0.5,
+      "f1-score": 0.47058823529411764,
+      "support": 8.0
+    },
+    "mis": {
+      "precision": 0.42857142857142855,
+      "recall": 0.75,
+      "f1-score": 0.5454545454545454,
+      "support": 4.0
+    },
+    "noris": {
+      "precision": 0.5294117647058824,
+      "recall": 0.45,
+      "f1-score": 0.4864864864864865,
+      "support": 20.0
+    },
+    "osstem": {
+      "precision": 0.625,
+      "recall": 0.5555555555555556,
+      "f1-score": 0.5882352941176471,
+      "support": 18.0
+    },
+    "accuracy": 0.5568181818181818,
+    "macro avg": {
+      "precision": 0.533103881649278,
+      "recall": 0.598709315375982,
+      "f1-score": 0.5529052046699106,
+      "support": 88.0
+    },
+    "weighted avg": {
+      "precision": 0.5651177178710746,
+      "recall": 0.5568181818181818,
+      "f1-score": 0.5536116184244526,
+      "support": 88.0
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "matrix_complete": true,
+  "models": [
+    "ViT-Base",
+    "ViT-ClosedFT",
+    "ViT-ClosedFT-SupCon-backbone",
+    "ViT-ClosedFT-SupCon-projection",
+    "ViT-ClosedFT-Triplet-backbone",
+    "ViT-ClosedFT-Triplet-projection"
+  ],
+  "primary_settings_expected": 36,
+  "primary_settings_found": 36,
+  "primary_metric_rows_including_all_closed_open": 108,
+  "query_samples": 116,
+  "query_class_counts": {
+    "Bego": 14,
+    "Bicon": 95,
+    "ITI": 7
+  },
+  "majority_class_accuracy": 0.8189655172413793,
+  "embedding_dimensions": {
+    "ViT-Base": 768,
+    "ViT-ClosedFT": 768,
+    "ViT-ClosedFT-SupCon-backbone": 768,
+    "ViT-ClosedFT-SupCon-projection": 128,
+    "ViT-ClosedFT-Triplet-backbone": 768,
+    "ViT-ClosedFT-Triplet-projection": 128
+  },
+  "query_path_order_identical_across_models": true,
+  "split_overlap": {
+    "train-valid": {
+      "paths": 0,
+      "group_ids": 0
+    },
+    "train-test": {
+      "paths": 0,
+      "group_ids": 0
+    },
+    "valid-test": {
+      "paths": 0,
+      "group_ids": 0
+    }
+  },
+  "group_clean_removed_development_rows": 363,
+  "training_checkpoint_epochs_verified": true,
+  "tsne_complete": true,
+  "training_curves_exists": true,
+  "sensitivity_protocols_complete": true,
+  "code_provenance": {
+    "ce_supcon_training_sha256": "977910a9f20f2ff9cf7c67324442a8b1cfc11a6d64c1674c85e931a4e5e2fa72",
+    "legacy_evaluation_sha256": "5e8f83cb8c9e71e4d07a51163cefbd1ce4ca6de838c5e5c71bbfc0e94af167f1",
+    "implantsj_snapshot_py_tree_sha256": "908b364b33c4feb4926acb12c6a2277828c490a212642500d5b66a395975d947",
+    "implantsj_training_sha256": "737c2aa30e884fcac781069ad715c707f25339dbad67419e3242decc794f623a",
+    "implantsj_evaluation_sha256": "4757257a8b439f489e43a7364442c89d429bc4ec6e1f693aeebf5b1df046688d"
+  }
+}

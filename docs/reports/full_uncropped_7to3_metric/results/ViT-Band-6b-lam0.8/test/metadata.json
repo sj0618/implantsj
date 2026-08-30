@@ -1,0 +1,28 @@
+{
+  "model": "ViT-Band-6b-lam0.8",
+  "query": "test",
+  "labels_json": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/manifests/labels_3.json",
+  "support_embeddings": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/embeddings/ViT-Band-6b-lam0.8/support.npz",
+  "gt_embeddings": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/embeddings/ViT-Band-6b-lam0.8/gt.npz",
+  "query_embeddings": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/embeddings/ViT-Band-6b-lam0.8/test.npz",
+  "gallery_size": 3,
+  "closed_labels": 0,
+  "open_labels": 3,
+  "query_coverage": [
+    "Bego",
+    "Bicon",
+    "ITI"
+  ],
+  "prototypes": [
+    "gt",
+    "mean",
+    "ss"
+  ],
+  "distances": [
+    "euclidean",
+    "cosine"
+  ],
+  "seed": 2026,
+  "ss_count": 5,
+  "ss_fraction": null
+}

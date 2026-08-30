@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "passed": true,
+  "winner": "rda_0.75_logdet_1",
+  "validation_macro_f1_gain_percentage_points": 2.325498975436302,
+  "test_macro_f1_gain_percentage_points": 7.655114531779327,
+  "strict5_macro_f1_gain_percentage_points": -4.310144772403834,
+  "output_artifact_path": "docs/reports/mahalanobis_method_selection_20260816/REPORT.md",
+  "checks": {
+    "common_candidate_count_is_24": true,
+    "condition_result_rows_is_192": true,
+    "winner_beats_baseline_on_validation": true,
+    "winner_beats_baseline_on_all_four_tests": true,
+    "strict_result_rows_is_120": true,
+    "strict_previous_results_reproduced": true,
+    "all_metrics_finite": true
+  }
+}

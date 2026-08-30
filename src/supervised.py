@@ -53,6 +53,7 @@ def evaluate_classifier(model, loader, device, idx_to_class: Dict[int, str], spl
     y_pred: List[int] = []
     rows: List[Dict] = []
     class_names = [idx_to_class[i] for i in range(len(idx_to_class))]
+    non_blocking = device.type == 'cuda'
     with torch.no_grad():
         for batch in loader:
             if len(batch) == 3:
@@ -60,7 +61,7 @@ def evaluate_classifier(model, loader, device, idx_to_class: Dict[int, str], spl
             else:
                 x, y = batch
                 paths = [''] * len(y)
-            x = x.to(device, non_blocking=True)
+            x = x.to(device, non_blocking=non_blocking)
             logits = model(x)
             probs = torch.softmax(logits, dim=1)
             pred = probs.argmax(dim=1).cpu().numpy().tolist()
@@ -95,9 +96,13 @@ def train_supervised(args: SupervisedArgs) -> Path:
     seed_everything(args.seed)
     import torch.optim as optim
 
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    if device.type != 'cuda' and not args.allow_cpu:
-        raise RuntimeError('CUDA is not available. Pass --allow-cpu only for debugging.')
+    device = torch.device(
+        'cuda' if torch.cuda.is_available()
+        else 'mps' if torch.backends.mps.is_available()
+        else 'cpu'
+    )
+    if device.type == 'cpu' and not args.allow_cpu:
+        raise RuntimeError('CUDA/MPS is not available. Pass --allow-cpu only for debugging.')
 
     full_df = load_manifest(args.manifest, split=None)
     class_to_idx, idx_to_class = label_mapping(full_df)
@@ -154,14 +159,15 @@ def train_supervised(args: SupervisedArgs) -> Path:
         log(f'Resumed from {args.resume_checkpoint} at epoch {start_epoch}')
 
     patience_count = 0
+    non_blocking = device.type == 'cuda'
     for epoch in range(start_epoch, args.epochs + 1):
         model.train()
         epoch_loss = 0.0
         n_seen = 0
         t0 = time.time()
         for x, y in train_loader:
-            x = x.to(device, non_blocking=True)
-            y = y.to(device, non_blocking=True)
+            x = x.to(device, non_blocking=non_blocking)
+            y = y.to(device, non_blocking=non_blocking)
             optimizer.zero_grad(set_to_none=True)
             with autocast(enabled=args.amp and device.type == 'cuda'):
                 logits = model(x)

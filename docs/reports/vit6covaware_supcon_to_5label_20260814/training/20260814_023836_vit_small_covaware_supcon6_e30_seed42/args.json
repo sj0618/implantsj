@@ -1,0 +1,31 @@
+{
+  "manifest": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit6supcon_to_5label_strict10_20260814/manifests/source_6.csv",
+  "output_root": "docs/reports/vit6covaware_supcon_to_5label_20260814/training",
+  "experiment_name": "vit_small_covaware_supcon6_e30_seed42",
+  "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+  "image_size": 224,
+  "epochs": 30,
+  "episodes_per_epoch": 10,
+  "support_shots": 5,
+  "query_shots": 5,
+  "batch_size": 16,
+  "lr": 3e-05,
+  "weight_decay": 0.05,
+  "temperature": 0.07,
+  "embedding_dim": 128,
+  "dropout": 0.1,
+  "drop_path_rate": 0.1,
+  "covariance_weight": 0.75,
+  "covariance_beta": 0.001,
+  "logdet_weight": 1.0,
+  "covariance_loss_weight": 1.0,
+  "seed": 42,
+  "class_to_idx": {
+    "adin": 0,
+    "bicon": 1,
+    "dentium": 2,
+    "mis": 3,
+    "noris": 4,
+    "osstem": 5
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "checkpoint": "docs/reports/vit7supcon_to_3label_mahalanobis_20260807/training/20260807_095246_vit_small_supcon7_e30_seed42/checkpoints/best.pt",
+  "model_kind": "metric_model_projector",
+  "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+  "image_size": 224,
+  "projection_hidden_dim": 128,
+  "projection_dim": 128,
+  "loaded_keys": 159,
+  "skipped_keys": 0,
+  "missing_keys": [],
+  "unexpected_keys": [],
+  "use_projection": true,
+  "device": "mps",
+  "manifest": "docs/reports/legacy_7to3_reproduction_20260807/manifests/target_3.csv",
+  "class_to_idx": {
+    "Bego": 0,
+    "Bicon": 1,
+    "ITI": 2
+  },
+  "sample_counts": [
+    {
+      "split": "test",
+      "label": "Bego",
+      "count": 4
+    },
+    {
+      "split": "test",
+      "label": "Bicon",
+      "count": 61
+    },
+    {
+      "split": "test",
+      "label": "ITI",
+      "count": 44
+    },
+    {
+      "split": "train",
+      "label": "Bego",
+      "count": 133
+    },
+    {
+      "split": "train",
+      "label": "Bicon",
+      "count": 959
+    },
+    {
+      "split": "train",
+      "label": "ITI",
+      "count": 673
+    },
+    {
+      "split": "valid",
+      "label": "Bego",
+      "count": 9
+    },
+    {
+      "split": "valid",
+      "label": "Bicon",
+      "count": 115
+    },
+    {
+      "split": "valid",
+      "label": "ITI",
+      "count": 77
+    }
+  ]
+}

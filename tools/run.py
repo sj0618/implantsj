@@ -34,6 +34,9 @@ COMMANDS: dict[str, str] = {
     'train': 'pipelines.train.train_supervised',
     'metric': 'pipelines.train.train_metric',
     'finetune': 'pipelines.train.finetune_small_data',
+    # 클래스->13feature 표를 정답으로 쓰는 attribute 예측 (VLM 미사용)
+    'featattr': 'pipelines.train.train_feature_attributes',
+    'featattreval': 'pipelines.eval.evaluate_feature_attributes',
     # VLM feature 를 ViT 패치 토큰으로 주입하는 실험
     'patchtrain': 'pipelines.train.train_vit_patch_feature',
     'patcheval': 'pipelines.eval.evaluate_vit_patch_feature',

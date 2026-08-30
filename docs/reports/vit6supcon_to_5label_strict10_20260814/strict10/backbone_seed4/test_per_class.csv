@@ -1,0 +1,6 @@
+method,label,precision,recall,f1,support
+pooled_ledoit_wolf,bego,1.0,1.0,1.0,4
+pooled_ledoit_wolf,bilim,1.0,0.6666666666666666,0.8,3
+pooled_ledoit_wolf,implance,0.8,1.0,0.8888888888888888,4
+pooled_ledoit_wolf,iti,0.8,1.0,0.8888888888888888,4
+pooled_ledoit_wolf,nucleoss,0.0,0.0,0.0,2

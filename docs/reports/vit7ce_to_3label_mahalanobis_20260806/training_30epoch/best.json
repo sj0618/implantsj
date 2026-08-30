@@ -1,0 +1,28 @@
+{
+  "epoch": 11,
+  "architecture": "vit_base_patch16_224",
+  "training_kind": "ce",
+  "train_scope": "all",
+  "num_classes": 7,
+  "labels": [
+    "ADIN",
+    "DIONAVI",
+    "Dentium",
+    "MIS",
+    "NORIS",
+    "nobel",
+    "osstem"
+  ],
+  "label_to_index": {
+    "ADIN": 0,
+    "DIONAVI": 1,
+    "Dentium": 2,
+    "MIS": 3,
+    "NORIS": 4,
+    "nobel": 5,
+    "osstem": 6
+  },
+  "projection_dim": 128,
+  "projection_hidden_dim": 512,
+  "valid_loss": 0.4349301890893416
+}

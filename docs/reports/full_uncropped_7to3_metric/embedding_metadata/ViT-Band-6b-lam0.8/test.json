@@ -1,0 +1,38 @@
+{
+  "model": {
+    "spec": {
+      "name": "ViT-Band-6b-lam0.8",
+      "adapter": "classifier_checkpoint",
+      "architecture": "vit_large_patch16_224.augreg_in21k_ft_in1k",
+      "checkpoint": "/workspace/download/vit_band_6b_lam0.8.pt",
+      "checkpoint_format": "auto",
+      "initial_checkpoint": null,
+      "pretrained": false,
+      "training_kind": "ce+band",
+      "train_scope": "all",
+      "embedding_source": "backbone",
+      "input_size": 224,
+      "projection_dim": 128,
+      "projection_hidden_dim": 512,
+      "extra": {}
+    },
+    "checkpoint": {
+      "path": "/workspace/download/vit_band_6b_lam0.8.pt",
+      "epoch": 20,
+      "labels": []
+    }
+  },
+  "model_name": "ViT-Band-6b-lam0.8",
+  "model_spec_path": "/workspace/metric_diagnosis/work_gt27_metric/vit_band_model.json",
+  "manifest_path": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/manifests/test_3.csv",
+  "device": "cuda",
+  "diagnostics": {
+    "samples": 116,
+    "dimension": 1024,
+    "norm_mean": 22.884248733520508,
+    "norm_std": 4.678106784820557,
+    "mean_dimension_std": 0.5353561639785767,
+    "near_zero_dimensions": 0,
+    "sampled_mean_pairwise_cosine": 0.44369834661483765
+  }
+}

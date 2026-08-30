@@ -1,0 +1,15 @@
+{
+  "embedding_source": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit42ft_local_metric_20260806/features",
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/AI_HUB_model_download/vit42class_best.pt",
+  "prototype": "target train split class-wise mean",
+  "query": "target test split",
+  "distances": [
+    "euclidean",
+    "manhattan",
+    "cosine similarity",
+    "mahalanobis"
+  ],
+  "mahalanobis": "shared pooled within-class covariance from train residuals, Ledoit-Wolf shrinkage; no valid/test covariance used",
+  "regression_check": "Euclidean and cosine exactly match the previous Mean results",
+  "zero_shot": false
+}

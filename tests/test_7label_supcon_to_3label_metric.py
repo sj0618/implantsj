@@ -9,6 +9,7 @@ import types
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
 from PIL import Image
@@ -147,6 +148,15 @@ def main() -> None:
         args_json = json.loads((run_dir / "args.json").read_text(encoding="utf-8"))
         assert args_json["model_kind"] == "metric_model_projector"
         assert args_json["use_projection"] is True
+        projection_csv = run_dir / "embeddings" / "projection_tsne.csv"
+        assert (run_dir / "embeddings" / "projection_tsne.png").is_file()
+        assert set(pd.read_csv(projection_csv)["label"]) == {"Bego", "Bicon", "ITI"}
+        umap_csv = pd.read_csv(run_dir / "embeddings" / "projection_umap_3d.csv")
+        assert {"umap_x", "umap_y", "umap_z"} <= set(umap_csv.columns)
+        assert (run_dir / "embeddings" / "projection_umap_3d.html").is_file()
+        with np.load(run_dir / "embeddings" / "projection_embeddings.npz", allow_pickle=True) as embeddings:
+            assert embeddings["features"].shape == (18, 4)
+        assert (run_dir / "embeddings" / "projection_4d_heatmap.html").is_file()
         for split in ["valid", "test"]:
             assert (run_dir / "metrics" / f"{split}_prototype_metrics.json").is_file()
             assert (run_dir / "metrics" / f"{split}_prototype_predictions.csv").is_file()

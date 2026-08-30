@@ -1,0 +1,4 @@
+model,loss,epochs,selection_metric,best_epoch,best_valid_loss,best_valid_accuracy,same_epoch_7label_test_accuracy,checkpoint_metadata,checkpoint_epoch_verified,selection_uses_test
+ViT-ClosedFT,ce,15,valid_loss,12,0.2107828974998265,0.951096121416526,0.9793510324483776,/workspace/metric_diagnosis/work_7closed3open_full_uncropped/runs/ViT-ClosedFT/best_weights.json,True,False
+ViT-ClosedFT-SupCon,supcon,15,valid_accuracy,12,3.451594565409231,0.9443507588532885,0.9734513274336284,/workspace/metric_diagnosis/work_7closed3open_full_uncropped/runs/ViT-ClosedFT-SupCon/best_weights.json,True,False
+ViT-ClosedFT-Triplet,triplet,15,valid_accuracy,15,0.1538230378267377,0.8566610455311973,,/workspace/metric_diagnosis/work_7closed3open_full_uncropped/runs/ViT-ClosedFT-Triplet/checkpoints/best.json,True,False

@@ -1,0 +1,84 @@
+다음 실험 계획: Metric Learning 기반 전이 성능 개선
+
+1. 실험 방향
+
+현재 직접 분류에서는 Plain ViT가 높은 성능을 보였지만, 새로운 라벨로 전이하는 metric 실험에서는 성능과 클래스별 균형이 충분하지 않았다. 따라서 다음 실험은 직접 분류 모델의 정확도를 더 높이는 것보다, 새로운 target 라벨에서도 잘 분리되는 representation과 안정적인 prototype 분류 방법을 찾는 것을 목표로 한다.
+
+현재 비교 기준
+
+구분                 조건                         Accuracy   Macro-F1   용도
+직접 분류 기준       3-label Plain ViT             94.50%     77.00%    전용 분류 모델 참고값
+metric transfer 기준 uncropped 7→3 ViT-Base        82.76%     64.16%    현재 metric 전이 best 기준
+최신 closed-set 기준 27-label ClosedFT             95.43%     92.67%    최신 분류 성능 참고값
+
+※ 라벨 수, 학습 방식, 평가 protocol이 다르므로 동일 조건의 우열을 의미하지 않는다.
+
+2. 단계별 실험 계획
+
+단계 1. 입력 개선
+- uncropped와 ROI crop 비교
+- 224와 384/512 해상도 비교
+- single-crop과 multi-crop 비교
+- ViT-Base와 기존 loss, prototype 방식을 고정
+- Accuracy, Macro-F1, 클래스별 F1 비교
+- ROI crop 또는 고해상도에서 Macro-F1이 개선되는지 확인
+
+단계 2. Representation 비교
+- CE, SupCon, Triplet representation 비교
+- encoder frozen과 partial fine-tuning 비교
+- backbone과 projection head 비교
+- 1단계의 최적 입력 조건 고정
+- Macro-F1, minority F1, intra/inter-class distance 비교
+- 학습하지 않은 Base representation이 계속 우세한지 확인
+
+단계 3. Sampling·loss 개선
+- group-balanced sampler 적용
+- class-aware batch 적용
+- hard positive/negative mining 적용
+- SupCon temperature와 Triplet margin 소규모 ablation
+- Accuracy뿐 아니라 Macro-F1과 minority F1이 함께 오르는지 확인
+
+단계 4. Prototype 개선
+- 전체 평균 prototype, group-balanced prototype, medoid prototype 비교
+- support sample 수 변화 비교
+- cosine과 Euclidean 비교
+- prototype별 성능 분산과 confusion matrix 기록
+- prototype 선택에 따른 변동이 줄어드는지 확인
+
+단계 5. Target adaptation
+- frozen zero-shot과 소량 target fine-tuning 비교
+- episodic metric training 비교
+- 1/5/10-shot 조건 검토
+- 적은 target 샘플에서도 안정적으로 개선되는지 확인
+
+단계 6. 최종 재현성 검증
+- 최종 후보 2~3개를 3개 이상 seed로 반복
+- 고정 test set과 동일 평가 코드 사용
+- 평균±표준편차, per-class F1, confusion matrix 보고
+
+3. 권장 실행 순서
+
+1차: uncropped vs ROI crop × ViT-Base × 기존 prototype
+     → 입력 문제의 영향을 먼저 확인
+
+2차: 최적 입력 × CE/SupCon/Triplet × frozen/partial fine-tuning
+     → representation과 fine-tuning 전략 비교
+
+3차: 최적 representation × balanced sampling × prototype ablation
+     → minority F1과 prototype 변동 문제 개선
+
+4차: 최종 후보 × 3개 이상 seed × 고정 target test set
+     → 최종 성능과 재현성 검증
+
+4. 평가 및 성공 기준
+
+- 1차 목표: 현재 metric transfer 기준 Macro-F1 64.16%를 안정적으로 초과
+- 2차 목표: Accuracy 82.76% 수준을 유지하면서 Macro-F1과 minority F1을 함께 개선
+- 주 지표: Macro-F1 1순위, Accuracy 보조 지표
+- 필수 분석: 클래스별 F1/recall, confusion matrix, prototype별 sample 수와 변동성
+- 재현성: 최소 3개 seed의 평균±표준편차 보고
+- 비교 원칙: 입력, split, prototype 계산 방식, seed를 고정하고 한 번에 한 요소만 변경
+
+5. 최종 계획 요약
+
+다음 실험에서는 먼저 ROI crop과 고해상도 입력을 적용해 implant 정보가 충분히 보이는지 확인한다. 그 다음 CE, SupCon, Triplet 기반 representation을 동일한 조건에서 비교하고, group-balanced sampling과 prototype 설계를 추가로 검증한다. 최종적으로는 target adaptation과 다중 seed 반복 실험을 통해 새로운 라벨 전이에서 Macro-F1이 안정적으로 개선되는 metric pipeline을 선정한다.

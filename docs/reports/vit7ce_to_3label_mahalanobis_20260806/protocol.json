@@ -1,0 +1,51 @@
+{
+  "source_training": {
+    "dataset": "data/7label_0721_cropped",
+    "architecture": "vit_base_patch16_224",
+    "epochs_requested": 30,
+    "checkpoint_selection": "minimum source validation loss",
+    "selected_epoch": 11,
+    "selected_valid_loss": 0.4349301890893416,
+    "seed": 2026
+  },
+  "target_evaluation": {
+    "dataset": "data/Bego_Bicon_ITI_3label_cropped",
+    "embedding": "frozen 768-D backbone output from selected 7-label CE model",
+    "prototype": "per-class mean from target train only",
+    "query": "target test only",
+    "distances": [
+      "euclidean",
+      "manhattan",
+      "cosine",
+      "mahalanobis"
+    ],
+    "mahalanobis": "shared pooled within-class covariance from target-train residuals, Ledoit-Wolf shrinkage; target valid/test excluded from fitting",
+    "counts": {
+      "train": {
+        "Bego": 282,
+        "Bicon": 3071,
+        "ITI": 219
+      },
+      "valid": {
+        "Bego": 35,
+        "Bicon": 384,
+        "ITI": 27
+      },
+      "test": {
+        "Bego": 35,
+        "Bicon": 384,
+        "ITI": 27
+      }
+    },
+    "exact_target_train_test_duplicate_hashes": 5,
+    "duplicate_free_test_count": 441
+  },
+  "verification": {
+    "scipy_max_absolute_error_first_20_test_x_3_classes": 1.1368683772161603e-13
+  },
+  "caveats": [
+    "This is supervised target-gallery metric evaluation, not zero-shot: labeled target train images define means and covariance.",
+    "Five exact image hashes overlap target train and target test, so the target split is not strictly duplicate-free unseen evaluation.",
+    "This fresh local 30-epoch run is not the unavailable historical internal-network checkpoint and is not directly comparable as a controlled rerun."
+  ]
+}

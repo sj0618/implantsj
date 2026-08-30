@@ -1,0 +1,23 @@
+{
+  "manifest": "docs/reports/vit7supcon_to_3label_mahalanobis_20260807/manifests/supcon_vit_7label.csv",
+  "output_root": "docs/reports/vit7supcon_to_3label_mahalanobis_20260807/training",
+  "experiment_name": "vit_small_supcon7_e30_seed42",
+  "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+  "pretrained": true,
+  "image_size": 224,
+  "epochs": 30,
+  "batch_size": 16,
+  "num_workers": 0,
+  "lr": 3e-05,
+  "weight_decay": 0.05,
+  "loss_name": "supcon",
+  "temperature": 0.07,
+  "triplet_margin": 0.2,
+  "embedding_dim": 128,
+  "dropout": 0.1,
+  "drop_path_rate": 0.1,
+  "seed": 42,
+  "amp": true,
+  "patience": 31,
+  "allow_cpu": false
+}

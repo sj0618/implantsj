@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Covariance-aware SupCon unseen 5-shot 평가</title>
+  <style>
+    :root { --ink:#172033; --muted:#637083; --line:#dfe5ec; --panel:#f6f8fb; --accent:#175cd3; --good:#067647; --warn:#b54708; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:#eef2f6; font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif; }
+    main { max-width:1020px; margin:36px auto; padding:44px 52px; background:#fff; border-radius:18px; box-shadow:0 12px 36px #1d293914; }
+    h1 { margin:0 0 8px; font-size:31px; line-height:1.25; letter-spacing:-.04em; }
+    h2 { margin:42px 0 14px; padding-bottom:9px; border-bottom:2px solid var(--ink); font-size:21px; }
+    p { margin:10px 0; }
+    .subtitle { margin-bottom:26px; color:var(--muted); }
+    .result-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:22px 0 14px; }
+    .result { padding:18px; border:1px solid #b9d2ff; border-radius:12px; background:#f4f8ff; }
+    .result span { display:block; color:var(--muted); font-size:13px; }
+    .result strong { display:block; margin-top:2px; color:var(--accent); font-size:27px; line-height:1.25; }
+    .callout { margin:18px 0; padding:16px 18px; border-left:4px solid var(--accent); background:var(--panel); }
+    .callout.warn { border-left-color:var(--warn); }
+    table { width:100%; margin:14px 0 22px; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+    th, td { padding:10px 12px; border-bottom:1px solid var(--line); text-align:right; }
+    th:first-child, td:first-child { text-align:left; }
+    thead th { color:#344054; background:var(--panel); font-weight:700; }
+    .best { color:var(--good); font-weight:800; background:#f2fbf7; }
+    .loss { color:var(--warn); font-weight:800; }
+    ul { margin:10px 0; padding-left:22px; }
+    code { padding:2px 5px; border-radius:4px; background:#eef2f6; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em; }
+    .note { color:var(--muted); font-size:13px; }
+    footer { margin-top:42px; padding-top:14px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; }
+    @media (max-width:720px) { main { margin:0; padding:28px 18px; border-radius:0; } .result-grid { grid-template-columns:1fr; } table { font-size:13px; } th,td { padding:8px 6px; } }
+    @media print { body { background:#fff; } main { max-width:none; margin:0; padding:18mm; box-shadow:none; } .result, .callout, thead th, .best { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Covariance-aware SupCon · unseen 5-shot 평가</h1>
+    <p class="subtitle">6-label source 학습 → 5-label target 전체 pool episodic 평가</p>
+  </header>
+
+  <section>
+    <div class="callout warn">
+      이번 설정에서는 covariance-aware loss를 추가해도 최종 Pooled Mahalanobis 성능이 기존 SupCon보다 높아지지 않았다. 다만 Cosine·Euclidean 기준 embedding 전이는 개선됐다.
+    </div>
+    <div class="result-grid">
+      <div class="result"><span>Backbone · Accuracy</span><strong>66.40%</strong></div>
+      <div class="result"><span>Backbone · Macro-F1</span><strong>62.65%</strong></div>
+      <div class="result"><span>Backbone · Balanced Acc.</span><strong>64.20%</strong></div>
+    </div>
+    <p class="note">대표값은 support seed 0, 1, 2, 3, 4, 42의 산술평균이다. Query는 support를 제외한 127장이다.</p>
+  </section>
+
+  <section>
+    <h2>학습 방식</h2>
+    <ul>
+      <li>Source classes: ADIN, BICON, DENTIUM, MIS, NORIS, OSSTEM</li>
+      <li>Target unseen classes: BEGO, BILIM, IMPLANCE, ITI, NUCLEOSS</li>
+      <li>Model: ViT-Small backbone 384-D + projection 128-D</li>
+      <li>Episode: 6-way, 클래스당 support 5장 + query 5장</li>
+      <li>Loss: <code>SupCon + 1.0 × covariance-aware loss</code></li>
+      <li>Covariance: diagonal class variance와 pooled variance를 0.75 비율로 혼합, β=0.001</li>
+      <li>Log-determinant weight: 1.0 · 30 epoch · epoch당 10 episode</li>
+      <li>Target 데이터는 학습·checkpoint 선택에 사용하지 않음</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Unseen 전체 pool 5-shot 결과</h2>
+    <table>
+      <thead><tr><th>Embedding / 거리</th><th>Accuracy</th><th>Macro-F1</th><th>Balanced Accuracy</th></tr></thead>
+      <tbody>
+        <tr><td>Backbone · Euclidean</td><td>62.47%</td><td>58.94%</td><td>60.62%</td></tr>
+        <tr><td>Backbone · Manhattan</td><td>62.60%</td><td>59.43%</td><td>61.03%</td></tr>
+        <tr><td>Backbone · Cosine</td><td>62.47%</td><td>58.89%</td><td>60.62%</td></tr>
+        <tr class="best"><td>Backbone · Pooled Ledoit–Wolf Mahalanobis</td><td>66.40%</td><td>62.65%</td><td>64.20%</td></tr>
+        <tr><td>Backbone · 고정 RDA</td><td>63.12%</td><td>58.41%</td><td>60.40%</td></tr>
+        <tr><td>Projection · Pooled Ledoit–Wolf Mahalanobis</td><td>65.22%</td><td>60.36%</td><td>61.23%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>기존 SupCon과 직접 비교</h2>
+    <table>
+      <thead><tr><th>학습 방식</th><th>Mahalanobis Accuracy</th><th>Mahalanobis Macro-F1</th><th>Balanced Accuracy</th></tr></thead>
+      <tbody>
+        <tr><td>기존 SupCon</td><td>67.98%</td><td>63.30%</td><td>64.49%</td></tr>
+        <tr><td>SupCon + covariance-aware loss</td><td>66.40%</td><td>62.65%</td><td>64.20%</td></tr>
+        <tr class="loss"><td>변화</td><td>-1.58%p</td><td>-0.65%p</td><td>-0.29%p</td></tr>
+      </tbody>
+    </table>
+    <p class="note">기존 SupCon과 동일한 source/target 데이터, 동일한 전체 target pool 5-shot 평가, 동일한 6개 support seed를 사용했다.</p>
+  </section>
+
+  <section>
+    <h2>클래스별 Pooled Mahalanobis F1</h2>
+    <table>
+      <thead><tr><th>클래스</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead>
+      <tbody>
+        <tr><td>BEGO</td><td>68.09%</td><td>66.11%</td><td>66.06%</td></tr>
+        <tr><td>BILIM</td><td>76.97%</td><td>65.33%</td><td>68.13%</td></tr>
+        <tr><td>IMPLANCE</td><td>82.00%</td><td>81.61%</td><td>81.52%</td></tr>
+        <tr><td>ITI</td><td>63.16%</td><td>59.60%</td><td>60.44%</td></tr>
+        <tr><td>NUCLEOSS</td><td>30.97%</td><td>48.33%</td><td>37.09%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>결론</h2>
+    <p>이번 구현은 제안한 구조인 <strong>ViT + SupCon + episodic prototype + diagonal covariance-aware loss</strong>를 실제 source 학습에 적용한 것이다.</p>
+    <p>Source validation 성능은 기존보다 높아졌지만 unseen target의 Mahalanobis 성능은 기존 SupCon과 사실상 비슷하거나 소폭 낮았다. 따라서 현재 설정에서는 covariance-aware loss가 embedding을 Mahalanobis 분류에 맞게 개선했다는 증거가 부족하다.</p>
+    <p>다음 개선 후보는 covariance loss 가중치·β·logdet 항을 source episode validation에서 고정적으로 비교하거나, 학습 loss와 평가 covariance를 동일한 pooled-diagonal 방식으로 맞추는 것이다.</p>
+  </section>
+
+  <footer>Checkpoint: vit_small_covaware_supcon6_e30_seed42 · 30 epoch · 6-seed target evaluation</footer>
+</main>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # 3-label 최신 VLM 분석 직접 실행 명령어
 
-이 문서는 `plain_vit_3label.csv` 전체 2,075장에 최신 VLM 분석 schema인 **13 core attributes + 21 supporting visual features**를 직접 적용하기 위한 터미널 명령어 모음입니다.
+이 문서는 `plain_vit_3label.csv`의 2,075장에 13개 core attribute와 21개 supporting visual feature를 적용하는 터미널 명령을 정리한다.
 
 ## 0. 작업 위치
 
@@ -81,9 +81,9 @@ python generate_13feature_21reason_7label.py \
   --resume
 ```
 
-## 5. 전체 실행: tmux 백그라운드 권장
+## 5. 전체 실행
 
-긴 작업이므로 tmux session에서 실행합니다. 이미 생성된 JSONL은 `--resume`으로 건너뜁니다.
+작업 시간이 길기 때문에 tmux session에서 실행한다. `--resume`은 이미 생성된 JSONL 레코드를 건너뛴다.
 
 ```bash
 SESSION=vlm3label
@@ -241,7 +241,7 @@ AZURE_OPENAI_DEPLOYMENT
 --workers 16
 ```
 
-## 10. 현재 실행 중인 작업 확인용 한 줄 명령
+## 10. 실행 상태 확인
 
 ```bash
 cd /workspace/implant_python_only_final && \

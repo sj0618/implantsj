@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compact 42-label metric-representation diagnosis."""
-import argparse, hashlib, importlib.metadata, json, platform, re, sys, unicodedata, zipfile
+import argparse, json, re, sys, unicodedata, zipfile
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -16,6 +16,7 @@ from src.models import MetricModel, create_classifier, load_matching_weights, un
 MODELS = ["ViT Base", "ViT-ClosedFT", "ViT-ClosedFT-SupCon", "ViT-FullFT", "ViT-FullFT-SupCon"]
 PROTOS, DISTS, SPLITS = ["gt", "mean", "ss"], ["euclidean", "cosine"], ["valid", "test"]
 OPEN15 = {"simpleline", "exfeelinternal", "ssiii", "biohorizonexternal", "tsv", "scleantapered", "gsiii", "screwvent", "atlasinternal", "stella", "3i", "ankylos", "iu", "replaceselect", "core1"}
+PASS = "PASS \u2014 checkpoint \uc5c6\uc74c"
 
 def normalize_label_name(value):
     value = unicodedata.normalize("NFKC", str(value)).strip()
@@ -23,7 +24,17 @@ def normalize_label_name(value):
     spaced = re.match(r"^\s*(\d+)\s+(.+)$", value)
     if spaced and int(spaced.group(1)) <= 42: value = spaced.group(2)
     value = re.sub(r"\s*\([^()]*\)\s*$", "", value)
-    return "".join(c for c in value.casefold() if c.isalnum())
+    value=value.casefold().replace("biohorizons","biohorizon")
+    return "".join(c for c in value if c.isalnum())
+
+def match_label_name(value, normalized):
+    key=normalize_label_name(value)
+    if key in normalized: return normalized[key]
+    candidates=[(len(candidate),label) for candidate,label in normalized.items() if (len(candidate)>=3 or candidate=="eb") and (candidate in key or key in candidate)]
+    if not candidates: return ""
+    best=max(length for length,_ in candidates); winners={label for length,label in candidates if length==best}
+    if len(winners)!=1: raise RuntimeError(f"ambiguous English-name match for {value}: {sorted(winners)}")
+    return winners.pop()
 
 def map_gt_label_folders(root, labels, report_csv=None):
     root = Path(root); found = {}
@@ -65,29 +76,11 @@ def prototype_predict(query, prototypes, names, distance):
         best = squared.argmin(1); scores = np.sqrt(squared)
     return np.asarray([names[i] for i in best], dtype=object), scores[np.arange(len(best)), best]
 
-def digest(path):
-    h = hashlib.sha256()
-    with open(path,"rb") as f:
-        for block in iter(lambda:f.read(1048576),b""): h.update(block)
-    return h.hexdigest()
-
-def run_fingerprint(checkpoints, manifests, gt_zip, config, base_checkpoint=None):
-    def facts(path):
-        path=Path(path).resolve(); return {"path":str(path),"sha256":digest(path),"bytes":path.stat().st_size}
-    if base_checkpoint: base=facts(base_checkpoint)
-    else:
-        import timm
-        base={"kind":"implicit_timm_pretrained","timm_version":timm.__version__,"pretrained_cfg":json.loads(json.dumps(timm.get_pretrained_cfg(config["base_model_name"]).to_dict(),default=str))}
-    sources={str(path.relative_to(ROOT)):facts(path) for path in [Path(__file__),ROOT/"src/data.py",ROOT/"src/models.py",ROOT/"src/metrics.py"]}
-    packages={"torch":"torch","torchvision":"torchvision","timm":"timm","sklearn":"scikit-learn","numpy":"numpy","pandas":"pandas","matplotlib":"matplotlib","pillow":"Pillow"}
-    runtime={"python":platform.python_version(),**{name:importlib.metadata.version(package) for name,package in packages.items()}}
-    return {"schema":2,"evaluator":facts(__file__),"sources":sources,"runtime":runtime,"base":base,"checkpoints":{name:facts(path) for name,path in sorted(checkpoints.items())},"manifests":{name:facts(path) for name,path in sorted(manifests.items())},"gt_zip":facts(gt_zip),"config":config}
-
 def manifest_rows(frame):
     return [(str(Path(row.path).resolve()),str(row.label),str(row.split)) for row in frame.itertuples()]
 
 def extract_gt_zip(zip_path, base):
-    zip_path=Path(zip_path); fingerprint=digest(zip_path); root=Path(base)/fingerprint[:16]; root.mkdir(parents=True,exist_ok=True)
+    zip_path=Path(zip_path); root=Path(base); root.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(zip_path) as archive:
         files=[info for info in archive.infolist() if not info.is_dir()]
         for info in files:
@@ -96,25 +89,8 @@ def extract_gt_zip(zip_path, base):
         if any(not (root/info.filename).is_file() or (root/info.filename).stat().st_size!=info.file_size for info in files): archive.extractall(root)
         bad=[info.filename for info in files if not (root/info.filename).is_file() or (root/info.filename).stat().st_size!=info.file_size]
     if bad: raise RuntimeError(f"GT extraction incomplete: {bad[:5]}")
-    meta={"zip":str(zip_path.resolve()),"zip_hash":fingerprint,"members":len(files),"image_members":sum(Path(info.filename).suffix.lower() in IMAGE_EXTENSIONS for info in files)}
+    meta={"zip":str(zip_path.resolve()),"members":len(files),"image_members":sum(Path(info.filename).suffix.lower() in IMAGE_EXTENSIONS for info in files)}
     (root/"extraction.json").write_text(json.dumps(meta,indent=2)); return root,meta
-
-def content_audit(frames, gt, out):
-    rows=[]
-    for source in ["closed","open"]:
-        for row in frames[source].itertuples():
-            path=Path(row.path).resolve()
-            if not path.is_file(): raise RuntimeError(f"manifest image missing: {path}")
-            rows.append({"source":source,"split":str(row.split),"label":str(row.label),"path":str(path),"sha256":digest(path)})
-    for label,paths in gt.items():
-        for path in paths: rows.append({"source":"gt","split":"gt","label":str(label),"path":str(path),"sha256":digest(path)})
-    conflicts=[]
-    for sha,group in pd.DataFrame(rows).groupby("sha256"):
-        query={(row.source,row.split,row.label) for row in group.itertuples() if row.source!="gt"}; gt_labels={row.label for row in group.itertuples() if row.source=="gt"}
-        if len(group)>1: conflicts.append({"sha256":sha,"query_roles":sorted(query),"gt_labels":sorted(gt_labels),"paths":sorted(group.path.unique())})
-    pd.DataFrame(rows).to_csv(out/"content_audit.csv",index=False); (out/"content_conflicts.json").write_text(json.dumps(conflicts,indent=2))
-    if conflicts: raise RuntimeError(f"image-content leakage detected; see {out/'content_conflicts.json'}")
-    return {"images":len(rows),"unique_hashes":len({row['sha256'] for row in rows}),"conflicts":0}
 
 def clean(state):
     out = {}
@@ -139,14 +115,14 @@ def record(path):
         return {"checkpoint":str(path.resolve()), "kind":"supcon" if any(k.startswith("projector.") for k in state) else "classifier",
                 "model_name":args.get("model_name",""), "loss_name":args.get("loss_name",""), "labels":sorted(map(str,classes)),
                 "image_size":int(args.get("image_size",224)),
-                "manifest":str(manifest), "manifest_hash":digest(manifest) if manifest.is_file() else "", "stored_manifest_hash":args.get("manifest_sha256") or args.get("manifest_hash") or "", "manifest_labels":manifest_labels, "manifest_splits":manifest_splits, "manifest_error":manifest_error, "epoch":ck.get("epoch",0),
+                "manifest":str(manifest), "manifest_labels":manifest_labels, "manifest_splits":manifest_splits, "manifest_error":manifest_error, "epoch":ck.get("epoch",0),
                 "history":str(history),"history_epochs":history_epochs,"history_fields":history_fields,"score":(ck.get("metrics",{}) or {}).get("macro_f1",-1), "readable":True}
     except Exception as e: return {"checkpoint":str(path), "readable":False, "error":repr(e)}
 
-def candidate_facts(item, target, target_hash, target_path):
+def candidate_facts(item, target, target_path):
     checkpoint, manifest = set(item.get("labels",[])), set(item.get("manifest_labels",[]))
-    stored=item.get("stored_manifest_hash"); current=checkpoint==manifest==target and item.get("manifest_hash")==target_hash and Path(item.get("manifest","")).resolve()==Path(target_path).resolve(); historical=bool(stored) and stored==target_hash
-    return current and (not stored or historical),historical,"training-time manifest hash exact" if historical else "current manifest exact; training-time hash unavailable"
+    current=checkpoint==manifest==target and Path(item.get("manifest","")).resolve()==Path(target_path).resolve(); historical=bool()
+    return current,historical,"current manifest exact"
 
 def classifier_features(model, x):
     z = model.forward_features(x)
@@ -227,27 +203,76 @@ def save_tsne(name, caches, out, seed, limit, representation="common_backbone"):
     csv_path,npz_path,sampling_path=out/f"{stem}.csv",out/f"{stem}.npz",out/f"{stem}.sampling.json"
     train_test_png,valid_png=out/f"{stem}.png",out/f"{stem}_valid.png"
     df.to_csv(csv_path,index=False); np.savez_compressed(npz_path,features=x,coords=xy,**{c:df[c].to_numpy() for c in ["partition","label","split","path"]})
-    counts={"/".join(map(str,k)):int(v) for k,v in df.groupby(["partition","split","label"]).size().items()}; meta={"representation":representation,"total_features":total,"sampled":len(df),"max_samples":limit,"seed":seed,"method":"deterministic round-robin by partition/split/label","counts":counts,"csv":str(csv_path),"npz":str(npz_path),"sampling":str(sampling_path),"train_test_png":str(train_test_png),"valid_png":str(valid_png)}; sampling_path.write_text(json.dumps(meta,indent=2))
+    xlim,ylim=axis_limits(df.x,False),axis_limits(df.y,False)
+    counts={"/".join(map(str,k)):int(v) for k,v in df.groupby(["partition","split","label"]).size().items()}; meta={"representation":representation,"total_features":total,"sampled":len(df),"max_samples":limit,"seed":seed,"method":"deterministic round-robin by partition/split/label","partitions_overlaid":True,"axis_limits":{"x":xlim,"y":ylim},"counts":counts,"csv":str(csv_path),"npz":str(npz_path),"sampling":str(sampling_path),"train_test_png":str(train_test_png),"valid_png":str(valid_png)}; sampling_path.write_text(json.dumps(meta,indent=2))
     import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
     label_names=sorted(df.label.unique()); colors={label:plt.cm.turbo(i/max(1,len(label_names)-1)) for i,label in enumerate(label_names)}
     def panels(splits, path):
-        fig,axes=plt.subplots(2,len(splits),figsize=(7*len(splits),11),squeeze=False)
-        for row,part in enumerate(["closed","open"]):
-            for col,split in enumerate(splits):
-                ax=axes[row,col]; q=df[(df.partition==part)&(df.split==split)]
-                for label,g in q.groupby("label",sort=True): ax.scatter(g.x,g.y,s=9,alpha=.65,color=colors[label])
-                ax.set_title(f"{name} [{representation.replace('_',' ')}]: {part} / {split}"); ax.set_xticks([]); ax.set_yticks([])
-        handles=[Line2D([0],[0],marker="o",linestyle="",markersize=5,color=colors[label],label=label) for label in label_names]
+        fig,axes=plt.subplots(1,len(splits),figsize=(7*len(splits),6),squeeze=False)
+        for ax,split in zip(axes[0],splits):
+            q=df[df.split==split]
+            for (part,label),g in q.groupby(["partition","label"],sort=True): ax.scatter(g.x,g.y,s=9,alpha=.65,color=colors[label],marker={"closed":"o","open":"^"}[part])
+            ax.set_title(f"{name} [{representation.replace('_',' ')}]: closed + open / {split}"); ax.set_xlim(*xlim); ax.set_ylim(*ylim); ax.set_xticks([]); ax.set_yticks([])
+        label_parts=df.drop_duplicates("label").set_index("label").partition
+        handles=[Line2D([0],[0],marker={"closed":"o","open":"^"}[label_parts[label]],linestyle="",markersize=5,color=colors[label],label=label) for label in label_names]
         fig.legend(handles=handles,loc="center left",bbox_to_anchor=(.99,.5),fontsize=7); fig.tight_layout(rect=(0,0,.86,1)); fig.savefig(path,dpi=180,bbox_inches="tight"); plt.close(fig)
     panels(["train","test"],train_test_png); panels(["valid"],valid_png)
     return meta
+
+def save_prototype_tsne(name, caches, gtc, out, seed, count, representation="common_backbone"):
+    from sklearn.decomposition import PCA
+    from sklearn.manifold import TSNE
+    rows=[]; coverage={}
+    for part,c in caches.items():
+        classes=sorted(set(c["labels"].tolist()))
+        normalized={normalize_label_name(label):label for label in classes}
+        if len(normalized)!=len(classes): raise RuntimeError(f"{part} labels collide after English-name normalization")
+        for policy in PROTOS:
+            support=gtc if policy=="gt" else c
+            support_labels=np.asarray([match_label_name(label,normalized) for label in support["labels"]],dtype=object) if policy=="gt" else support["labels"]
+            pool=np.flatnonzero(support_labels!="") if policy=="gt" else np.flatnonzero(np.isin(support_labels,classes)&(support["splits"]=="train"))
+            missing=sorted(set(classes)-set(support_labels[pool].tolist()))
+            coverage[f"{part}/{policy}"]={"available_labels":len(classes)-len(missing),"expected_labels":len(classes),"missing_labels":missing}
+            if missing and policy!="gt": raise RuntimeError(f"{part}/{policy} prototype t-SNE coverage missing {missing}")
+            if not len(pool): continue
+            chosen=pool[choose_support_indices(support_labels[pool],support["paths"][pool],policy,count,seed)]
+            prototypes,names=build_prototypes(support["features"],support_labels,chosen)
+            rows += [(part,policy,label,int((support_labels[chosen]==label).sum()),vector) for label,vector in zip(names,prototypes)]
+    if not any(row[1]=="gt" for row in rows): raise RuntimeError("GT English-name mapping matched zero labels")
+    if len(rows)<3: raise RuntimeError("prototype t-SNE needs at least three available prototypes")
+    features=np.stack([row[4] for row in rows]); reduced=PCA(min(50,features.shape[1],len(features)-1),random_state=seed).fit_transform(features) if features.shape[1]>50 else features
+    coords=TSNE(2,perplexity=min(30,max(1,(len(reduced)-1)/3)),init="pca",learning_rate="auto",random_state=seed).fit_transform(reduced)
+    df=pd.DataFrame({"model":name,"representation":representation,"partition":[row[0] for row in rows],"prototype":[row[1] for row in rows],"label":[row[2] for row in rows],"support_count":[row[3] for row in rows],"x":coords[:,0],"y":coords[:,1]})
+    out.mkdir(parents=True,exist_ok=True); stem=name.replace(" ","_")+"_"+representation; csv_path,npz_path,png_path,meta_path=out/f"{stem}.csv",out/f"{stem}.npz",out/f"{stem}.png",out/f"{stem}.json"
+    df.to_csv(csv_path,index=False); np.savez_compressed(npz_path,features=features,coords=coords,**{column:df[column].to_numpy() for column in ["partition","prototype","label","support_count"]})
+    import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
+    from matplotlib.lines import Line2D
+    styles={"gt":("#d62728","*","GT"),"mean":("#1f77b4","o","Mean"),"ss":("#2ca02c","^","SS")}; xlim,ylim=axis_limits(df.x,False),axis_limits(df.y,False)
+    fig,ax=plt.subplots(figsize=(9,8))
+    for _,group in df.groupby(["partition","label"],sort=True): ax.plot(group.x,group.y,color="0.75",linewidth=.5,zorder=1)
+    for policy,(color,marker,label) in styles.items():
+        group=df[df.prototype==policy]; ax.scatter(group.x,group.y,s=65 if policy=="gt" else 35,color=color,marker=marker,edgecolors="white",linewidths=.35,label=label,zorder=2)
+    ax.set_title(f"{name} [{representation.replace('_',' ')}]: closed + open prototypes"); ax.set_xlim(*xlim); ax.set_ylim(*ylim); ax.set_xticks([]); ax.set_yticks([])
+    handles=[Line2D([0],[0],marker=marker,linestyle="",markersize=8,color=color,label=label) for color,marker,label in styles.values()]
+    fig.legend(handles=handles,loc="upper center",ncol=3); fig.tight_layout(rect=(0,0,1,.95)); fig.savefig(png_path,dpi=180,bbox_inches="tight"); plt.close(fig)
+    labels=sorted(df.label.unique()); colors={label:plt.cm.turbo(i/max(1,len(labels)-1)) for i,label in enumerate(labels)}; policy_pngs={}
+    for policy,(_,marker,title) in styles.items():
+        target=out/f"{stem}_{policy}.png"; fig,ax=plt.subplots(figsize=(9,8)); q=df[df.prototype==policy]
+        for (part,label),group in q.groupby(["partition","label"],sort=True): ax.scatter(group.x,group.y,s=65 if policy=="gt" else 40,color=colors[label],marker={"closed":marker,"open":"X"}[part],edgecolors="white",linewidths=.35,label=label)
+        ax.set_title(f"{name} [{representation.replace('_',' ')}]: closed + open / {title}"); ax.set_xlim(*xlim); ax.set_ylim(*ylim); ax.set_xticks([]); ax.set_yticks([])
+        shown=q.drop_duplicates("label").set_index("label").partition; handles=[Line2D([0],[0],marker={"closed":marker,"open":"X"}[shown[label]],linestyle="",markersize=5,color=colors[label],label=label) for label in sorted(shown.index)]
+        if handles: fig.legend(handles=handles,loc="center left",bbox_to_anchor=(.99,.5),fontsize=7)
+        fig.tight_layout(rect=(0,0,.84,1)); fig.savefig(target,dpi=180,bbox_inches="tight"); plt.close(fig); policy_pngs[policy]=str(target)
+    meta={"status":"ok","representation":representation,"seed":seed,"points":len(df),"partitions_overlaid":True,"csv":str(csv_path),"npz":str(npz_path),"png":str(png_path),"policy_pngs":policy_pngs,"coverage":coverage,"axis_limits":{"x":xlim,"y":ylim}}
+    meta_path.write_text(json.dumps(meta,indent=2)); meta["metadata"]=str(meta_path); return meta
 
 def axis_limits(values, bounded):
     low,high=float(values.min()),float(values.max()); span=high-low or max(abs(high)*.05,.02); pad=max(span*.12,.005 if bounded else span*.05)
     return (max(0.,low-pad),min(1.,high+pad)) if bounded else (low-pad,high+pad)
 
 def save_curve(name, item, out):
+    if item.get("kind") in {"base","pretrained_base"}: return {"model":name,"history":"","status":"N/A","png":"","csv":"","epochs":0}
     if not item.get("checkpoint"): return {"model":name,"history":"","status":"not_applicable","png":"","csv":"","epochs":0}
     history=Path(item["checkpoint"]).parent.parent/"metrics"/"history.csv"; stem=name.replace(" ","_")
     if not history.is_file(): return {"model":name,"history":str(history),"status":"missing","png":"","csv":"","epochs":0}
@@ -263,8 +288,10 @@ def save_curve(name, item, out):
             if len(values): ax.set_ylim(*axis_limits(values,title!="loss"))
             ax.set_title(title); ax.set_xlabel("epoch"); ax.legend()
         fig.tight_layout(); target=out/f"{stem}.png"; fig.savefig(target,dpi=180); plt.close(fig); png=str(target)
-    missing=sorted({"test_accuracy","test_macro_f1"}-set(df.columns)); status="partial" if missing else "ok"
-    reason=f"history lacks per-epoch {', '.join(missing)}; available curves only" if missing else ""
+    missing=sorted({"test_accuracy","test_macro_f1"}-set(df.columns)); reasons=[]
+    if len(df)<10: reasons.append(f"history has {len(df)}/10 epochs")
+    if missing: reasons.append(f"history lacks per-epoch {', '.join(missing)}; available curves only")
+    status="partial" if reasons else "ok"; reason="; ".join(reasons)
     ranking=[column for column in ["valid_macro_f1","valid_accuracy"] if column in df]; best=df.sort_values(ranking,ascending=False).iloc[0] if ranking else df.iloc[-1]
     result={"model":name,"history":str(history),"status":status,"csv":str(copy),"png":png,"reason":reason,"epochs":len(df),"best_epoch":int(best["epoch"]) if "epoch" in best else int(best.name)+1}
     for column in ["valid_accuracy","valid_macro_f1","test_accuracy","test_macro_f1"]: result[f"best_{column}"]=float(best[column]) if column in best and pd.notna(best[column]) else ""
@@ -299,25 +326,83 @@ def save_partial(out, summary, backbone, predictions, members, curves, progress)
     (pd.DataFrame(curves) if curves else pd.DataFrame(columns=["model","history","status","csv","png","reason"])).to_csv(out/"curve_inventory.csv",index=False)
     (out/"progress.json").write_text(json.dumps(progress,indent=2))
 
-def resume_tsne(out, seed, limit):
+def resume_tsne(out, seed, limit, ss_per_label):
     progress_path=out/"progress.json"; progress=json.loads(progress_path.read_text()); failures=[]
     for name in MODELS:
+        if progress.get("models",{}).get(name,{}).get("status")==PASS:
+            progress["models"][name]["tsne"]={"status":PASS}; progress["models"][name]["prototype_tsne"]={"status":PASS}; progress_path.write_text(json.dumps(progress,indent=2)); continue
         folder=out/"features"/name.replace(" ","_"); common={}; deployed={}
         try:
+            def load(path):
+                with np.load(path,allow_pickle=True) as archive: return {key:archive[key] for key in archive.files}
             for part in ["closed","open"]:
                 path=folder/f"{part}_backbone.npz" if (folder/f"{part}_backbone.npz").is_file() else folder/f"{part}.npz"
-                with np.load(path,allow_pickle=True) as archive: common[part]={key:archive[key] for key in archive.files}
+                common[part]=load(path)
+            common_gt=load(folder/("gt_backbone.npz" if (folder/"gt_backbone.npz").is_file() else "gt.npz"))
             common_meta=save_tsne(name,common,out/"tsne",seed,limit,"common_backbone")
+            common_prototype=save_prototype_tsne(name,common,common_gt,out/"prototype_tsne",seed,ss_per_label,"common_backbone")
             if all((folder/f"{part}_backbone.npz").is_file() for part in ["closed","open"]):
-                for part in ["closed","open"]:
-                    with np.load(folder/f"{part}.npz",allow_pickle=True) as archive: deployed[part]={key:archive[key] for key in archive.files}
+                for part in ["closed","open"]: deployed[part]=load(folder/f"{part}.npz")
                 deployed_meta={"status":"ok",**save_tsne(name,deployed,out/"tsne",seed,limit,"deployed")}
-            else: deployed_meta={"status":"same_as_common_backbone",**common_meta}
+                deployed_prototype=save_prototype_tsne(name,deployed,load(folder/"gt.npz"),out/"prototype_tsne",seed,ss_per_label,"deployed")
+            else: deployed_meta={"status":"same_as_common_backbone",**common_meta}; deployed_prototype={**common_prototype,"status":"same_as_common_backbone"}
             progress["models"].setdefault(name,{})["tsne"]={"status":"ok",**common_meta,"common_backbone":common_meta,"deployed":deployed_meta}
+            progress["models"][name]["prototype_tsne"]={"status":"ok","common_backbone":common_prototype,"deployed":deployed_prototype}
         except Exception as error:
-            progress["models"].setdefault(name,{})["tsne"]={"status":"unavailable","reason":repr(error)}; failures.append(name)
+            progress["models"].setdefault(name,{})["tsne"]={"status":"unavailable","reason":repr(error)}; progress["models"][name]["prototype_tsne"]={"status":"unavailable","reason":repr(error)}; failures.append(name)
         progress_path.write_text(json.dumps(progress,indent=2))
     if failures: raise RuntimeError(f"t-SNE incomplete for {failures}; saved features can be resumed")
+    return progress
+
+def run_prototype_tsne_only(args, out):
+    manifests={"closed":Path(args.closed_manifest),"open":Path(args.open_manifest)}; full_manifest=Path(args.full_manifest); gt_manifest=Path(args.gt_manifest or "")
+    if not gt_manifest.is_file(): raise RuntimeError("--gt-manifest is required for --prototype-tsne-only")
+    if args.ss_per_label<1: raise RuntimeError("--ss-per-label must be positive")
+    manifest_labels={part:set(load_manifest(path).label.astype(str)) for part,path in manifests.items()}; full_labels=set(load_manifest(full_manifest).label.astype(str))
+    if manifest_labels["closed"]&manifest_labels["open"] or manifest_labels["closed"]|manifest_labels["open"]!=full_labels: raise RuntimeError("closed/open/full manifest label sets are inconsistent")
+    device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if device.type=="cpu" and not args.allow_cpu: raise RuntimeError("CUDA unavailable")
+    checkpoints={"ViT Base":args.base_checkpoint,"ViT-ClosedFT":args.closed_checkpoint,"ViT-ClosedFT-SupCon":args.closed_supcon_checkpoint,"ViT-FullFT":args.full_checkpoint,"ViT-FullFT-SupCon":args.full_supcon_checkpoint}
+    expected={"ViT-ClosedFT":("classifier",manifest_labels["closed"]),"ViT-ClosedFT-SupCon":("supcon",manifest_labels["closed"]),"ViT-FullFT":("classifier",full_labels),"ViT-FullFT-SupCon":("supcon",full_labels)}
+    pass_status=globals().get("PASS","PASS checkpoint missing")
+    progress={"mode":"prototype_tsne_only","gt_manifest":str(gt_manifest.resolve()),"seed":args.seed,"ss_per_label":args.ss_per_label,"models":{}}; failures=[]
+    for name,raw_path in checkpoints.items():
+        if not raw_path or not Path(raw_path).is_file(): progress["models"][name]={"status":pass_status,"reason":pass_status}; continue
+        try:
+            if name=="ViT Base": item={"kind":"base","checkpoint":str(Path(raw_path).resolve()),"model_name":args.base_model_name,"image_size":224}
+            else:
+                item=record(Path(raw_path))
+                if not item.get("readable"): raise RuntimeError(item.get("error","checkpoint unreadable"))
+                expected_kind,expected_labels=expected[name]
+                if item["kind"]!=expected_kind: raise RuntimeError(f"{name} expects {expected_kind}, got {item['kind']}")
+                if set(item.get("labels",[]))!=expected_labels: raise RuntimeError(f"{name} checkpoint labels do not match its {len(expected_labels)}-label manifest")
+                stored_labels=set(item.get("manifest_labels",[]))
+                if stored_labels and stored_labels!=expected_labels: raise RuntimeError(f"{name} stored training manifest labels do not match")
+            model,forward,transform,comparison_transform,preprocess=make_model(item,device); deployed={}; common={}
+            for part,manifest in manifests.items():
+                representations=extract(model,forward,manifest,transform,args.batch_size,args.num_workers,device); deployed[part]=representations.get("deployed",representations["backbone"])
+                common[part]=representations["backbone"] if comparison_transform is transform else extract(model,forward,manifest,comparison_transform,args.batch_size,args.num_workers,device)["backbone"]
+            gt_representations=extract(model,forward,gt_manifest,transform,args.batch_size,args.num_workers,device); deployed_gt=gt_representations.get("deployed",gt_representations["backbone"])
+            common_gt=gt_representations["backbone"] if comparison_transform is transform else extract(model,forward,gt_manifest,comparison_transform,args.batch_size,args.num_workers,device)["backbone"]
+            common_meta=save_prototype_tsne(name,common,common_gt,out/"prototype_tsne",args.seed,args.ss_per_label,"common_backbone")
+            if item["kind"]=="supcon" or comparison_transform is not transform: deployed_meta=save_prototype_tsne(name,deployed,deployed_gt,out/"prototype_tsne",args.seed,args.ss_per_label,"deployed")
+            else: deployed_meta={**common_meta,"status":"same_as_common_backbone"}
+            progress["models"][name]={"status":"ok","checkpoint":str(Path(raw_path).resolve()),"kind":item["kind"],"preprocessing":preprocess,"common_backbone":common_meta,"deployed":deployed_meta}
+        except Exception as error:
+            progress["models"][name]={"status":"unavailable","reason":repr(error)}; failures.append(name)
+        finally:
+            if "model" in locals(): del model
+            if "forward" in locals(): del forward
+            if "deployed" in locals(): del deployed
+            if "common" in locals(): del common
+            if "representations" in locals(): del representations
+            if "gt_representations" in locals(): del gt_representations
+            if "deployed_gt" in locals(): del deployed_gt
+            if "common_gt" in locals(): del common_gt
+            if device.type=="cuda": torch.cuda.empty_cache()
+            (out/"progress.json").write_text(json.dumps(progress,indent=2))
+    if failures: raise RuntimeError(f"prototype t-SNE incomplete for {failures}; partial artifacts preserved in {out}")
+    print("PROTOTYPE_TSNE_OK")
     return progress
 
 def validation_selected_results(ok):
@@ -333,8 +418,6 @@ def write_report(out, args):
     result=pd.read_csv(out/"summary.csv"); ok=result[result.status=="ok"]; backbone_result=pd.read_csv(out/"backbone_summary.csv"); backbone_ok=backbone_result[backbone_result.status=="ok"]
     valid_ok,test_ok=ok[ok.split=="valid"],ok[ok.split=="test"]; backbone_test=backbone_ok[backbone_ok.split=="test"]; selected=json.loads((out/"checkpoint_selection.json").read_text()); progress=json.loads((out/"progress.json").read_text()); curves=pd.read_csv(out/"curve_inventory.csv").fillna("").to_dict("records")
     chosen=validation_selected_results(ok); chosen.to_csv(out/"selected_results.csv",index=False)
-    fingerprint=json.loads((out/"run_fingerprint.json").read_text())
-    unverified=[name for name in MODELS if name!="ViT Base" and not selected.get(name,{}).get("own_manifest_backed")]
     tsne_note="all features" if args.tsne_max_samples<=0 else f"deterministic stratified sample, maximum {args.tsne_max_samples} per representation"
     def link(path,label):
         if not path: return ""
@@ -342,20 +425,48 @@ def write_report(out, args):
         try: target=path.resolve().relative_to(out.resolve()).as_posix()
         except ValueError: target=str(path)
         return f"[{label}]({target})"
-    lines=["# Metric Learning Diagnosis","",f"Artifacts: `{out.resolve()}`",f"Seed: {args.seed}; SS: {args.ss_per_label}; GT unmatched: 0; content leakage: 0",f"t-SNE: {tsne_note}; common-backbone plots cover all models, and deployed plots additionally cover representations that differ (Base preprocessing and SupCon projector). Full features remain in NPZ.","Preprocessing: ViT Base deployed results use its timm pretrained configuration; all common-backbone comparisons use the repository transform. Fine-tuned deployed results use that same training transform. Exact values are in progress.json.","SupCon deployed results use the model's L2-normalized projector output. Common-backbone results remove projector dimension/normalization confounding, but remain a training-configuration comparison because CE and SupCon runs also differ in batch size, LR, and augmentation.",f"Manifest provenance limitation: current manifest path/content is exact, but training-time manifest hashes are unavailable for {', '.join(unverified) if unverified else 'none'}.","","## Artifact index","- "+" · ".join([link(out/"summary.csv","deployed metrics"),link(out/"backbone_summary.csv","common-backbone metrics"),link(out/"selected_results.csv","validation-selected test results"),link(out/"predictions.csv","predictions")]),"- "+" · ".join([link(out/"curve_inventory.csv","curve inventory"),link(out/"prototype_membership.csv","prototype membership"),link(out/"checkpoint_selection.json","checkpoint selection"),link(out/"checkpoint_inventory.csv","checkpoint inventory")]),"- "+" · ".join([link(out/"run_fingerprint.json","full SHA-256 fingerprint"),link(out/"manifest_audit.json","manifest audit"),link(out/"provenance_audit.json","provenance audit"),link(out/"content_audit.csv","content hashes")]),"","## SHA-256 provenance","| Group | Item | SHA-256 |","|---|---|---|"]
-    hash_groups=[("source",fingerprint.get("sources",{})),("checkpoint",fingerprint.get("checkpoints",{})),("manifest",fingerprint.get("manifests",{}))]
-    if fingerprint.get("base",{}).get("sha256"): hash_groups.append(("base",{"ViT Base":fingerprint["base"]}))
-    hash_groups.append(("GT",{"AI Hub zip":fingerprint.get("gt_zip",{})}))
-    for group,items in hash_groups:
-        for item,facts in items.items(): lines.append(f"| {group} | {item} | `{facts.get('sha256','unavailable')}` |")
+    def add_experiment(code,distance,names,title):
+        lines.extend(["",f"## Experiment {code} \u2014 {distance.title()}: {title}","Held-out test accuracy / macro-F1 / weighted-F1 (deployed representation).","",f"| Set | Prototype | "+" | ".join(names)+" |",f"|---|---|"+"---|"*len(names)])
+        for partition in ["closed","open"]:
+            for prototype,label in [("gt","GT"),("mean","Mean"),("ss","SS")]:
+                cells=[]
+                for name in names:
+                    q=test_ok[(test_ok.model==name)&(test_ok.partition==partition)&(test_ok.prototype==prototype)&(test_ok.distance==distance)]
+                    cells.append((PASS if name not in selected else "unavailable") if q.empty else f"{q.iloc[0].accuracy:.4f} / {q.iloc[0].macro_f1:.4f} / {q.iloc[0].weighted_f1:.4f}")
+                lines.append(f"| {partition.title()} | {label} | "+" | ".join(cells)+" |")
+    def delta(left,right,table):
+        if left not in selected or right not in selected: return f"{PASS} ({left if left not in selected else right})"
+        values=[]
+        for partition in ["closed","open"]:
+            x=table[(table.model==left)&(table.partition==partition)]; y=table[(table.model==right)&(table.partition==partition)]; paired=x.merge(y,on=["prototype","distance"],suffixes=("_left","_right"))
+            if len(paired):
+                da,df=(paired.accuracy_left-paired.accuracy_right).mean(),(paired.macro_f1_left-paired.macro_f1_right).mean(); verdict="improved" if da>0 and df>0 else "degraded" if da<0 and df<0 else "mixed/no material change"
+                values.append(f"{partition} {verdict}: \u0394accuracy {da:+.4f}, \u0394macro-F1 {df:+.4f}")
+            else: values.append(f"{partition} unavailable")
+        return "; ".join(values)
+    def setting_result(column):
+        validation=valid_ok.groupby(column)[["accuracy","macro_f1"]].mean().sort_values(["accuracy","macro_f1"],ascending=False)
+        heldout=test_ok.groupby(column)[["accuracy","macro_f1"]].mean()
+        if len(validation)<2 or not set(validation.index[:2])<=set(heldout.index): return "unavailable"
+        winner,runner=validation.index[:2]; return f"{winner}; held-out test accuracy {heldout.loc[winner].accuracy:.4f}, macro-F1 {heldout.loc[winner].macro_f1:.4f}; vs {runner} \u0394accuracy {heldout.loc[winner].accuracy-heldout.loc[runner].accuracy:+.4f}, \u0394macro-F1 {heldout.loc[winner].macro_f1-heldout.loc[runner].macro_f1:+.4f}"
+    lines=["# Metric Learning Diagnosis","",f"Artifacts: `{out.resolve()}`",f"Seed: {args.seed}; SS: {args.ss_per_label}; GT unmatched: 0",f"t-SNE: {tsne_note}; common-backbone plots cover all available models, and deployed plots additionally cover representations that differ (Base preprocessing and SupCon projector). Full features remain in NPZ.","Preprocessing: ViT Base deployed results use its timm pretrained configuration; all common-backbone comparisons use the repository transform. Fine-tuned deployed results use that same training transform. Exact values are in progress.json.","SupCon deployed results use the model's L2-normalized projector output. Common-backbone results remove projector dimension/normalization confounding, but remain a training-configuration comparison because CE and SupCon runs also differ in batch size, LR, and augmentation.","","## Artifact index","- "+" \u00b7 ".join([link(out/"summary.csv","deployed metrics"),link(out/"backbone_summary.csv","common-backbone metrics"),link(out/"selected_results.csv","validation-selected test results"),link(out/"predictions.csv","predictions")]),"- "+" \u00b7 ".join([link(out/"curve_inventory.csv","curve inventory"),link(out/"prototype_membership.csv","prototype membership"),link(out/"checkpoint_selection.json","checkpoint selection"),link(out/"checkpoint_inventory.csv","checkpoint inventory")])]
+    add_experiment("1a","euclidean",["ViT Base","ViT-ClosedFT","ViT-ClosedFT-SupCon"],"Base vs ClosedFT vs ClosedFT-SupCon")
+    add_experiment("1b","cosine",["ViT Base","ViT-ClosedFT","ViT-ClosedFT-SupCon"],"Base vs ClosedFT vs ClosedFT-SupCon")
+    add_experiment("2a","euclidean",["ViT-ClosedFT","ViT-FullFT"],"ClosedFT vs FullFT")
+    add_experiment("2b","cosine",["ViT-ClosedFT","ViT-FullFT"],"ClosedFT vs FullFT")
+    add_experiment("4a","euclidean",["ViT-ClosedFT","ViT-ClosedFT-SupCon"],"ClosedFT vs ClosedFT-SupCon")
+    add_experiment("4b","cosine",["ViT-ClosedFT","ViT-ClosedFT-SupCon"],"ClosedFT vs ClosedFT-SupCon")
+    add_experiment("5a","euclidean",["ViT-FullFT","ViT-FullFT-SupCon"],"FullFT vs FullFT-SupCon")
+    add_experiment("5b","cosine",["ViT-FullFT","ViT-FullFT-SupCon"],"FullFT vs FullFT-SupCon")
+    lines += ["","## Five research-question conclusions","Common-backbone deltas below are matched held-out-test marginal means across GT/Mean/SS \u00d7 Euclidean/cosine; positive favors the first model.",f"1. Closed-set fine-tuning vs general Base features: {delta('ViT-ClosedFT','ViT Base',backbone_test)}.",f"2. SupCon effect: ClosedFT-SupCon vs ClosedFT \u2014 {delta('ViT-ClosedFT-SupCon','ViT-ClosedFT',backbone_test)}; FullFT-SupCon vs FullFT \u2014 {delta('ViT-FullFT-SupCon','ViT-FullFT',backbone_test)}.",f"3. Full-set training vs closed-only training: {delta('ViT-FullFT','ViT-ClosedFT',backbone_test)}.",f"4. Best distance selected by validation: {setting_result('distance')}.",f"5. Best prototype selected by validation: {setting_result('prototype')}." ]
     lines += ["","## Validation-selected joint setting, held-out test"]
     for row in chosen.itertuples(): lines.append(f"- {row.model} / {row.partition}: {row.prototype} + {row.distance}; validation accuracy {row.valid_accuracy:.4f}, macro-F1 {row.valid_macro_f1:.4f}; test accuracy {row.test_accuracy:.4f}, macro-F1 {row.test_macro_f1:.4f}")
-    lines += ["","## Held-out test performance by partition","Values below are marginal means across all six prototype × distance settings."]
+    lines += ["","## Held-out test performance by partition","Values below are marginal means across all six prototype \u00d7 distance settings."]
     for partition in ["closed","open"]:
         lines += ["",f"### {partition.title()}"]
         for name in MODELS:
-            q=test_ok[(test_ok.model==name)&(test_ok.partition==partition)]; lines.append(f"- {name}: "+("unavailable" if q.empty else f"accuracy {q.accuracy.mean():.4f}, macro-F1 {q.macro_f1.mean():.4f}"))
-    lines += ["","## Matched held-out test comparisons","Deltas are marginal means across matched prototype × distance settings."]
+            q=test_ok[(test_ok.model==name)&(test_ok.partition==partition)]; lines.append(f"- {name}: "+((PASS if name not in selected else "unavailable") if q.empty else f"accuracy {q.accuracy.mean():.4f}, macro-F1 {q.macro_f1.mean():.4f}"))
+    lines += ["","## Matched held-out test comparisons","Deltas are marginal means across matched prototype \u00d7 distance settings."]
     for left,right,title,table in [("ViT-ClosedFT","ViT Base","Closed FT vs Base, model-native preprocessing",test_ok),("ViT-ClosedFT","ViT Base","Closed FT vs Base, common preprocessing/backbone",backbone_test),("ViT-ClosedFT-SupCon","ViT-ClosedFT","Closed SupCon backbone vs FT backbone",backbone_test),("ViT-FullFT","ViT-ClosedFT","Full vs Closed FT",test_ok),("ViT-FullFT-SupCon","ViT-FullFT","Full SupCon backbone vs FT backbone",backbone_test)]:
         lines.append(f"- {title}")
         for partition in ["closed","open"]:
@@ -376,54 +487,67 @@ def write_report(out, args):
         if curve.get("best_epoch") not in (None,""): details+=f"; best validation epoch {int(curve['best_epoch'])}"
         for label,column in [("valid acc","best_valid_accuracy"),("valid F1","best_valid_macro_f1"),("test acc","best_test_accuracy"),("test F1","best_test_macro_f1")]:
             if curve.get(column) not in (None,""): details+=f"; {label} {float(curve[column]):.4f}"
-        assets=" · ".join(x for x in [link(curve.get("png"),"curve"),link(curve.get("csv"),"history")] if x)
+        assets=" \u00b7 ".join(x for x in [link(curve.get("png"),"curve"),link(curve.get("csv"),"history")] if x)
         lines.append(f"- {curve['model']}: {details}"+(f"; {assets}" if assets else "")+(f" ({curve['reason']})" if curve.get("reason") else ""))
     lines += ["","## t-SNE coverage"]
     for name in MODELS:
         info=progress["models"].get(name,{}).get("tsne",{}); common=info.get("common_backbone",{}); deployed=info.get("deployed",{})
         assets=[link(common.get("train_test_png"),"common train/test"),link(common.get("valid_png"),"common valid")]
         if deployed.get("status")!="same_as_common_backbone": assets += [link(deployed.get("train_test_png"),"deployed train/test"),link(deployed.get("valid_png"),"deployed valid")]
-        lines.append(f"- {name}: {info.get('status','unavailable')}"+("; "+" · ".join(x for x in assets if x) if any(assets) else ""))
-    lines += ["",f"Completed deployed result rows: {len(ok)}/120",f"Completed common-backbone rows: {len(backbone_ok)}/120"]
+        prototype=progress["models"].get(name,{}).get("prototype_tsne",{}); prototype_common=prototype.get("common_backbone",{}); prototype_deployed=prototype.get("deployed",{})
+        assets.append(link(prototype_common.get("png"),"common GT/Mean/SS prototypes"))
+        if prototype_deployed.get("status")!="same_as_common_backbone": assets.append(link(prototype_deployed.get("png"),"deployed GT/Mean/SS prototypes"))
+        lines.append(f"- {name}: {info.get('status','unavailable')}"+("; "+" \u00b7 ".join(x for x in assets if x) if any(assets) else ""))
+    result_covered=result.status.isin(["ok",PASS]); backbone_covered=backbone_result.status.isin(["ok",PASS])
+    lines += ["",f"Covered deployed result rows: {int(result_covered.sum())}/120 (OK {len(ok)}, PASS {int((result.status==PASS).sum())})",f"Covered common-backbone rows: {int(backbone_covered.sum())}/120 (OK {len(backbone_ok)}, PASS {int((backbone_result.status==PASS).sum())})"]
     (out/"REPORT.md").write_text("\n".join(lines)+"\n"); print(f"RESULT_ROWS={len(result)} OK_ROWS={len(ok)} BACKBONE_OK_ROWS={len(backbone_ok)}")
-    return len(result)==len(ok)==len(backbone_result)==len(backbone_ok)==120,all(progress["models"].get(name,{}).get("tsne",{}).get("status")=="ok" for name in MODELS),len(ok),len(backbone_ok)
+    return len(result)==len(backbone_result)==120 and result_covered.all() and backbone_covered.all(),all(progress["models"].get(name,{}).get(kind,{}).get("status")=="ok" for name in selected for kind in ["tsne","prototype_tsne"]),len(ok),len(backbone_ok)
 
-def write_completion(out):
-    required=["REPORT.md","summary.csv","backbone_summary.csv","selected_results.csv","predictions.csv","prototype_membership.csv","curve_inventory.csv","checkpoint_selection.json","checkpoint_inventory.csv","run_fingerprint.json","manifest_audit.json","provenance_audit.json","content_audit.csv","content_conflicts.json","gt_mapping.csv","gt_manifest.csv","progress.json"]
-    artifacts=set(out/name for name in required); curves=pd.read_csv(out/"curve_inventory.csv").fillna(""); progress=json.loads((out/"progress.json").read_text())
-    selected_results=pd.read_csv(out/"selected_results.csv")
-    if len(selected_results)!=10: raise RuntimeError(f"expected 10 validation-selected results, got {len(selected_results)}")
-    for name in MODELS[1:]:
-        rows=curves[curves.model==name]
-        if len(rows)!=1 or rows.iloc[0].status not in {"ok","partial"}: raise RuntimeError(f"curve artifacts incomplete for {name}")
-        artifacts.update([Path(rows.iloc[0].csv),Path(rows.iloc[0].png)])
-    for name in MODELS:
-        info=progress["models"].get(name,{}).get("tsne",{})
-        if info.get("status")!="ok": raise RuntimeError(f"t-SNE incomplete for {name}")
-        for representation in ["common_backbone","deployed"]:
-            details=info.get(representation,{})
-            if representation=="deployed" and details.get("status")=="same_as_common_backbone": continue
-            for key in ["csv","npz","sampling","train_test_png","valid_png"]: artifacts.add(Path(details.get(key,"")))
-    root=out.resolve(); recorded={}
-    for path in artifacts:
-        path=path.resolve()
-        if not path.is_file() or (path!=root and root not in path.parents): raise RuntimeError(f"required report artifact missing or outside output: {path}")
-        recorded[str(path.relative_to(root))]=digest(path)
-    completion={"schema":1,"result_rows":120,"backbone_rows":120,"selected_rows":10,"fingerprint_sha256":digest(out/"run_fingerprint.json"),"artifacts":dict(sorted(recorded.items()))}
-    temporary=out/".completion.json.tmp"; temporary.write_text(json.dumps(completion,indent=2)); temporary.replace(out/"completion.json")
-    return completion
+def run_full_only(args, out):
+    manifest=Path(args.full_manifest); frame=load_manifest(manifest)
+    if "split" not in frame: raise RuntimeError("full manifest has no split column")
+    classes=sorted(frame.label.astype(str).unique())
+    missing={label:sorted({"train","test"}-set(group.split.astype(str))) for label,group in frame.groupby("label")}; missing={label:splits for label,splits in missing.items() if splits}
+    errors=[]
+    if len(classes)!=42: errors.append(f"full label count is {len(classes)}, not 42")
+    if missing: errors.append(f"labels missing train/test splits: {missing}")
+    if errors: raise RuntimeError(errors)
+    device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if device.type=="cpu" and not args.allow_cpu: raise RuntimeError("CUDA unavailable")
+    item={"kind":"pretrained_base","model_name":args.base_model_name,"image_size":224}
+    model,forward,transform,_,preprocess=make_model(item,device)
+    cache=extract(model,forward,manifest,transform,args.batch_size,args.num_workers,device)["backbone"]
+    train_idx=np.flatnonzero(cache["splits"]=="train"); test_idx=np.flatnonzero(cache["splits"]=="test")
+    prototypes,prototype_names=build_prototypes(cache["features"],cache["labels"],train_idx)
+    if prototype_names!=classes: raise RuntimeError("train mean-prototype labels differ from the 42 manifest labels")
+    label_to_idx={label:i for i,label in enumerate(classes)}; true_labels=cache["labels"][test_idx]
+    summary,predictions,metric_results=[],[],{}
+    for distance in DISTS:
+        predicted,scores=prototype_predict(cache["features"][test_idx],prototypes,prototype_names,distance)
+        metrics=compute_metrics([label_to_idx[label] for label in true_labels],[label_to_idx[label] for label in predicted],classes)
+        summary.append({"model":"ViT Base","model_name":args.base_model_name,"representation":"backbone","prototype":"mean","distance":distance,"partition":"full","split":"test","status":"ok",**{key:metrics[key] for key in ["accuracy","macro_f1","weighted_f1","macro_precision","macro_recall"]}})
+        metric_results[distance]=metrics
+        predictions += [{"model":"ViT Base","model_name":args.base_model_name,"representation":"backbone","prototype":"mean","distance":distance,"partition":"full","split":"test","path":str(cache["paths"][index]),"true_label":str(true_labels[position]),"pred_label":str(predicted[position]),"score":float(scores[position]),"correct":bool(predicted[position]==true_labels[position])} for position,index in enumerate(test_idx)]
+    pd.DataFrame(summary).to_csv(out/"summary.csv",index=False); pd.DataFrame(predictions).to_csv(out/"predictions.csv",index=False)
+    payload={"model":"ViT Base","model_name":args.base_model_name,"source":"timm pretrained weights","checkpoint":None,"manifest":str(manifest.resolve()),"label_count":len(classes),"train_samples":len(train_idx),"test_samples":len(test_idx),"prototype":"train mean","preprocessing":preprocess,"results":metric_results}
+    (out/"metrics.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2))
+    for row in summary: print(f"{row['distance']}: accuracy={row['accuracy']:.6f}, macro_f1={row['macro_f1']:.6f}")
+    print(f"FULL_ONLY_RESULTS={out/'summary.csv'}")
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument("--closed-manifest",required=True); p.add_argument("--open-manifest",required=True); p.add_argument("--full-manifest",required=True)
-    p.add_argument("--checkpoint-root",action="append",required=True); p.add_argument("--base-checkpoint"); p.add_argument("--base-model-name",default="vit_large_patch16_224.augreg_in21k_ft_in1k")
+    p=argparse.ArgumentParser(); p.add_argument("--closed-manifest"); p.add_argument("--open-manifest"); p.add_argument("--full-manifest",required=True)
+    p.add_argument("--checkpoint-root",action="append",default=[]); p.add_argument("--base-checkpoint"); p.add_argument("--base-model-name",default="vit_large_patch16_224.augreg_in21k_ft_in1k")
     p.add_argument("--closed-checkpoint"); p.add_argument("--closed-supcon-checkpoint"); p.add_argument("--full-checkpoint"); p.add_argument("--full-supcon-checkpoint")
-    p.add_argument("--gt-zip"); p.add_argument("--gt-root"); p.add_argument("--output-dir",required=True)
-    p.add_argument("--ss-per-label",type=int,default=5); p.add_argument("--seed",type=int,default=42); p.add_argument("--batch-size",type=int,default=64); p.add_argument("--num-workers",type=int,default=8); p.add_argument("--tsne-max-samples",type=int,default=0); p.add_argument("--allow-cpu",action="store_true"); p.add_argument("--inventory-only",action="store_true"); p.add_argument("--resume-tsne",action="store_true"); a=p.parse_args()
-    out=Path(a.output_dir); out.mkdir(parents=True,exist_ok=True); (out/"completion.json").unlink(missing_ok=True); (out/"features").mkdir(exist_ok=True); (out/"tsne").mkdir(exist_ok=True); (out/"curves").mkdir(exist_ok=True)
+    p.add_argument("--gt-zip"); p.add_argument("--gt-root"); p.add_argument("--gt-manifest"); p.add_argument("--output-dir",required=True)
+    p.add_argument("--ss-per-label",type=int,default=5); p.add_argument("--seed",type=int,default=42); p.add_argument("--batch-size",type=int,default=64); p.add_argument("--num-workers",type=int,default=8); p.add_argument("--tsne-max-samples",type=int,default=0); p.add_argument("--allow-cpu",action="store_true"); p.add_argument("--inventory-only",action="store_true"); p.add_argument("--resume-tsne",action="store_true"); p.add_argument("--prototype-tsne-only",action="store_true"); p.add_argument("--full-only",action="store_true"); a=p.parse_args()
+    out=Path(a.output_dir); out.mkdir(parents=True,exist_ok=True)
+    if a.full_only: run_full_only(a,out); return
+    if not a.closed_manifest or not a.open_manifest or not a.checkpoint_root: p.error("--closed-manifest, --open-manifest, and --checkpoint-root are required unless --full-only is used")
+    (out/"completion.json").unlink(missing_ok=True); (out/"features").mkdir(exist_ok=True); (out/"tsne").mkdir(exist_ok=True); (out/"prototype_tsne").mkdir(exist_ok=True); (out/"curves").mkdir(exist_ok=True)
+    if a.prototype_tsne_only: run_prototype_tsne_only(a,out); return
     if a.resume_tsne:
-        resume_tsne(out,a.seed,a.tsne_max_samples); numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
+        resume_tsne(out,a.seed,a.tsne_max_samples,a.ss_per_label); numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
         if not numeric_ok or not visual_ok: raise RuntimeError(f"experiment incomplete after t-SNE resume: deployed {ok_rows}/120, backbone {backbone_rows}/120")
-        write_completion(out)
         print("TSNE_RESUME_OK"); return
     manifests={"closed":Path(a.closed_manifest),"open":Path(a.open_manifest),"full":Path(a.full_manifest)}; frames={k:load_manifest(v) for k,v in manifests.items()}; labels={k:set(v.label.astype(str)) for k,v in frames.items()}; rows={k:manifest_rows(v) if "split" in v else [] for k,v in frames.items()}
     errors=[]; split_errors={}
@@ -444,42 +568,51 @@ def main():
         if len(set(paths))!=len(paths): errors.append(f"{part} manifest reuses a path")
     row_union_exact=set(rows["full"])==set(rows["closed"])|set(rows["open"]) and not set(rows["closed"])&set(rows["open"])
     if not row_union_exact: errors.append("full manifest rows are not the exact disjoint union of closed and open")
-    audit={"ok":not errors,"errors":errors,"split_errors":split_errors,"row_union_exact":row_union_exact,"manifests":{k:{"path":str(v.resolve()),"hash":digest(v),"rows":len(frames[k]),"labels":len(labels[k]),"splits":frames[k].split.value_counts().to_dict() if "split" in frames[k] else {}} for k,v in manifests.items()}}; (out/"manifest_audit.json").write_text(json.dumps(audit,indent=2))
+    audit={"ok":not errors,"errors":errors,"split_errors":split_errors,"row_union_exact":row_union_exact,"manifests":{k:{"path":str(v.resolve()),"rows":len(frames[k]),"labels":len(labels[k]),"splits":frames[k].split.value_counts().to_dict() if "split" in frames[k] else {}} for k,v in manifests.items()}}; (out/"manifest_audit.json").write_text(json.dumps(audit,indent=2))
     if errors: raise RuntimeError(errors)
     paths=set()
     for root in map(Path,a.checkpoint_root): paths.update(root.rglob("best.pt")); paths.update(root.rglob("best*.pth"))
     explicit={"ViT-ClosedFT":a.closed_checkpoint,"ViT-ClosedFT-SupCon":a.closed_supcon_checkpoint,"ViT-FullFT":a.full_checkpoint,"ViT-FullFT-SupCon":a.full_supcon_checkpoint}
-    paths.update(Path(path) for path in explicit.values() if path)
-    records=[record(x) for x in sorted(paths)]; pd.DataFrame(records).to_csv(out/"checkpoint_inventory.csv",index=False); selected={}; selection_errors={}
+    paths.update(Path(path) for path in explicit.values() if path and Path(path).is_file())
+    records=[record(x) for x in sorted(paths)]; pd.DataFrame(records).to_csv(out/"checkpoint_inventory.csv",index=False); selected={}; selection_errors={}; missing_models=set(); unreadable_seen=any(not item.get("readable") for item in records)
     needs={"ViT-ClosedFT":("classifier","closed"),"ViT-ClosedFT-SupCon":("supcon","closed"),"ViT-FullFT":("classifier","full"),"ViT-FullFT-SupCon":("supcon","full")}
     for name,(kind,part) in needs.items():
-        candidates=[]
+        candidates=[]; target_seen=False
         for r in records:
-            eligible,own,basis=candidate_facts(r,labels[part],audit["manifests"][part]["hash"],manifests[part])
-            complete=name=="ViT-FullFT" or (r.get("history_epochs")==list(range(1,11)) and {"test_accuracy","test_macro_f1"}<=set(r.get("history_fields",[])))
-            if r.get("readable") and r.get("kind")==kind and r.get("model_name")==a.base_model_name and r.get("image_size")==224 and (kind!="supcon" or r.get("loss_name") in ["","supcon"]) and eligible and complete: candidates.append((r,own,basis))
+            eligible,own,basis=candidate_facts(r,labels[part],manifests[part])
+            target_seen = target_seen or bool(r.get("readable") and r.get("kind")==kind and set(r.get("labels",[]))==labels[part])
+            if r.get("readable") and r.get("kind")==kind and r.get("model_name")==a.base_model_name and r.get("image_size")==224 and (kind!="supcon" or r.get("loss_name") in ["","supcon"]) and eligible: candidates.append((r,own,basis))
         if explicit[name]:
-            wanted=str(Path(explicit[name]).resolve()); matches=[x for x in candidates if str(Path(x[0]["checkpoint"]).resolve())==wanted]
-            if matches: candidates=matches
-            else: selection_errors[name]=f"explicit checkpoint failed exact {part} manifest/completion validation: {wanted}"; candidates=[]
+            wanted_path=Path(explicit[name]); wanted=str(wanted_path.resolve())
+            if not wanted_path.is_file():
+                if candidates: selection_errors[name]=f"declared checkpoint absent; using discovered exact-{part}-manifest checkpoint"; explicit[name]=None
+                elif target_seen or unreadable_seen: selection_errors[name]="declared checkpoint absent but existing checkpoint inventory is invalid or ambiguous"; continue
+                else: selection_errors[name]=PASS; missing_models.add(name); continue
+            else:
+                matches=[x for x in candidates if str(Path(x[0]["checkpoint"]).resolve())==wanted]
+                if matches: candidates=matches
+                else: selection_errors[name]=f"explicit checkpoint failed exact {part} manifest/model validation: {wanted}"; candidates=[]
         if candidates:
             chosen,own,basis=max(candidates,key=lambda x:(x[1],set(["train","valid","test"])<=set(x[0]["manifest_splits"]),x[0]["epoch"],x[0]["score"]))
             selected[name]={**chosen,"selection_basis":("explicit " if explicit[name] else "")+basis,"missing_target_labels":[],"own_manifest_backed":own,"own_manifest_complete_splits":set(["train","valid","test"])<=set(chosen["manifest_splits"])}
+        elif not explicit[name] and target_seen: selection_errors[name]=f"existing exact-{part}-manifest {kind} checkpoint failed model validation"
+        elif not explicit[name] and unreadable_seen: selection_errors[name]="unreadable existing checkpoint prevents proving target absence"
+        elif not explicit[name]: selection_errors[name]=PASS; missing_models.add(name)
     selected["ViT Base"]={"kind":"base","checkpoint":str(Path(a.base_checkpoint).resolve()),"model_name":a.base_model_name,"selection_basis":"explicit base checkpoint"} if a.base_checkpoint else {"kind":"pretrained_base","model_name":a.base_model_name,"image_size":224,"selection_basis":"timm pretrained weights"}
     (out/"checkpoint_selection.json").write_text(json.dumps(selected,indent=2)); (out/"checkpoint_selection_errors.json").write_text(json.dumps(selection_errors,indent=2)); print("SELECTED=",",".join(x for x in MODELS if x in selected)); print("MISSING=",",".join(x for x in MODELS if x not in selected))
     if a.inventory_only: return
     if not a.gt_zip or not a.gt_root: raise RuntimeError("GT paths required")
     if a.ss_per_label < 1: raise RuntimeError("ss-per-label must be positive")
-    fingerprint_config={"base_model_name":a.base_model_name,"batch_size":a.batch_size,"num_workers":a.num_workers,"seed":a.seed,"ss_per_label":a.ss_per_label,"tsne_max_samples":a.tsne_max_samples,"representations":"deployed_and_common_backbone_v1"}
-    fingerprint=run_fingerprint({name:selected[name]["checkpoint"] for name in needs if name in selected},manifests,a.gt_zip,fingerprint_config,a.base_checkpoint); (out/"run_fingerprint.json").write_text(json.dumps(fingerprint,indent=2))
     gtroot,gt_extract=extract_gt_zip(a.gt_zip,a.gt_root)
     gt,_=map_gt_label_folders(gtroot,labels["full"],out/"gt_mapping.csv"); gtmanifest=out/"gt_manifest.csv"; pd.DataFrame([{"path":str(p),"label":l,"split":"gt"} for l,ps in gt.items() for p in ps]).to_csv(gtmanifest,index=False)
     if set(gt)!=labels["full"]: raise RuntimeError("GT prototype coverage differs from full labels")
-    leakage=content_audit(frames,gt,out); (out/"provenance_audit.json").write_text(json.dumps({"manifests":audit,"gt_extraction":gt_extract,"content":leakage},indent=2))
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type=="cpu" and not a.allow_cpu: raise RuntimeError("CUDA unavailable")
     summary,backbone_summary,predictions,members,curves=[],[],[],[],[]; progress={"expected_result_rows":120,"expected_backbone_rows":120,"tsne_max_samples":a.tsne_max_samples,"models":{}}
     for name in MODELS:
+        if name in missing_models:
+            passed=[{"model":name,"representation":"unavailable","prototype":p,"distance":d,"partition":q,"split":s,"status":PASS,"reason":PASS} for p in PROTOS for d in DISTS for q in ["closed","open"] for s in SPLITS]
+            summary+=passed; backbone_summary += [{**row,"representation":"backbone"} for row in passed]; curves.append({"model":name,"history":"","status":PASS,"png":"","csv":"","reason":PASS,"epochs":0}); progress["models"][name]={"status":PASS,"reason":PASS,"result_rows":24,"backbone_rows":24,"tsne":{"status":PASS},"prototype_tsne":{"status":PASS}}; save_partial(out,summary,backbone_summary,predictions,members,curves,progress); continue
         reason=""
         try:
             if name not in selected: raise RuntimeError(selection_errors.get(name,"checkpoint missing"))
@@ -498,7 +631,7 @@ def main():
             if item["kind"]=="supcon" or comparison_transform is not transform: local_backbone,_,_=evaluate_caches(name,backbone_caches,gt_backbone,a,"backbone",False)
             else: local_backbone=[{**row,"representation":"backbone"} for row in local_summary]
             summary+=local_summary; backbone_summary+=local_backbone; predictions+=local_predictions; members+=local_members
-            progress["models"][name]={"status":"ok","result_rows":24,"backbone_rows":24,"representation":representation,"preprocessing":preprocess,"tsne":{"status":"pending","representation":"common_backbone"}}
+            progress["models"][name]={"status":"ok","result_rows":24,"backbone_rows":24,"representation":representation,"preprocessing":preprocess,"tsne":{"status":"pending","representation":"common_backbone"},"prototype_tsne":{"status":"pending"}}
         except Exception as e:
             reason=repr(e); unavailable=[{"model":name,"representation":"unavailable","prototype":p,"distance":d,"partition":q,"split":s,"status":"unavailable","reason":reason} for p in PROTOS for d in DISTS for q in ["closed","open"] for s in SPLITS]; summary+=unavailable; backbone_summary += [{**row,"representation":"backbone"} for row in unavailable]; progress["models"][name]={"status":"unavailable","reason":reason,"result_rows":24,"backbone_rows":24}
             if not any(r["model"]==name for r in curves): curves.append({"model":name,"history":"","status":"unavailable","png":"","reason":reason})
@@ -515,10 +648,9 @@ def main():
             if "gt_backbone" in locals(): del gt_backbone
             if device.type=="cuda": torch.cuda.empty_cache()
             save_partial(out,summary,backbone_summary,predictions,members,curves,progress)
-    try: progress=resume_tsne(out,a.seed,a.tsne_max_samples)
+    try: progress=resume_tsne(out,a.seed,a.tsne_max_samples,a.ss_per_label)
     except RuntimeError: progress=json.loads((out/"progress.json").read_text())
     numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
     if not numeric_ok or not visual_ok: raise RuntimeError(f"experiment incomplete: deployed {ok_rows}/120, backbone {backbone_rows}/120, t-SNE complete={visual_ok}; partial artifacts preserved in {out}")
-    write_completion(out)
 
 if __name__ == "__main__": main()

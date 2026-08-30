@@ -1,0 +1,89 @@
+[33mcommit 77d38d0221d2074a4f191d004caebcc4d510b5a5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mcodex/metric-diagnosis-sync[m[33m)[m
+Author: sj0618 <ktx0618@naver.com>
+Date:   Thu Aug 27 14:20:44 2026 +0900
+
+    Set HF offline mode after prefetch, not before
+    
+    ENV HF_HUB_OFFLINE=1 을 Dockerfile 상단에 두었더니 빌드 중에도 적용돼
+    prefetch_weights.py 가 백본을 하나도 받지 못하고 빌드가 실패했다. prefetch
+    RUN 뒤로 옮겼다. 최종 이미지에는 그대로 남으므로 런타임 오프라인 보호는
+    동일하다.
+    
+    검증: linux/amd64 빌드 성공, 백본 6개 prefetch. --network none 으로 띄워
+    6/6 이 네트워크 없이 로드되고 docker/smoke_test.sh 5단계가 전부 통과했다.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit 1a7945f023099cb304046c55795f6a47b612aacc[m
+Author: sj0618 <ktx0618@naver.com>
+Date:   Mon Aug 24 21:02:38 2026 +0900
+
+    Add ViT training that injects VLM features as patch tokens
+    
+    기존 train_vlm_fusion_5feature.py 는 late fusion 이다. 이미지 로짓과 feature
+    로짓을 각각 내서 더하므로, feature 가 이미지의 어느 부분과 관련되는지
+    transformer 가 볼 기회가 없다. 여기서는 feature 를 패치 토큰으로 붙여 첫
+    블록부터 이미지 패치와 상호 attention 이 걸리게 한다.
+    
+        [CLS] [이미지 패치 1..196] [feature 토큰 1..21]
+    
+    - src/patch_feature.py: feature 로딩, Dataset, 모델.
+      aihub_all_13feature_21reason_vlm.jsonl 을 열어보니 파일명과 달리
+      feature_vector 는 21개 그룹 x 3성분(value/assessable_mask/confidence) =
+      63차원이었다. feature 하나를 토큰 하나로 잡고 3성분을 그 토큰의 입력으로
+      준다. feature 마다 성질이 다르므로 공유 Linear 대신 feature 별 독립
+      projection((F,C,D) weight)에 "몇 번 feature 인지" 알려주는 type embedding 을
+      더했다. 주입은 patch_drop 뒤 blocks 앞에서 한다. patch_drop 앞에 넣으면
+      feature 토큰이 무작위로 버려진다.
+    - pipelines/train/train_vit_patch_feature.py, pipelines/eval/... : 학습·평가
+      CLI. tools/run.py 에 patchtrain/patcheval, 메뉴 8/11, ./run.sh patch 로 연결.
+    - VLM 을 전체 데이터에 돌리지 못한 경우를 전제로 한다. feature 가 없는
+      이미지는 학습되는 null 토큰을 받고, split 별 커버리지를 학습 전에 출력한다.
+      train 커버리지가 0 이면 시작하지 않는다. manifest 와 jsonl 의 경로 표기가
+      달라 전부 null 토큰으로 조용히 학습되는 사고를 막기 위해서다.
+    - 대조군 4종을 --feature-mode 로 둔다. feature 를 넣어 좋아졌다는 주장은
+      대조군 없이 성립하지 않는다. 토큰이 21개 늘면 파라미터도 늘기 때문이다.
+      patch(본 실험) / none(이미지만) / zero(토큰만, 입력 0 -> 파라미터 효과 분리)
+      / shuffle(남의 feature -> 내용을 쓰는지 검증).
+    - 평가는 학습 때와 다른 주입 방식을 골라 같은 가중치로 ablation 할 수 있고,
+      feature 가 붙은 샘플과 안 붙은 샘플의 정확도를 나눠 출력한다.
+    
+    검증: 이미지를 순수 노이즈로 만들고 feature 에만 라벨 신호를 넣은 합성
+    데이터(4 class, chance 0.25)로 40 epoch 동일 조건 실행 —
+    patch 1.0000 / none 0.3125 / shuffle 0.2083 / zero 0.2917.
+    patch >> shuffle 이므로 feature 의 내용이 실제로 쓰인다.
+    
+    8 epoch 에서는 네 모드가 전부 0.2500 이라 구분되지 않았다. 버그가 아니라
+    수렴 부족이다(배선 프로브는 통과: feature 변경 시 출력 변화, tokenizer 로
+    gradient 유입, 토큰 197->218). 실전에서 같은 함정에 빠지지 않도록 가이드에
+    epoch 별 수치를 적어 두었다.
+    
+    평가 CLI 의 ablation 전환과 부분 커버리지(test 20/32)도 실행해 확인했다.
+    기존 테스트 26 통과 / 2 실패이며 실패 2건은 이 작업 이전부터 있던 것이다.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+[33mcommit 94bb6e0bb626b02794d6ba4cb1dfc2d262f32ec1[m[33m ([m[1;32mmain[m[33m)[m
+Author: sj0618 <ktx0618@naver.com>
+Date:   Sun Aug 23 18:04:52 2026 +0900
+
+    Ship the experiment guide inside the image
+    
+    폐쇄망 제약을 잘못 이해하고 있었다. 복붙이 막히는 것은 망 경계를 넘을 때뿐이고
+    폐쇄망 안에서는 정상적으로 된다. 그러면 지켜야 할 원칙은 "타이핑을 줄인다"가
+    아니라 "필요한 텍스트가 폐쇄망 안에 파일로 존재하게 만든다"가 된다. 안에 있기만
+    하면 거기서 복사해 쓸 수 있으므로 긴 --flag 명령도 문제가 아니다.
+    
+    - docs/usage/EXPERIMENT_GUIDE.md 를 추가했다. 반입부터 데이터 변환, 학습, 평가,
+      통제변인 실험(모델/데이터/seed 를 하나씩 바꾸는 법), 결과 확인까지 실제 실행
+      순서대로 적었고 sweep 용 for 문과 집계 명령을 그대로 복사할 수 있게 넣었다.
+    - .dockerignore 화이트리스트에 docs 와 md 를 추가했다. 이게 빠져 있어서 정작
+      폐쇄망 안에서 복사할 원본이 이미지에 들어가지 않고 있었다. docs/reports 는
+      3.2GB(모델 가중치·PNG)라 계속 제외하고 md 문서만 넣는다. build context 는
+      0.96MB 로 유지된다(문서 155KB 추가).
+    - run.sh 헤더와 가이드에 적혀 있던 틀린 전제("복붙이 안 되는 환경")를 고쳤다.
+    
+    검증: .dockerignore 를 해석해 build context 를 계산했고 가이드 포함 /
+    docs/reports 제외를 확인했다. bash -n run.sh 통과.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>

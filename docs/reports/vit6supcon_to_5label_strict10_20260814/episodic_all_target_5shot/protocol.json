@@ -1,0 +1,34 @@
+{
+  "embedding_cache": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit6supcon_to_5label_strict10_20260814/strict10/backbone_seed42/embedding_cache.npz",
+  "labels": [
+    "bego",
+    "bilim",
+    "implance",
+    "iti",
+    "nucleoss"
+  ],
+  "pooled_target_images": 152,
+  "support_shots_per_class": 5,
+  "support_total": 25,
+  "query_total": 127,
+  "query_counts": {
+    "bego": 30,
+    "bilim": 25,
+    "implance": 29,
+    "iti": 33,
+    "nucleoss": 10
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    42
+  ],
+  "prototype": "mean of the same 5 support embeddings",
+  "covariance": "same 5 support embeddings per class only",
+  "target_validation_used": false,
+  "exact_duplicate_images": 0,
+  "primary_method": "pooled_ledoit_wolf"
+}

@@ -6,7 +6,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, List, Tuple
 
 import numpy as np
 import pandas as pd
@@ -226,15 +226,105 @@ def prototype_predict(train_z: np.ndarray, train_y: np.ndarray, query_z: np.ndar
     return pred, conf
 
 
-def evaluate_split(model, manifest: Path, class_to_idx: Dict[str, int], image_size: int, batch_size: int, num_workers: int, device: torch.device, split: str, out_dir: Path, use_projection: bool):
+def save_projection_distribution(embedding_cache: dict, class_to_idx: Dict[str, int], out_dir: Path) -> tuple[Path, Path, Path]:
+    import plotly.express as px
+    import plotly.graph_objects as go
+    from umap import UMAP
+    from pipelines.visualize.visualize_metric_tsne import compute_tsne, save_plot
+
+    class_names = [label for label, _ in sorted(class_to_idx.items(), key=lambda item: item[1])]
+    if set(class_names) != set(CANONICAL_3LABELS.values()):
+        raise ValueError(f"Projection plot requires Bego, Bicon, and ITI; got {class_names}")
+    features = np.concatenate([embedding_cache[split][0] for split in ["train", "valid", "test"]])
+    targets = np.concatenate([embedding_cache[split][1] for split in ["train", "valid", "test"]])
+    paths = sum((embedding_cache[split][2] for split in ["train", "valid", "test"]), [])
+    splits = np.concatenate([
+        np.full(len(embedding_cache[split][1]), split, dtype=object)
+        for split in ["train", "valid", "test"]
+    ])
+    coordinates = compute_tsne(features, perplexity=30.0, pca_dim=50, seed=42)
+    frame = pd.DataFrame({
+        "path": paths,
+        "label": [class_names[int(target)] for target in targets],
+        "target": targets,
+        "split": splits,
+        "tsne_x": coordinates[:, 0],
+        "tsne_y": coordinates[:, 1],
+    })
+    plot_dir = out_dir / "embeddings"
+    plot_dir.mkdir(parents=True, exist_ok=True)
+    frame.to_csv(plot_dir / "projection_tsne.csv", index=False)
+    np.savez_compressed(
+        plot_dir / "projection_embeddings.npz",
+        features=features,
+        targets=targets,
+        splits=splits,
+        paths=np.asarray(paths, dtype=object),
+    )
+
+    output = plot_dir / "projection_tsne.png"
+    save_plot(frame, class_names, output, "7→3 metric projection distribution (t-SNE)")
+
+    coordinates_3d = UMAP(n_components=3, random_state=42).fit_transform(features)
+    frame_3d = frame[["path", "label", "target", "split"]].copy()
+    frame_3d[["umap_x", "umap_y", "umap_z"]] = coordinates_3d
+    frame_3d.to_csv(plot_dir / "projection_umap_3d.csv", index=False)
+    figure_3d = px.scatter_3d(
+        frame_3d,
+        x="umap_x",
+        y="umap_y",
+        z="umap_z",
+        color="label",
+        symbol="split",
+        hover_data=["path", "label", "split"],
+        color_discrete_map={"Bego": "#1f77b4", "Bicon": "#ff7f0e", "ITI": "#2ca02c"},
+        category_orders={"label": class_names, "split": ["train", "valid", "test"]},
+        title="7→3 metric projection distribution (3D UMAP)",
+    )
+    figure_3d.update_traces(marker={"size": 3, "opacity": 0.75})
+    html = plot_dir / "projection_umap_3d.html"
+    figure_3d.write_html(html, include_plotlyjs=True, full_html=True)
+
+    order = np.lexsort((splits.astype(str), targets))
+    ordered = frame.iloc[order].reset_index(drop=True)
+    ordered.insert(0, "heatmap_row", np.arange(len(ordered)))
+    ordered[["heatmap_row", "path", "label", "split"]].to_csv(plot_dir / "projection_heatmap_rows.csv", index=False)
+    centers, offset = [], 0
+    for label in class_names:
+        count = int((ordered["label"] == label).sum())
+        centers.append(offset + (count - 1) / 2)
+        offset += count
+    heatmap = go.Figure(go.Heatmap(
+        z=features[order],
+        x=[f"d{i + 1}" for i in range(features.shape[1])],
+        y=np.arange(len(features)),
+        colorscale="RdBu",
+        zmid=0,
+        colorbar={"title": "value"},
+        hovertemplate="row=%{y}<br>dimension=%{x}<br>value=%{z:.5f}<extra></extra>",
+    ))
+    heatmap.update_layout(
+        title=f"7→3 metric raw projection ({features.shape[1]} dimensions)",
+        xaxis_title="projection dimension",
+        yaxis={"title": "samples grouped by label", "tickmode": "array", "tickvals": centers, "ticktext": class_names, "autorange": "reversed"},
+        height=900,
+    )
+    heatmap_html = plot_dir / f"projection_{features.shape[1]}d_heatmap.html"
+    heatmap.write_html(heatmap_html, include_plotlyjs=True, full_html=True)
+    return output, html, heatmap_html
+
+
+def evaluate_split(model, manifest: Path, class_to_idx: Dict[str, int], image_size: int, batch_size: int, num_workers: int, device: torch.device, split: str, out_dir: Path, use_projection: bool, embedding_cache: dict | None = None):
     idx_to_class = {i: c for c, i in class_to_idx.items()}
     class_names = [idx_to_class[i] for i in range(len(idx_to_class))]
-    train_ds = ImagePathDataset(manifest, "train", class_to_idx, image_size)
-    query_ds = ImagePathDataset(manifest, split, class_to_idx, image_size)
-    train_loader = torch.utils.data.DataLoader(train_ds, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=torch.cuda.is_available())
-    query_loader = torch.utils.data.DataLoader(query_ds, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=torch.cuda.is_available())
-    train_z, train_y, _ = extract_embeddings(model, train_loader, device, use_projection)
-    query_z, query_y, paths = extract_embeddings(model, query_loader, device, use_projection)
+    embedding_cache = embedding_cache if embedding_cache is not None else {}
+    for source_split in ["train", split]:
+        if source_split not in embedding_cache:
+            dataset = ImagePathDataset(manifest, source_split, class_to_idx, image_size)
+            loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False, num_workers=num_workers, pin_memory=torch.cuda.is_available())
+            embedding_cache[source_split] = extract_embeddings(model, loader, device, use_projection)
+    train_z, train_y, _ = embedding_cache["train"]
+    query_z, query_y, paths = embedding_cache[split]
     pred, conf = prototype_predict(train_z, train_y, query_z)
     metrics = compute_metrics(query_y, pred, class_names)
     save_metrics_json(out_dir / "metrics" / f"{split}_prototype_metrics.json", metrics)
@@ -271,12 +361,20 @@ def main() -> None:
     parser.add_argument("--allow-cpu", action="store_true")
     args = parser.parse_args()
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    if device.type != "cuda" and not args.allow_cpu:
-        raise RuntimeError("CUDA is not available. Pass --allow-cpu only for debugging.")
+    device = torch.device(
+        "cuda" if torch.cuda.is_available()
+        else "mps" if torch.backends.mps.is_available()
+        else "cpu"
+    )
+    if device.type == "cpu" and not args.allow_cpu:
+        raise RuntimeError("CUDA/MPS is not available. Pass --allow-cpu only for debugging.")
 
     manifest = Path(args.manifest)
-    df = build_3label_manifest(Path(args.data_root), manifest)
+    df = (
+        load_manifest(manifest, split=None)
+        if manifest.is_file()
+        else build_3label_manifest(Path(args.data_root), manifest)
+    )
     class_to_idx, _ = label_mapping(df)
     run_dir = Path(args.output_root) / f"{datetime.now().strftime('%Y%m%d_%H%M%S')}_{args.experiment_name}"
     for sub in ["metrics", "confusion_matrices"]:
@@ -296,6 +394,7 @@ def main() -> None:
     (run_dir / "args.json").write_text(json.dumps(metadata, indent=2, ensure_ascii=False), encoding="utf-8")
 
     results = {}
+    embedding_cache = {}
     for split in ["valid", "test"]:
         results[split] = evaluate_split(
             model=model,
@@ -308,7 +407,13 @@ def main() -> None:
             split=split,
             out_dir=run_dir,
             use_projection=bool(metadata["use_projection"]),
+            embedding_cache=embedding_cache,
         )
+    if metadata["use_projection"]:
+        projection_tsne, projection_umap, projection_heatmap = save_projection_distribution(embedding_cache, class_to_idx, run_dir)
+        print(f"PROJECTION_TSNE={projection_tsne}")
+        print(f"PROJECTION_UMAP_3D={projection_umap}")
+        print(f"PROJECTION_HEATMAP={projection_heatmap}")
 
     print(f"RUN_DIR={run_dir}")
     for split, metrics in results.items():

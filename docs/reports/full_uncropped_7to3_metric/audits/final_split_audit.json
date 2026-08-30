@@ -1,0 +1,63 @@
+{
+  "split_method": "group:group_id with dev rows sharing immutable test groups removed",
+  "overlap": {
+    "train-valid": {
+      "group_ids": 0,
+      "paths": 0
+    },
+    "train-test": {
+      "group_ids": 0,
+      "paths": 0
+    },
+    "valid-test": {
+      "group_ids": 0,
+      "paths": 0
+    }
+  },
+  "counts": {
+    "train": {
+      "ADIN": 772,
+      "Bego": 172,
+      "Bicon": 1520,
+      "DIONAVI": 11,
+      "Dentium": 365,
+      "ITI": 147,
+      "MIS": 105,
+      "NORIS": 574,
+      "nobel": 8,
+      "osstem": 513
+    },
+    "valid": {
+      "ADIN": 196,
+      "Bego": 56,
+      "Bicon": 375,
+      "DIONAVI": 4,
+      "Dentium": 95,
+      "ITI": 29,
+      "MIS": 27,
+      "NORIS": 139,
+      "nobel": 3,
+      "osstem": 129
+    },
+    "test": {
+      "ADIN": 110,
+      "Bego": 14,
+      "Bicon": 95,
+      "DIONAVI": 3,
+      "Dentium": 59,
+      "ITI": 7,
+      "MIS": 14,
+      "NORIS": 67,
+      "nobel": 1,
+      "osstem": 85
+    }
+  },
+  "filtered_counts": {
+    "train_7": 2348,
+    "valid_7": 593,
+    "test_7": 339,
+    "support_3": 1839,
+    "gt_3": 460,
+    "test_3": 116
+  }
+}

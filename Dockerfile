@@ -1,22 +1,22 @@
 # =====================================================================
-# implantsj 실험 이미지 (폐쇄망 GPU 서버용)
+# implantsj 실험 이미지: 폐쇄망 GPU 서버용
 # ---------------------------------------------------------------------
 # 반입 절차상 이 이미지는 "인터넷은 되지만 데이터는 없는" 바깥에서 빌드되고,
-# "데이터는 있지만 인터넷은 없는" 폐쇄망 안에서 실행된다. 따라서 런타임에
-# 네트워크로 가져와야 하는 것이 하나도 남아 있으면 안 된다:
-#   - pip 패키지: 빌드 타임에 설치
-#   - timm pretrained weight: 빌드 타임에 prefetch (docker/prefetch_weights.py)
-#   - 데이터셋/산출물: 이미지에 넣지 않고 런타임 volume mount
+# "데이터는 있지만 인터넷은 없는" 폐쇄망 안에서 실행한다. 따라서 런타임에
+# 네트워크로 내려받아야 하는 파일이 남지 않도록 준비한다.
+#   - pip 패키지: 빌드할 때 설치
+#   - timm pretrained weight: 빌드할 때 미리 받기 (docker/prefetch_weights.py)
+#   - 데이터셋과 산출물: 이미지에 넣지 않고 실행할 때 volume mount
 #
-# 빌드 (인터넷 되는 곳):
+# 인터넷이 되는 곳에서 빌드:
 #   docker build -t implantsj:latest .
 #   docker save implantsj:latest | gzip > implantsj.tar.gz
-# 반입 후 (폐쇄망):
+# 폐쇄망으로 반입한 뒤:
 #   gunzip -c implantsj.tar.gz | docker load
 #   ./docker/run_container.sh
 # =====================================================================
 
-# CUDA 12.1 + cuDNN 런타임. torch cu121 휠과 맞춘다.
+# CUDA 12.1과 cuDNN 런타임을 사용한다. torch cu121 wheel과 맞춘다.
 FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -24,8 +24,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
     MPLBACKEND=Agg \
     DEBIAN_FRONTEND=noninteractive \
-    # 아래 두 경로가 pretrained weight 캐시 위치다. prefetch 가 여기에 채우고
-    # 런타임에는 여기서만 읽는다.
+    # 아래 두 경로에 pretrained weight를 저장한다. prefetch 단계에서 채우고
+    # 실행할 때는 이 경로만 읽는다.
     TORCH_HOME=/opt/torch \
     HF_HOME=/opt/hf \
     PYTHONPATH=/workspace/implantsj
@@ -41,36 +41,36 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /workspace/implantsj
 
-# --- 1) torch 먼저 (CUDA 휠은 별도 인덱스라 레이어를 분리해 캐시를 살린다) ---
+# --- 1) torch 설치. CUDA wheel은 별도 index를 쓰므로 레이어를 분리한다. ---
 RUN python -m pip install --upgrade pip setuptools wheel \
  && python -m pip install \
       --index-url https://download.pytorch.org/whl/cu121 \
       torch==2.4.1 torchvision==0.19.1
 
-# --- 2) 나머지 의존성 ---
+# --- 2) 나머지 의존성 설치 ---
 COPY requirements.txt ./
 RUN python -m pip install -r requirements.txt
 
-# --- 3) pretrained weight 를 이미지에 굽는다 (인터넷 있을 때만 가능) ---
+# --- 3) pretrained weight를 이미지에 저장한다. 인터넷이 필요하다. ---
 COPY configs/ ./configs/
 COPY docker/prefetch_weights.py ./docker/prefetch_weights.py
 RUN python docker/prefetch_weights.py
 
-# 오프라인 고정은 prefetch 가 끝난 *뒤에* 건다. 위에 두면 빌드 중에도 적용돼
-# prefetch 자체가 다운로드를 못 한다. 런타임에는 이 값이 남아 폐쇄망에서
-# 실수로 네트워크를 두드리는 것을 막는다.
+# 오프라인 설정은 prefetch가 끝난 뒤에 적용한다. 먼저 설정하면 빌드 중에도
+# 다운로드가 막힌다. 실행할 때 이 값이 남아 있어 폐쇄망에서 네트워크를
+# 사용하지 않는다.
 ENV HF_HUB_OFFLINE=1 \
     TRANSFORMERS_OFFLINE=1
 
-# --- 4) 실험 코드 (가장 자주 바뀌므로 마지막) ---
+# --- 4) 실험 코드. 자주 바뀌므로 마지막에 복사한다. ---
 COPY . .
 RUN chmod +x run.sh docker/*.sh 2>/dev/null || true
 
-# 데이터/산출물 mount 지점. 이미지에는 비어 있고 런타임에 채워진다.
+# 데이터와 산출물을 mount할 위치다. 이미지에는 내용이 없고 실행할 때 연결한다.
 VOLUME ["/workspace/data", "/workspace/outputs"]
 
-# tini 가 PID 1 을 잡아 Ctrl-C 와 좀비 프로세스를 정리한다.
-# (긴 학습을 중단할 때 컨테이너가 안 죽는 문제를 막는다)
+# tini가 PID 1을 맡아 Ctrl-C와 좀비 프로세스를 처리한다.
+# 긴 학습을 중단해도 컨테이너가 남지 않게 한다.
 ENTRYPOINT ["/usr/bin/tini", "--"]
-# 인자 없이 실행하면 대화형 실험 메뉴가 뜬다.
+# 인자 없이 실행하면 대화형 실험 메뉴를 띄운다.
 CMD ["./run.sh"]

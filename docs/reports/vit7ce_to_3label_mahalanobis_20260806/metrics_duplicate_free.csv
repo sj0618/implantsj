@@ -1,0 +1,5 @@
+split,prototype,distance,n,excluded_exact_duplicates,accuracy,macro_f1,balanced_accuracy
+test_duplicate_free,mean,euclidean,441,5,0.7278911564625851,0.4866287591681547,0.5924446119696779
+test_duplicate_free,mean,manhattan,441,5,0.7301587301587301,0.4884857985294666,0.5933241194454913
+test_duplicate_free,mean,cosine,441,5,0.7301587301587301,0.4875893535404055,0.5933241194454913
+test_duplicate_free,mean,mahalanobis,441,5,0.9501133786848073,0.8418169934640524,0.8770979045385378

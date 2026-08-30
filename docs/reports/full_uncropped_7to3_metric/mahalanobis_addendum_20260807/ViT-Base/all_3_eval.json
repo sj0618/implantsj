@@ -1,0 +1,34 @@
+{
+  "model": {
+    "spec": {
+      "name": "ViT-Base",
+      "adapter": "timm_pretrained",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": null,
+      "checkpoint_format": "auto",
+      "initial_checkpoint": null,
+      "pretrained": true,
+      "training_kind": "none",
+      "train_scope": "all",
+      "embedding_source": "backbone",
+      "input_size": 224,
+      "projection_dim": 128,
+      "projection_hidden_dim": 512,
+      "extra": {}
+    },
+    "checkpoint": {}
+  },
+  "model_name": "ViT-Base",
+  "model_spec_path": null,
+  "manifest_path": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/all_3_eval_local.csv",
+  "device": "mps",
+  "diagnostics": {
+    "samples": 2415,
+    "dimension": 768,
+    "norm_mean": 43.06640625,
+    "norm_std": 3.5446677207946777,
+    "mean_dimension_std": 1.0432626008987427,
+    "near_zero_dimensions": 0,
+    "sampled_mean_pairwise_cosine": 0.5367132425308228
+  }
+}

@@ -1,0 +1,5 @@
+method,split,n,accuracy,macro_f1,balanced_accuracy,excluded_exact_duplicates,class_covariance_weight,logdet_weight
+pooled_ledoit_wolf,test,17,0.7058823529411765,0.6147619047619047,0.6333333333333333,,,
+pooled_ledoit_wolf,test_duplicate_free,17,0.7058823529411765,0.6147619047619047,0.6333333333333333,0.0,,
+rda_0.75_logdet_1,test,17,0.5882352941176471,0.509090909090909,0.55,,0.75,1.0
+rda_0.75_logdet_1,test_duplicate_free,17,0.5882352941176471,0.509090909090909,0.55,0.0,0.75,1.0

@@ -1,12 +1,17 @@
-치과 임플란트 VLM Feature Extraction 실험 정리
-1. 실험 목적
-이번 실험의 목적은 VLM이 임플란트 방사선 ROI 이미지에서 브랜드명을 직접 맞히는 것이 아니라, 임플란트 구조적 특징을 추출할 수 있는지 확인하는 것이다.
-최종적으로는 다음 구조를 사용한다.
+# 치과 임플란트 VLM feature extraction 실험
+
+## 1. 목적
+
+이 실험은 VLM이 임플란트 방사선 ROI 이미지에서 브랜드명을 맞히는 대신, 분류에 도움이 되는 구조적 특징을 추출할 수 있는지 확인한다. 사용할 구조는 다음과 같다.
+
 ViT image feature
 + VLM structural feature
 → implant system classification 보조
-단, VLM feature가 유의미하지 않으면 최종 판단은 ViT-only로 fallback한다.
-***2. 기존 문제점
+
+VLM feature가 충분하지 않으면 ViT-only 결과를 사용한다.
+
+## 2. 기존 방식의 문제
+
 초기에는 VLM에게 아래와 같은 고수준 label을 직접 추출하게 했다.
 connection_type = external / internal / tissue_level_internal / uncertain
 platform_switching = switching / matching / uncertain
@@ -17,14 +22,13 @@ confidence = 0.0
 platform = uncertain
 thread = uncertain
 mean_vlm_confidence = 0.0
-이 경우 JSON 생성은 성공했지만, feature extraction은 실패한 것이다.
-따라서 status=ok는 API 호출 성공만 의미하고, feature 사용 가능 여부와 분리해야 한다.
+이 경우 JSON 생성에는 성공했지만 feature extraction에는 실패했다. `status=ok`는 API 호출 성공만 뜻하므로, feature 사용 가능 여부를 별도 상태로 관리해야 한다.
 api_status = ok
 feature_status = usable / partial_usable / low_confidence / invalid_roi
 usable_for_feature_vector = true / false
-***3. 방향 전환: 분류가 아니라 존재 여부 검사
-VLM에게 “connection type이 무엇인가?”를 묻는 방식은 불안정하다.
-대신 다음처럼 바꾼다.
+## 3. 분류 대신 존재 여부 확인
+
+VLM에게 `connection type이 무엇인가?`라고 묻는 방식은 불안정했다. 질문을 다음처럼 바꾼다.
 특정 구조 feature가 보이는가?
 → present / absent / not_assessable
 상태 정의:
@@ -34,8 +38,10 @@ absent
 관련 부위가 충분히 보이는데 해당 구조가 없음
 not_assessable
 가림, 흐림, crop 문제, 왜곡, 상부 구조물 때문에 판단 불가
-중요한 점은 absent와 not_assessable을 반드시 구분하는 것이다.
-***4. 하위 21개 supporting visual features
+`absent`와 `not_assessable`은 반드시 구분한다.
+
+## 4. Supporting visual feature 21개
+
 아래 21개 feature는 이미지에서 직접 관찰하는 하위 근거 feature다.
 implant_visible
 ROI 안에 임플란트 fixture가 보이는지입니다.
@@ -79,8 +85,9 @@ parallel_body_wall_present
 body 측벽이 거의 평행하게 보이는지입니다.
 apex_boundary_visible
 아래쪽 apex 경계가 보이는지입니다.
-***5. 핵심 13개 core attributes
-프로젝트 기준으로 아래 13개 항목은 반드시 출력해야 하는 핵심 attribute다.
+## 5. Core attribute 13개
+
+아래 13개 항목은 모든 이미지에서 빠짐없이 출력한다.
 Company
 Name
 System
@@ -101,7 +108,8 @@ Apex_Hole
 4. 항목 자체를 누락하지 않는다.
 5. 13개 attribute에는 confidence를 넣지 않는다.
 6. confidence는 하위 21개 supporting feature에서 담당한다.
-***6. 13개 attribute와 21개 feature의 관계
+## 6. Attribute 13개와 supporting feature 21개의 관계
+
 13개 core attributes는 상위 요약값이고, 21개 supporting features는 이를 뒷받침하는 시각적 근거다.
 13개 core attributes = 최종 구조 요약
 21개 supporting features = 근거 feature + confidence
@@ -120,8 +128,9 @@ Body_Type	thread_lines_visible	직접 대응
 Thread_Shape	deep_thread_relief_present, regular_thread_pitch_visible	부분 대응
 Apex_Shape	apex_boundary_visible	apex 보임 여부만 직접 대응
 Apex_Hole	없음	현재 21개 feature에는 직접 없음
-***7. 최종 VLM 출력 구조
-최종 프롬프트는 아래 구조를 사용한다.
+## 7. VLM 출력 구조
+
+프롬프트는 아래 구조를 사용한다.
 {
   "api_status": "ok",
   "core_attributes": {
@@ -168,7 +177,8 @@ Apex_Hole	없음	현재 21개 feature에는 직접 없음
   "usable_for_feature_vector": true,
   "failure_reason": "none / implant_not_visible / all_features_not_assessable / connection_obscured / thread_not_visible / apex_not_visible / low_confidence"
 }
-***8. Feature vector 처리 방식
+## 8. Feature vector 변환
+
 21개 supporting feature는 다음 방식으로 vector화한다.
 present
 → value = 1
@@ -184,10 +194,10 @@ confidence는 별도 값으로 포함한다.
 [value, assessable_mask, confidence]
 21개 feature이므로 기본 vector 차원은 다음과 같다.
 21 × 3 = 63차원
-주의:
-not_assessable을 one-hot feature로 그대로 넣으면 모델이 "판단 불가" 자체를 class signal로 학습할 수 있다.
-따라서 not_assessable은 mask-out하는 것이 더 안전하다.
-***9. 실험 구조
+`not_assessable`을 one-hot feature로 그대로 넣으면 모델이 판단 불가 상태 자체를 class signal로 학습할 수 있다. 이 값은 mask-out하는 편이 안전하다.
+
+## 9. 비교 실험
+
 비교 실험군:
 A. ViT-only
 이미지 feature만 사용
@@ -208,7 +218,8 @@ Top-3 accuracy
 Macro-F1
 Per-class recall
 Confusion matrix
-***10. VLM feature 사용 여부 판단
+## 10. VLM feature 사용 조건
+
 VLM feature가 다음 조건이면 사용하지 않는다.
 implant_visible = absent
 all supporting features = not_assessable
@@ -220,7 +231,8 @@ usable_for_feature_vector = false
 일부만 사용 가능한 경우:
 feature_status = partial_usable
 → assessable_mask가 1인 feature만 사용
-***11. 실제 샘플 해석 예시
+## 11. 샘플 해석 예시
+
 Dentium 샘플에서 다음과 같은 결과가 나왔다.
 implant_visible = present
 abutment_or_prosthesis_present = present
@@ -230,12 +242,10 @@ regular_thread_pitch_visible = present
 macro_thread_zone_present = present
 body_taper_present = present
 apex_boundary_visible = present
-해석:
-상부 구조물이 있어 connection/platform 판단은 어렵다.
-하지만 thread/body/apex 계열 feature는 사용 가능하다.
-따라서 feature_status는 usable이 아니라 partial_usable로 보는 것이 맞다.
-***12. 최종 결론
-이번 실험의 핵심 구조는 다음과 같다.
+상부 구조물 때문에 connection과 platform은 판단하기 어렵지만, thread, body, apex 계열 feature는 사용할 수 있다. 따라서 `feature_status`는 `usable`이 아니라 `partial_usable`로 기록한다.
+
+## 12. 정리
+
 1. VLM은 브랜드명이나 시스템명을 직접 맞히지 않는다.
 2. VLM은 13개 core attributes와 21개 supporting visual features를 출력한다.
 3. 13개 core attributes는 항상 출력하되 confidence는 넣지 않는다.
@@ -243,12 +253,13 @@ apex_boundary_visible = present
 5. 21개 supporting features는 state와 confidence를 포함한다.
 6. 21개 feature가 13개 attribute의 판단 근거가 된다.
 7. VLM feature가 불충분하면 ViT-only로 fallback한다.
-최종 실험 관점에서 가장 중요한 원칙:
+역할은 다음처럼 나뉜다.
 13개 = 최종 구조 요약
 21개 = 근거와 confidence
 ViT = 기본 판단 모델
 VLM = 검증된 경우에만 보조 feature
-***13. 최종 프롬프트 핵심 요약
+## 13. 프롬프트 요약
+
 You are analyzing a dental implant ROI radiograph.
 Task:
 Extract both:

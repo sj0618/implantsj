@@ -1,0 +1,28 @@
+{
+  "model": "ViT-Base",
+  "query": "test",
+  "labels_json": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/labels_3.json",
+  "support_embeddings": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/ViT-Base/support.npz",
+  "gt_embeddings": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/ViT-Base/gt.npz",
+  "query_embeddings": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/ViT-Base/test.npz",
+  "gallery_size": 3,
+  "closed_labels": 0,
+  "open_labels": 3,
+  "query_coverage": [
+    "Bego",
+    "Bicon",
+    "ITI"
+  ],
+  "prototypes": [
+    "gt",
+    "mean",
+    "ss"
+  ],
+  "distances": [
+    "euclidean",
+    "cosine"
+  ],
+  "seed": 2026,
+  "ss_count": 5,
+  "ss_fraction": null
+}

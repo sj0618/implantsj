@@ -94,12 +94,18 @@ def check_visual_artifacts(root):
         caches[part] = {"features": rng.normal(size=(len(labels), 8)).astype(np.float32), "labels": np.asarray(labels, object), "splits": np.asarray(splits, object), "paths": np.asarray(paths, object)}
     meta = ev.save_tsne("Synthetic", caches, tsne, 42, 24)
     assert meta["total_features"] == 36 and meta["sampled"] == 24
+    assert meta["partitions_overlaid"] is True
+    assert set(meta["axis_limits"]) == {"x", "y"} and json.loads((tsne / "Synthetic_common_backbone.sampling.json").read_text())["axis_limits"] == {key:list(value) for key,value in meta["axis_limits"].items()}
     assert (tsne / "Synthetic_common_backbone.png").is_file() and (tsne / "Synthetic_common_backbone_valid.png").is_file() and (tsne / "Synthetic_common_backbone.sampling.json").is_file()
+    gt = {key:np.concatenate([c[key] for c in caches.values()]) for key in ("features", "labels", "paths")}
+    prototype = ev.save_prototype_tsne("Synthetic", caches, gt, tsne / "prototype", 42, 2)
+    assert prototype["partitions_overlaid"] is True and Path(prototype["png"]).is_file()
     checkpoint = root / "run" / "checkpoints" / "best.pt"; checkpoint.parent.mkdir(parents=True); checkpoint.write_bytes(b"x")
     history = checkpoint.parent.parent / "metrics" / "history.csv"; history.parent.mkdir()
     pd.DataFrame({"epoch":[1,2],"train_loss":[1.0,.5],"valid_accuracy":[.4,.6],"test_accuracy":[.3,.5],"valid_macro_f1":[.35,.55],"test_macro_f1":[.25,.45]}).to_csv(history,index=False)
     curve = ev.save_curve("Synthetic", {"checkpoint":str(checkpoint)}, curves)
-    assert curve["status"] == "ok" and Path(curve["png"]).is_file() and Path(curve["csv"]).is_file()
+    assert curve["status"] == "partial" and "2/10 epochs" in curve["reason"] and Path(curve["png"]).is_file() and Path(curve["csv"]).is_file()
+    assert ev.save_curve("ViT Base", {"kind":"base","checkpoint":str(checkpoint)}, curves)["status"] == "N/A"
     pd.DataFrame({"epoch":[1,2],"train_loss":[1.0,.5],"valid_accuracy":[.4,.6],"valid_macro_f1":[.35,.55]}).to_csv(history,index=False)
     partial = ev.save_curve("Synthetic partial", {"checkpoint":str(checkpoint)}, curves)
     assert partial["status"] == "partial" and "test_accuracy" in partial["reason"] and "test_macro_f1" in partial["reason"]
@@ -115,8 +121,8 @@ def check_inventory(root):
     fresh_closed = checkpoints / "fresh_closed" / "best.pt"; fresh_closed_supcon = checkpoints / "fresh_closed_supcon" / "best.pt"
     fresh_full = checkpoints / "fresh_full" / "best.pt"; fresh_full_supcon = checkpoints / "fresh_full_supcon" / "best.pt"
     write_checkpoint(old_high, closed, closed_manifest, score=0.99, epoch=5, history_epochs=5); write_checkpoint(old26, closed[1:], old26_manifest, score=1.0)
-    write_checkpoint(fresh_closed, closed, closed_manifest, score=0.1); write_checkpoint(fresh_closed_supcon, closed, closed_manifest, True, score=0.1)
-    write_checkpoint(fresh_full, full, full_manifest, score=0.1); write_checkpoint(fresh_full_supcon, full, full_manifest, True, score=0.1)
+    write_checkpoint(fresh_closed, closed, closed_manifest, score=0.1); write_checkpoint(fresh_full, full, full_manifest, score=0.1); write_checkpoint(fresh_full_supcon, full, full_manifest, True, score=0.1)
+    write_checkpoint(fresh_closed_supcon, closed, closed_manifest, True, score=0.1, epoch=3, history_epochs=3)
     output = root / "inventory"
     cmd = [
         sys.executable, str(EVALUATOR), "--closed-manifest", str(closed_manifest), "--open-manifest", str(open_manifest), "--full-manifest", str(full_manifest),
@@ -129,8 +135,11 @@ def check_inventory(root):
     selected = json.loads((output / "checkpoint_selection.json").read_text())
     assert set(selected) == set(ev.MODELS)
     assert Path(selected["ViT-ClosedFT"]["checkpoint"]) == fresh_closed.resolve()
+    assert selected["ViT-ClosedFT-SupCon"]["history_epochs"] == [1,2,3]
     assert all(selected[name]["selection_basis"].startswith("explicit ") for name in ev.MODELS[1:])
     assert selected["ViT Base"]["kind"] == "pretrained_base"
+    fallback_output=root/"missing_declared_but_discovered"; fallback=subprocess.run([sys.executable,str(EVALUATOR),"--closed-manifest",str(closed_manifest),"--open-manifest",str(open_manifest),"--full-manifest",str(full_manifest),"--checkpoint-root",str(checkpoints),"--full-supcon-checkpoint",str(root/"absent.pt"),"--output-dir",str(fallback_output),"--inventory-only"],cwd=REPO,env=env,text=True,capture_output=True)
+    assert fallback.returncode==0 and Path(json.loads((fallback_output/"checkpoint_selection.json").read_text())["ViT-FullFT-SupCon"]["checkpoint"])==fresh_full_supcon.resolve()
     bad_output = root / "bad_inventory"
     bad = subprocess.run([sys.executable, str(EVALUATOR), "--closed-manifest", str(old26_manifest), "--open-manifest", str(open_manifest), "--full-manifest", str(full_manifest), "--checkpoint-root", str(checkpoints), "--output-dir", str(bad_output), "--inventory-only"], cwd=REPO, env=env, text=True, capture_output=True)
     assert bad.returncode != 0
@@ -141,6 +150,9 @@ def check_inventory(root):
     wrong_output=root/"wrong_open_inventory"; wrong=subprocess.run([sys.executable,str(EVALUATOR),"--closed-manifest",str(closed_manifest),"--open-manifest",str(wrong_open_manifest),"--full-manifest",str(wrong_full_manifest),"--checkpoint-root",str(checkpoints),"--output-dir",str(wrong_output),"--inventory-only"],cwd=REPO,env=env,text=True,capture_output=True)
     assert wrong.returncode!=0
     assert "open labels do not match the required Open15 English names" in json.loads((wrong_output/"manifest_audit.json").read_text())["errors"]
+    invalid_auto=root/"invalid_auto"; invalid_auto.mkdir(); write_checkpoint(invalid_auto/"bad"/"best.pt",closed,old26_manifest)
+    invalid_output=root/"invalid_auto_inventory"; invalid=subprocess.run([sys.executable,str(EVALUATOR),"--closed-manifest",str(closed_manifest),"--open-manifest",str(open_manifest),"--full-manifest",str(full_manifest),"--checkpoint-root",str(invalid_auto),"--output-dir",str(invalid_output),"--inventory-only"],cwd=REPO,env=env,text=True,capture_output=True)
+    assert invalid.returncode==0; invalid_errors=json.loads((invalid_output/"checkpoint_selection_errors.json").read_text()); assert invalid_errors["ViT-ClosedFT"]!=ev.PASS and set(json.loads((invalid_output/"checkpoint_selection.json").read_text()))=={"ViT Base"}
 
     originals = ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_curve
     gt_root = root / "gt"; gt_zip = root / "unused.zip"
@@ -180,16 +192,17 @@ def check_inventory(root):
     ]
     old_argv = sys.argv
     try:
-        ev.make_model = lambda item, device: (_ for _ in ()).throw(RuntimeError("base unavailable")) if item["kind"] == "pretrained_base" else (object(), lambda x: x, "common", "common", {"source":"fake"})
+        ev.make_model = lambda item, device: (_ for _ in ()).throw(RuntimeError("existing checkpoint invalid at runtime")) if item.get("checkpoint")==str(fresh_full_supcon.resolve()) else ((object(),lambda x:x,"native","common",{"source":"fake"}) if item["kind"]=="pretrained_base" else (object(),lambda x:x,"common","common",{"source":"fake"}))
         failed_output = root / "failed_full"; sys.argv = base_args + ["--output-dir", str(failed_output)]
         try: ev.main()
         except RuntimeError as error: assert "96/120" in str(error)
         failed_summary = pd.read_csv(failed_output / "summary.csv")
         assert len(failed_summary) == 120 and (failed_summary.status == "ok").sum() == 96
+        assert (failed_summary.status == ev.PASS).sum() == 0 and (failed_summary.status == "unavailable").sum() == 24
         failed_progress = json.loads((failed_output / "progress.json").read_text())
         assert failed_progress["tsne_max_samples"] == 0
-        assert failed_progress["models"]["ViT Base"]["status"] == "unavailable"
-        assert all(failed_progress["models"][name]["status"] == "ok" for name in ev.MODELS[1:])
+        assert failed_progress["models"]["ViT-FullFT-SupCon"]["status"] == "unavailable"
+        assert all(failed_progress["models"][name]["status"] == "ok" for name in ev.MODELS if name!="ViT-FullFT-SupCon")
         ev.make_model = lambda item, device: (object(),lambda x:x,"native","common",{"source":"fake"}) if item["kind"]=="pretrained_base" else (object(),lambda x:x,"common","common",{"source":"fake"})
         complete_output = root / "complete_full"; sys.argv = base_args + ["--output-dir", str(complete_output)]
         ev.main()
@@ -208,11 +221,23 @@ def check_inventory(root):
         completion=json.loads((complete_output/"completion.json").read_text()); assert completion["selected_rows"]==10 and completion["artifacts"]["REPORT.md"]==ev.digest(complete_output/"REPORT.md")
         report = (complete_output / "REPORT.md").read_text()
         assert "t-SNE: all features" in report and "## Training curves" in report and "## Artifact index" in report and "## SHA-256 provenance" in report
+        experiment_codes=("1a","1b","2a","2b","4a","4b","5a","5b"); assert all(f"## Experiment {code}" in report for code in experiment_codes) and "Experiment 3" not in report
+        for code in experiment_codes:
+            section=report.split(f"## Experiment {code}",1)[1].split("\n## ",1)[0]; assert "accuracy / macro-F1 / weighted-F1" in section and all(f"| {partition} | {prototype} |" in section for partition in ("Closed","Open") for prototype in ("GT","Mean","SS"))
+        assert "## Five research-question conclusions" in report
+        assert report.split("## Five research-question conclusions",1)[1].count("\u0394accuracy")>=3
         assert "## Held-out test performance by partition" in report and "### Closed" in report and "### Open" in report
         closed_section = report.split("### Closed", 1)[1].split("### Open", 1)[0]; open_section = report.split("### Open", 1)[1].split("## Matched held-out test comparisons", 1)[0]
         assert all(name in closed_section and name in open_section for name in ev.MODELS)
         assert all(f"- {scope} best {setting}:" in report for scope in ("Overall", "Closed", "Open") for setting in ("distance", "prototype"))
-        assert "Completed common-backbone rows: 120/120" in report
+        assert "Covered common-backbone rows: 120/120 (OK 120, PASS 0)" in report
+        selected_only=root/"selected_only"; selected_only.mkdir(); missing_args=list(base_args); missing_args[missing_args.index("--checkpoint-root")+1]=str(selected_only); flag=missing_args.index("--full-supcon-checkpoint"); del missing_args[flag:flag+2]
+        missing_output=root/"missing_full_supcon"; sys.argv=missing_args+["--output-dir",str(missing_output)]; ev.main()
+        missing_summary=pd.read_csv(missing_output/"summary.csv"); assert len(missing_summary)==120 and (missing_summary.status=="ok").sum()==96 and (missing_summary.status==ev.PASS).sum()==24
+        assert set(missing_summary[missing_summary.status==ev.PASS].model)=={"ViT-FullFT-SupCon"}
+        missing_progress=json.loads((missing_output/"progress.json").read_text()); assert missing_progress["models"]["ViT-FullFT-SupCon"]["status"]==ev.PASS and missing_progress["models"]["ViT-FullFT-SupCon"]["tsne"]["status"]==ev.PASS
+        assert len(pd.read_csv(missing_output/"selected_results.csv"))==8 and json.loads((missing_output/"completion.json").read_text())["selected_rows"]==8
+        missing_report=(missing_output/"REPORT.md").read_text(); assert ev.PASS in missing_report.split("## Experiment 5a",1)[1].split("## Experiment 5b",1)[0] and ev.PASS in missing_report.split("## Experiment 5b",1)[1].split("## Five research-question conclusions",1)[0]
         ev.save_tsne=lambda *args,**kwargs: (_ for _ in ()).throw(RuntimeError("visual failure"))
         visual_output=root/"visual_failure"; sys.argv=base_args+["--output-dir",str(visual_output)]
         try: ev.main()

@@ -1,0 +1,25 @@
+{
+  "model": "ViT-ClosedFT-SupCon-backbone",
+  "total_embeddings": 2415,
+  "plotted_embeddings": 2415,
+  "max_points": 2415,
+  "seed": 2026,
+  "perplexity": 30.0,
+  "iterations": 1000,
+  "inputs": [
+    {
+      "split": "train",
+      "path": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/embeddings/ViT-ClosedFT-SupCon-backbone/support.npz"
+    },
+    {
+      "split": "valid_gt",
+      "path": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/embeddings/ViT-ClosedFT-SupCon-backbone/gt.npz"
+    },
+    {
+      "split": "test",
+      "path": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/embeddings/ViT-ClosedFT-SupCon-backbone/test.npz"
+    }
+  ],
+  "labels_json": "/workspace/metric_diagnosis/work_7closed3open_full_uncropped/manifests/labels_3.json",
+  "note": "All embeddings remain in NPZ caches; the plot uses a deterministic stratified subset when max_points is exceeded."
+}

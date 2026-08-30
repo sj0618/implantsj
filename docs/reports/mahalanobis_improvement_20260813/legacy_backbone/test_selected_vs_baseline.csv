@@ -1,0 +1,5 @@
+method,split,n,accuracy,macro_f1,balanced_accuracy,excluded_exact_duplicates,pca_dimensions,balanced_pca_fit
+pooled_ledoit_wolf,test,109,0.6330275229357798,0.4822894982057535,0.5076999503229012,,,
+pooled_ledoit_wolf,test_duplicate_free,109,0.6330275229357798,0.4822894982057535,0.5076999503229012,0.0,,
+balanced_pca_256,test,109,0.6422018348623854,0.5157240928407977,0.5889220069547938,,256.0,True
+balanced_pca_256,test_duplicate_free,109,0.6422018348623854,0.5157240928407977,0.5889220069547938,0.0,256.0,True

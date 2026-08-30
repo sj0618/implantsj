@@ -1,0 +1,64 @@
+{
+  "accuracy": 0.5325443786982249,
+  "macro_f1": 0.4081060902202453,
+  "weighted_f1": 0.5525185076705631,
+  "macro_precision": 0.4075536278219117,
+  "macro_recall": 0.44960732818710614,
+  "classification_report": {
+    "ADIN": {
+      "precision": 0.6511627906976745,
+      "recall": 0.4745762711864407,
+      "f1-score": 0.5490196078431373,
+      "support": 118.0
+    },
+    "DIONAVI": {
+      "precision": 0.14285714285714285,
+      "recall": 0.3333333333333333,
+      "f1-score": 0.2,
+      "support": 3.0
+    },
+    "Dentium": {
+      "precision": 0.578125,
+      "recall": 0.8409090909090909,
+      "f1-score": 0.6851851851851852,
+      "support": 44.0
+    },
+    "MIS": {
+      "precision": 0.225,
+      "recall": 0.5,
+      "f1-score": 0.3103448275862069,
+      "support": 18.0
+    },
+    "NORIS": {
+      "precision": 0.647887323943662,
+      "recall": 0.5287356321839081,
+      "f1-score": 0.5822784810126582,
+      "support": 87.0
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2.0
+    },
+    "osstem": {
+      "precision": 0.6078431372549019,
+      "recall": 0.4696969696969697,
+      "f1-score": 0.5299145299145299,
+      "support": 66.0
+    },
+    "accuracy": 0.5325443786982249,
+    "macro avg": {
+      "precision": 0.4075536278219117,
+      "recall": 0.44960732818710614,
+      "f1-score": 0.4081060902202453,
+      "support": 338.0
+    },
+    "weighted avg": {
+      "precision": 0.6012932691503525,
+      "recall": 0.5325443786982249,
+      "f1-score": 0.5525185076705631,
+      "support": 338.0
+    }
+  }
+}

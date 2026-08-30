@@ -1,0 +1,8 @@
+{
+  "covariance_fit": "target support only; pooled within-class residuals around support class means; LedoitWolf assume_centered=True",
+  "prototype_centers": "unchanged existing GT/Mean/SS centers",
+  "query": "original immutable target test, n=116",
+  "test_used_for_fit": false,
+  "scipy_max_abs_error": 4.973799150320701e-14,
+  "shrinkage": 0.016850591936324634
+}

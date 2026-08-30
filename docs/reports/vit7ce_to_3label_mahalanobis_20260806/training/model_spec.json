@@ -1,0 +1,26 @@
+{
+  "name": "vit7ce_crop_seed2026",
+  "adapter": "classifier_checkpoint",
+  "architecture": "vit_base_patch16_224",
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/training/best.safetensors",
+  "checkpoint_format": "safetensors",
+  "initial_checkpoint": null,
+  "pretrained": true,
+  "training_kind": "ce",
+  "train_scope": "all",
+  "embedding_source": "backbone",
+  "input_size": 224,
+  "projection_dim": 128,
+  "projection_hidden_dim": 512,
+  "extra": {},
+  "num_classes": 7,
+  "labels": [
+    "ADIN",
+    "DIONAVI",
+    "Dentium",
+    "MIS",
+    "NORIS",
+    "nobel",
+    "osstem"
+  ]
+}

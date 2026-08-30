@@ -1,0 +1,67 @@
+{
+  "name": "full_uncropped_7label_to_3label_metric",
+  "seed": 2026,
+  "epochs": 15,
+  "input_size": 224,
+  "train_labels": [
+    "ADIN",
+    "DIONAVI",
+    "Dentium",
+    "MIS",
+    "NORIS",
+    "nobel",
+    "osstem"
+  ],
+  "test_labels": [
+    "Bego",
+    "Bicon",
+    "ITI"
+  ],
+  "models": [
+    "ViT-Base",
+    "ViT-ClosedFT",
+    "ViT-ClosedFT-SupCon-backbone",
+    "ViT-ClosedFT-SupCon-projection"
+  ],
+  "prototype_sources": {
+    "gt": "3-label validation split",
+    "mean": "3-label training/support split",
+    "ss": "5 deterministic samples per label from training/support"
+  },
+  "distances": [
+    "euclidean",
+    "cosine"
+  ],
+  "empty_yolo_labels_skipped": 18,
+  "note": "No 3-label image is used for backbone training or checkpoint selection.",
+  "split_policy": "immutable original test; remove all development rows sharing test group_id; group-aware train/validation split",
+  "split_counts": {
+    "train_7": 2348,
+    "valid_7": 593,
+    "test_7": 339,
+    "support_3": 1839,
+    "validation_gt_3": 460,
+    "test_3": 116
+  },
+  "group_overlap": {
+    "train_valid": 0,
+    "train_test": 0,
+    "valid_test": 0
+  },
+  "removed_development_rows_overlapping_test_group": 363,
+  "training": {
+    "ViT-ClosedFT": {
+      "kind": "CE",
+      "batch_size": 16,
+      "checkpoint_selection": "minimum validation loss"
+    },
+    "ViT-ClosedFT-SupCon": {
+      "kind": "SupCon",
+      "batch_size": 14,
+      "samples_per_class": 2,
+      "temperature": 0.07,
+      "checkpoint_selection": "maximum validation mean-prototype accuracy"
+    }
+  },
+  "reproducibility_note": "seed and CUBLAS_WORKSPACE_CONFIG are fixed; PyTorch memory-efficient attention reports a remaining nondeterministic CUDA kernel warning."
+}

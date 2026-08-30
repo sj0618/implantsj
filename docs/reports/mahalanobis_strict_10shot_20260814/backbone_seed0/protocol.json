@@ -1,0 +1,21 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7supcon_to_3label_mahalanobis_20260807/training/20260807_095246_vit_small_supcon7_e30_seed42/checkpoints/best.pt",
+  "checkpoint_sha256": "462573864f1e964f3bcf6644c4a1ebbc426607d16114c89c7b57a6bd0bfaf4bb",
+  "manifest": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/manifests/target_3.csv",
+  "manifest_sha256": "3aa4071c3fb1b2bf0e8f76fdbc8ee68c9d71727d0f3141787017130cba36ac40",
+  "embedding": "backbone",
+  "device": "mps",
+  "model_metadata": {
+    "embedding_cache": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/mahalanobis_improvement_20260813/fresh_backbone/embedding_cache.npz"
+  },
+  "fit_data": "prototype samples only",
+  "prototype": "class mean",
+  "prototype_shots_per_class": 10,
+  "covariance_samples": "10 prototype images per class",
+  "selection_data": "not used; method fixed",
+  "test_used_for_selection": false,
+  "selection_metric": null,
+  "candidate_count": 20,
+  "selected_method": "pooled_ledoit_wolf",
+  "excluded_exact_duplicates": 0
+}

@@ -207,6 +207,8 @@ def main() -> None:
     if not class_to_idx:
         class_to_idx, _ = label_mapping(full_df)
     class_names = class_names_from_mapping(class_to_idx)
+    plot_class_to_idx, _ = label_mapping(full_df)
+    plot_class_names = class_names_from_mapping(plot_class_to_idx)
 
     model_name = args.model_name or ckpt_args.get("model_name") or "vit_base_patch16_224"
     image_size = args.image_size or int(ckpt_args.get("image_size", 224))
@@ -218,7 +220,7 @@ def main() -> None:
     loader = create_loader(
         args.manifest,
         split_for_loader,
-        class_to_idx,
+        plot_class_to_idx,
         image_size,
         args.batch_size,
         args.num_workers,
@@ -251,7 +253,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     rows.to_csv(out_dir / f"tsne_{args.split}.csv", index=False)
     np.savez_compressed(out_dir / f"tsne_{args.split}.npz", features=features, targets=data["targets"][keep], coords=coords, paths=data["paths"][keep])
-    save_plot(rows, class_names, out_dir / f"tsne_{args.split}.png", f"Classifier ViT t-SNE ({args.split}, {len(class_names)} labels)")
+    save_plot(rows, plot_class_names, out_dir / f"tsne_{args.split}.png", f"Classifier ViT t-SNE ({args.split}, {len(plot_class_names)} labels)")
 
     print("TSNE_RUN_DIR=", run_dir)
     print("PNG=", out_dir / f"tsne_{args.split}.png")

@@ -1,0 +1,60 @@
+{
+  "model": {
+    "spec": {
+      "name": "vit7ce_crop_seed2026_30epoch",
+      "adapter": "classifier_checkpoint",
+      "architecture": "vit_base_patch16_224",
+      "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/training_30epoch/best.safetensors",
+      "checkpoint_format": "safetensors",
+      "initial_checkpoint": null,
+      "pretrained": true,
+      "training_kind": "ce",
+      "train_scope": "all",
+      "embedding_source": "backbone",
+      "input_size": 224,
+      "projection_dim": 128,
+      "projection_hidden_dim": 512,
+      "extra": {
+        "num_classes": 7,
+        "labels": [
+          "ADIN",
+          "DIONAVI",
+          "Dentium",
+          "MIS",
+          "NORIS",
+          "nobel",
+          "osstem"
+        ]
+      }
+    },
+    "checkpoint": {
+      "path": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/training_30epoch/best.safetensors",
+      "epoch": 11,
+      "labels": [
+        "ADIN",
+        "DIONAVI",
+        "Dentium",
+        "MIS",
+        "NORIS",
+        "nobel",
+        "osstem"
+      ]
+    }
+  },
+  "model_name": "vit7ce_crop_seed2026_30epoch",
+  "model_spec_path": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/training_30epoch/model_spec.json",
+  "model_spec_sha256": "b1245322925bcd5f35cba970f2b5f8dea872f3f6c1f73b1baccafbbb0c30a1ff",
+  "checkpoint_sha256": "0b95e2e0fd68d1294a59ee0145a468bc172b6584db4a282e9776df6fbd060d0b",
+  "manifest_path": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit7ce_to_3label_mahalanobis_20260806/manifests/target_3.csv",
+  "manifest_sha256": "3aa4071c3fb1b2bf0e8f76fdbc8ee68c9d71727d0f3141787017130cba36ac40",
+  "device": "mps",
+  "diagnostics": {
+    "samples": 4464,
+    "dimension": 768,
+    "norm_mean": 32.910945892333984,
+    "norm_std": 2.998060941696167,
+    "mean_dimension_std": 0.5832416415214539,
+    "near_zero_dimensions": 0,
+    "sampled_mean_pairwise_cosine": 0.7402042746543884
+  }
+}
