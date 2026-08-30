@@ -1,0 +1,42 @@
+{
+  "checkpoint": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit6supcon_to_5label_strict10_20260814/training/20260814_004412_vit_small_supcon6_e30_seed42/checkpoints/best.pt",
+  "manifest": "/Users/yunseojune/TRIA_LAB/implant_project/implantsj/docs/reports/vit6supcon_to_5label_strict10_20260814/manifests/source_6.csv",
+  "device": "mps",
+  "target_images": 848,
+  "support_shots_per_class": 5,
+  "support_total": 30,
+  "query_total": 818,
+  "classes": [
+    "adin",
+    "bicon",
+    "dentium",
+    "mis",
+    "noris",
+    "osstem"
+  ],
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    42
+  ],
+  "covariance": "pooled Ledoit-Wolf from the same five support images per class",
+  "target_validation_used": false,
+  "nucleoss_rda_weight": null,
+  "rda_weight": null,
+  "model_metadata": {
+    "checkpoint": "docs/reports/vit6supcon_to_5label_strict10_20260814/training/20260814_004412_vit_small_supcon6_e30_seed42/checkpoints/best.pt",
+    "model_kind": "metric_model_projector",
+    "model_name": "vit_small_patch16_224.augreg_in21k_ft_in1k",
+    "image_size": 224,
+    "projection_hidden_dim": 128,
+    "projection_dim": 128,
+    "loaded_keys": 159,
+    "skipped_keys": 0,
+    "missing_keys": [],
+    "unexpected_keys": [],
+    "use_projection": true
+  }
+}
