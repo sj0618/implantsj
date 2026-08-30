@@ -108,7 +108,8 @@ def check_visual_artifacts(root):
     assert ev.save_curve("ViT Base", {"kind":"base","checkpoint":str(checkpoint)}, curves)["status"] == "N/A"
     pd.DataFrame({"epoch":[1,2],"train_loss":[1.0,.5],"valid_accuracy":[.4,.6],"valid_macro_f1":[.35,.55]}).to_csv(history,index=False)
     partial = ev.save_curve("Synthetic partial", {"checkpoint":str(checkpoint)}, curves)
-    assert partial["status"] == "partial" and "test_accuracy" in partial["reason"] and "test_macro_f1" in partial["reason"]
+    assert partial["status"] == "partial" and "2/10 epochs" in partial["reason"]
+    assert "test_accuracy" not in partial["reason"] and "test_macro_f1" not in partial["reason"]
 
 
 def check_inventory(root):
@@ -154,7 +155,7 @@ def check_inventory(root):
     invalid_output=root/"invalid_auto_inventory"; invalid=subprocess.run([sys.executable,str(EVALUATOR),"--closed-manifest",str(closed_manifest),"--open-manifest",str(open_manifest),"--full-manifest",str(full_manifest),"--checkpoint-root",str(invalid_auto),"--output-dir",str(invalid_output),"--inventory-only"],cwd=REPO,env=env,text=True,capture_output=True)
     assert invalid.returncode==0; invalid_errors=json.loads((invalid_output/"checkpoint_selection_errors.json").read_text()); assert invalid_errors["ViT-ClosedFT"]!=ev.PASS and set(json.loads((invalid_output/"checkpoint_selection.json").read_text()))=={"ViT Base"}
 
-    originals = ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_curve
+    originals = ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_prototype_tsne, ev.save_curve
     gt_root = root / "gt"; gt_zip = root / "unused.zip"
     with zipfile.ZipFile(gt_zip,"w") as archive: archive.writestr("seed/readme.txt","synthetic")
     def fake_map(_root, labels, report_csv=None):
@@ -180,6 +181,12 @@ def check_inventory(root):
             path=out/f"{stem}{suffix}"; path.write_bytes(b"artifact"); paths[key]=str(path)
         total=sum(len(c["labels"]) for c in caches.values()); return {"representation":representation,"total_features":total,"sampled":total if limit<=0 else min(total,limit),"max_samples":limit,**paths}
     ev.save_tsne = fake_tsne
+    def fake_prototype_tsne(name,caches,gtc,out,seed,count,representation="common_backbone"):
+        out.mkdir(exist_ok=True); stem=name.replace(" ","_")+"_"+representation
+        png=out/f"{stem}.png"; csv=out/f"{stem}.csv"; metadata=out/f"{stem}.json"
+        png.write_bytes(b"png"); csv.write_text("label\nsynthetic\n"); metadata.write_text("{}")
+        return {"status":"ok","representation":representation,"png":str(png),"csv":str(csv),"metadata":str(metadata)}
+    ev.save_prototype_tsne = fake_prototype_tsne
     def fake_curve(name,item,out):
         if not item.get("checkpoint"): return {"model":name,"history":"","status":"not_applicable","png":"","csv":"","epochs":0}
         out.mkdir(exist_ok=True); stem=name.replace(" ","_"); csv_path=out/f"{stem}.csv"; png_path=out/f"{stem}.png"; csv_path.write_text("epoch\n1\n"); png_path.write_bytes(b"png")
@@ -219,7 +226,7 @@ def check_inventory(root):
         assert {"python","torch","torchvision","timm","sklearn","numpy","pandas","matplotlib","pillow"}<=set(fingerprint["runtime"])
         selected_results=pd.read_csv(complete_output/"selected_results.csv"); assert len(selected_results)==10
         completion=json.loads((complete_output/"completion.json").read_text()); assert completion["selected_rows"]==10 and completion["artifacts"]["REPORT.md"]==ev.digest(complete_output/"REPORT.md")
-        report = (complete_output / "REPORT.md").read_text()
+        report = (complete_output / "REPORT.md").read_text(encoding="utf-8")
         assert "t-SNE: all features" in report and "## Training curves" in report and "## Artifact index" in report and "## SHA-256 provenance" in report
         experiment_codes=("1a","1b","2a","2b","4a","4b","5a","5b"); assert all(f"## Experiment {code}" in report for code in experiment_codes) and "Experiment 3" not in report
         for code in experiment_codes:
@@ -237,7 +244,7 @@ def check_inventory(root):
         assert set(missing_summary[missing_summary.status==ev.PASS].model)=={"ViT-FullFT-SupCon"}
         missing_progress=json.loads((missing_output/"progress.json").read_text()); assert missing_progress["models"]["ViT-FullFT-SupCon"]["status"]==ev.PASS and missing_progress["models"]["ViT-FullFT-SupCon"]["tsne"]["status"]==ev.PASS
         assert len(pd.read_csv(missing_output/"selected_results.csv"))==8 and json.loads((missing_output/"completion.json").read_text())["selected_rows"]==8
-        missing_report=(missing_output/"REPORT.md").read_text(); assert ev.PASS in missing_report.split("## Experiment 5a",1)[1].split("## Experiment 5b",1)[0] and ev.PASS in missing_report.split("## Experiment 5b",1)[1].split("## Five research-question conclusions",1)[0]
+        missing_report=(missing_output/"REPORT.md").read_text(encoding="utf-8"); assert ev.PASS in missing_report.split("## Experiment 5a",1)[1].split("## Experiment 5b",1)[0] and ev.PASS in missing_report.split("## Experiment 5b",1)[1].split("## Five research-question conclusions",1)[0]
         ev.save_tsne=lambda *args,**kwargs: (_ for _ in ()).throw(RuntimeError("visual failure"))
         visual_output=root/"visual_failure"; sys.argv=base_args+["--output-dir",str(visual_output)]
         try: ev.main()
@@ -246,14 +253,14 @@ def check_inventory(root):
         assert (pd.read_csv(visual_output/"summary.csv").status=="ok").sum()==120
         assert all(item["tsne"]["status"]=="unavailable" for item in json.loads((visual_output/"progress.json").read_text())["models"].values())
         assert not (visual_output/"completion.json").exists()
-        assert "## t-SNE coverage\n- ViT Base: unavailable" in (visual_output/"REPORT.md").read_text()
+        assert "## t-SNE coverage\n- ViT Base: unavailable" in (visual_output/"REPORT.md").read_text(encoding="utf-8")
         ev.save_tsne=fake_tsne; sys.argv=base_args+["--output-dir",str(visual_output),"--resume-tsne"]; ev.main()
         assert all(item["tsne"]["status"]=="ok" for item in json.loads((visual_output/"progress.json").read_text())["models"].values())
         assert (visual_output/"completion.json").is_file()
-        assert "## t-SNE coverage\n- ViT Base: ok" in (visual_output/"REPORT.md").read_text()
+        assert "## t-SNE coverage\n- ViT Base: ok" in (visual_output/"REPORT.md").read_text(encoding="utf-8")
     finally:
         sys.argv = old_argv
-        ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_curve = originals
+        ev.make_model, ev.extract, ev.map_gt_label_folders, ev.save_tsne, ev.save_prototype_tsne, ev.save_curve = originals
 
 
 def test_metric_diagnosis():

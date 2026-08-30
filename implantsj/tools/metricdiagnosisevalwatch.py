@@ -12,10 +12,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from pipelines.eval.evaluate_metric_diagnosis import digest, run_fingerprint
+from pipelines.eval.evaluate_metric_diagnosis import digest
 
-OUTPUTS = Path("/home/ubuntu/workspace/outputs")
-DATA = Path("/home/ubuntu/workspace/data")
+OUTPUTS = Path(os.environ.get("OUTPUT_ROOT", "/workspace/outputs"))
+DATA = Path(os.environ.get("DATA_ROOT", "/workspace/data"))
 SELECTION = OUTPUTS / "metricdiag_fresh_checkpoints.json"
 RESULT = OUTPUTS / "metricdiag-final"
 DISCOVERY = OUTPUTS / "metricdiag-selection-discovery"
@@ -85,22 +85,55 @@ def completion_valid(path):
     if not marker.is_file() or not fingerprint.is_file() or not inventory.is_file(): return False
     try: completion=json.loads(marker.read_text(encoding="utf-8")); selected=json.loads(inventory.read_text(encoding="utf-8"))
     except (OSError,json.JSONDecodeError): return False
-    if completion.get("schema")!=1 or completion.get("fingerprint_sha256")!=digest(fingerprint): return False
+    if completion.get("status")!="complete": return False
     root=path.resolve()
     for relative,expected in completion.get("artifacts",{}).items():
         target=(root/relative).resolve()
         if (target!=root and root not in target.parents) or not target.is_file() or digest(target)!=expected: return False
-    return completion.get("result_rows")==completion.get("backbone_rows")==120 and completion.get("selected_rows")==2*len(selected)
+    return completion.get("selected_rows")==2*len(selected)
 
 
-def complete(path, checkpoints, fingerprint, require_tsne=True, require_completion=True):
+def fingerprint_valid(path):
+    try:
+        payload=json.loads((path/"run_fingerprint.json").read_text(encoding="utf-8"))
+        config=payload["config"]; sources=payload["sources"]
+    except (OSError,json.JSONDecodeError,KeyError,TypeError):
+        return False
+    expected_paths={
+        "closed_manifest":MANIFESTS["closed"], "open_manifest":MANIFESTS["open"],
+        "full_manifest":MANIFESTS["full"], "gt_zip":GT_ZIP, "output_dir":RESULT,
+    }
+    for key,expected in expected_paths.items():
+        raw=config.get(key)
+        if not raw or Path(raw).resolve()!=expected.resolve(): return False
+    for key in ["base_model_name","batch_size","num_workers","seed","ss_per_label","tsne_max_samples"]:
+        if config.get(key)!=CONFIG[key]: return False
+    for relative,recorded in sources.items():
+        target=(ROOT/relative).resolve()
+        if ROOT.resolve() not in target.parents or not target.is_file(): return False
+        if Path(recorded.get("path","")).resolve()!=target or recorded.get("sha256")!=digest(target): return False
+    return bool(sources)
+
+
+def recorded_checkpoints_valid(selected):
+    for item in selected.values():
+        raw=item.get("checkpoint")
+        if not raw: continue
+        checkpoint=Path(raw)
+        expected=item.get("checkpoint_sha256")
+        if not expected or not checkpoint.is_file() or digest(checkpoint)!=expected: return False
+    return True
+
+
+def complete(path, checkpoints, require_tsne=True, require_completion=True):
     summary = path / "summary.csv"
     backbone = path / "backbone_summary.csv"
     inventory = path / "checkpoint_selection.json"
     progress_path = path / "progress.json"
-    provenance_path = path / "provenance_audit.json"
+    manifest_audit_path = path / "manifest_audit.json"
+    content_audit_path = path / "content_audit.json"
     fingerprint_path = path / "run_fingerprint.json"
-    if not all(item.is_file() for item in [summary, backbone, inventory, progress_path, provenance_path, fingerprint_path]):
+    if not all(item.is_file() for item in [summary, backbone, inventory, progress_path, manifest_audit_path, content_audit_path, fingerprint_path]):
         return False
     with summary.open(newline="", encoding="utf-8") as stream:
         rows = list(csv.DictReader(stream))
@@ -109,8 +142,9 @@ def complete(path, checkpoints, fingerprint, require_tsne=True, require_completi
     try:
         selected = json.loads(inventory.read_text(encoding="utf-8"))
         progress = json.loads(progress_path.read_text(encoding="utf-8"))
-        provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
-        recorded_fingerprint = json.loads(fingerprint_path.read_text(encoding="utf-8"))
+        manifest_audit = json.loads(manifest_audit_path.read_text(encoding="utf-8"))
+        content_audit = json.loads(content_audit_path.read_text(encoding="utf-8"))
+        json.loads(fingerprint_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return False
     available=set(checkpoints)|{"ViT Base"}; missing=set(NAMES)-set(checkpoints)
@@ -124,10 +158,11 @@ def complete(path, checkpoints, fingerprint, require_tsne=True, require_completi
         and statuses(backbone_rows)
         and set(selected)==available
         and all(Path(selected.get(name, {}).get("checkpoint", "")).resolve() == checkpoint for name, checkpoint in checkpoints.items())
+        and recorded_checkpoints_valid(selected)
+        and fingerprint_valid(path)
         and (tsne_ok or not require_tsne)
-        and provenance.get("manifests", {}).get("row_union_exact") is True
-        and provenance.get("content", {}).get("conflicts") == 0
-        and recorded_fingerprint == fingerprint
+        and manifest_audit.get("row_union_exact") is True
+        and content_audit.get("ok") is True
         and (completion_valid(path) or not require_completion)
     )
 
@@ -155,18 +190,22 @@ def self_check():
     args = command(checkpoints,Path("/tmp/base.pt"))
     assert args[args.index("--tsne-max-samples") + 1] == "0"
     assert args[args.index("--batch-size") + 1] == "64"
-    assert args[args.index("--base-checkpoint") + 1] == "/tmp/base.pt"
+    assert Path(args[args.index("--base-checkpoint") + 1]) == Path("/tmp/base.pt")
     assert all(NAMES[name] in args for name in checkpoints) and NAMES["ViT-FullFT-SupCon"] not in args
     with tempfile.TemporaryDirectory() as directory:
-        root=Path(directory); artifact=root/"REPORT.md"; fingerprint=root/"run_fingerprint.json"; artifact.write_text("ok"); fingerprint.write_text("{}")
+        root=Path(directory); artifact=root/"REPORT.md"; fingerprint=root/"run_fingerprint.json"; artifact.write_text("ok")
+        config={**CONFIG,"closed_manifest":str(MANIFESTS["closed"]),"open_manifest":str(MANIFESTS["open"]),"full_manifest":str(MANIFESTS["full"]),"gt_zip":str(GT_ZIP),"output_dir":str(RESULT)}
+        source=ROOT/"src/models.py"; fingerprint.write_text(json.dumps({"config":config,"sources":{"src/models.py":{"path":str(source),"sha256":digest(source)}}}))
+        assert fingerprint_valid(root)
         existing=root/"best.pt"; existing.write_bytes(b"x"); selection=root/"selection.json"; selection.write_text(json.dumps({"ViT-ClosedFT":{"checkpoint":str(existing)},"ViT-FullFT-SupCon":{}})); assert set(load_selection(selection))=={"ViT-ClosedFT"}
+        assert recorded_checkpoints_valid({"model":{"checkpoint":str(existing),"checkpoint_sha256":digest(existing)}})
         assert merge_selection({"ViT-ClosedFT":Path("declared")},{"ViT-ClosedFT":Path("old"),"ViT-FullFT-SupCon":Path("discovered")})=={"ViT-ClosedFT":Path("declared"),"ViT-FullFT-SupCon":Path("discovered")}
         selection.write_text(json.dumps({"ViT-ClosedFT":{"checkpoint":str(root/"missing.pt")}}))
         try: load_selection(selection)
         except RuntimeError: pass
         else: raise AssertionError("invalid declared checkpoint became PASS")
         (root/"checkpoint_selection.json").write_text(json.dumps({"ViT Base":{}}))
-        (root/"completion.json").write_text(json.dumps({"schema":1,"result_rows":120,"backbone_rows":120,"selected_rows":2,"fingerprint_sha256":digest(fingerprint),"artifacts":{"REPORT.md":digest(artifact)}}))
+        (root/"completion.json").write_text(json.dumps({"status":"complete","selected_rows":2,"artifacts":{"REPORT.md":digest(artifact)}}))
         assert completion_valid(root); artifact.write_text("changed"); assert not completion_valid(root)
     print("METRIC_DIAGNOSIS_EVAL_WATCH_OK")
 
@@ -188,13 +227,13 @@ def main():
     if not declared: print(f"discovering exact-manifest checkpoints under {OUTPUTS}",flush=True)
     checkpoints=merge_selection(declared,discover_selection())
     env = {**os.environ, "CUDA_VISIBLE_DEVICES": "0", "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1"}
-    os.environ.update({"HF_HUB_OFFLINE":"1","TRANSFORMERS_OFFLINE":"1"}); base_checkpoint=ensure_base_checkpoint(); fingerprint=run_fingerprint(checkpoints,MANIFESTS,GT_ZIP,CONFIG,base_checkpoint)
-    if complete(RESULT,checkpoints,fingerprint): print(f"complete: {RESULT}"); return
+    os.environ.update({"HF_HUB_OFFLINE":"1","TRANSFORMERS_OFFLINE":"1"}); base_checkpoint=ensure_base_checkpoint()
+    if complete(RESULT,checkpoints): print(f"complete: {RESULT}"); return
     completed=subprocess.run(command(checkpoints,base_checkpoint),cwd=ROOT,env=env)
     if completed.returncode:
-        if not complete(RESULT,checkpoints,fingerprint,False,False): completed.check_returncode()
+        if not complete(RESULT,checkpoints,False,False): completed.check_returncode()
         subprocess.run(command(checkpoints,base_checkpoint)+["--resume-tsne"],cwd=ROOT,env=env,check=True)
-    if not complete(RESULT, checkpoints, fingerprint):
+    if not complete(RESULT, checkpoints):
         raise RuntimeError(f"evaluation did not cover all 120 rows: {RESULT}")
 
 

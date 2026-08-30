@@ -10,8 +10,8 @@ from types import SimpleNamespace
 import numpy as np
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parents[2]
-MODULE_PATH = ROOT / "scripts" / "yolo" / "crop_implant_yolo.py"
+ROOT = Path(__file__).resolve().parents[1]
+MODULE_PATH = ROOT / "pipelines" / "yolo" / "crop_yolo.py"
 spec = importlib.util.spec_from_file_location("crop_implant_yolo", MODULE_PATH)
 if spec is None or spec.loader is None:
     raise RuntimeError(f"Failed to load module: {MODULE_PATH}")

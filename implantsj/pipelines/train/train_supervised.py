@@ -24,7 +24,7 @@ def str2bool(v):
 def main():
     p = argparse.ArgumentParser(description='NO-VENV supervised image classifier training.')
     p.add_argument('--manifest', required=True)
-    p.add_argument('--output-root', default='/workspace/implant_outputs')
+    p.add_argument('--output-root', default='/workspace/outputs')
     p.add_argument('--experiment-name', default='vit_supervised')
     p.add_argument('--model-name', default='vit_base_patch16_224')
     p.add_argument('--pretrained', type=str2bool, default=True)

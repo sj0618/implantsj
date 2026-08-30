@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from src.data import create_loader, label_mapping, load_manifest
-from src.models import create_classifier
+from src.models import create_classifier, load_checkpoint
 
 
 def clean_state_dict(state: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
@@ -200,7 +200,7 @@ def main() -> None:
     if device.type != "cuda" and not args.allow_cpu:
         raise RuntimeError("CUDA is not available. Pass --allow-cpu only for debugging.")
 
-    ckpt = torch.load(args.checkpoint, map_location="cpu")
+    ckpt = load_checkpoint(args.checkpoint, map_location="cpu")
     ckpt_args = ckpt.get("args", {}) if isinstance(ckpt, dict) else {}
     full_df = load_manifest(args.manifest, split=None)
     class_to_idx = {str(k): int(v) for k, v in ckpt.get("class_to_idx", {}).items()} if isinstance(ckpt, dict) else {}

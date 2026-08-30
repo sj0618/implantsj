@@ -9,12 +9,12 @@ import numpy as np
 import pandas as pd
 import torch
 from torch import nn
-from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data import DataLoader, Dataset
 
 from .data import ImageClassificationDataset, build_transforms, create_loader, label_mapping, load_manifest
+from .experiment_data import PKBatchSampler
 from .metrics import compute_metrics, save_confusion_matrix, save_metrics_json, save_predictions
-from .models import MetricModel, save_checkpoint
+from .models import MetricModel, load_checkpoint, save_checkpoint
 from .utils import count_parameters, log, make_run_dir, seed_everything, write_json
 
 
@@ -86,13 +86,14 @@ class BatchHardTripletLoss(nn.Module):
 @dataclass
 class MetricArgs:
     manifest: str
-    output_root: str = '/workspace/implant_outputs'
+    output_root: str = '/workspace/outputs'
     experiment_name: str = 'vit_metric_supcon'
     model_name: str = 'vit_base_patch16_224'
     pretrained: bool = True
     image_size: int = 224
     epochs: int = 80
     batch_size: int = 32
+    samples_per_class: int = 2
     num_workers: int = 8
     lr: float = 3e-5
     weight_decay: float = 0.05
@@ -147,6 +148,20 @@ def prototype_predict(train_z, train_y, query_z):
     return pred, conf
 
 
+def resolve_pk_batch_size(labels, requested_batch_size: int, samples_per_class: int) -> int:
+    if samples_per_class < 2:
+        raise ValueError('samples_per_class must be at least 2')
+    if requested_batch_size < samples_per_class or requested_batch_size % samples_per_class:
+        raise ValueError(
+            f'batch_size={requested_batch_size} must be a positive multiple of '
+            f'samples_per_class={samples_per_class}'
+        )
+    class_count = len(set(str(label) for label in labels))
+    if not class_count:
+        raise ValueError('metric training data has no labels')
+    return min(requested_batch_size, class_count * samples_per_class)
+
+
 def evaluate_metric_model(model, manifest: str, class_to_idx: Dict[str, int], image_size: int, batch_size: int, num_workers: int, device, out_dir: Optional[Path] = None, split: str = 'valid', support=None):
     idx_to_class = {i: c for c, i in class_to_idx.items()}
     class_names = [idx_to_class[i] for i in range(len(idx_to_class))]
@@ -188,7 +203,29 @@ def train_metric(args: MetricArgs) -> Path:
     log(f'Metric model: {args.model_name}, loss={args.loss_name}')
 
     ds = TwoViewDataset(args.manifest, 'train', class_to_idx, args.image_size)
-    loader = DataLoader(ds, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers, pin_memory=torch.cuda.is_available(), drop_last=True)
+    train_labels = ds.base1.df['label'].astype(str).tolist()
+    sampler_batch_size = resolve_pk_batch_size(
+        train_labels,
+        requested_batch_size=args.batch_size,
+        samples_per_class=args.samples_per_class,
+    )
+    if sampler_batch_size != args.batch_size:
+        log(
+            f'Adjusted metric batch size from {args.batch_size} to {sampler_batch_size} '
+            f'for {len(set(train_labels))} classes x K={args.samples_per_class}'
+        )
+    train_sampler = PKBatchSampler(
+        train_labels,
+        batch_size=sampler_batch_size,
+        samples_per_class=args.samples_per_class,
+        seed=args.seed,
+    )
+    loader = DataLoader(
+        ds,
+        batch_sampler=train_sampler,
+        num_workers=args.num_workers,
+        pin_memory=torch.cuda.is_available(),
+    )
     eval_train_loader = create_loader(args.manifest, 'train', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=False, return_path=True)
     model = MetricModel(args.model_name, embedding_dim=args.embedding_dim, pretrained=args.pretrained, dropout=args.dropout, drop_path_rate=args.drop_path_rate).to(device)
     log(f'Trainable parameters: {count_parameters(model):,}')
@@ -201,12 +238,13 @@ def train_metric(args: MetricArgs) -> Path:
         raise ValueError(f'Unknown metric loss: {args.loss_name}')
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(1, args.epochs))
-    scaler = GradScaler(enabled=args.amp and device.type == 'cuda')
+    scaler = torch.amp.GradScaler('cuda', enabled=args.amp and device.type == 'cuda')
 
     best_score = -1.0
     patience_count = 0
     history = []
     for epoch in range(1, args.epochs + 1):
+        train_sampler.set_epoch(epoch)
         model.train()
         total_loss = 0.0
         n = 0
@@ -217,7 +255,7 @@ def train_metric(args: MetricArgs) -> Path:
             x2 = x2.to(device, non_blocking=True)
             y = y.to(device, non_blocking=True)
             optimizer.zero_grad(set_to_none=True)
-            with autocast(enabled=args.amp and device.type == 'cuda'):
+            with torch.amp.autocast('cuda', enabled=args.amp and device.type == 'cuda'):
                 if args.loss_name.lower() == 'supcon':
                     x = torch.cat([x1, x2], dim=0)
                     labels = torch.cat([y, y], dim=0)
@@ -254,12 +292,10 @@ def train_metric(args: MetricArgs) -> Path:
         train_loss = total_loss / max(1, n)
         support = extract_embeddings(model, eval_train_loader, device)[:2]
         valid_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=None, split='valid', support=support)
-        test_metrics = evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=None, split='test', support=support)
         score = valid_metrics['macro_f1']
         row = {
             'epoch': epoch, 'train_loss': train_loss,
             'valid_accuracy': valid_metrics['accuracy'], 'valid_macro_f1': valid_metrics['macro_f1'], 'valid_weighted_f1': valid_metrics['weighted_f1'],
-            'test_accuracy': test_metrics['accuracy'], 'test_macro_f1': test_metrics['macro_f1'], 'test_weighted_f1': test_metrics['weighted_f1'],
             'lr': optimizer.param_groups[0]['lr'], 'seconds': time.time()-t0,
         }
         history.append(row)
@@ -291,7 +327,7 @@ def train_metric(args: MetricArgs) -> Path:
                 log(f'Early stopping at epoch={epoch}')
                 break
 
-    best = torch.load(run_dir / 'checkpoints' / 'best.pt', map_location='cpu')
+    best = load_checkpoint(run_dir / 'checkpoints' / 'best.pt', map_location='cpu')
     model.load_state_dict(best['model_state_dict'], strict=True)
     support = extract_embeddings(model, eval_train_loader, device)[:2]
     evaluate_metric_model(model, args.manifest, class_to_idx, args.image_size, args.batch_size, args.num_workers, device, out_dir=run_dir, split='valid', support=support)

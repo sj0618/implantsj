@@ -24,7 +24,6 @@ cd "$ROOT"
 source "$ROOT/exp.conf"
 
 PYTHON="${PYTHON:-python3}"
-STATE_DIR="$OUTPUT_ROOT"
 STATE_FILE="$OUTPUT_ROOT/.exp_state"
 LOG_DIR="$OUTPUT_ROOT/logs"
 MANIFEST_DIR="$OUTPUT_ROOT/manifests"
@@ -44,16 +43,18 @@ ok()   { printf '%s%s%s\n' "$C_OK" "$*" "$C_OFF"; }
 
 load_state() {
   [[ -f "$STATE_FILE" ]] || return 0
-  # shellcheck source=/dev/null
-  source "$STATE_FILE" 2>/dev/null || true
+  local key value
+  while IFS= read -r -d '' key && IFS= read -r -d '' value; do
+    case "$key" in
+      DATASET) DATASET="$value" ;;
+      MODEL) MODEL="$value" ;;
+      CHECKPOINT) CHECKPOINT="$value" ;;
+    esac
+  done < <("$PYTHON" tools/experiment_state.py load "$STATE_FILE" 2>/dev/null)
 }
 save_state() {
-  mkdir -p "$STATE_DIR"
-  {
-    printf 'DATASET=%q\n' "$DATASET"
-    printf 'MODEL=%q\n'   "$MODEL"
-    printf 'CHECKPOINT=%q\n' "$CHECKPOINT"
-  } > "$STATE_FILE"
+  "$PYTHON" tools/experiment_state.py save \
+    "$STATE_FILE" "$DATASET" "$MODEL" "$CHECKPOINT"
 }
 
 # tools/run.py 로 위임 실행. 명령을 화면에 출력하고 로그로 남긴다.
@@ -230,7 +231,6 @@ act_build_dataset() {
     --output-root "$out" \
     --unseen-label-count "$unseen" \
     --seed "$SEED" \
-    --allow-missing-json \
     --materialize-imagefolders --link-mode hardlink || return 1
 
   say ""

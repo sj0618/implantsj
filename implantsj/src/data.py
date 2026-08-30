@@ -92,6 +92,10 @@ def make_stratified_splits(
         # Existing splits are intentionally overwritten only by this function.
         df = df.drop(columns=['split'])
     ratios = np.array([train, valid, test], dtype=float)
+    if not np.isfinite(ratios).all() or (ratios < 0).any() or ratios.sum() <= 0:
+        raise ValueError(
+            'train, valid, and test ratios must be finite, non-negative, and have a positive sum'
+        )
     ratios = ratios / ratios.sum()
     train_ratio, valid_ratio, test_ratio = ratios.tolist()
 
@@ -113,16 +117,44 @@ def make_stratified_splits(
             stratify=temp_labels,
             shuffle=True,
         )
-    except ValueError as e:
-        # For very tiny classes, sklearn stratification can fail.
+    except ValueError as exc:
+        # sklearn's two-stage split can reject small but still splittable
+        # classes. Fall back per label while preserving class coverage; never
+        # silently degrade to an unstratified global shuffle.
         rng = np.random.default_rng(seed)
-        indices = np.arange(len(df))
-        rng.shuffle(indices)
-        n_train = max(1, int(round(len(indices) * train_ratio)))
-        n_valid = max(1, int(round(len(indices) * valid_ratio)))
-        train_idx = indices[:n_train]
-        valid_idx = indices[n_train:n_train + n_valid]
-        test_idx = indices[n_train + n_valid:]
+        split_ratios = np.asarray([train_ratio, valid_ratio, test_ratio], dtype=float)
+        active = np.flatnonzero(split_ratios > 0)
+        train_idx: list[int] = []
+        valid_idx: list[int] = []
+        test_idx: list[int] = []
+        targets = [train_idx, valid_idx, test_idx]
+        too_small = {
+            str(label): int(len(group))
+            for label, group in df.groupby(label_col, sort=True)
+            if len(group) < len(active)
+        }
+        if too_small:
+            raise ValueError(
+                f"cannot preserve every label in {len(active)} non-empty splits; "
+                f"samples per label={too_small}"
+            ) from exc
+        for _, group in df.groupby(label_col, sort=True):
+            indices = group.index.to_numpy(copy=True)
+            rng.shuffle(indices)
+            raw = split_ratios * len(indices)
+            counts = np.floor(raw).astype(int)
+            counts[active] = np.maximum(counts[active], 1)
+            while counts.sum() > len(indices):
+                candidates = [i for i in active if counts[i] > 1]
+                remove_from = max(candidates, key=lambda i: counts[i] - raw[i])
+                counts[remove_from] -= 1
+            while counts.sum() < len(indices):
+                add_to = max(active, key=lambda i: raw[i] - counts[i])
+                counts[add_to] += 1
+            start = 0
+            for target, count in zip(targets, counts.tolist()):
+                target.extend(indices[start:start + count].tolist())
+                start += count
         train_df, valid_df, test_df = df.iloc[train_idx], df.iloc[valid_idx], df.iloc[test_idx]
 
     train_df = train_df.copy(); train_df['split'] = 'train'
@@ -204,7 +236,8 @@ class ImageClassificationDataset:
         path = Path(row['path'])
         label = str(row['label'])
         y = self.class_to_idx[label]
-        img = Image.open(path).convert('RGB')
+        with Image.open(path) as opened:
+            img = opened.convert('RGB')
         if self.transform is not None:
             img = self.transform(img)
         if self.return_path:

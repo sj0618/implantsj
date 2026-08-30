@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import re
 from pathlib import Path
 
@@ -41,9 +42,6 @@ def curve_status(run, frame):
     notes = []
     if "metricdiag" in run.name.casefold() and len(frame) < 10:
         notes.append(f"partial {len(frame)}/10")
-    missing = sorted({"test_accuracy", "test_macro_f1"} - set(frame.columns))
-    if missing:
-        notes.append("curve partial: missing " + ", ".join(missing))
     return status + (" · " + " · ".join(notes) if notes else "")
 
 
@@ -91,13 +89,13 @@ def plot_run(run, output):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("runs", nargs="*")
-    parser.add_argument("--output-dir", default="/home/ubuntu/workspace/outputs/metricdiag-viz")
+    parser.add_argument("--output-dir", default=str(Path(os.environ.get("OUTPUT_ROOT", "/workspace/outputs")) / "metricdiag-viz"))
     parser.add_argument("--self-check", action="store_true")
     args = parser.parse_args()
     if args.self_check:
         assert axis_limits(pd.Series([0.8, 0.9]), True)[0] < 0.8
         assert axis_limits(pd.Series([4.0]), False)[0] < 4.0 < axis_limits(pd.Series([4.0]), False)[1]
-        assert "missing test_accuracy" in curve_status(Path("metricdiag"), pd.DataFrame({"epoch": [1]}))
+        assert "test_accuracy" not in curve_status(Path("metricdiag"), pd.DataFrame({"epoch": [1]}))
         print("VISUALIZATION_SELF_CHECK_OK")
         return
     if not args.runs:

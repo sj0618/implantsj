@@ -12,18 +12,17 @@ import numpy as np
 import pandas as pd
 import torch
 from torch import nn
-from torch.cuda.amp import GradScaler, autocast
 
 from .data import class_weights_from_manifest, create_loader, label_mapping, load_manifest
 from .metrics import compute_metrics, save_confusion_matrix, save_metrics_json, save_predictions
-from .models import create_classifier, load_matching_weights, save_checkpoint
+from .models import create_classifier, load_checkpoint, load_matching_weights, save_checkpoint
 from .utils import count_parameters, log, make_run_dir, seed_everything, write_json
 
 
 @dataclass
 class SupervisedArgs:
     manifest: str
-    output_root: str = '/workspace/implant_outputs'
+    output_root: str = '/workspace/outputs'
     experiment_name: str = 'vit_supervised'
     model_name: str = 'vit_base_patch16_224'
     pretrained: bool = True
@@ -120,8 +119,6 @@ def train_supervised(args: SupervisedArgs) -> Path:
 
     train_loader = create_loader(args.manifest, 'train', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=True, strong_aug=args.strong_aug)
     valid_loader = create_loader(args.manifest, 'valid', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=False, strong_aug=False, return_path=True)
-    test_loader = create_loader(args.manifest, 'test', class_to_idx, args.image_size, args.batch_size, args.num_workers, train=False, strong_aug=False, return_path=True)
-
     model = create_classifier(
         model_name=args.model_name,
         num_classes=n_classes,
@@ -142,7 +139,7 @@ def train_supervised(args: SupervisedArgs) -> Path:
     criterion = nn.CrossEntropyLoss(weight=weights, label_smoothing=args.label_smoothing)
     optimizer = optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(1, args.epochs))
-    scaler = GradScaler(enabled=args.amp and device.type == 'cuda')
+    scaler = torch.amp.GradScaler('cuda', enabled=args.amp and device.type == 'cuda')
 
     start_epoch = 1
     best_score = -1.0
@@ -150,7 +147,7 @@ def train_supervised(args: SupervisedArgs) -> Path:
     history: List[Dict] = []
 
     if args.resume_checkpoint:
-        ckpt = torch.load(args.resume_checkpoint, map_location='cpu')
+        ckpt = load_checkpoint(args.resume_checkpoint, map_location='cpu')
         model.load_state_dict(ckpt['model_state_dict'], strict=True)
         if ckpt.get('optimizer_state_dict') is not None:
             optimizer.load_state_dict(ckpt['optimizer_state_dict'])
@@ -169,7 +166,7 @@ def train_supervised(args: SupervisedArgs) -> Path:
             x = x.to(device, non_blocking=non_blocking)
             y = y.to(device, non_blocking=non_blocking)
             optimizer.zero_grad(set_to_none=True)
-            with autocast(enabled=args.amp and device.type == 'cuda'):
+            with torch.amp.autocast('cuda', enabled=args.amp and device.type == 'cuda'):
                 logits = model(x)
                 loss = criterion(logits, y)
             scaler.scale(loss).backward()
@@ -183,7 +180,6 @@ def train_supervised(args: SupervisedArgs) -> Path:
         scheduler.step()
         train_loss = epoch_loss / max(1, n_seen)
         valid_metrics = evaluate_classifier(model, valid_loader, device, idx_to_class, 'valid', out_dir=None)
-        test_metrics = evaluate_classifier(model, test_loader, device, idx_to_class, 'test', out_dir=None)
         score = float(valid_metrics.get(args.monitor, valid_metrics.get('macro_f1', 0.0)))
         row = {
             'epoch': epoch,
@@ -191,9 +187,6 @@ def train_supervised(args: SupervisedArgs) -> Path:
             'valid_accuracy': valid_metrics['accuracy'],
             'valid_macro_f1': valid_metrics['macro_f1'],
             'valid_weighted_f1': valid_metrics['weighted_f1'],
-            'test_accuracy': test_metrics['accuracy'],
-            'test_macro_f1': test_metrics['macro_f1'],
-            'test_weighted_f1': test_metrics['weighted_f1'],
             'valid_macro_precision': valid_metrics['macro_precision'],
             'valid_macro_recall': valid_metrics['macro_recall'],
             'lr': optimizer.param_groups[0]['lr'],
@@ -218,7 +211,7 @@ def train_supervised(args: SupervisedArgs) -> Path:
                 break
 
     # Final valid/test evaluation with best checkpoint.
-    best_ckpt = torch.load(run_dir / 'checkpoints' / 'best.pt', map_location='cpu')
+    best_ckpt = load_checkpoint(run_dir / 'checkpoints' / 'best.pt', map_location='cpu')
     model.load_state_dict(best_ckpt['model_state_dict'], strict=True)
     evaluate_classifier(model, valid_loader, device, idx_to_class, 'valid', out_dir=run_dir)
     try:

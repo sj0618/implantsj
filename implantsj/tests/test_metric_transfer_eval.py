@@ -32,14 +32,14 @@ class TinyBackbone(nn.Module):
         return self.fc(x)
 
 
-def install_fake_timm() -> None:
+def install_fake_timm(monkeypatch) -> None:
     fake_timm = types.ModuleType("timm")
 
     def create_model(*args, **kwargs):
         return TinyBackbone()
 
     fake_timm.create_model = create_model
-    sys.modules["timm"] = fake_timm
+    monkeypatch.setitem(sys.modules, "timm", fake_timm)
 
 
 def install_simple_transform() -> None:
@@ -97,8 +97,8 @@ def make_metric_checkpoint(checkpoint: Path) -> None:
     )
 
 
-def main() -> None:
-    install_fake_timm()
+def test_generic_metric_checkpoint_transfer_evaluation(monkeypatch) -> None:
+    install_fake_timm(monkeypatch)
     install_simple_transform()
 
     import evaluate_metric_transfer as eval_module
@@ -151,4 +151,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit("run this test with pytest")

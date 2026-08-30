@@ -29,6 +29,7 @@ sys.path.insert(0, str(ROOT))
 from src.data import build_transforms
 from src.metrics import (compute_metrics, save_confusion_matrix, save_metrics_json,
                          save_predictions)
+from src.models import load_checkpoint
 from src.patch_feature import (FEATURE_MODES, PatchFeatureDataset, ViTWithFeaturePatches,
                                load_feature_table)
 
@@ -63,7 +64,7 @@ def main() -> int:
     device = resolve_device(args.allow_cpu)
 
     ck_path = Path(args.checkpoint)
-    ck = torch.load(ck_path, map_location="cpu", weights_only=False)
+    ck = load_checkpoint(ck_path, map_location="cpu")
     train_args = ck.get("args", {})
     class_to_idx = ck["class_to_idx"]
     idx_to_class = {i: c for c, i in class_to_idx.items()}

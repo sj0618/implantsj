@@ -20,6 +20,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.data import IMAGE_EXTENSIONS, build_transforms, label_mapping, load_manifest
 from src.metrics import compute_metrics, save_confusion_matrix, save_metrics_json, save_predictions
+from src.models import load_checkpoint
 
 
 CANONICAL_3LABELS = {
@@ -158,7 +159,7 @@ def infer_model_args(ckpt: dict, args) -> Tuple[str, int, int, int]:
 
 
 def load_stage1_metric_model(checkpoint: Path, args, device: torch.device):
-    ckpt = torch.load(checkpoint, map_location="cpu")
+    ckpt = load_checkpoint(checkpoint, map_location="cpu")
     state = normalize_state_dict(checkpoint_state(ckpt))
     model_name, image_size, hidden_dim, projection_dim = infer_model_args(ckpt, args)
     uses_projector = any(key.startswith("projector.") for key in state)

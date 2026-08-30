@@ -83,13 +83,17 @@ def main() -> None:
         allow_missing=args.allow_missing_json,
         report=skip_report,
     )
-    split_df = split_train_valid(base_df, valid_ratio=args.valid_ratio, seed=args.seed)
-
     seen_labels, unseen_labels, stats_df = infer_seen_unseen_labels(
-        split_df,
+        base_df,
         seen_label_count=args.seen_label_count,
         unseen_label_count=args.unseen_label_count,
         min_train_count=args.min_train_count,
+    )
+    split_df = split_train_valid(
+        base_df,
+        valid_ratio=args.valid_ratio,
+        seed=args.seed,
+        required_valid_labels=seen_labels,
     )
     manifest_42 = split_df.copy()
     manifest_seen27 = build_seen27_manifest(split_df, seen_labels)
@@ -120,6 +124,18 @@ def main() -> None:
         "label_key": args.label_key,
         "valid_ratio": args.valid_ratio,
         "seed": args.seed,
+        "split_strategy": {
+            "method": "label_stratified_group",
+            "group_columns": ["hospital", "case_id"],
+            "group_counts": {
+                split: int(group["group_id"].nunique())
+                for split, group in split_df.groupby("split", sort=True)
+            },
+            "train_valid_group_overlap": sorted(
+                set(split_df.loc[split_df["split"] == "train", "group_id"])
+                & set(split_df.loc[split_df["split"] == "valid", "group_id"])
+            ),
+        },
         "total_rows": int(len(split_df)),
         "total_labels": n_all,
         "seen_label_count": n_seen,

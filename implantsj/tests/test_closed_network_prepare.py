@@ -4,7 +4,6 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 import pandas as pd
@@ -24,20 +23,20 @@ def write_sample_pair(image_root: Path, json_root: Path, hospital: str, case_id:
     json_path.write_text(json.dumps({"모델명": label}, ensure_ascii=False), encoding="utf-8")
 
 
-def main() -> None:
-    with tempfile.TemporaryDirectory(prefix="closed_network_prepare_") as tmp:
-        tmp_dir = Path(tmp)
-        tl1 = tmp_dir / "TL1"
-        ts1 = tmp_dir / "TS1"
-        vl1 = tmp_dir / "VL1"
-        vs1 = tmp_dir / "VS1"
-        out_root = tmp_dir / "prepared"
+def test_closed_network_dataset_preparation_is_group_disjoint(tmp_path: Path) -> None:
+        tl1 = tmp_path / "TL1"
+        ts1 = tmp_path / "TS1"
+        vl1 = tmp_path / "VL1"
+        vs1 = tmp_path / "VS1"
+        out_root = tmp_path / "prepared"
 
         # Train-side labels: SeenA(3), SeenB(2), NovelC(1)
         write_sample_pair(ts1, tl1, "h01", "h01_0001", "img_001", "SeenA")
+        write_sample_pair(ts1, tl1, "h01", "h01_0001", "img_001b", "SeenA")
         write_sample_pair(ts1, tl1, "h01", "h01_0002", "img_002", "SeenA")
         write_sample_pair(ts1, tl1, "h02", "h02_0001", "img_003", "SeenA")
         write_sample_pair(ts1, tl1, "h02", "h02_0002", "img_004", "SeenB")
+        write_sample_pair(ts1, tl1, "h02", "h02_0002", "img_004b", "SeenB")
         write_sample_pair(ts1, tl1, "h03", "h03_0001", "img_005", "SeenB")
         write_sample_pair(ts1, tl1, "h03", "h03_0002", "img_006", "NovelC")
 
@@ -69,9 +68,9 @@ def main() -> None:
         ]
         subprocess.run(cmd, check=True)
 
-        manifest_42 = pd.read_csv(out_root / "manifests" / "closed_network_42label.csv")
-        manifest_seen = pd.read_csv(out_root / "manifests" / "closed_network_seen27.csv")
-        manifest_unseen = pd.read_csv(out_root / "manifests" / "closed_network_unseen15.csv")
+        manifest_42 = pd.read_csv(out_root / "manifests" / "closed_network_3label.csv")
+        manifest_seen = pd.read_csv(out_root / "manifests" / "closed_network_seen2.csv")
+        manifest_unseen = pd.read_csv(out_root / "manifests" / "closed_network_unseen1.csv")
         summary = json.loads((out_root / "summary.json").read_text(encoding="utf-8"))
 
         assert sorted(manifest_42["label"].unique().tolist()) == ["NovelC", "SeenA", "SeenB"]
@@ -79,20 +78,20 @@ def main() -> None:
         assert sorted(manifest_seen["label"].unique().tolist()) == ["SeenA", "SeenB"]
         assert sorted(manifest_unseen["label"].unique().tolist()) == ["NovelC"]
         assert set(manifest_unseen["split"].unique().tolist()) == {"test"}
+        train_groups = set(manifest_42.loc[manifest_42["split"] == "train", "group_id"])
+        valid_groups = set(manifest_42.loc[manifest_42["split"] == "valid", "group_id"])
+        assert train_groups.isdisjoint(valid_groups)
+        assert summary["split_strategy"]["train_valid_group_overlap"] == []
 
         # Materialized ImageFolder structures exist.
-        assert (out_root / "imagefolders" / "data_42label" / "train").is_dir()
-        assert (out_root / "imagefolders" / "data_metric_seen27" / "val").is_dir()
-        assert (out_root / "imagefolders" / "data_metric_unseen15" / "test").is_dir()
+        assert (out_root / "imagefolders" / "data_3label" / "train").is_dir()
+        assert (out_root / "imagefolders" / "data_metric_seen2" / "val").is_dir()
+        assert (out_root / "imagefolders" / "data_metric_unseen1" / "test").is_dir()
 
         # The smallest train-count label should have been selected as unseen.
-        unseen_labels = (out_root / "label_splits" / "unseen15_labels.txt").read_text(encoding="utf-8").strip().splitlines()
+        unseen_labels = (out_root / "label_splits" / "unseen1_labels.txt").read_text(encoding="utf-8").strip().splitlines()
         assert unseen_labels == ["NovelC"]
         assert summary["seen_label_count"] == 2
         assert summary["unseen_label_count"] == 1
 
-    print("OK: closed-network dataset preparation test passed")
-
-
-if __name__ == "__main__":
-    main()
+        assert set(manifest_seen.loc[manifest_seen["split"] == "valid", "label"]) == {"SeenA", "SeenB"}

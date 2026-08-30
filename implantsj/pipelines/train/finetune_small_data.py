@@ -17,7 +17,7 @@ def main():
     p.add_argument('--data-root', required=True, help='Small dataset folder, e.g. /workspace/data/current_3class')
     p.add_argument('--manifest', required=True, help='Output/input small manifest path')
     p.add_argument('--checkpoint', required=True, help='Large pretrain checkpoint')
-    p.add_argument('--output-root', default='/workspace/implant_outputs')
+    p.add_argument('--output-root', default='/workspace/outputs')
     p.add_argument('--experiment-name', default='finetune_small')
     p.add_argument('--model-name', default='vit_base_patch16_224')
     p.add_argument('--image-size', type=int, default=224)

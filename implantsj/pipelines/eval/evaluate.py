@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from src.data import create_loader, label_mapping, load_manifest
-from src.models import create_classifier
+from src.models import create_classifier, load_checkpoint
 from src.supervised import evaluate_classifier
 from src.utils import make_run_dir, write_json
 
@@ -21,7 +21,7 @@ def main():
     p.add_argument('--checkpoint', required=True)
     p.add_argument('--manifest', required=True)
     p.add_argument('--split', default='test', choices=['train', 'valid', 'test'])
-    p.add_argument('--output-root', default='/workspace/implant_outputs')
+    p.add_argument('--output-root', default='/workspace/outputs')
     p.add_argument('--experiment-name', default='eval_classifier')
     p.add_argument('--model-name', default=None, help='If omitted, read from checkpoint args.')
     p.add_argument('--image-size', type=int, default=None, help='If omitted, read from checkpoint args or use 224.')
@@ -34,7 +34,7 @@ def main():
     if device.type != 'cuda' and not args.allow_cpu:
         raise RuntimeError('CUDA is not available. Pass --allow-cpu only for debugging.')
 
-    ckpt = torch.load(args.checkpoint, map_location='cpu')
+    ckpt = load_checkpoint(args.checkpoint, map_location='cpu')
     class_to_idx = {str(k): int(v) for k, v in ckpt.get('class_to_idx', {}).items()}
     if not class_to_idx:
         df = load_manifest(args.manifest, split=None)

@@ -42,14 +42,13 @@ from sklearn.metrics import (
     recall_score,
 )
 from torch import nn
-from torch.cuda.amp import GradScaler, autocast
 from torch.utils.data import DataLoader, Dataset
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from src.data import build_transforms, class_weights_from_manifest, label_mapping, load_manifest
-from src.models import load_matching_weights, save_checkpoint
+from src.models import load_checkpoint, load_matching_weights, save_checkpoint
 from src.utils import count_parameters, log, make_run_dir, seed_everything, write_json
 
 
@@ -994,7 +993,7 @@ def train_one_run(args: FusionArgs, suite_tag: Optional[str] = None) -> Dict[str
         param_groups.append({"params": image_params, "lr": args.image_lr})
     optimizer = torch.optim.AdamW(param_groups, weight_decay=args.weight_decay)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(1, args.epochs))
-    scaler = GradScaler(enabled=args.amp and device.type == "cuda")
+    scaler = torch.amp.GradScaler("cuda", enabled=args.amp and device.type == "cuda")
 
     best_score = -1.0
     best_metrics: Dict[str, Any] = {}
@@ -1011,7 +1010,7 @@ def train_one_run(args: FusionArgs, suite_tag: Optional[str] = None) -> Dict[str
             vlm = vlm.to(device, non_blocking=True)
             y = y.to(device, non_blocking=True)
             optimizer.zero_grad(set_to_none=True)
-            with autocast(enabled=args.amp and device.type == "cuda"):
+            with torch.amp.autocast("cuda", enabled=args.amp and device.type == "cuda"):
                 logits = model(image, vlm)
                 loss = criterion(logits, y)
             scaler.scale(loss).backward()
@@ -1071,7 +1070,7 @@ def train_one_run(args: FusionArgs, suite_tag: Optional[str] = None) -> Dict[str
                 log(f"Early stopping at epoch={epoch}. Best {args.monitor}={best_score:.4f}")
                 break
 
-    best_ckpt = torch.load(run_dir / "checkpoints" / "best.pt", map_location="cpu")
+    best_ckpt = load_checkpoint(run_dir / "checkpoints" / "best.pt", map_location="cpu")
     model.load_state_dict(best_ckpt["model_state_dict"], strict=True)
     valid_final = evaluate(
         model,

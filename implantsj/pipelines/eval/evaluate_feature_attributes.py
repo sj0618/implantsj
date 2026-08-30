@@ -20,7 +20,7 @@ import torch
 from src.class_features import UNKNOWN, FeatureTable, load_aliases, load_table, match_labels
 from src.data import create_loader, load_manifest
 from src.feature_attributes import evaluate_attributes
-from src.models import AttributeModel
+from src.models import AttributeModel, load_checkpoint
 from src.utils import log, write_json
 
 
@@ -38,7 +38,7 @@ def main():
     p.add_argument('--allow-cpu', action='store_true')
     a = p.parse_args()
 
-    ckpt = torch.load(a.checkpoint, map_location='cpu')
+    ckpt = load_checkpoint(a.checkpoint, map_location='cpu')
     for key in ('attributes', 'vocab', 'args'):
         if key not in ckpt:
             raise RuntimeError(f'{a.checkpoint} 는 feature-attribute 체크포인트가 아닙니다 (no {key}).')

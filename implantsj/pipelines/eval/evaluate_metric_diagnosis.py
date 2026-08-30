@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Compact 42-label metric-representation diagnosis."""
-import argparse, json, re, sys, unicodedata, zipfile
+import argparse, hashlib, importlib, json, re, sys, unicodedata, zipfile
 from pathlib import Path
 import numpy as np
 import pandas as pd
@@ -11,12 +11,80 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from src.data import IMAGE_EXTENSIONS, ImageClassificationDataset, build_transforms, load_manifest
 from src.metrics import compute_metrics
-from src.models import MetricModel, create_classifier, load_matching_weights, unwrap_state_dict
+from src.models import MetricModel, create_classifier, load_checkpoint, load_matching_weights, unwrap_state_dict
 
 MODELS = ["ViT Base", "ViT-ClosedFT", "ViT-ClosedFT-SupCon", "ViT-FullFT", "ViT-FullFT-SupCon"]
 PROTOS, DISTS, SPLITS = ["gt", "mean", "ss"], ["euclidean", "cosine"], ["valid", "test"]
 OPEN15 = {"simpleline", "exfeelinternal", "ssiii", "biohorizonexternal", "tsv", "scleantapered", "gsiii", "screwvent", "atlasinternal", "stella", "3i", "ankylos", "iu", "replaceselect", "core1"}
 PASS = "PASS \u2014 checkpoint \uc5c6\uc74c"
+
+def digest(path):
+    checksum = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for block in iter(lambda: stream.read(1048576), b""):
+            checksum.update(block)
+    return checksum.hexdigest()
+
+def content_audit(frames, gt, out):
+    """Reject byte-identical images crossing evaluation boundaries."""
+    out = Path(out); out.mkdir(parents=True, exist_ok=True); records=[]; errors=[]
+    for partition,frame in frames.items():
+        if partition == "full":
+            continue
+        for row in frame.itertuples():
+            path=Path(row.path)
+            if not path.is_file():
+                errors.append(f"missing image: {path}"); continue
+            records.append({"sha256":digest(path),"partition":str(partition),"split":str(getattr(row,"split","")),"label":str(row.label),"path":str(path.resolve()),"source":"manifest"})
+    for label,paths in gt.items():
+        for value in paths:
+            path=Path(value)
+            if not path.is_file():
+                errors.append(f"missing GT image: {path}"); continue
+            records.append({"sha256":digest(path),"partition":"gt","split":"gt","label":str(label),"path":str(path.resolve()),"source":"gt"})
+    by_hash={}
+    for record_item in records: by_hash.setdefault(record_item["sha256"],[]).append(record_item)
+    for checksum,items in by_hash.items():
+        manifest_items=[item for item in items if item["source"]=="manifest"]
+        for partition in sorted({item["partition"] for item in manifest_items}):
+            splits={item["split"] for item in manifest_items if item["partition"]==partition}
+            if len(splits)>1: errors.append(f"content leakage within {partition} across splits {sorted(splits)}: {checksum}")
+        partitions={item["partition"] for item in manifest_items}
+        if len(partitions)>1: errors.append(f"content leakage across partitions {sorted(partitions)}: {checksum}")
+        if manifest_items and any(item["source"]=="gt" for item in items): errors.append(f"content leakage between manifest and GT: {checksum}")
+    pd.DataFrame(records).to_csv(out/"content_audit.csv",index=False)
+    payload={"ok":not errors,"errors":errors,"files":len(records),"unique_contents":len(by_hash)}
+    (out/"content_audit.json").write_text(json.dumps(payload,indent=2),encoding="utf-8")
+    if errors: raise RuntimeError("content leakage audit failed: "+"; ".join(errors[:10]))
+    return payload
+
+def runtime_versions():
+    modules={"torch":"torch","torchvision":"torchvision","timm":"timm","sklearn":"sklearn","numpy":"numpy","pandas":"pandas","matplotlib":"matplotlib","pillow":"PIL"}
+    values={"python":sys.version}
+    for name,module_name in modules.items():
+        try:
+            module=importlib.import_module(module_name); values[name]=str(getattr(module,"__version__","unknown"))
+        except Exception as error: values[name]=f"unavailable: {error!r}"
+    return values
+
+def write_run_fingerprint(out,args):
+    sources={}
+    for relative in ["src/models.py","src/data.py","pipelines/eval/evaluate_metric_diagnosis.py"]:
+        path=ROOT/relative
+        sources[relative]={"path":str(path.resolve()),"sha256":digest(path)}
+    payload={"schema":2,"config":vars(args).copy(),"sources":sources,"runtime":runtime_versions()}
+    (Path(out)/"run_fingerprint.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
+    return payload
+
+def write_completion(out):
+    out=Path(out); artifacts={}
+    for name in ["REPORT.md","summary.csv","backbone_summary.csv","selected_results.csv","run_fingerprint.json","manifest_audit.json","content_audit.json","checkpoint_selection.json","progress.json"]:
+        path=out/name
+        if path.is_file(): artifacts[name]=digest(path)
+    selected_rows=len(pd.read_csv(out/"selected_results.csv")) if (out/"selected_results.csv").is_file() else 0
+    payload={"status":"complete","selected_rows":selected_rows,"artifacts":artifacts}
+    (out/"completion.json").write_text(json.dumps(payload,indent=2),encoding="utf-8")
+    return payload
 
 def normalize_label_name(value):
     value = unicodedata.normalize("NFKC", str(value)).strip()
@@ -90,7 +158,7 @@ def extract_gt_zip(zip_path, base):
         bad=[info.filename for info in files if not (root/info.filename).is_file() or (root/info.filename).stat().st_size!=info.file_size]
     if bad: raise RuntimeError(f"GT extraction incomplete: {bad[:5]}")
     meta={"zip":str(zip_path.resolve()),"members":len(files),"image_members":sum(Path(info.filename).suffix.lower() in IMAGE_EXTENSIONS for info in files)}
-    (root/"extraction.json").write_text(json.dumps(meta,indent=2)); return root,meta
+    (root/"extraction.json").write_text(json.dumps(meta,indent=2),encoding="utf-8"); return root,meta
 
 def clean(state):
     out = {}
@@ -102,7 +170,7 @@ def clean(state):
 
 def record(path):
     try:
-        ck = torch.load(path,map_location="cpu"); args = ck.get("args",{}); classes = ck.get("class_to_idx",{})
+        ck = load_checkpoint(path,map_location="cpu"); args = ck.get("args",{}); classes = ck.get("class_to_idx",{})
         state = clean(unwrap_state_dict(ck)); manifest = Path(args.get("manifest") or "")
         manifest_labels, manifest_splits, manifest_error, history_epochs, history_fields = [], {}, "", [], []
         if manifest.is_file():
@@ -112,7 +180,7 @@ def record(path):
         history=path.parent.parent/"metrics/history.csv"
         if history.is_file():
             frame=pd.read_csv(history); history_fields=list(frame.columns); history_epochs=frame.epoch.astype(int).tolist() if "epoch" in frame else []
-        return {"checkpoint":str(path.resolve()), "kind":"supcon" if any(k.startswith("projector.") for k in state) else "classifier",
+        return {"checkpoint":str(path.resolve()), "checkpoint_sha256":digest(path), "kind":"supcon" if any(k.startswith("projector.") for k in state) else "classifier",
                 "model_name":args.get("model_name",""), "loss_name":args.get("loss_name",""), "labels":sorted(map(str,classes)),
                 "image_size":int(args.get("image_size",224)),
                 "manifest":str(manifest), "manifest_labels":manifest_labels, "manifest_splits":manifest_splits, "manifest_error":manifest_error, "epoch":ck.get("epoch",0),
@@ -145,7 +213,7 @@ def make_model(item, device):
         name, size = item["model_name"], int(item.get("image_size",224))
         model = create_classifier(name,0,True); transform,native=eval_transform(model,size,True); comparison,common=eval_transform(model,size,False); forward = lambda x:{"backbone":classifier_features(model,x)}
         return model.to(device).eval(),forward,transform,comparison,{"deployed":native,"common_backbone":common}
-    path=Path(item["checkpoint"]); ck = torch.load(path,map_location="cpu"); args = ck.get("args",{}); state = clean(unwrap_state_dict(ck))
+    path=Path(item["checkpoint"]); ck = load_checkpoint(path,map_location="cpu"); args = ck.get("args",{}); state = clean(unwrap_state_dict(ck))
     name, size = args.get("model_name",item.get("model_name","vit_base_patch16_224")), int(args.get("image_size",224))
     if kind == "supcon":
         dim = int(args.get("embedding_dim") or state["projector.3.weight"].shape[0])
@@ -204,7 +272,7 @@ def save_tsne(name, caches, out, seed, limit, representation="common_backbone"):
     train_test_png,valid_png=out/f"{stem}.png",out/f"{stem}_valid.png"
     df.to_csv(csv_path,index=False); np.savez_compressed(npz_path,features=x,coords=xy,**{c:df[c].to_numpy() for c in ["partition","label","split","path"]})
     xlim,ylim=axis_limits(df.x,False),axis_limits(df.y,False)
-    counts={"/".join(map(str,k)):int(v) for k,v in df.groupby(["partition","split","label"]).size().items()}; meta={"representation":representation,"total_features":total,"sampled":len(df),"max_samples":limit,"seed":seed,"method":"deterministic round-robin by partition/split/label","partitions_overlaid":True,"axis_limits":{"x":xlim,"y":ylim},"counts":counts,"csv":str(csv_path),"npz":str(npz_path),"sampling":str(sampling_path),"train_test_png":str(train_test_png),"valid_png":str(valid_png)}; sampling_path.write_text(json.dumps(meta,indent=2))
+    counts={"/".join(map(str,k)):int(v) for k,v in df.groupby(["partition","split","label"]).size().items()}; meta={"representation":representation,"total_features":total,"sampled":len(df),"max_samples":limit,"seed":seed,"method":"deterministic round-robin by partition/split/label","partitions_overlaid":True,"axis_limits":{"x":xlim,"y":ylim},"counts":counts,"csv":str(csv_path),"npz":str(npz_path),"sampling":str(sampling_path),"train_test_png":str(train_test_png),"valid_png":str(valid_png)}; sampling_path.write_text(json.dumps(meta,indent=2),encoding="utf-8")
     import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
     label_names=sorted(df.label.unique()); colors={label:plt.cm.turbo(i/max(1,len(label_names)-1)) for i,label in enumerate(label_names)}
@@ -265,7 +333,7 @@ def save_prototype_tsne(name, caches, gtc, out, seed, count, representation="com
         if handles: fig.legend(handles=handles,loc="center left",bbox_to_anchor=(.99,.5),fontsize=7)
         fig.tight_layout(rect=(0,0,.84,1)); fig.savefig(target,dpi=180,bbox_inches="tight"); plt.close(fig); policy_pngs[policy]=str(target)
     meta={"status":"ok","representation":representation,"seed":seed,"points":len(df),"partitions_overlaid":True,"csv":str(csv_path),"npz":str(npz_path),"png":str(png_path),"policy_pngs":policy_pngs,"coverage":coverage,"axis_limits":{"x":xlim,"y":ylim}}
-    meta_path.write_text(json.dumps(meta,indent=2)); meta["metadata"]=str(meta_path); return meta
+    meta_path.write_text(json.dumps(meta,indent=2),encoding="utf-8"); meta["metadata"]=str(meta_path); return meta
 
 def axis_limits(values, bounded):
     low,high=float(values.min()),float(values.max()); span=high-low or max(abs(high)*.05,.02); pad=max(span*.12,.005 if bounded else span*.05)
@@ -288,9 +356,8 @@ def save_curve(name, item, out):
             if len(values): ax.set_ylim(*axis_limits(values,title!="loss"))
             ax.set_title(title); ax.set_xlabel("epoch"); ax.legend()
         fig.tight_layout(); target=out/f"{stem}.png"; fig.savefig(target,dpi=180); plt.close(fig); png=str(target)
-    missing=sorted({"test_accuracy","test_macro_f1"}-set(df.columns)); reasons=[]
+    reasons=[]
     if len(df)<10: reasons.append(f"history has {len(df)}/10 epochs")
-    if missing: reasons.append(f"history lacks per-epoch {', '.join(missing)}; available curves only")
     status="partial" if reasons else "ok"; reason="; ".join(reasons)
     ranking=[column for column in ["valid_macro_f1","valid_accuracy"] if column in df]; best=df.sort_values(ranking,ascending=False).iloc[0] if ranking else df.iloc[-1]
     result={"model":name,"history":str(history),"status":status,"csv":str(copy),"png":png,"reason":reason,"epochs":len(df),"best_epoch":int(best["epoch"]) if "epoch" in best else int(best.name)+1}
@@ -324,13 +391,13 @@ def save_partial(out, summary, backbone, predictions, members, curves, progress)
     (pd.DataFrame(predictions) if predictions else pd.DataFrame(columns=["model","prototype","distance","partition","split","path","true_label","pred_label","score","correct"])).to_csv(out/"predictions.csv",index=False)
     (pd.DataFrame(members) if members else pd.DataFrame(columns=["model","partition","prototype","label","path"])).to_csv(out/"prototype_membership.csv",index=False)
     (pd.DataFrame(curves) if curves else pd.DataFrame(columns=["model","history","status","csv","png","reason"])).to_csv(out/"curve_inventory.csv",index=False)
-    (out/"progress.json").write_text(json.dumps(progress,indent=2))
+    (out/"progress.json").write_text(json.dumps(progress,indent=2),encoding="utf-8")
 
 def resume_tsne(out, seed, limit, ss_per_label):
     progress_path=out/"progress.json"; progress=json.loads(progress_path.read_text()); failures=[]
     for name in MODELS:
         if progress.get("models",{}).get(name,{}).get("status")==PASS:
-            progress["models"][name]["tsne"]={"status":PASS}; progress["models"][name]["prototype_tsne"]={"status":PASS}; progress_path.write_text(json.dumps(progress,indent=2)); continue
+            progress["models"][name]["tsne"]={"status":PASS}; progress["models"][name]["prototype_tsne"]={"status":PASS}; progress_path.write_text(json.dumps(progress,indent=2),encoding="utf-8"); continue
         folder=out/"features"/name.replace(" ","_"); common={}; deployed={}
         try:
             def load(path):
@@ -350,7 +417,7 @@ def resume_tsne(out, seed, limit, ss_per_label):
             progress["models"][name]["prototype_tsne"]={"status":"ok","common_backbone":common_prototype,"deployed":deployed_prototype}
         except Exception as error:
             progress["models"].setdefault(name,{})["tsne"]={"status":"unavailable","reason":repr(error)}; progress["models"][name]["prototype_tsne"]={"status":"unavailable","reason":repr(error)}; failures.append(name)
-        progress_path.write_text(json.dumps(progress,indent=2))
+        progress_path.write_text(json.dumps(progress,indent=2),encoding="utf-8")
     if failures: raise RuntimeError(f"t-SNE incomplete for {failures}; saved features can be resumed")
     return progress
 
@@ -400,7 +467,7 @@ def run_prototype_tsne_only(args, out):
             if "deployed_gt" in locals(): del deployed_gt
             if "common_gt" in locals(): del common_gt
             if device.type=="cuda": torch.cuda.empty_cache()
-            (out/"progress.json").write_text(json.dumps(progress,indent=2))
+            (out/"progress.json").write_text(json.dumps(progress,indent=2),encoding="utf-8")
     if failures: raise RuntimeError(f"prototype t-SNE incomplete for {failures}; partial artifacts preserved in {out}")
     print("PROTOTYPE_TSNE_OK")
     return progress
@@ -498,9 +565,12 @@ def write_report(out, args):
         assets.append(link(prototype_common.get("png"),"common GT/Mean/SS prototypes"))
         if prototype_deployed.get("status")!="same_as_common_backbone": assets.append(link(prototype_deployed.get("png"),"deployed GT/Mean/SS prototypes"))
         lines.append(f"- {name}: {info.get('status','unavailable')}"+("; "+" \u00b7 ".join(x for x in assets if x) if any(assets) else ""))
+    fingerprint=json.loads((out/"run_fingerprint.json").read_text()) if (out/"run_fingerprint.json").is_file() else {"sources":{}}
+    lines += ["","## SHA-256 provenance"]
+    for source,metadata in sorted(fingerprint.get("sources",{}).items()): lines.append(f"- {source}: {metadata['sha256']}")
     result_covered=result.status.isin(["ok",PASS]); backbone_covered=backbone_result.status.isin(["ok",PASS])
     lines += ["",f"Covered deployed result rows: {int(result_covered.sum())}/120 (OK {len(ok)}, PASS {int((result.status==PASS).sum())})",f"Covered common-backbone rows: {int(backbone_covered.sum())}/120 (OK {len(backbone_ok)}, PASS {int((backbone_result.status==PASS).sum())})"]
-    (out/"REPORT.md").write_text("\n".join(lines)+"\n"); print(f"RESULT_ROWS={len(result)} OK_ROWS={len(ok)} BACKBONE_OK_ROWS={len(backbone_ok)}")
+    (out/"REPORT.md").write_text("\n".join(lines)+"\n",encoding="utf-8"); print(f"RESULT_ROWS={len(result)} OK_ROWS={len(ok)} BACKBONE_OK_ROWS={len(backbone_ok)}")
     return len(result)==len(backbone_result)==120 and result_covered.all() and backbone_covered.all(),all(progress["models"].get(name,{}).get(kind,{}).get("status")=="ok" for name in selected for kind in ["tsne","prototype_tsne"]),len(ok),len(backbone_ok)
 
 def run_full_only(args, out):
@@ -530,7 +600,7 @@ def run_full_only(args, out):
         predictions += [{"model":"ViT Base","model_name":args.base_model_name,"representation":"backbone","prototype":"mean","distance":distance,"partition":"full","split":"test","path":str(cache["paths"][index]),"true_label":str(true_labels[position]),"pred_label":str(predicted[position]),"score":float(scores[position]),"correct":bool(predicted[position]==true_labels[position])} for position,index in enumerate(test_idx)]
     pd.DataFrame(summary).to_csv(out/"summary.csv",index=False); pd.DataFrame(predictions).to_csv(out/"predictions.csv",index=False)
     payload={"model":"ViT Base","model_name":args.base_model_name,"source":"timm pretrained weights","checkpoint":None,"manifest":str(manifest.resolve()),"label_count":len(classes),"train_samples":len(train_idx),"test_samples":len(test_idx),"prototype":"train mean","preprocessing":preprocess,"results":metric_results}
-    (out/"metrics.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2))
+    (out/"metrics.json").write_text(json.dumps(payload,ensure_ascii=False,indent=2),encoding="utf-8")
     for row in summary: print(f"{row['distance']}: accuracy={row['accuracy']:.6f}, macro_f1={row['macro_f1']:.6f}")
     print(f"FULL_ONLY_RESULTS={out/'summary.csv'}")
 
@@ -541,6 +611,7 @@ def main():
     p.add_argument("--gt-zip"); p.add_argument("--gt-root"); p.add_argument("--gt-manifest"); p.add_argument("--output-dir",required=True)
     p.add_argument("--ss-per-label",type=int,default=5); p.add_argument("--seed",type=int,default=42); p.add_argument("--batch-size",type=int,default=64); p.add_argument("--num-workers",type=int,default=8); p.add_argument("--tsne-max-samples",type=int,default=0); p.add_argument("--allow-cpu",action="store_true"); p.add_argument("--inventory-only",action="store_true"); p.add_argument("--resume-tsne",action="store_true"); p.add_argument("--prototype-tsne-only",action="store_true"); p.add_argument("--full-only",action="store_true"); a=p.parse_args()
     out=Path(a.output_dir); out.mkdir(parents=True,exist_ok=True)
+    write_run_fingerprint(out,a)
     if a.full_only: run_full_only(a,out); return
     if not a.closed_manifest or not a.open_manifest or not a.checkpoint_root: p.error("--closed-manifest, --open-manifest, and --checkpoint-root are required unless --full-only is used")
     (out/"completion.json").unlink(missing_ok=True); (out/"features").mkdir(exist_ok=True); (out/"tsne").mkdir(exist_ok=True); (out/"prototype_tsne").mkdir(exist_ok=True); (out/"curves").mkdir(exist_ok=True)
@@ -548,6 +619,7 @@ def main():
     if a.resume_tsne:
         resume_tsne(out,a.seed,a.tsne_max_samples,a.ss_per_label); numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
         if not numeric_ok or not visual_ok: raise RuntimeError(f"experiment incomplete after t-SNE resume: deployed {ok_rows}/120, backbone {backbone_rows}/120")
+        write_completion(out)
         print("TSNE_RESUME_OK"); return
     manifests={"closed":Path(a.closed_manifest),"open":Path(a.open_manifest),"full":Path(a.full_manifest)}; frames={k:load_manifest(v) for k,v in manifests.items()}; labels={k:set(v.label.astype(str)) for k,v in frames.items()}; rows={k:manifest_rows(v) if "split" in v else [] for k,v in frames.items()}
     errors=[]; split_errors={}
@@ -568,7 +640,7 @@ def main():
         if len(set(paths))!=len(paths): errors.append(f"{part} manifest reuses a path")
     row_union_exact=set(rows["full"])==set(rows["closed"])|set(rows["open"]) and not set(rows["closed"])&set(rows["open"])
     if not row_union_exact: errors.append("full manifest rows are not the exact disjoint union of closed and open")
-    audit={"ok":not errors,"errors":errors,"split_errors":split_errors,"row_union_exact":row_union_exact,"manifests":{k:{"path":str(v.resolve()),"rows":len(frames[k]),"labels":len(labels[k]),"splits":frames[k].split.value_counts().to_dict() if "split" in frames[k] else {}} for k,v in manifests.items()}}; (out/"manifest_audit.json").write_text(json.dumps(audit,indent=2))
+    audit={"ok":not errors,"errors":errors,"split_errors":split_errors,"row_union_exact":row_union_exact,"manifests":{k:{"path":str(v.resolve()),"rows":len(frames[k]),"labels":len(labels[k]),"splits":frames[k].split.value_counts().to_dict() if "split" in frames[k] else {}} for k,v in manifests.items()}}; (out/"manifest_audit.json").write_text(json.dumps(audit,indent=2),encoding="utf-8")
     if errors: raise RuntimeError(errors)
     paths=set()
     for root in map(Path,a.checkpoint_root): paths.update(root.rglob("best.pt")); paths.update(root.rglob("best*.pth"))
@@ -598,14 +670,15 @@ def main():
         elif not explicit[name] and target_seen: selection_errors[name]=f"existing exact-{part}-manifest {kind} checkpoint failed model validation"
         elif not explicit[name] and unreadable_seen: selection_errors[name]="unreadable existing checkpoint prevents proving target absence"
         elif not explicit[name]: selection_errors[name]=PASS; missing_models.add(name)
-    selected["ViT Base"]={"kind":"base","checkpoint":str(Path(a.base_checkpoint).resolve()),"model_name":a.base_model_name,"selection_basis":"explicit base checkpoint"} if a.base_checkpoint else {"kind":"pretrained_base","model_name":a.base_model_name,"image_size":224,"selection_basis":"timm pretrained weights"}
-    (out/"checkpoint_selection.json").write_text(json.dumps(selected,indent=2)); (out/"checkpoint_selection_errors.json").write_text(json.dumps(selection_errors,indent=2)); print("SELECTED=",",".join(x for x in MODELS if x in selected)); print("MISSING=",",".join(x for x in MODELS if x not in selected))
+    selected["ViT Base"]={"kind":"base","checkpoint":str(Path(a.base_checkpoint).resolve()),"checkpoint_sha256":digest(a.base_checkpoint),"model_name":a.base_model_name,"selection_basis":"explicit base checkpoint"} if a.base_checkpoint else {"kind":"pretrained_base","model_name":a.base_model_name,"image_size":224,"selection_basis":"timm pretrained weights"}
+    (out/"checkpoint_selection.json").write_text(json.dumps(selected,indent=2),encoding="utf-8"); (out/"checkpoint_selection_errors.json").write_text(json.dumps(selection_errors,indent=2),encoding="utf-8"); print("SELECTED=",",".join(x for x in MODELS if x in selected)); print("MISSING=",",".join(x for x in MODELS if x not in selected))
     if a.inventory_only: return
     if not a.gt_zip or not a.gt_root: raise RuntimeError("GT paths required")
     if a.ss_per_label < 1: raise RuntimeError("ss-per-label must be positive")
     gtroot,gt_extract=extract_gt_zip(a.gt_zip,a.gt_root)
     gt,_=map_gt_label_folders(gtroot,labels["full"],out/"gt_mapping.csv"); gtmanifest=out/"gt_manifest.csv"; pd.DataFrame([{"path":str(p),"label":l,"split":"gt"} for l,ps in gt.items() for p in ps]).to_csv(gtmanifest,index=False)
     if set(gt)!=labels["full"]: raise RuntimeError("GT prototype coverage differs from full labels")
+    content_audit({"closed":frames["closed"],"open":frames["open"]},gt,out)
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type=="cpu" and not a.allow_cpu: raise RuntimeError("CUDA unavailable")
     summary,backbone_summary,predictions,members,curves=[],[],[],[],[]; progress={"expected_result_rows":120,"expected_backbone_rows":120,"tsne_max_samples":a.tsne_max_samples,"models":{}}
@@ -652,5 +725,6 @@ def main():
     except RuntimeError: progress=json.loads((out/"progress.json").read_text())
     numeric_ok,visual_ok,ok_rows,backbone_rows=write_report(out,a)
     if not numeric_ok or not visual_ok: raise RuntimeError(f"experiment incomplete: deployed {ok_rows}/120, backbone {backbone_rows}/120, t-SNE complete={visual_ok}; partial artifacts preserved in {out}")
+    write_completion(out)
 
 if __name__ == "__main__": main()

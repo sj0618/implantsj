@@ -28,7 +28,7 @@ from pipelines.visualize.visualize_attention import (
     unwrap_state_dict,
 )
 from src.data import build_transforms
-from src.models import create_classifier
+from src.models import create_classifier, load_checkpoint
 
 
 def choose_samples(rows: pd.DataFrame, count: int, seed: int) -> pd.DataFrame:
@@ -73,7 +73,7 @@ def main() -> None:
     if missing := required - set(predictions.columns):
         raise ValueError(f"predictions are missing columns: {sorted(missing)}")
 
-    checkpoint = torch.load(args.checkpoint, map_location="cpu")
+    checkpoint = load_checkpoint(args.checkpoint, map_location="cpu")
     state = strip_prefixes(unwrap_state_dict(checkpoint))
     checkpoint_args = checkpoint.get("args", {})
     class_to_idx = checkpoint.get("class_to_idx", {})

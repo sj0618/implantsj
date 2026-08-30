@@ -151,6 +151,11 @@ VS1/... VL1/...              <- test 이미지 / 라벨
 라벨 수가 42가 아니어도 된다. 실제 데이터에서 센 개수를 그대로 쓰고,
 폴더 이름도 거기에 맞춰 붙는다(`data_38label` 처럼).
 
+train/valid는 이미지가 아니라 `hospital/case_id` 단위로 나눈다. 같은 촬영건의
+이미지가 양쪽에 들어가지 않으며, seen 라벨에 서로 다른 촬영건이 두 개 미만이면
+검증 점수를 만들지 않고 데이터 준비 단계에서 실패한다. 분할 방식과 그룹 수는
+`summary.json`의 `split_strategy`에 기록된다.
+
 ---
 
 ## 4-1. 13 feature 표 채우기 (메뉴 15 / 16)
@@ -195,8 +200,9 @@ attribute마다 head를 하나씩 둔 ViT다. 값이 서로 배타적이므로
 | `metrics/unseen_test_predictions.csv` | 이미지 한 장 단위 예측 |
 | `unseen_setup.json` | 표에 못 붙은 클래스, 학습에 없던 클래스 목록, 학습 어휘에 없는 정답 값(`out_of_vocab`) |
 
-`exact_row_match`는 한 이미지에서 13개 feature를 모두 맞힌 비율이다. 표 전체를
-채우는 작업이므로 attribute 평균보다 이 지표가 실제 사용 상황에 가깝다.
+`exact_row_match`는 한 이미지에서 정답이 알려진 feature를 모두 맞힌 비율이다.
+정답이 전부 unknown인 이미지는 성공으로 세지 않고 분모에서 제외하며,
+`exact_row_match_n`과 `exact_row_match_coverage`에 실제 평가 범위를 함께 기록한다.
 
 학습에서 보지 못한 값은 예측할 수 없다. 예를 들어 학습 클래스에 `TRI-LOBE`가
 없었는데 unseen 데이터에 등장하면 `out_of_vocab`으로 기록한다.
@@ -229,11 +235,15 @@ python3 tools/run.py featattreval --checkpoint best.pt --manifest unseen.csv --s
 `docker/run_container.sh` 가 `--gpus all` 을 못 붙인 것이다. 호스트에
 nvidia-container-toolkit 이 설치돼 있어야 한다.
 
-**JSON이 없는 이미지가 있을 때**: 메뉴 `2`는 해당 이미지를 건너뛰고 개수를
-`summary.json` 에 적는다. 몇 장이 빠졌는지 거기서 확인한다.
+**JSON이 없는 이미지가 있을 때**: 메뉴 `2`는 기본적으로 중단한다. 의도적으로
+제외해야 하는 데이터라면 직접 실행할 때 `--allow-missing-json`을 지정하고,
+빠진 개수와 샘플을 `summary.json`에서 확인한다.
 
-**SupCon loss가 이상할 때**: batch 안에 같은 라벨이 2장 이상 있어야 한다.
-클래스가 많고 batch 가 작으면 경고가 뜬다. `BATCH_SIZE` 를 올린다.
+**SupCon loss가 이상할 때**: 기본 배치는 라벨마다 서로 다른 이미지 2장을
+강제로 뽑는다. 클래스별 이미지가 부족하거나 `BATCH_SIZE`가 2의 배수가 아니면
+학습 전에 실패한다. 필요하면 `--samples-per-class`를 조정한다.
+
+학습 중에는 valid만 평가하고 test는 best checkpoint를 확정한 뒤 한 번만 평가한다.
 
 **학습이 멈춘 것 같을 때**: 모든 실행 로그가 `outputs/logs/`에 날짜별로
 남는다. 화면에 출력된 명령과 로그 경로를 그대로 다시 볼 수 있다.
@@ -245,6 +255,7 @@ nvidia-container-toolkit 이 설치돼 있어야 한다.
 ```
 run.sh                 유일한 진입점 (대화형 메뉴 + 짧은 CLI)
 exp.conf               경로·하이퍼파라미터 기본값
+pyproject.toml         pytest 수집 범위(legacy 제외)
 configs/backbones.txt  실험에 쓸 모델 목록 (이미지 빌드 시 weight 함께 구움)
 configs/class_features.csv  클래스 -> 13 feature 정답표 (메뉴 15/16)
 tools/run.py           명령 -> python 모듈 디스패처

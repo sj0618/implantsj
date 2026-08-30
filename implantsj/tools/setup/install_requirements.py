@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from tools.setup.dependencies import BASE_PACKAGES, IMPORT_CHECKS
+from tools.setup.dependencies import IMPORT_CHECKS
 
 
 def run(cmd):
@@ -41,7 +41,7 @@ def pip_install(args):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--install-torch', choices=['none', 'cu126', 'cu121', 'cpu'], default='none', help='Do not install torch by default. Use only if torch import is broken.')
-    parser.add_argument('--upgrade', action='store_true', default=True)
+    parser.add_argument('--upgrade', action=argparse.BooleanOptionalAction, default=True)
     args = parser.parse_args()
 
     pip_install(['--upgrade', 'pip', 'setuptools', 'wheel'])
@@ -53,7 +53,8 @@ def main():
         else:
             pip_install(['torch', 'torchvision', '--index-url', f'https://download.pytorch.org/whl/{args.install_torch}'])
 
-    pip_install(['--upgrade'] + BASE_PACKAGES)
+    requirement_args = ['--upgrade'] if args.upgrade else []
+    pip_install(requirement_args + ['-r', str(ROOT / 'requirements.txt')])
 
     print('\nChecking imports...')
     import importlib

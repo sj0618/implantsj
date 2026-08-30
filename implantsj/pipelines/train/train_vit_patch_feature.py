@@ -32,6 +32,7 @@ sys.path.insert(0, str(ROOT))
 from src.data import build_transforms, label_mapping, load_manifest
 from src.metrics import (compute_metrics, save_confusion_matrix, save_metrics_json,
                          save_predictions)
+from src.models import load_checkpoint
 from src.patch_feature import (FEATURE_MODES, PatchFeatureDataset, ViTWithFeaturePatches,
                                assert_finite_state_dict, load_feature_table)
 
@@ -244,7 +245,7 @@ def main() -> int:
     # --- 최종 test 평가는 best checkpoint 로 ------------------------------
     ckpt = out / "checkpoints" / "best.pt"
     if ckpt.exists():
-        model.load_state_dict(torch.load(ckpt, map_location=device, weights_only=False)["model_state_dict"])
+        model.load_state_dict(load_checkpoint(ckpt, map_location=device)["model_state_dict"])
     if len(ds_test):
         tm = run_eval(model, l_test, device, idx_to_class, "test", out / "metrics")
         print(f"[test] accuracy={tm['accuracy']:.4f}  macro_f1={tm['macro_f1']:.4f}")

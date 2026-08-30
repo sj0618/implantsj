@@ -8,6 +8,19 @@ import torch
 import torch.nn as nn
 
 
+def file_sha256(path: str | Path) -> str:
+    checksum = hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1048576), b''):
+            checksum.update(block)
+    return checksum.hexdigest()
+
+
+def load_checkpoint(path: str | Path, map_location='cpu'):
+    """Load tensor checkpoints without enabling arbitrary pickle globals."""
+    return torch.load(path, map_location=map_location, weights_only=True)
+
+
 def create_classifier(
     model_name: str,
     num_classes: int,
@@ -68,9 +81,16 @@ def unwrap_state_dict(obj):
     return obj
 
 
-def load_matching_weights(model: nn.Module, checkpoint_path: str | Path, strict: bool = False) -> Tuple[int, int]:
-    ckpt = torch.load(checkpoint_path, map_location='cpu')
+def load_matching_weights(
+    model: nn.Module,
+    checkpoint_path: str | Path,
+    strict: bool = False,
+    min_coverage: float = 0.5,
+) -> Tuple[int, int]:
+    ckpt = load_checkpoint(checkpoint_path, map_location='cpu')
     state = unwrap_state_dict(ckpt)
+    if not isinstance(state, dict):
+        raise TypeError(f'Checkpoint does not contain a state dict: {checkpoint_path}')
     model_state = model.state_dict()
     filtered = {}
     skipped = 0
@@ -90,7 +110,15 @@ def load_matching_weights(model: nn.Module, checkpoint_path: str | Path, strict:
                     filtered[alt] = v
                     continue
             skipped += 1
-    model.load_state_dict(filtered, strict=False)
+    loaded_numel = sum(int(model_state[key].numel()) for key in filtered)
+    total_numel = sum(int(value.numel()) for value in model_state.values())
+    coverage = loaded_numel / max(1, total_numel)
+    if coverage < min_coverage:
+        raise RuntimeError(
+            f'Checkpoint coverage is only {coverage:.1%} ({len(filtered)}/{len(model_state)} tensors) '
+            f'for {checkpoint_path}; required minimum is {min_coverage:.1%}'
+        )
+    model.load_state_dict(filtered, strict=strict)
     return len(filtered), skipped
 
 
@@ -100,11 +128,7 @@ def save_checkpoint(path: str | Path, model, optimizer, epoch: int, metrics: Dic
     checkpoint_args = dict(args)
     manifest = Path(checkpoint_args.get('manifest', ''))
     if manifest.is_file() and 'manifest_sha256' not in checkpoint_args:
-        checksum = hashlib.sha256()
-        with manifest.open('rb') as stream:
-            for block in iter(lambda: stream.read(1048576), b''):
-                checksum.update(block)
-        checkpoint_args['manifest_sha256'] = checksum.hexdigest()
+        checkpoint_args['manifest_sha256'] = file_sha256(manifest)
     torch.save({
         'epoch': epoch,
         'model_state_dict': model.state_dict(),
@@ -115,12 +139,8 @@ def save_checkpoint(path: str | Path, model, optimizer, epoch: int, metrics: Dic
     }, path)
 
 
-def load_checkpoint(path: str | Path):
-    return torch.load(path, map_location='cpu')
-
-
 def get_class_to_idx_from_checkpoint(path: str | Path) -> Dict[str, int]:
-    ckpt = torch.load(path, map_location='cpu')
+    ckpt = load_checkpoint(path, map_location='cpu')
     if 'class_to_idx' not in ckpt:
         raise KeyError('Checkpoint has no class_to_idx.')
     return {str(k): int(v) for k, v in ckpt['class_to_idx'].items()}

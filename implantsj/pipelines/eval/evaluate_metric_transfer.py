@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT))
 from src.data import create_loader, label_mapping, load_manifest
 from src.metric_learning import extract_embeddings, prototype_predict
 from src.metrics import compute_metrics, save_confusion_matrix, save_metrics_json, save_predictions
-from src.models import MetricModel, unwrap_state_dict
+from src.models import MetricModel, load_checkpoint, unwrap_state_dict
 from src.utils import write_json
 
 
@@ -40,7 +40,7 @@ def load_metric_checkpoint(
     dropout: float | None = None,
     drop_path_rate: float | None = None,
 ) -> Tuple[MetricModel, int, dict]:
-    ckpt = torch.load(checkpoint, map_location="cpu")
+    ckpt = load_checkpoint(checkpoint, map_location="cpu")
     ckpt_args = ckpt.get("args", {}) or {}
 
     resolved_model_name = model_name or ckpt_args.get("model_name") or "vit_base_patch16_224"
@@ -153,7 +153,7 @@ def main() -> None:
     parser.add_argument("--manifest", required=True, help="Held-out manifest with support/query splits.")
     parser.add_argument("--support-split", default="train", choices=["train", "valid", "test"])
     parser.add_argument("--query-splits", nargs="+", default=["valid", "test"], choices=["train", "valid", "test"])
-    parser.add_argument("--output-root", default="/workspace/implant_outputs")
+    parser.add_argument("--output-root", default="/workspace/outputs")
     parser.add_argument("--experiment-name", default="metric_transfer_eval")
     parser.add_argument("--model-name", default=None)
     parser.add_argument("--image-size", type=int, default=None)

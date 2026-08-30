@@ -25,7 +25,7 @@ from .class_features import (
     match_labels,
 )
 from .data import create_loader, load_manifest
-from .models import AttributeModel, load_matching_weights
+from .models import AttributeModel, load_checkpoint, load_matching_weights
 from .utils import count_parameters, log, make_run_dir, seed_everything, write_json
 
 
@@ -157,9 +157,9 @@ def evaluate_attributes(model, loader, device, table, target_lut: torch.Tensor, 
         f1s.append(f1)
     metrics['mean_accuracy'] = float(np.mean(accs)) if accs else 0.0
     metrics['mean_macro_f1'] = float(np.mean(f1s)) if f1s else 0.0
-    # 13 feature 를 한 장에서 전부 맞힌 비율. 표를 통째로 채우는 실사용 기준.
-    exact = [all(r[f'{a}_pred'] == r[f'{a}_true'] for a in attrs if r[f'{a}_true'] != UNKNOWN) for r in rows]
-    metrics['exact_row_match'] = float(np.mean(exact)) if exact else 0.0
+    # 13 feature 를 한 장에서 전부 맞힌 비율. 정답이 하나도 없는 행은
+    # Python의 all([]) == True 때문에 성공으로 세지 않도록 분모에서 제외한다.
+    metrics.update(exact_row_match_metrics(rows, attrs))
 
     if out_dir is not None:
         out_dir = Path(out_dir)
@@ -180,6 +180,19 @@ def evaluate_attributes(model, loader, device, table, target_lut: torch.Tensor, 
             filled.append(rec)
         pd.DataFrame(filled).to_csv(out_dir / 'metrics' / f'{split_name}_filled_table.csv', index=False)
     return metrics
+
+
+def exact_row_match_metrics(rows: Sequence[Dict[str, object]], attrs: Sequence[str]) -> Dict[str, object]:
+    exact = []
+    for row in rows:
+        known = [attribute for attribute in attrs if row[f'{attribute}_true'] != UNKNOWN]
+        if known:
+            exact.append(all(row[f'{attribute}_pred'] == row[f'{attribute}_true'] for attribute in known))
+    return {
+        'exact_row_match': float(np.mean(exact)) if exact else 0.0,
+        'exact_row_match_n': len(exact),
+        'exact_row_match_coverage': len(exact) / max(1, len(rows)),
+    }
 
 
 # ---------------------------------------------------------------------- 학습
@@ -234,7 +247,7 @@ def train_feature_attributes(args: AttributeArgs) -> Path:
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=max(args.epochs, 1))
     use_amp = args.amp and device.type == 'cuda'
-    scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+    scaler = torch.amp.GradScaler('cuda', enabled=use_amp)
 
     best, best_epoch, history = -1.0, -1, []
     ckpt_dir = run_dir / 'checkpoints'
@@ -247,7 +260,7 @@ def train_feature_attributes(args: AttributeArgs) -> Path:
             x, y = batch[0].to(device, non_blocking=device.type == 'cuda'), batch[1].to(device)
             t = target_lut[y]
             opt.zero_grad(set_to_none=True)
-            with torch.cuda.amp.autocast(enabled=use_amp):
+            with torch.amp.autocast('cuda', enabled=use_amp):
                 loss = _masked_ce(model(x), t, table.attributes, args.label_smoothing)
             scaler.scale(loss).backward()
             scaler.step(opt)
@@ -278,7 +291,7 @@ def train_feature_attributes(args: AttributeArgs) -> Path:
             log(f'{args.patience} epoch 개선 없음. 조기종료.')
             break
 
-    model.load_state_dict(torch.load(ckpt_dir / 'best.pt', map_location=device)['model_state_dict'])
+    model.load_state_dict(load_checkpoint(ckpt_dir / 'best.pt', map_location=device)['model_state_dict'])
     evaluate_attributes(model, valid_loader, device, table, target_lut, valid_split, out_dir=run_dir)
     if 'test' in manifest_splits and valid_split != 'test':
         evaluate_attributes(model, mk('test', False), device, table, target_lut, 'test', out_dir=run_dir)

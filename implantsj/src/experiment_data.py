@@ -114,10 +114,22 @@ class PKBatchSampler:
     def __iter__(self):
         rng = random.Random(self.seed + self.epoch)
         class_names = sorted(self.by_label)
+        class_pool = class_names.copy()
+        rng.shuffle(class_pool)
         for _ in range(self.num_batches):
+            if len(class_pool) >= self.p:
+                selected_labels = class_pool[:self.p]
+                class_pool = class_pool[self.p:]
+            else:
+                selected_labels = class_pool
+                candidates = [label for label in class_names if label not in selected_labels]
+                rng.shuffle(candidates)
+                needed = self.p - len(selected_labels)
+                selected_labels += candidates[:needed]
+                class_pool = candidates[needed:]
             batch = [
                 index
-                for label in rng.sample(class_names, self.p)
+                for label in selected_labels
                 for index in rng.sample(self.by_label[label], self.k)
             ]
             rng.shuffle(batch)

@@ -14,12 +14,13 @@ from src.metric_learning import MetricArgs, train_metric
 def main():
     p = argparse.ArgumentParser(description='NO-VENV metric learning training: SupCon or triplet.')
     p.add_argument('--manifest', required=True)
-    p.add_argument('--output-root', default='/workspace/implant_outputs')
+    p.add_argument('--output-root', default='/workspace/outputs')
     p.add_argument('--experiment-name', default='vit_metric_supcon')
     p.add_argument('--model-name', default='vit_base_patch16_224')
     p.add_argument('--image-size', type=int, default=224)
     p.add_argument('--epochs', type=int, default=80)
     p.add_argument('--batch-size', type=int, default=32)
+    p.add_argument('--samples-per-class', type=int, default=2)
     p.add_argument('--num-workers', type=int, default=8)
     p.add_argument('--lr', type=float, default=3e-5)
     p.add_argument('--weight-decay', type=float, default=0.05)
@@ -41,6 +42,7 @@ def main():
         image_size=a.image_size,
         epochs=a.epochs,
         batch_size=a.batch_size,
+        samples_per_class=a.samples_per_class,
         num_workers=a.num_workers,
         lr=a.lr,
         weight_decay=a.weight_decay,

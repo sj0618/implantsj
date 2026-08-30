@@ -301,7 +301,10 @@ class SupConSamplerTests(unittest.TestCase):
 class InitialCheckpointTests(unittest.TestCase):
     def test_safetensors_sidecar_metadata_is_loaded(self):
         import torch
-        from safetensors.torch import save_file
+        try:
+            from safetensors.torch import save_file
+        except ImportError:
+            self.skipTest("safetensors is not installed")
 
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "classifier.safetensors"
@@ -316,7 +319,10 @@ class InitialCheckpointTests(unittest.TestCase):
 
     def test_training_initialization_loads_safetensors(self):
         import torch
-        from safetensors.torch import save_file
+        try:
+            from safetensors.torch import save_file
+        except ImportError:
+            self.skipTest("safetensors is not installed")
 
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "initial.safetensors"
@@ -336,8 +342,11 @@ class InitialCheckpointTests(unittest.TestCase):
             self.assertTrue(torch.equal(target.bias, source.bias))
 
     def test_classifier_safetensors_uses_explicit_model_metadata(self):
-        import timm
-        from safetensors.torch import save_file
+        try:
+            import timm
+            from safetensors.torch import save_file
+        except ImportError:
+            self.skipTest("timm and safetensors are required")
 
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "classifier.safetensors"

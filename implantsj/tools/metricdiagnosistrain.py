@@ -12,6 +12,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from src.models import load_checkpoint
+
 MODEL = "vit_large_patch16_224.augreg_in21k_ft_in1k"
 REQUIRED_SPLITS = {"train", "valid", "test"}
 OPEN15 = {"simpleline", "exfeelinternal", "ssiii", "biohorizonexternal", "tsv", "scleantapered", "gsiii", "screwvent", "atlasinternal", "stella", "3i", "ankylos", "iu", "replaceselect", "core1"}
@@ -78,8 +81,7 @@ def validate_fullft(path, labels, full_manifest):
     if not path.is_file():
         raise RuntimeError(f"existing FullFT checkpoint not found: {path}")
     try:
-        import torch
-        checkpoint = torch.load(path, map_location="cpu")
+        checkpoint = load_checkpoint(path, map_location="cpu")
         args = checkpoint["args"]
         classes = checkpoint["class_to_idx"]
         state = checkpoint["model_state_dict"]
@@ -145,15 +147,19 @@ def commands(closed, full, output):
 
 
 def main():
+    data_root = Path(os.environ.get("DATA_ROOT", "/workspace/data"))
+    output_root = Path(os.environ.get("OUTPUT_ROOT", "/workspace/outputs"))
     parser = argparse.ArgumentParser(description="Run the three missing fresh metric-diagnosis trainings safely.")
-    parser.add_argument("--closed-manifest", default="/home/ubuntu/workspace/data/manifests/metric-closed27-corrected.csv")
-    parser.add_argument("--open-manifest", default="/home/ubuntu/workspace/data/manifests/metric-open15-corrected.csv")
-    parser.add_argument("--full-manifest", default="/home/ubuntu/workspace/data/manifests/models_vit.csv")
-    parser.add_argument("--output-root", default="/home/ubuntu/workspace/outputs")
-    parser.add_argument("--fullft-checkpoint", default="/home/ubuntu/workspace/outputs/20260701_060811_models_vit_42class/checkpoints/best.pt")
+    parser.add_argument("--closed-manifest", default=str(data_root / "manifests/metric-closed27-corrected.csv"))
+    parser.add_argument("--open-manifest", default=str(data_root / "manifests/metric-open15-corrected.csv"))
+    parser.add_argument("--full-manifest", default=str(data_root / "manifests/models_vit.csv"))
+    parser.add_argument("--output-root", default=str(output_root))
+    parser.add_argument("--fullft-checkpoint", default=os.environ.get("FULLFT_CHECKPOINT"))
     parser.add_argument("--poll-seconds", type=float, default=30.0)
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
+    if not args.fullft_checkpoint:
+        parser.error("--fullft-checkpoint is required (or set FULLFT_CHECKPOINT)")
     if args.poll_seconds < 1:
         parser.error("--poll-seconds must be at least 1")
 
@@ -168,10 +174,10 @@ def main():
         raise RuntimeError("open manifest does not match the required 15 English label names")
     if "tsiii" not in {label_name(label) for label in closed_labels} or "ssiii" in {label_name(label) for label in closed_labels}:
         raise RuntimeError("closed manifest must contain TS III and exclude SS III")
-    markers = {"src/supervised.py": "'test_accuracy': test_metrics['accuracy']", "src/metric_learning.py": "support = extract_embeddings(model, eval_train_loader, device)[:2]"}
-    for relative, marker in markers.items():
-        if marker not in (ROOT / relative).read_text(encoding="utf-8"):
-            raise RuntimeError(f"run tools/patch_epoch_test_metrics.py first: {relative}")
+    for relative in ["src/supervised.py", "src/metric_learning.py"]:
+        source = (ROOT / relative).read_text(encoding="utf-8")
+        if "'test_accuracy': test_metrics['accuracy']" in source:
+            raise RuntimeError(f"per-epoch test leakage remains in {relative}")
     print(f"validated manifests: closed=27 open=15 full=42 ({opened})")
 
     output = Path(args.output_root).resolve()

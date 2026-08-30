@@ -8,6 +8,8 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Mapping
 
+from .models import load_checkpoint
+
 
 @dataclass(frozen=True)
 class ModelSpec:
@@ -139,11 +141,7 @@ def checkpoint_payload(
         return payload
     if checkpoint_format != "torch":
         raise ValueError("checkpoint_format must be auto, ckpt, torch or safetensors")
-    torch, _, _, _ = _imports()
-    try:
-        payload = torch.load(checkpoint_path, map_location=device, weights_only=False)
-    except TypeError:  # older torch
-        payload = torch.load(checkpoint_path, map_location=device)
+    payload = load_checkpoint(checkpoint_path, map_location=device)
     if not isinstance(payload, dict):
         return {"state_dict": payload}
     return payload

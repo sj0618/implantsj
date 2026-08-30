@@ -12,11 +12,11 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from src.data import create_loader, label_mapping, load_manifest
-from src.models import create_classifier
+from src.models import create_classifier, load_checkpoint
 
 
 def load_model(checkpoint: Path, model_name: str | None, image_size: int | None, manifest: Path, device):
-    ckpt = torch.load(checkpoint, map_location="cpu")
+    ckpt = load_checkpoint(checkpoint, map_location="cpu")
     class_to_idx = {str(k): int(v) for k, v in ckpt.get("class_to_idx", {}).items()}
     if not class_to_idx:
         class_to_idx, _ = label_mapping(load_manifest(manifest, split=None))

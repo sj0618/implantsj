@@ -26,7 +26,7 @@ def make_args(model_path: Path) -> Namespace:
     )
 
 
-def main() -> None:
+def test_local_qwen_record_construction() -> None:
     with tempfile.TemporaryDirectory(prefix="local_qwen_record_") as tmp:
         tmp_dir = Path(tmp)
         model_path = tmp_dir / "qwen_3B_VLM"
@@ -87,4 +87,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    test_local_qwen_record_construction()

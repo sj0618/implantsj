@@ -114,6 +114,7 @@ def scan_split_pairs(
                 "origin_split": split_name,
                 "hospital": hospital,
                 "case_id": case_id,
+                "group_id": f"{hospital}/{case_id}",
                 "relative_path": str(rel),
                 "json_path": str(json_path.resolve()),
             }
@@ -164,13 +165,61 @@ def build_closed_network_dataframe(
     return df.reset_index(drop=True)
 
 
-def split_train_valid(df: pd.DataFrame, valid_ratio: float = 0.1, seed: int = 42) -> pd.DataFrame:
+def _validated_group_ids(
+    frame: pd.DataFrame,
+    group_columns: Sequence[str],
+) -> pd.Series:
+    missing = [column for column in group_columns if column not in frame.columns]
+    if missing:
+        raise ValueError(
+            f"group-aware split requires columns {list(group_columns)}; missing={missing}"
+        )
+    values = []
+    for column in group_columns:
+        part = frame[column].fillna("").astype(str).str.strip()
+        if part.eq("").any():
+            sample = frame.loc[part.eq(""), "path"].astype(str).head(5).tolist()
+            raise ValueError(
+                f"group column {column!r} contains blank values; sample paths={sample}"
+            )
+        values.append(part)
+    group_ids = values[0]
+    for value in values[1:]:
+        group_ids = group_ids.str.cat(value, sep="/")
+    return group_ids
+
+
+def split_train_valid(
+    df: pd.DataFrame,
+    valid_ratio: float = 0.1,
+    seed: int = 42,
+    group_columns: Sequence[str] = ("hospital", "case_id"),
+    required_valid_labels: Optional[Sequence[str]] = None,
+) -> pd.DataFrame:
+    """Split original training data without allowing a case into both splits.
+
+    Validation groups are sampled independently per label. Labels with only one
+    source group stay in training unless they are listed in
+    ``required_valid_labels``, in which case the build fails with an actionable
+    error instead of silently reporting a validation score for an absent class.
+    """
     if not 0.0 <= valid_ratio < 1.0:
         raise ValueError(f"valid_ratio must be in [0,1). Got {valid_ratio}")
 
     work = df.copy().reset_index(drop=True)
+    work["group_id"] = _validated_group_ids(work, group_columns)
     train_mask = work["origin_split"].astype(str) == "train"
+    source_train_groups = set(work.loc[train_mask, "group_id"])
+    source_test_groups = set(work.loc[~train_mask, "group_id"])
+    source_overlap = sorted(source_train_groups & source_test_groups)
+    if source_overlap:
+        raise ValueError(
+            "original train/test data reuse case groups; "
+            f"overlap sample={source_overlap[:10]}"
+        )
     if valid_ratio <= 0.0:
+        if required_valid_labels:
+            raise ValueError("required validation labels cannot be satisfied when valid_ratio is 0")
         work.loc[train_mask, "split"] = "train"
         work.loc[~train_mask, "split"] = "test"
         return work
@@ -178,19 +227,49 @@ def split_train_valid(df: pd.DataFrame, valid_ratio: float = 0.1, seed: int = 42
     train_df = work[train_mask].copy()
     test_df = work[~train_mask].copy()
     train_df["split"] = "train"
+    group_label_counts = train_df.groupby("group_id")["label"].nunique()
+    ambiguous_groups = group_label_counts[group_label_counts > 1].index.astype(str).tolist()
+    if ambiguous_groups:
+        raise ValueError(
+            "a case group contains multiple labels; "
+            f"ambiguous groups={ambiguous_groups[:10]}"
+        )
     rng = random.Random(seed)
+    required = (
+        set(train_df["label"].astype(str))
+        if required_valid_labels is None
+        else {str(label) for label in required_valid_labels}
+    )
+    unknown_required = sorted(required - set(train_df["label"].astype(str)))
+    if unknown_required:
+        raise ValueError(f"required validation labels are absent from train data: {unknown_required}")
 
-    valid_indices: List[int] = []
-    for _, group in train_df.groupby("label", sort=True):
-        indices = group.index.tolist()
-        if len(indices) <= 1:
+    valid_groups: set[str] = set()
+    for label, group in train_df.groupby("label", sort=True):
+        grouped = group.groupby("group_id", sort=True).size()
+        group_ids = grouped.index.astype(str).tolist()
+        if len(group_ids) <= 1:
+            if str(label) in required:
+                raise ValueError(
+                    f"label {label!r} has only {len(group_ids)} case group; "
+                    "at least two disjoint groups are required for train/valid"
+                )
             continue
-        rng.shuffle(indices)
-        n_valid = max(1, int(round(len(indices) * valid_ratio)))
-        n_valid = min(n_valid, len(indices) - 1)
-        valid_indices.extend(indices[:n_valid])
+        rng.shuffle(group_ids)
+        n_valid = max(1, int(round(len(group_ids) * valid_ratio)))
+        n_valid = min(n_valid, len(group_ids) - 1)
+        valid_groups.update(group_ids[:n_valid])
 
-    train_df.loc[valid_indices, "split"] = "valid"
+    train_df.loc[train_df["group_id"].isin(valid_groups), "split"] = "valid"
+    train_groups = set(train_df.loc[train_df["split"] == "train", "group_id"])
+    validation_groups = set(train_df.loc[train_df["split"] == "valid", "group_id"])
+    overlap = sorted(train_groups & validation_groups)
+    if overlap:
+        raise AssertionError(f"group-aware split produced overlap: {overlap[:10]}")
+    valid_labels = set(train_df.loc[train_df["split"] == "valid", "label"].astype(str))
+    missing_required = sorted(required - valid_labels)
+    if missing_required:
+        raise ValueError(f"validation split is missing required labels: {missing_required}")
     out = pd.concat([train_df, test_df], ignore_index=True)
     out["label"] = out["label"].astype(str)
     return out.reset_index(drop=True)
@@ -291,7 +370,7 @@ def build_class_folder_map(labels: Sequence[str], indexed: bool = False) -> Dict
 def write_manifest(df: pd.DataFrame, out_csv: str | Path) -> Path:
     out_csv = Path(out_csv)
     out_csv.parent.mkdir(parents=True, exist_ok=True)
-    cols = ["path", "label", "split", "origin_split", "hospital", "case_id", "relative_path", "json_path"]
+    cols = ["path", "label", "split", "origin_split", "hospital", "case_id", "group_id", "relative_path", "json_path"]
     df = df.copy()
     for col in cols:
         if col not in df.columns:

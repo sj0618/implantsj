@@ -104,7 +104,7 @@ def main() -> None:
     p = argparse.ArgumentParser(description="6-label SupCon ViT metric training.")
     p.add_argument("--data-root", default="/workspace/data/large_multiclass")
     p.add_argument("--manifest", default="/workspace/data/manifests/large_multiclass_supcon_6label.csv")
-    p.add_argument("--output-root", default="/workspace/implant_outputs")
+    p.add_argument("--output-root", default="/workspace/outputs")
     p.add_argument("--experiment-name", default="supcon_vit_6label")
     p.add_argument("--labels", nargs="+", default=None, help="Optional exact six labels to keep.")
     p.add_argument("--exclude-labels", nargs="+", default=[], help="Optional labels to drop before training.")

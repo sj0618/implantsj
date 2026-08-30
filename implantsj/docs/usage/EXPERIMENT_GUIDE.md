@@ -117,6 +117,11 @@ class 폴더 구조로 재배치한다.
 파일은 hardlink 로 만든다 — symlink 는 mount 경로가 바뀌면 전부 끊어져
 데이터가 통째로 사라진 것처럼 되기 때문이다.
 
+train/valid는 `hospital/case_id` 촬영건 단위로 분리한다. 같은 촬영건이 양쪽에
+들어가면 준비 단계가 실패하고, seen 라벨에 train/valid로 나눌 촬영건이 부족해도
+검증을 진행하지 않는다. JSON이 없거나 읽히지 않는 이미지도 메뉴에서는 기본적으로
+실패한다. 명시적으로 제외할 때만 직접 명령에 `--allow-missing-json`을 사용한다.
+
 ### 2-3. 데이터셋·모델 고르기 (`3`, `4`)
 
 `3` 을 누르면 `DATA_ROOT` 아래에서 `train/`·`test/` 를 가진 폴더를 자동으로
@@ -144,7 +149,7 @@ class 폴더 구조로 재배치한다.
 단, 폐쇄망에서는 그 weight 가 이미지에 구워져 있어야 한다. 반입 전에
 목록에 넣어야 `docker/prefetch_weights.py` 가 같이 받아둔다.
 
-고른 값은 `OUTPUT_ROOT/.exp_state` 에 저장돼서 다음 실행 때도 유지된다.
+고른 값은 `OUTPUT_ROOT/.exp_state`의 JSON에 저장돼서 다음 실행 때도 유지된다.
 
 ### 2-4. manifest + split (`5`)
 
@@ -158,7 +163,11 @@ class 폴더 구조로 재배치한다.
 ### 2-5. 학습 (`6` supervised / `7` SupCon metric)
 
 - `6` supervised: 일반 분류(cross-entropy). closed-set 성능 baseline.
-- `7` SupCon metric: 임베딩 공간 학습. unseen 라벨 분석용.
+- `7` SupCon metric: 라벨마다 서로 다른 이미지 두 장 이상을 포함하는 P×K 배치로
+  임베딩 공간을 학습한다. unseen 라벨 분석용.
+
+두 학습 모두 epoch 중에는 valid만 평가한다. test는 valid 기준 best checkpoint를
+확정한 뒤 마지막에 한 번만 계산한다.
 
 실행 전에 실제 명령이 화면에 찍히고, 로그가 `OUTPUT_ROOT/logs/` 에 남는다.
 

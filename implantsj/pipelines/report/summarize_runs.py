@@ -18,8 +18,8 @@ def load_json(path: Path):
 
 def main():
     p = argparse.ArgumentParser(description='Summarize implant experiment runs.')
-    p.add_argument('--runs-root', default='/workspace/implant_outputs')
-    p.add_argument('--out', default='/workspace/implant_outputs/experiment_summary.csv')
+    p.add_argument('--runs-root', default='/workspace/outputs')
+    p.add_argument('--out', default='/workspace/outputs/experiment_summary.csv')
     args = p.parse_args()
     root = Path(args.runs_root)
     rows = []

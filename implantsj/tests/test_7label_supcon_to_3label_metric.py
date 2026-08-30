@@ -14,7 +14,8 @@ import torch
 import torch.nn as nn
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "pipelines" / "eval"))
 sys.path.insert(0, str(ROOT))
 
 
@@ -31,14 +32,14 @@ class TinyBackbone(nn.Module):
         return self.fc(x)
 
 
-def install_fake_timm() -> None:
+def install_fake_timm(monkeypatch) -> None:
     fake_timm = types.ModuleType("timm")
 
     def create_model(*args, **kwargs):
         return TinyBackbone()
 
     fake_timm.create_model = create_model
-    sys.modules["timm"] = fake_timm
+    monkeypatch.setitem(sys.modules, "timm", fake_timm)
 
 
 def install_simple_transform(eval_module) -> None:
@@ -94,8 +95,11 @@ def make_supcon_checkpoint(eval_module, checkpoint: Path) -> None:
     )
 
 
-def main() -> None:
-    install_fake_timm()
+def test_supcon_7label_checkpoint_to_3label_evaluation(monkeypatch) -> None:
+    import pytest
+    pytest.importorskip("umap")
+    pytest.importorskip("plotly")
+    install_fake_timm(monkeypatch)
 
     import evaluate_3label_metric_from_7label as eval_module
 
@@ -166,4 +170,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit("run this test with pytest")

@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from src.data import ImageClassificationDataset, build_transforms, label_mapping, load_manifest
-from src.models import MetricModel
+from src.models import MetricModel, load_checkpoint
 
 
 def checkpoint_state(ckpt: dict[str, Any]) -> dict[str, torch.Tensor]:
@@ -193,7 +193,7 @@ def main() -> None:
     if device.type != "cuda" and not args.allow_cpu:
         raise RuntimeError("CUDA is not available. Pass --allow-cpu only for debugging.")
 
-    ckpt = torch.load(args.checkpoint, map_location="cpu")
+    ckpt = load_checkpoint(args.checkpoint, map_location="cpu")
     state = clean_state_dict(checkpoint_state(ckpt))
     ckpt_args = ckpt.get("args", {}) if isinstance(ckpt, dict) else {}
 
