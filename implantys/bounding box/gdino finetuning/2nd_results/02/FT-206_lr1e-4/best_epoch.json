@@ -1,0 +1,14 @@
+{
+  "best_epoch": 19,
+  "criterion": "val mAP@.5:.95 최대 (26 epoch 중 — 디스크 장애로 28에서 중단)",
+  "caveat": "RULES 5는 30 epoch 완주를 요구하나 epoch 28 저장 중 디스크 쓰기 실패로 중단. 26 epoch까지의 잠정 best.",
+  "selected": {
+    "val_map": 0.769746,
+    "val_ap50": 0.889314,
+    "val_loss": 0.637936,
+    "train_loss": 0.337353
+  },
+  "checkpoint": "/workspace/Grounding-Dino-FineTuning/2nd/results/FT-206_lr1e-4/weights/epoch_19.pth",
+  "n_epochs_completed": 26,
+  "note": "test는 이 epoch로 딱 한 번만 연다. (RULES 2)"
+}

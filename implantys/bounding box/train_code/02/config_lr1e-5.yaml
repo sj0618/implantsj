@@ -1,0 +1,29 @@
+# FT-206 (dataset2/01+02: train 144 / val 62) — LR은 FT-106에서 확정된 것만 사용
+# RULES.md 6번: LR 외의 모든 하이퍼파라미터는 라운드·스윕 간 완전히 동일해야 한다.
+#               달라지는 게 데이터(와 스윕 중의 LR)뿐이어야 "데이터 효과"를 말할 수 있다.
+data:
+  batch_size: 4
+  negative_sampling_rate: 0.0
+  num_workers: 4
+  train_ann: multimodal-data/implant_dataset/train_annotations.csv
+  train_dir: multimodal-data/implant_dataset/images/train
+  val_ann: multimodal-data/implant_dataset/val_annotations.csv
+  val_dir: multimodal-data/implant_dataset/images/val
+model:
+  config_path: groundingdino/config/GroundingDINO_SwinT_OGC.py
+  lora_weigths: None          # repo의 오타 필드. 그대로 둘 것
+  weights_path: weights/groundingdino_swint_ogc.pth
+training:
+  # YAML 1.1에서 '1e-4'는 문자열로 파싱된다. 소수점을 반드시 넣을 것.
+  learning_rate: 1.0e-5
+  max_grad_norm: 0.1
+  num_epochs: 30              # RULES 5: 끝까지 돌리고 val로 사후 선택 (early stop 안 함)
+  save_dir: weights
+  save_frequency: 1           # RULES 5: best epoch의 checkpoint가 반드시 있어야 한다
+                              #          (1차 학습의 5는 best가 없을 수 있어 실패)
+  use_gradient_clipping: true
+  use_lora: true
+  lora_rank: 32
+  visualization_frequency: 5
+  warmup_epochs: 3
+  seed: 42                    # RULES 3

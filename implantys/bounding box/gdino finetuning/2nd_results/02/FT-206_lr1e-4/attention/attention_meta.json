@@ -1,0 +1,32 @@
+{
+  "kind": "FT(epoch_19)",
+  "weights": "/workspace/Grounding-Dino-FineTuning/2nd/results/FT-206_lr1e-4/weights/epoch_19.pth",
+  "caption": "implant.",
+  "tokens": [
+    "[CLS]",
+    "implant",
+    ".",
+    "[SEP]"
+  ],
+  "implant_token_index": [
+    1
+  ],
+  "images": {
+    "adin190_jpg.rf.81fe9942e87dc05fa2a0980ef71be353.jpg": {
+      "max_score": 0.37973350286483765,
+      "n_pred_over_0.3": 2
+    },
+    "dentium255_jpg.rf.6e232da08cf2498b8e44f666408257d2.jpg": {
+      "max_score": 0.8818144202232361,
+      "n_pred_over_0.3": 1
+    },
+    "dentium329_jpg.rf.b2f465fbb0b7a950910bdfea08472f24.jpg": {
+      "max_score": 0.8292006254196167,
+      "n_pred_over_0.3": 1
+    },
+    "dionavi12-copy-10_jpg.rf.710ac4288aa0942299fa42984293d652.jpg": {
+      "max_score": 0.7669913172721863,
+      "n_pred_over_0.3": 4
+    }
+  }
+}

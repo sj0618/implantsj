@@ -1,0 +1,195 @@
+{
+  "best_epoch": 15,
+  "criterion": "val mAP@.5:.95 최대",
+  "why_not_ap50": "1차 학습에서 AP50이 1.000으로 포화돼 epoch를 구분하지 못했다.",
+  "selected": {
+    "val_map": 0.893354,
+    "val_ap50": 0.950445,
+    "val_loss": 0.385701,
+    "train_loss": 0.210171
+  },
+  "checkpoint": "/workspace/Grounding-Dino-FineTuning/4th/results/FT-506v2/weights/epoch_15.pth",
+  "all_epochs": [
+    {
+      "epoch": 1,
+      "val_map": 0.455518,
+      "val_ap50": 0.582642,
+      "val_loss": 0.965176
+    },
+    {
+      "epoch": 2,
+      "val_map": 0.573968,
+      "val_ap50": 0.711261,
+      "val_loss": 0.743015
+    },
+    {
+      "epoch": 3,
+      "val_map": 0.72285,
+      "val_ap50": 0.826155,
+      "val_loss": 0.546521
+    },
+    {
+      "epoch": 4,
+      "val_map": 0.800895,
+      "val_ap50": 0.878923,
+      "val_loss": 0.428612
+    },
+    {
+      "epoch": 5,
+      "val_map": 0.809185,
+      "val_ap50": 0.89036,
+      "val_loss": 0.468159
+    },
+    {
+      "epoch": 6,
+      "val_map": 0.854647,
+      "val_ap50": 0.919163,
+      "val_loss": 0.413485
+    },
+    {
+      "epoch": 7,
+      "val_map": 0.870454,
+      "val_ap50": 0.929163,
+      "val_loss": 0.399269
+    },
+    {
+      "epoch": 8,
+      "val_map": 0.872702,
+      "val_ap50": 0.935249,
+      "val_loss": 0.390974
+    },
+    {
+      "epoch": 9,
+      "val_map": 0.883793,
+      "val_ap50": 0.942907,
+      "val_loss": 0.38456
+    },
+    {
+      "epoch": 10,
+      "val_map": 0.884216,
+      "val_ap50": 0.944367,
+      "val_loss": 0.373839
+    },
+    {
+      "epoch": 11,
+      "val_map": 0.890568,
+      "val_ap50": 0.948861,
+      "val_loss": 0.3745
+    },
+    {
+      "epoch": 12,
+      "val_map": 0.887409,
+      "val_ap50": 0.947034,
+      "val_loss": 0.394603
+    },
+    {
+      "epoch": 13,
+      "val_map": 0.882164,
+      "val_ap50": 0.943303,
+      "val_loss": 0.392537
+    },
+    {
+      "epoch": 14,
+      "val_map": 0.88497,
+      "val_ap50": 0.947575,
+      "val_loss": 0.412048
+    },
+    {
+      "epoch": 15,
+      "val_map": 0.893354,
+      "val_ap50": 0.950445,
+      "val_loss": 0.385701
+    },
+    {
+      "epoch": 16,
+      "val_map": 0.887888,
+      "val_ap50": 0.945352,
+      "val_loss": 0.378141
+    },
+    {
+      "epoch": 17,
+      "val_map": 0.883846,
+      "val_ap50": 0.946355,
+      "val_loss": 0.387315
+    },
+    {
+      "epoch": 18,
+      "val_map": 0.884682,
+      "val_ap50": 0.945096,
+      "val_loss": 0.38315
+    },
+    {
+      "epoch": 19,
+      "val_map": 0.875879,
+      "val_ap50": 0.936612,
+      "val_loss": 0.39285
+    },
+    {
+      "epoch": 20,
+      "val_map": 0.882935,
+      "val_ap50": 0.94773,
+      "val_loss": 0.40359
+    },
+    {
+      "epoch": 21,
+      "val_map": 0.884425,
+      "val_ap50": 0.943832,
+      "val_loss": 0.392549
+    },
+    {
+      "epoch": 22,
+      "val_map": 0.885485,
+      "val_ap50": 0.944519,
+      "val_loss": 0.391682
+    },
+    {
+      "epoch": 23,
+      "val_map": 0.876593,
+      "val_ap50": 0.939856,
+      "val_loss": 0.399686
+    },
+    {
+      "epoch": 24,
+      "val_map": 0.877889,
+      "val_ap50": 0.941686,
+      "val_loss": 0.398212
+    },
+    {
+      "epoch": 25,
+      "val_map": 0.880007,
+      "val_ap50": 0.942149,
+      "val_loss": 0.396512
+    },
+    {
+      "epoch": 26,
+      "val_map": 0.878245,
+      "val_ap50": 0.942675,
+      "val_loss": 0.397991
+    },
+    {
+      "epoch": 27,
+      "val_map": 0.877051,
+      "val_ap50": 0.93588,
+      "val_loss": 0.397856
+    },
+    {
+      "epoch": 28,
+      "val_map": 0.876104,
+      "val_ap50": 0.936014,
+      "val_loss": 0.397405
+    },
+    {
+      "epoch": 29,
+      "val_map": 0.877161,
+      "val_ap50": 0.941963,
+      "val_loss": 0.40286
+    },
+    {
+      "epoch": 30,
+      "val_map": 0.876534,
+      "val_ap50": 0.941965,
+      "val_loss": 0.398042
+    }
+  ],
+  "note": "test는 이 epoch로 딱 한 번만 연다. (RULES 2)"
+}

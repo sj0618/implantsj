@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "run": "FT-1000",
+    "threshold": 0.3,
+    "iou": 0.5,
+    "totals": {
+      "TP": 260,
+      "FP": 20,
+      "FN": 29
+    },
+    "n_fn_images": 14,
+    "n_fp_images": 17
+  },
+  "fn": [
+    "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+    "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+    "noris773_jpg.rf.1876193f43dddec8b105a021be40e3fc.jpg",
+    "dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg",
+    "noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg",
+    "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg",
+    "noris408_jpg.rf.93e87d8e3875978bcd713ad0499afe6b.jpg",
+    "osstem565_jpg.rf.60f374aa11faa867a2004d03d34cc5e1.jpg",
+    "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg",
+    "adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg",
+    "dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg",
+    "dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg",
+    "dentium64_jpg.rf.7aa429c99086a613a7c980165d77c54a.jpg",
+    "osstem543_jpg.rf.cc3e06f16081e1f9e61c1c0524a9776b.jpg"
+  ],
+  "fp": [
+    "dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg",
+    "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg",
+    "adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg",
+    "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+    "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg",
+    "adin1008_jpg.rf.b31e87a69e6e3cfac6c7b4a0f6b85594.jpg"
+  ],
+  "tp": [
+    "osstem394_jpg.rf.3d524760551a256ff0f38e167e2d675c.jpg",
+    "noris826_jpg.rf.853e2ebfa321a9f25bd0b7c882634a0c.jpg",
+    "noris801_jpg.rf.0d669dcf6415d9b991eac4bd8da1a3ac.jpg",
+    "osstem393_jpg.rf.ee94d7659107937687894ccccba32f2a.jpg",
+    "noris831_jpg.rf.d3602b8af813ee06a5c04c84dd37ef05.jpg",
+    "mis81-copy-2_jpg.rf.750c3eaa55ecc801187e00eb36537bfd.jpg"
+  ],
+  "detail": {
+    "fn": {
+      "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg": {
+        "n_gt": 1,
+        "n_missed": 1,
+        "n_pred": 2
+      },
+      "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg": {
+        "n_gt": 8,
+        "n_missed": 8,
+        "n_pred": 1
+      },
+      "noris408_jpg.rf.93e87d8e3875978bcd713ad0499afe6b.jpg": {
+        "n_gt": 2,
+        "n_missed": 1,
+        "n_pred": 1
+      },
+      "noris773_jpg.rf.1876193f43dddec8b105a021be40e3fc.jpg": {
+        "n_gt": 10,
+        "n_missed": 2,
+        "n_pred": 8
+      },
+      "osstem565_jpg.rf.60f374aa11faa867a2004d03d34cc5e1.jpg": {
+        "n_gt": 2,
+        "n_missed": 1,
+        "n_pred": 1
+      },
+      "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg": {
+        "n_gt": 1,
+        "n_missed": 1,
+        "n_pred": 1
+      },
+      "adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg": {
+        "n_gt": 2,
+        "n_missed": 1,
+        "n_pred": 2
+      },
+      "dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg": {
+        "n_gt": 3,
+        "n_missed": 1,
+        "n_pred": 2
+      },
+      "dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg": {
+        "n_gt": 4,
+        "n_missed": 2,
+        "n_pred": 2
+      },
+      "dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg": {
+        "n_gt": 2,
+        "n_missed": 1,
+        "n_pred": 2
+      },
+      "dentium64_jpg.rf.7aa429c99086a613a7c980165d77c54a.jpg": {
+        "n_gt": 2,
+        "n_missed": 1,
+        "n_pred": 1
+      },
+      "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg": {
+        "n_gt": 6,
+        "n_missed": 6,
+        "n_pred": 1
+      },
+      "noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg": {
+        "n_gt": 4,
+        "n_missed": 2,
+        "n_pred": 2
+      },
+      "osstem543_jpg.rf.cc3e06f16081e1f9e61c1c0524a9776b.jpg": {
+        "n_gt": 3,
+        "n_missed": 1,
+        "n_pred": 2
+      }
+    },
+    "fp": {
+      "dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg": {
+        "n_gt": 2,
+        "n_fp": 2,
+        "top_unmatched": 0.41029974818229675
+      },
+      "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg": {
+        "n_gt": 1,
+        "n_fp": 2,
+        "top_unmatched": 0.438062846660614
+      },
+      "adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg": {
+        "n_gt": 1,
+        "n_fp": 2,
+        "top_unmatched": 0.590025782585144
+      },
+      "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg": {
+        "n_gt": 8,
+        "n_fp": 1,
+        "top_unmatched": 0.5263583660125732
+      },
+      "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg": {
+        "n_gt": 1,
+        "n_fp": 1,
+        "top_unmatched": 0.8571974635124207
+      },
+      "adin1008_jpg.rf.b31e87a69e6e3cfac6c7b4a0f6b85594.jpg": {
+        "n_gt": 2,
+        "n_fp": 1,
+        "top_unmatched": 0.6321792006492615
+      }
+    },
+    "tp": {
+      "osstem394_jpg.rf.3d524760551a256ff0f38e167e2d675c.jpg": {
+        "n_gt": 1,
+        "min_score": 0.9747189879417419
+      },
+      "noris826_jpg.rf.853e2ebfa321a9f25bd0b7c882634a0c.jpg": {
+        "n_gt": 1,
+        "min_score": 0.971819281578064
+      },
+      "noris801_jpg.rf.0d669dcf6415d9b991eac4bd8da1a3ac.jpg": {
+        "n_gt": 1,
+        "min_score": 0.9714482426643372
+      },
+      "osstem393_jpg.rf.ee94d7659107937687894ccccba32f2a.jpg": {
+        "n_gt": 1,
+        "min_score": 0.9714421629905701
+      },
+      "noris831_jpg.rf.d3602b8af813ee06a5c04c84dd37ef05.jpg": {
+        "n_gt": 1,
+        "min_score": 0.9706143140792847
+      },
+      "mis81-copy-2_jpg.rf.750c3eaa55ecc801187e00eb36537bfd.jpg": {
+        "n_gt": 1,
+        "min_score": 0.9701720476150513
+      }
+    }
+  }
+}

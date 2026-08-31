@@ -1,0 +1,23 @@
+{
+  "kind": "FT (epoch_19.pth)",
+  "weights": "/workspace/Grounding-Dino-FineTuning/2nd/results/02/FT-206_lr1e-4/weights/epoch_19.pth",
+  "split": "test200",
+  "data_root": "/workspace/Grounding-Dino-FineTuning/3rd/dataset",
+  "n_images": 200,
+  "n_gt_boxes": 289,
+  "text_prompt": "implant",
+  "text_threshold": 0.2,
+  "sweep": [
+    0.05,
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5
+  ],
+  "iou_match": 0.5
+}

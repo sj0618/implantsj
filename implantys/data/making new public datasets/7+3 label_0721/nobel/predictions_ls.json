@@ -1,0 +1,154 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/nobel/nobel1-copy-10_jpg.rf.47010bebbb4c9fbf73f35ec011127663.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4517,
+        "result": [
+          {
+            "id": "f1d622bcc2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.09438955783844,
+              "y": 21.37956991791725,
+              "width": 59.07382369041443,
+              "height": 22.670994699001312,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4517
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/nobel/nobel10-copy-10_jpg.rf.49c95fb4b1e42e3563fa135ff9de70cb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7859,
+        "result": [
+          {
+            "id": "1f33e68392",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.45178198814392,
+              "y": 44.079798460006714,
+              "width": 24.024486541748047,
+              "height": 38.97404670715332,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7859
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/nobel/nobel5-copy-10_jpg.rf.a175004e70281ae7934ee7b265df2d01.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6885,
+        "result": [
+          {
+            "id": "96930b54b8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 61.46405562758446,
+              "y": 28.173035383224487,
+              "width": 15.540201961994171,
+              "height": 46.99718952178955,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8074
+          },
+          {
+            "id": "88fa0e7378",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.844613134860992,
+              "y": 17.943036556243896,
+              "width": 23.13966453075409,
+              "height": 49.546247720718384,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5696
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/nobel/nobel7-copy-10_jpg.rf.092fb34d1bca7453c329b9993d7c15ca.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9508,
+        "result": [
+          {
+            "id": "5ead27dd13",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.722200721502304,
+              "y": 36.81332170963287,
+              "width": 18.188776075839996,
+              "height": 28.1313955783844,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9508
+          }
+        ]
+      }
+    ]
+  }
+]

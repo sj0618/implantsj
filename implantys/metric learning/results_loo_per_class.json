@@ -1,0 +1,932 @@
+{
+  "M1|l2": {
+    "adin": {
+      "precision": 0.413043,
+      "recall": 0.475,
+      "f1": 0.44186,
+      "support": 40,
+      "n_pred": 46
+    },
+    "bego": {
+      "precision": 0.384615,
+      "recall": 0.714286,
+      "f1": 0.5,
+      "support": 7,
+      "n_pred": 13
+    },
+    "bicon": {
+      "precision": 0.567568,
+      "recall": 0.538462,
+      "f1": 0.552632,
+      "support": 39,
+      "n_pred": 37
+    },
+    "bilim": {
+      "precision": 0.266667,
+      "recall": 0.571429,
+      "f1": 0.363636,
+      "support": 7,
+      "n_pred": 15
+    },
+    "dentium": {
+      "precision": 0.37931,
+      "recall": 0.733333,
+      "f1": 0.5,
+      "support": 15,
+      "n_pred": 29
+    },
+    "dionavi": {
+      "precision": 0.380952,
+      "recall": 0.533333,
+      "f1": 0.444444,
+      "support": 15,
+      "n_pred": 21
+    },
+    "implance": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "support": 10,
+      "n_pred": 10
+    },
+    "iti": {
+      "precision": 0.181818,
+      "recall": 0.25,
+      "f1": 0.210526,
+      "support": 8,
+      "n_pred": 11
+    },
+    "mis": {
+      "precision": 0.576923,
+      "recall": 0.46875,
+      "f1": 0.517241,
+      "support": 32,
+      "n_pred": 26
+    },
+    "nobel": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.2,
+      "support": 5,
+      "n_pred": 5
+    },
+    "noris": {
+      "precision": 0.222222,
+      "recall": 0.066667,
+      "f1": 0.102564,
+      "support": 30,
+      "n_pred": 9
+    },
+    "nucleoss": {
+      "precision": 0.8,
+      "recall": 0.470588,
+      "f1": 0.592593,
+      "support": 34,
+      "n_pred": 20
+    },
+    "osstem": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "support": 26,
+      "n_pred": 26
+    }
+  },
+  "M1|cosine": {
+    "adin": {
+      "precision": 0.422222,
+      "recall": 0.475,
+      "f1": 0.447059,
+      "support": 40,
+      "n_pred": 45
+    },
+    "bego": {
+      "precision": 0.416667,
+      "recall": 0.714286,
+      "f1": 0.526316,
+      "support": 7,
+      "n_pred": 12
+    },
+    "bicon": {
+      "precision": 0.666667,
+      "recall": 0.512821,
+      "f1": 0.57971,
+      "support": 39,
+      "n_pred": 30
+    },
+    "bilim": {
+      "precision": 0.25,
+      "recall": 0.571429,
+      "f1": 0.347826,
+      "support": 7,
+      "n_pred": 16
+    },
+    "dentium": {
+      "precision": 0.34375,
+      "recall": 0.733333,
+      "f1": 0.468085,
+      "support": 15,
+      "n_pred": 32
+    },
+    "dionavi": {
+      "precision": 0.363636,
+      "recall": 0.533333,
+      "f1": 0.432432,
+      "support": 15,
+      "n_pred": 22
+    },
+    "implance": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "support": 10,
+      "n_pred": 10
+    },
+    "iti": {
+      "precision": 0.25,
+      "recall": 0.375,
+      "f1": 0.3,
+      "support": 8,
+      "n_pred": 12
+    },
+    "mis": {
+      "precision": 0.576923,
+      "recall": 0.46875,
+      "f1": 0.517241,
+      "support": 32,
+      "n_pred": 26
+    },
+    "nobel": {
+      "precision": 0.142857,
+      "recall": 0.2,
+      "f1": 0.166667,
+      "support": 5,
+      "n_pred": 7
+    },
+    "noris": {
+      "precision": 0.222222,
+      "recall": 0.066667,
+      "f1": 0.102564,
+      "support": 30,
+      "n_pred": 9
+    },
+    "nucleoss": {
+      "precision": 0.842105,
+      "recall": 0.470588,
+      "f1": 0.603774,
+      "support": 34,
+      "n_pred": 19
+    },
+    "osstem": {
+      "precision": 0.464286,
+      "recall": 0.5,
+      "f1": 0.481481,
+      "support": 26,
+      "n_pred": 28
+    }
+  },
+  "M3|l2": {
+    "adin": {
+      "precision": 0.8,
+      "recall": 0.8,
+      "f1": 0.8,
+      "support": 40,
+      "n_pred": 40
+    },
+    "bego": {
+      "precision": 1.0,
+      "recall": 0.714286,
+      "f1": 0.833333,
+      "support": 7,
+      "n_pred": 5
+    },
+    "bicon": {
+      "precision": 0.95122,
+      "recall": 1.0,
+      "f1": 0.975,
+      "support": 39,
+      "n_pred": 41
+    },
+    "bilim": {
+      "precision": 0.444444,
+      "recall": 0.571429,
+      "f1": 0.5,
+      "support": 7,
+      "n_pred": 9
+    },
+    "dentium": {
+      "precision": 0.857143,
+      "recall": 0.8,
+      "f1": 0.827586,
+      "support": 15,
+      "n_pred": 14
+    },
+    "dionavi": {
+      "precision": 0.529412,
+      "recall": 0.6,
+      "f1": 0.5625,
+      "support": 15,
+      "n_pred": 17
+    },
+    "implance": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.666667,
+      "support": 10,
+      "n_pred": 5
+    },
+    "iti": {
+      "precision": 1.0,
+      "recall": 0.875,
+      "f1": 0.933333,
+      "support": 8,
+      "n_pred": 7
+    },
+    "mis": {
+      "precision": 0.536585,
+      "recall": 0.6875,
+      "f1": 0.60274,
+      "support": 32,
+      "n_pred": 41
+    },
+    "nobel": {
+      "precision": 0.133333,
+      "recall": 0.4,
+      "f1": 0.2,
+      "support": 5,
+      "n_pred": 15
+    },
+    "noris": {
+      "precision": 0.578947,
+      "recall": 0.366667,
+      "f1": 0.44898,
+      "support": 30,
+      "n_pred": 19
+    },
+    "nucleoss": {
+      "precision": 0.633333,
+      "recall": 0.558824,
+      "f1": 0.59375,
+      "support": 34,
+      "n_pred": 30
+    },
+    "osstem": {
+      "precision": 0.68,
+      "recall": 0.653846,
+      "f1": 0.666667,
+      "support": 26,
+      "n_pred": 25
+    }
+  },
+  "M3|cosine": {
+    "adin": {
+      "precision": 0.673469,
+      "recall": 0.825,
+      "f1": 0.741573,
+      "support": 40,
+      "n_pred": 49
+    },
+    "bego": {
+      "precision": 1.0,
+      "recall": 0.714286,
+      "f1": 0.833333,
+      "support": 7,
+      "n_pred": 5
+    },
+    "bicon": {
+      "precision": 0.829787,
+      "recall": 1.0,
+      "f1": 0.906977,
+      "support": 39,
+      "n_pred": 47
+    },
+    "bilim": {
+      "precision": 0.454545,
+      "recall": 0.714286,
+      "f1": 0.555556,
+      "support": 7,
+      "n_pred": 11
+    },
+    "dentium": {
+      "precision": 0.7,
+      "recall": 0.933333,
+      "f1": 0.8,
+      "support": 15,
+      "n_pred": 20
+    },
+    "dionavi": {
+      "precision": 0.6,
+      "recall": 0.6,
+      "f1": 0.6,
+      "support": 15,
+      "n_pred": 15
+    },
+    "implance": {
+      "precision": 0.875,
+      "recall": 0.7,
+      "f1": 0.777778,
+      "support": 10,
+      "n_pred": 8
+    },
+    "iti": {
+      "precision": 0.857143,
+      "recall": 0.75,
+      "f1": 0.8,
+      "support": 8,
+      "n_pred": 7
+    },
+    "mis": {
+      "precision": 0.625,
+      "recall": 0.46875,
+      "f1": 0.535714,
+      "support": 32,
+      "n_pred": 24
+    },
+    "nobel": {
+      "precision": 0.166667,
+      "recall": 0.2,
+      "f1": 0.181818,
+      "support": 5,
+      "n_pred": 6
+    },
+    "noris": {
+      "precision": 0.545455,
+      "recall": 0.4,
+      "f1": 0.461538,
+      "support": 30,
+      "n_pred": 22
+    },
+    "nucleoss": {
+      "precision": 0.777778,
+      "recall": 0.411765,
+      "f1": 0.538462,
+      "support": 34,
+      "n_pred": 18
+    },
+    "osstem": {
+      "precision": 0.527778,
+      "recall": 0.730769,
+      "f1": 0.612903,
+      "support": 26,
+      "n_pred": 36
+    }
+  },
+  "M5|l2": {
+    "adin": {
+      "precision": 0.790698,
+      "recall": 0.85,
+      "f1": 0.819277,
+      "support": 40,
+      "n_pred": 43
+    },
+    "bego": {
+      "precision": 0.777778,
+      "recall": 1.0,
+      "f1": 0.875,
+      "support": 7,
+      "n_pred": 9
+    },
+    "bicon": {
+      "precision": 0.975,
+      "recall": 1.0,
+      "f1": 0.987342,
+      "support": 39,
+      "n_pred": 40
+    },
+    "bilim": {
+      "precision": 0.416667,
+      "recall": 0.714286,
+      "f1": 0.526316,
+      "support": 7,
+      "n_pred": 12
+    },
+    "dentium": {
+      "precision": 0.583333,
+      "recall": 0.933333,
+      "f1": 0.717949,
+      "support": 15,
+      "n_pred": 24
+    },
+    "dionavi": {
+      "precision": 0.4,
+      "recall": 0.133333,
+      "f1": 0.2,
+      "support": 15,
+      "n_pred": 5
+    },
+    "implance": {
+      "precision": 0.666667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "support": 10,
+      "n_pred": 15
+    },
+    "iti": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857143,
+      "support": 8,
+      "n_pred": 6
+    },
+    "mis": {
+      "precision": 0.65,
+      "recall": 0.40625,
+      "f1": 0.5,
+      "support": 32,
+      "n_pred": 20
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "n_pred": 2
+    },
+    "noris": {
+      "precision": 0.527778,
+      "recall": 0.633333,
+      "f1": 0.575758,
+      "support": 30,
+      "n_pred": 36
+    },
+    "nucleoss": {
+      "precision": 0.722222,
+      "recall": 0.382353,
+      "f1": 0.5,
+      "support": 34,
+      "n_pred": 18
+    },
+    "osstem": {
+      "precision": 0.5,
+      "recall": 0.730769,
+      "f1": 0.59375,
+      "support": 26,
+      "n_pred": 38
+    }
+  },
+  "M5|cosine": {
+    "adin": {
+      "precision": 0.772727,
+      "recall": 0.85,
+      "f1": 0.809524,
+      "support": 40,
+      "n_pred": 44
+    },
+    "bego": {
+      "precision": 0.7,
+      "recall": 1.0,
+      "f1": 0.823529,
+      "support": 7,
+      "n_pred": 10
+    },
+    "bicon": {
+      "precision": 0.975,
+      "recall": 1.0,
+      "f1": 0.987342,
+      "support": 39,
+      "n_pred": 40
+    },
+    "bilim": {
+      "precision": 0.454545,
+      "recall": 0.714286,
+      "f1": 0.555556,
+      "support": 7,
+      "n_pred": 11
+    },
+    "dentium": {
+      "precision": 0.56,
+      "recall": 0.933333,
+      "f1": 0.7,
+      "support": 15,
+      "n_pred": 25
+    },
+    "dionavi": {
+      "precision": 0.5,
+      "recall": 0.133333,
+      "f1": 0.210526,
+      "support": 15,
+      "n_pred": 4
+    },
+    "implance": {
+      "precision": 0.666667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "support": 10,
+      "n_pred": 15
+    },
+    "iti": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857143,
+      "support": 8,
+      "n_pred": 6
+    },
+    "mis": {
+      "precision": 0.631579,
+      "recall": 0.375,
+      "f1": 0.470588,
+      "support": 32,
+      "n_pred": 19
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "n_pred": 1
+    },
+    "noris": {
+      "precision": 0.527778,
+      "recall": 0.633333,
+      "f1": 0.575758,
+      "support": 30,
+      "n_pred": 36
+    },
+    "nucleoss": {
+      "precision": 0.736842,
+      "recall": 0.411765,
+      "f1": 0.528302,
+      "support": 34,
+      "n_pred": 19
+    },
+    "osstem": {
+      "precision": 0.5,
+      "recall": 0.730769,
+      "f1": 0.59375,
+      "support": 26,
+      "n_pred": 38
+    }
+  },
+  "M5b|l2": {
+    "adin": {
+      "precision": 0.744186,
+      "recall": 0.8,
+      "f1": 0.771084,
+      "support": 40,
+      "n_pred": 43
+    },
+    "bego": {
+      "precision": 0.75,
+      "recall": 0.857143,
+      "f1": 0.8,
+      "support": 7,
+      "n_pred": 8
+    },
+    "bicon": {
+      "precision": 0.975,
+      "recall": 1.0,
+      "f1": 0.987342,
+      "support": 39,
+      "n_pred": 40
+    },
+    "bilim": {
+      "precision": 0.545455,
+      "recall": 0.857143,
+      "f1": 0.666667,
+      "support": 7,
+      "n_pred": 11
+    },
+    "dentium": {
+      "precision": 0.583333,
+      "recall": 0.933333,
+      "f1": 0.717949,
+      "support": 15,
+      "n_pred": 24
+    },
+    "dionavi": {
+      "precision": 0.4,
+      "recall": 0.133333,
+      "f1": 0.2,
+      "support": 15,
+      "n_pred": 5
+    },
+    "implance": {
+      "precision": 0.769231,
+      "recall": 1.0,
+      "f1": 0.869565,
+      "support": 10,
+      "n_pred": 13
+    },
+    "iti": {
+      "precision": 0.888889,
+      "recall": 1.0,
+      "f1": 0.941176,
+      "support": 8,
+      "n_pred": 9
+    },
+    "mis": {
+      "precision": 0.571429,
+      "recall": 0.25,
+      "f1": 0.347826,
+      "support": 32,
+      "n_pred": 14
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "n_pred": 3
+    },
+    "noris": {
+      "precision": 0.59375,
+      "recall": 0.633333,
+      "f1": 0.612903,
+      "support": 30,
+      "n_pred": 32
+    },
+    "nucleoss": {
+      "precision": 0.869565,
+      "recall": 0.588235,
+      "f1": 0.701754,
+      "support": 34,
+      "n_pred": 23
+    },
+    "osstem": {
+      "precision": 0.534884,
+      "recall": 0.884615,
+      "f1": 0.666667,
+      "support": 26,
+      "n_pred": 43
+    }
+  },
+  "M5b|cosine": {
+    "adin": {
+      "precision": 0.73913,
+      "recall": 0.85,
+      "f1": 0.790698,
+      "support": 40,
+      "n_pred": 46
+    },
+    "bego": {
+      "precision": 0.75,
+      "recall": 0.857143,
+      "f1": 0.8,
+      "support": 7,
+      "n_pred": 8
+    },
+    "bicon": {
+      "precision": 0.975,
+      "recall": 1.0,
+      "f1": 0.987342,
+      "support": 39,
+      "n_pred": 40
+    },
+    "bilim": {
+      "precision": 0.545455,
+      "recall": 0.857143,
+      "f1": 0.666667,
+      "support": 7,
+      "n_pred": 11
+    },
+    "dentium": {
+      "precision": 0.56,
+      "recall": 0.933333,
+      "f1": 0.7,
+      "support": 15,
+      "n_pred": 25
+    },
+    "dionavi": {
+      "precision": 0.5,
+      "recall": 0.2,
+      "f1": 0.285714,
+      "support": 15,
+      "n_pred": 6
+    },
+    "implance": {
+      "precision": 0.714286,
+      "recall": 1.0,
+      "f1": 0.833333,
+      "support": 10,
+      "n_pred": 14
+    },
+    "iti": {
+      "precision": 0.888889,
+      "recall": 1.0,
+      "f1": 0.941176,
+      "support": 8,
+      "n_pred": 9
+    },
+    "mis": {
+      "precision": 0.6,
+      "recall": 0.1875,
+      "f1": 0.285714,
+      "support": 32,
+      "n_pred": 10
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "n_pred": 1
+    },
+    "noris": {
+      "precision": 0.575758,
+      "recall": 0.633333,
+      "f1": 0.603175,
+      "support": 30,
+      "n_pred": 33
+    },
+    "nucleoss": {
+      "precision": 0.863636,
+      "recall": 0.558824,
+      "f1": 0.678571,
+      "support": 34,
+      "n_pred": 22
+    },
+    "osstem": {
+      "precision": 0.534884,
+      "recall": 0.884615,
+      "f1": 0.666667,
+      "support": 26,
+      "n_pred": 43
+    }
+  },
+  "M7|l2": {
+    "adin": {
+      "precision": 0.785714,
+      "recall": 0.825,
+      "f1": 0.804878,
+      "support": 40,
+      "n_pred": 42
+    },
+    "bego": {
+      "precision": 1.0,
+      "recall": 0.857143,
+      "f1": 0.923077,
+      "support": 7,
+      "n_pred": 6
+    },
+    "bicon": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 39,
+      "n_pred": 39
+    },
+    "bilim": {
+      "precision": 0.3125,
+      "recall": 0.714286,
+      "f1": 0.434783,
+      "support": 7,
+      "n_pred": 16
+    },
+    "dentium": {
+      "precision": 0.7,
+      "recall": 0.933333,
+      "f1": 0.8,
+      "support": 15,
+      "n_pred": 20
+    },
+    "dionavi": {
+      "precision": 0.428571,
+      "recall": 0.2,
+      "f1": 0.272727,
+      "support": 15,
+      "n_pred": 7
+    },
+    "implance": {
+      "precision": 0.909091,
+      "recall": 1.0,
+      "f1": 0.952381,
+      "support": 10,
+      "n_pred": 11
+    },
+    "iti": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.888889,
+      "support": 8,
+      "n_pred": 10
+    },
+    "mis": {
+      "precision": 0.541667,
+      "recall": 0.40625,
+      "f1": 0.464286,
+      "support": 32,
+      "n_pred": 24
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "n_pred": 4
+    },
+    "noris": {
+      "precision": 0.548387,
+      "recall": 0.566667,
+      "f1": 0.557377,
+      "support": 30,
+      "n_pred": 31
+    },
+    "nucleoss": {
+      "precision": 0.7,
+      "recall": 0.411765,
+      "f1": 0.518519,
+      "support": 34,
+      "n_pred": 20
+    },
+    "osstem": {
+      "precision": 0.552632,
+      "recall": 0.807692,
+      "f1": 0.65625,
+      "support": 26,
+      "n_pred": 38
+    }
+  },
+  "M7|cosine": {
+    "adin": {
+      "precision": 0.785714,
+      "recall": 0.825,
+      "f1": 0.804878,
+      "support": 40,
+      "n_pred": 42
+    },
+    "bego": {
+      "precision": 1.0,
+      "recall": 0.857143,
+      "f1": 0.923077,
+      "support": 7,
+      "n_pred": 6
+    },
+    "bicon": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 39,
+      "n_pred": 39
+    },
+    "bilim": {
+      "precision": 0.3125,
+      "recall": 0.714286,
+      "f1": 0.434783,
+      "support": 7,
+      "n_pred": 16
+    },
+    "dentium": {
+      "precision": 0.7,
+      "recall": 0.933333,
+      "f1": 0.8,
+      "support": 15,
+      "n_pred": 20
+    },
+    "dionavi": {
+      "precision": 0.428571,
+      "recall": 0.2,
+      "f1": 0.272727,
+      "support": 15,
+      "n_pred": 7
+    },
+    "implance": {
+      "precision": 0.909091,
+      "recall": 1.0,
+      "f1": 0.952381,
+      "support": 10,
+      "n_pred": 11
+    },
+    "iti": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.888889,
+      "support": 8,
+      "n_pred": 10
+    },
+    "mis": {
+      "precision": 0.541667,
+      "recall": 0.40625,
+      "f1": 0.464286,
+      "support": 32,
+      "n_pred": 24
+    },
+    "nobel": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5,
+      "n_pred": 4
+    },
+    "noris": {
+      "precision": 0.548387,
+      "recall": 0.566667,
+      "f1": 0.557377,
+      "support": 30,
+      "n_pred": 31
+    },
+    "nucleoss": {
+      "precision": 0.7,
+      "recall": 0.411765,
+      "f1": 0.518519,
+      "support": 34,
+      "n_pred": 20
+    },
+    "osstem": {
+      "precision": 0.552632,
+      "recall": 0.807692,
+      "f1": 0.65625,
+      "support": 26,
+      "n_pred": 38
+    }
+  }
+}

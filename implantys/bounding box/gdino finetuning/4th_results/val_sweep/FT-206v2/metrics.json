@@ -1,0 +1,116 @@
+{
+  "kind": "FT (epoch_23.pth)",
+  "weights": "/workspace/Grounding-Dino-FineTuning/4th/results/FT-206v2/weights/epoch_23.pth",
+  "split": "val",
+  "n_images": 299,
+  "n_gt_boxes": 409,
+  "n_pred_raw": 1240,
+  "ap": {
+    "ap50": 0.9009,
+    "map": 0.8201,
+    "ar100": 0.9254,
+    "basis": "자르지 않은 전체 예측"
+  },
+  "threshold_sweep": [
+    {
+      "threshold": 0.05,
+      "n_pred": 1240,
+      "TP": 397,
+      "FP": 843,
+      "FN": 12,
+      "precision": 0.3202,
+      "recall": 0.9707,
+      "f1": 0.4815
+    },
+    {
+      "threshold": 0.1,
+      "n_pred": 672,
+      "TP": 381,
+      "FP": 291,
+      "FN": 28,
+      "precision": 0.567,
+      "recall": 0.9315,
+      "f1": 0.7049
+    },
+    {
+      "threshold": 0.15,
+      "n_pred": 511,
+      "TP": 367,
+      "FP": 144,
+      "FN": 42,
+      "precision": 0.7182,
+      "recall": 0.8973,
+      "f1": 0.7978
+    },
+    {
+      "threshold": 0.2,
+      "n_pred": 456,
+      "TP": 358,
+      "FP": 98,
+      "FN": 51,
+      "precision": 0.7851,
+      "recall": 0.8753,
+      "f1": 0.8277
+    },
+    {
+      "threshold": 0.25,
+      "n_pred": 410,
+      "TP": 344,
+      "FP": 66,
+      "FN": 65,
+      "precision": 0.839,
+      "recall": 0.8411,
+      "f1": 0.84
+    },
+    {
+      "threshold": 0.3,
+      "n_pred": 385,
+      "TP": 332,
+      "FP": 53,
+      "FN": 77,
+      "precision": 0.8623,
+      "recall": 0.8117,
+      "f1": 0.8363
+    },
+    {
+      "threshold": 0.35,
+      "n_pred": 366,
+      "TP": 325,
+      "FP": 41,
+      "FN": 84,
+      "precision": 0.888,
+      "recall": 0.7946,
+      "f1": 0.8387
+    },
+    {
+      "threshold": 0.4,
+      "n_pred": 332,
+      "TP": 304,
+      "FP": 28,
+      "FN": 105,
+      "precision": 0.9157,
+      "recall": 0.7433,
+      "f1": 0.8205
+    },
+    {
+      "threshold": 0.45,
+      "n_pred": 310,
+      "TP": 289,
+      "FP": 21,
+      "FN": 120,
+      "precision": 0.9323,
+      "recall": 0.7066,
+      "f1": 0.8039
+    },
+    {
+      "threshold": 0.5,
+      "n_pred": 293,
+      "TP": 275,
+      "FP": 18,
+      "FN": 134,
+      "precision": 0.9386,
+      "recall": 0.6724,
+      "f1": 0.7835
+    }
+  ]
+}

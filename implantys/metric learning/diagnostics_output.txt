@@ -1,0 +1,102 @@
+/workspace/implantys_dinov2/diagnostics.py:141: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ck = torch.load(p, map_location="cpu")
+=== train/test 근접 중복 검사 (M1 임베딩, test 195장)
+  test 이미지별 'train 최근접 유사도' 분위수
+    중앙값 0.8461 / 90% 0.9129 / 99% 0.9742 / 최대 0.9811
+    유사도 >= 0.99: 0장 (0.0%)
+    유사도 >= 0.98: 1장 (0.5%)
+    유사도 >= 0.95: 3장 (1.5%)
+
+  가장 비슷한 쌍 상위 10
+       유사도     같은클래스  test / train
+    0.9811         O  osstem/osstem_0138.jpg  |  osstem/osstem_0109.jpg
+    0.9772         O  osstem/osstem_0089.jpg  |  osstem/osstem_0043.jpg
+    0.9741         O  osstem/osstem_0151.jpg  |  osstem/osstem_0114.jpg
+    0.9396         O  adin/adin_0088.jpg  |  adin/adin_0073.jpg
+    0.9378         X  adin/adin_0151.jpg  |  dentium/dentium_0020.jpg
+    0.9367         X  noris/noris_0199.jpg  |  osstem/osstem_0168.jpg
+    0.9341         O  osstem/osstem_0083.jpg  |  osstem/osstem_0027.jpg
+    0.9310         O  adin/adin_0109.jpg  |  adin/adin_0226.jpg
+    0.9281         O  noris/noris_0147.jpg  |  noris/noris_0154.jpg
+    0.9269         O  adin/adin_0013.jpg  |  adin/adin_0037.jpg
+
+  판정: 유사도 0.98 이상이 여러 장이면 같은 원본에서 나온 crop 일 수 있다.
+        해당 쌍의 실제 이미지를 열어 확인할 것.
+
+=== hubness — 9개 프로토타입이 최근접으로 뽑히는 횟수 (cosine)
+  균등하면 각 프로토타입이 known 182/9=20.2회, unknown 86/9=9.6회 뽑힌다.
+
+  [M1] known 편중도 2.03x / unknown 편중도 2.72x
+    unknown 을 가장 많이 빨아들인 프로토타입: bilim (26/86장 = 30%)
+    브랜드         known  unknown
+    adin           41       12
+    bego           10        2
+    bicon          32        1
+    bilim          10       26
+    dentium        29       12
+    implance        8        6
+    iti            10        3
+    noris           7        5
+    osstem         35       19
+
+  [M3] known 편중도 2.27x / unknown 편중도 2.51x
+    unknown 을 가장 많이 빨아들인 프로토타입: osstem (24/86장 = 28%)
+    브랜드         known  unknown
+    adin           45       15
+    bego            5        0
+    bicon          46        1
+    bilim           7       16
+    dentium        14       16
+    implance        9        5
+    iti             7        1
+    noris          18        8
+    osstem         31       24
+
+  [M5] known 편중도 1.98x / unknown 편중도 1.78x
+    unknown 을 가장 많이 빨아들인 프로토타입: bilim (17/86장 = 20%)
+    브랜드         known  unknown
+    adin           36       13
+    bego            7        3
+    bicon          40        0
+    bilim           7       17
+    dentium        14       15
+    implance       12        9
+    iti             6        0
+    noris          30       13
+    osstem         30       16
+
+  [M7] known 편중도 1.93x / unknown 편중도 2.83x
+    unknown 을 가장 많이 빨아들인 프로토타입: bilim (27/86장 = 31%)
+    브랜드         known  unknown
+    adin           38        9
+    bego            6        0
+    bicon          39        0
+    bilim           7       27
+    dentium        15       11
+    implance       10        3
+    iti            10        0
+    noris          27       11
+    osstem         30       25
+
+  판정: unknown 편중도가 known 보다 훨씬 크면 특정 프로토타입이 허브다.
+
+=== 거부 점수 대안 비교 (cosine) — AUROC / FPR@95%TPR
+  조건                min_dist              margin            dist_ent            head_msp            head_ent
+  M1            0.394/0.98        0.645/0.74        0.628/0.75                   —                   —
+  M3            0.773/0.73        0.802/0.60        0.817/0.58        0.806/0.66        0.802/0.67
+  M5            0.858/0.51        0.812/0.78        0.827/0.82        0.809/0.64        0.811/0.65
+  M7            0.831/0.62        0.785/0.57        0.805/0.60        0.815/0.55        0.820/0.54
+
+  min_dist=최근접거리  margin=1·2등 거리차  dist_ent=거리 softmax 엔트로피
+  head_msp=분류기 최대확률  head_ent=분류기 엔트로피 (M1 은 분류기 없음)
+
+=== hubness 보정 후 거부 성능 (cosine) — AUROC / FPR@95%TPR
+  조건                     raw           proto_std          sample_std                csls
+  M1            0.394/0.98        0.445/0.90        0.718/0.70        0.534/0.85
+  M3            0.773/0.73        0.515/0.87        0.823/0.60        0.802/0.59
+  M5            0.858/0.51        0.479/0.91        0.786/0.82        0.843/0.77
+  M7            0.831/0.62        0.457/0.91        0.775/0.62        0.825/0.61
+
+  조건별 최선: M1=sample_std(0.718), M3=sample_std(0.823), M5=raw(0.858), M7=raw(0.831)
+
+저장: results_diagnostics.json

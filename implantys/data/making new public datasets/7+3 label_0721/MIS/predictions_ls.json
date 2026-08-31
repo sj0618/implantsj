@@ -1,0 +1,1271 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis105-copy-2_jpg.rf.07cf870c2fdd1ea1395eb1840f1a45fa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8423,
+        "result": [
+          {
+            "id": "9fd1fdd9d2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.894995093345642,
+              "y": 22.689825296401978,
+              "width": 38.32522630691528,
+              "height": 44.663065671920776,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8423
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis112-copy-2_jpg.rf.45ff1fa94e04c17ff4ff1415758a2827.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9652,
+        "result": [
+          {
+            "id": "b5f78dfd12",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.38008862733841,
+              "y": 26.48787498474121,
+              "width": 39.882680773735046,
+              "height": 58.06163549423218,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9652
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis116-copy-2_jpg.rf.1236c594222658dc7ecdb69d63a89794.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9611,
+        "result": [
+          {
+            "id": "ad6756c5d3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.409908175468445,
+              "y": 51.10092759132385,
+              "width": 15.814238786697388,
+              "height": 42.35179424285889,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9611
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis129-copy-2_jpg.rf.4e79794900ca1c7875347a5652ecc605.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9101,
+        "result": [
+          {
+            "id": "5cd6fc750f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.578196227550507,
+              "y": 49.65862333774567,
+              "width": 22.42678701877594,
+              "height": 47.62672781944275,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9101
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis13-copy-2_jpg.rf.67336a61bcb6e4fc8377c795880b62b0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3942,
+        "result": [
+          {
+            "id": "8119aa1b46",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 8.221746981143951,
+              "y": 31.742899119853973,
+              "width": 20.46031951904297,
+              "height": 44.950106739997864,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3942
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis132-copy-2_jpg.rf.b43e33c430f5bfc0966edf0b62503285.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.60225,
+        "result": [
+          {
+            "id": "9152ff6d4e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.95881539583206,
+              "y": 52.65561193227768,
+              "width": 15.280017256736755,
+              "height": 41.76680147647858,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9031
+          },
+          {
+            "id": "8a775ab698",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.589403241872787,
+              "y": 51.98150724172592,
+              "width": 21.557511389255524,
+              "height": 47.936227917671204,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3014
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis138-copy-2_jpg.rf.775b256e2020ecf1606b258dfea688dc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9543,
+        "result": [
+          {
+            "id": "e02f5fe437",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.749489456415176,
+              "y": 44.65020447969437,
+              "width": 15.69996327161789,
+              "height": 42.082831263542175,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9543
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis143-copy-2_jpg.rf.1f134ff475f4ba530067db7b6a7cf67a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3321,
+        "result": [
+          {
+            "id": "85693bff98",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.603215128183365,
+              "y": 71.80513143539429,
+              "width": 24.675552546977997,
+              "height": 28.123462200164795,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3495
+          },
+          {
+            "id": "07f17d4f89",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.989927113056183,
+              "y": 34.75815951824188,
+              "width": 29.36665713787079,
+              "height": 60.06130576133728,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3345
+          },
+          {
+            "id": "738963c935",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.99724954366684,
+              "y": 58.021676540374756,
+              "width": 21.10653817653656,
+              "height": 36.705565452575684,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3123
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis150-copy-2_jpg.rf.8153f7a1e6a902855456717102b52678.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.907,
+        "result": [
+          {
+            "id": "536e7f2093",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.65124177932739,
+              "y": 28.43891680240631,
+              "width": 50.41567087173462,
+              "height": 18.441444635391235,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.907
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis158-copy-2_jpg.rf.5864553605766fe9eb62df32f8cc7c45.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.63455,
+        "result": [
+          {
+            "id": "3cf0a874d1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.69149136543274,
+              "y": 23.966491222381592,
+              "width": 37.292420864105225,
+              "height": 15.32127857208252,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6692
+          },
+          {
+            "id": "1348dc3400",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.55656635761261,
+              "y": 37.59123086929321,
+              "width": 39.42131996154785,
+              "height": 15.06015658378601,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5999
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis18-copy-2_jpg.rf.5817b489227e4decf1148a1905a5c456.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6575,
+        "result": [
+          {
+            "id": "f45ce4b6f5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.53721937537193,
+              "y": 7.4641212821006775,
+              "width": 13.90955001115799,
+              "height": 44.07297074794769,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6575
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis31-copy-2_jpg.rf.eeeffc4d6b9b1438a80ad31d2f04ee4e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7576,
+        "result": [
+          {
+            "id": "aa636971b4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.690006881952286,
+              "y": 42.758771777153015,
+              "width": 18.76380294561386,
+              "height": 31.078094244003296,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7576
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis32-copy-2_jpg.rf.c99b2f086cd88350f375dbbe338ec12a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9581,
+        "result": [
+          {
+            "id": "07861b2222",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.44607055187225,
+              "y": 43.57419237494469,
+              "width": 66.71475768089294,
+              "height": 22.484596073627472,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9581
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis34-copy-2_jpg.rf.3d259e8b3ff897c5070b0705ebab62f8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6155,
+        "result": [
+          {
+            "id": "31919b024c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 60.40094420313835,
+              "y": 0.06831437349319458,
+              "width": 17.47533231973648,
+              "height": 49.017533659935,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7959
+          },
+          {
+            "id": "8cb3fce305",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.36165389418602,
+              "y": 17.96693056821823,
+              "width": 18.165187537670135,
+              "height": 44.837698340415955,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4351
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis35-copy-2_jpg.rf.03c0a9a98cde9bfd83f49408d899a4ea.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.968,
+        "result": [
+          {
+            "id": "b9e2e17fa3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.62435972690582,
+              "y": 28.091543912887573,
+              "width": 35.00099778175354,
+              "height": 32.26462006568909,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.968
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis37-copy-2_jpg.rf.dd7963ea745740dfa1d46d4208a6c990.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9513,
+        "result": [
+          {
+            "id": "5a5b1b576d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.004470765590668,
+              "y": 30.519813299179077,
+              "width": 38.603076338768005,
+              "height": 56.88666105270386,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9513
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis38-copy-2_jpg.rf.77055baf8c4c7cf4983ff5f287565371.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9521,
+        "result": [
+          {
+            "id": "b5401d380f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.227866113185883,
+              "y": 3.8490936160087585,
+              "width": 17.10774004459381,
+              "height": 44.80107128620148,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9521
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis39-copy-2_jpg.rf.ca5d9a126886400edcbd41b88089f5c8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9593,
+        "result": [
+          {
+            "id": "e91cd4b310",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.50527349114418,
+              "y": 48.934487998485565,
+              "width": 21.83430641889572,
+              "height": 48.152413964271545,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9593
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis42-copy-2_jpg.rf.1238f7035ead55ae3d59670b8ab39881.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9183,
+        "result": [
+          {
+            "id": "87208b68b8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.30088669061661,
+              "y": 5.95155656337738,
+              "width": 22.328218817710876,
+              "height": 51.048094034194946,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9183
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis43-copy-2_jpg.rf.7b9bb99f313b573c0893840a04d1e019.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4172,
+        "result": [
+          {
+            "id": "90b3a3ecaa",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.059816151857376,
+              "y": 40.971460938453674,
+              "width": 10.280285775661469,
+              "height": 22.415632009506226,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4908
+          },
+          {
+            "id": "df720381bb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 4.0978312492370605,
+              "y": 40.88943228125572,
+              "width": 10.216356813907623,
+              "height": 22.53088504076004,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3436
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis46-copy-2_jpg.rf.d645e9ea1ce53c3072192c13b685150d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8979,
+        "result": [
+          {
+            "id": "b2541d969b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.670502722263336,
+              "y": 42.23567843437195,
+              "width": 16.398239135742188,
+              "height": 32.01158046722412,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8979
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis49-copy-2_jpg.rf.5c9360a5a779f594b034e4510879f8e8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6898,
+        "result": [
+          {
+            "id": "52093c1bbe",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.93993842601776,
+              "y": 23.775872588157654,
+              "width": 31.49508237838745,
+              "height": 18.55102777481079,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6898
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis52-copy-2_jpg.rf.48dd743a8b0fd171ecc0ed144d6408a6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9514,
+        "result": [
+          {
+            "id": "b24ddd1cc1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.33837854862213,
+              "y": 9.539198875427246,
+              "width": 43.908047676086426,
+              "height": 22.396311163902283,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9514
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis53-copy-2_jpg.rf.57ea5078a190a9ccebf843d94bd8414b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9261,
+        "result": [
+          {
+            "id": "90c412b79a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.64135754108429,
+              "y": 27.32314169406891,
+              "width": 15.157875418663025,
+              "height": 40.40657877922058,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9261
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis60-copy-2_jpg.rf.98583a6247a39f337e4cd872767d369e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.52335,
+        "result": [
+          {
+            "id": "4455e2681f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.52297231554985,
+              "y": 48.72336834669113,
+              "width": 15.731586515903473,
+              "height": 36.21353209018707,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6893
+          },
+          {
+            "id": "2336f37cd2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 95.10280229151249,
+              "y": 50.50455629825592,
+              "width": 4.935532063245773,
+              "height": 20.279306173324585,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3574
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis63-copy-2_jpg.rf.8231af0b206e4e96e8ade2ea8a377651.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9719,
+        "result": [
+          {
+            "id": "a8f60a74a5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.65891671180725,
+              "y": 31.400027871131897,
+              "width": 20.62089443206787,
+              "height": 68.42947602272034,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9719
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis70-copy-2_jpg.rf.6dbd02e8d5619db39c1a25dd669cff00.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6454,
+        "result": [
+          {
+            "id": "d73d299004",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.396124005317688,
+              "y": 41.380393505096436,
+              "width": 30.631345510482788,
+              "height": 53.18328142166138,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8327
+          },
+          {
+            "id": "14a73357e8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 70.14458104968071,
+              "y": 26.96852535009384,
+              "width": 17.403365671634674,
+              "height": 47.24372923374176,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4581
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis78-copy-2_jpg.rf.79a39c376b841b47b243deb3b24fc62d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9697,
+        "result": [
+          {
+            "id": "f28e589fee",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.22905683517456,
+              "y": 27.091355621814728,
+              "width": 33.25461149215698,
+              "height": 33.75630080699921,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9697
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis86-copy-2_jpg.rf.80e83839b29cd1ed4ce86689ff4fdfdd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9506,
+        "result": [
+          {
+            "id": "13b4d84660",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.34327647089958,
+              "y": 67.58322566747665,
+              "width": 16.385377943515778,
+              "height": 32.28653967380524,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9506
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis93-copy-2_jpg.rf.f0c799ebc16e977bd00e0871a80f6cbd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8569,
+        "result": [
+          {
+            "id": "699dd01943",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.49571135640144,
+              "y": 20.848025381565094,
+              "width": 12.698648869991302,
+              "height": 45.45964300632477,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8569
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis95-copy-2_jpg.rf.15190d3e6bd21835c15688deb992eeec.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.54135,
+        "result": [
+          {
+            "id": "9cc12fca6c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.46753466129303,
+              "y": 41.41740947961807,
+              "width": 45.990610122680664,
+              "height": 12.880870699882507,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7237
+          },
+          {
+            "id": "cb230267a2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.009804964065551758,
+              "y": 18.254729360342026,
+              "width": 13.931356370449066,
+              "height": 6.190942227840424,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.359
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis97-copy-2_jpg.rf.15fe8b064fab4b4a403e9af044f36e9c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9485,
+        "result": [
+          {
+            "id": "afe4e03ec8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.371733009815216,
+              "y": 25.20698308944702,
+              "width": 32.13137090206146,
+              "height": 35.61105728149414,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9485
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/MIS/mis98-copy-2_jpg.rf.6b7e3729c308798f3f694efebad35142.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9695,
+        "result": [
+          {
+            "id": "6ef0091f9b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.55610749125481,
+              "y": 19.565048813819885,
+              "width": 20.550288259983063,
+              "height": 41.79723858833313,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9695
+          }
+        ]
+      }
+    ]
+  }
+]

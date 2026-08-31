@@ -1,0 +1,56 @@
+{
+  "run_id": "FT-306v2",
+  "created": "2026-08-05 13:04:35",
+  "seed": 42,
+  "set": "306",
+  "train_dir": "/workspace/Grounding-Dino-FineTuning/4th/dataset/train_306",
+  "val_dir": "/workspace/Grounding-Dino-FineTuning/4th/dataset/val",
+  "fixed_val": true,
+  "hyperparams": {
+    "lr": 0.0001,
+    "epochs": 30,
+    "batch_size": 4,
+    "steps_per_epoch": 54,
+    "total_steps": 1620,
+    "optimizer": "AdamW",
+    "scheduler": "OneCycleLR",
+    "pct_start": 0.1,
+    "div_factor": 25,
+    "final_div_factor": 10000.0,
+    "anneal_strategy": "cos",
+    "max_grad_norm": 5.0,
+    "class_loss_coef": 1.0,
+    "bbox_loss_coef": 5.0,
+    "giou_loss_coef": 1.0,
+    "eos_coef": 0.1,
+    "use_lora": true,
+    "text_prompt": "implant",
+    "early_stopping": false
+  },
+  "data": {
+    "train": {
+      "n_images": 213,
+      "n_boxes": 300,
+      "split_hash": "3a996ece7bbfdea9",
+      "box_hash": "2d7e58f776a137d0"
+    },
+    "val": {
+      "n_images": 299,
+      "n_boxes": 409,
+      "split_hash": "46ae09a6e118bfbd",
+      "box_hash": "4723d6c9906c293f"
+    }
+  },
+  "model": {
+    "trainable_params": 2991108,
+    "total_params": 175830790
+  },
+  "code": {
+    "repo_git_rev": "d241d21",
+    "train_py_sha": "4b85899a2574b1a0"
+  },
+  "val_ap": {
+    "box_threshold": 0.05,
+    "text_threshold": 0.2
+  }
+}

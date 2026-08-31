@@ -1,0 +1,58 @@
+{
+  "n_images": 794,
+  "n_boxes": 1032,
+  "empty_images": 15,
+  "avg_boxes_per_image": 1.3,
+  "score_min": 0.3,
+  "score_mean": 0.707,
+  "score_max": 0.966,
+  "per_brand": {
+    "adin": {
+      "images": 265,
+      "boxes": 342,
+      "empty": 9,
+      "avg_box": 1.29
+    },
+    "dentium": {
+      "images": 128,
+      "boxes": 204,
+      "empty": 1,
+      "avg_box": 1.59
+    },
+    "mis": {
+      "images": 31,
+      "boxes": 36,
+      "empty": 1,
+      "avg_box": 1.16
+    },
+    "noris": {
+      "images": 191,
+      "boxes": 208,
+      "empty": 3,
+      "avg_box": 1.09
+    },
+    "osstem": {
+      "images": 179,
+      "boxes": 242,
+      "empty": 1,
+      "avg_box": 1.35
+    }
+  },
+  "empty_image_files": [
+    "adin241_jpg.rf.1155e600380ae4cae8db5990fa71abc9.jpg",
+    "adin252_jpg.rf.f811e576c40b12f5c45503038d4f1164.jpg",
+    "adin296_jpg.rf.2dea96f46c665bc91939c604a4007b7b.jpg",
+    "adin348_jpg.rf.9a21c6b4287e92e5f6e9f94488019823.jpg",
+    "adin469_jpg.rf.5621ae7509580047ff69583c91879144.jpg",
+    "adin474_jpg.rf.5906ba2d1299183bfb51189e3ebf0c9d.jpg",
+    "adin475_jpg.rf.407e4ff434ee9eacdf5bdf73f996b96e.jpg",
+    "adin594_jpg.rf.6448ef803d75cfb735d939b9b36c15eb.jpg",
+    "adin932_jpg.rf.751d3395ade42077d0359865d1873e5a.jpg",
+    "dentium403_jpg.rf.4b6f36d717d4dc29b6b1582fb7da9b2a.jpg",
+    "mis26-copy-2_jpg.rf.66b4e49f118a176fec62dae70e281412.jpg",
+    "noris263_jpg.rf.c55da233f0b271d6741ab057b44dfa14.jpg",
+    "noris393_jpg.rf.37dcae9ee637c5e7d86ec4ac79bde722.jpg",
+    "noris410_jpg.rf.e107c335e85ada14e67bce0b39cc6c73.jpg",
+    "osstem763_jpg.rf.b97ef285065c700937003e2424ef7d9e.jpg"
+  ]
+}

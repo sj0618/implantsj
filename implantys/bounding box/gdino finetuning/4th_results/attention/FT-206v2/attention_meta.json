@@ -1,0 +1,108 @@
+{
+  "kind": "FT(epoch_23)",
+  "weights": "/workspace/Grounding-Dino-FineTuning/4th/results/FT-206v2/weights/epoch_23.pth",
+  "caption": "implant.",
+  "tokens": [
+    "[CLS]",
+    "implant",
+    ".",
+    "[SEP]"
+  ],
+  "implant_token_index": [
+    1
+  ],
+  "images": {
+    "adin1008_jpg.rf.b31e87a69e6e3cfac6c7b4a0f6b85594.jpg": {
+      "max_score": 0.6929149031639099,
+      "n_pred_over_0.3": 2
+    },
+    "adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg": {
+      "max_score": 0.6489437818527222,
+      "n_pred_over_0.3": 1
+    },
+    "adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg": {
+      "max_score": 0.3982684016227722,
+      "n_pred_over_0.3": 1
+    },
+    "dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg": {
+      "max_score": 0.8406410217285156,
+      "n_pred_over_0.3": 2
+    },
+    "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg": {
+      "max_score": 0.6335012316703796,
+      "n_pred_over_0.3": 1
+    },
+    "dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg": {
+      "max_score": 0.6902082562446594,
+      "n_pred_over_0.3": 2
+    },
+    "dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg": {
+      "max_score": 0.37769046425819397,
+      "n_pred_over_0.3": 2
+    },
+    "dentium64_jpg.rf.7aa429c99086a613a7c980165d77c54a.jpg": {
+      "max_score": 0.9095697402954102,
+      "n_pred_over_0.3": 2
+    },
+    "dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg": {
+      "max_score": 0.8635257482528687,
+      "n_pred_over_0.3": 2
+    },
+    "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg": {
+      "max_score": 0.29820990562438965,
+      "n_pred_over_0.3": 0
+    },
+    "mis81-copy-2_jpg.rf.750c3eaa55ecc801187e00eb36537bfd.jpg": {
+      "max_score": 0.9672872424125671,
+      "n_pred_over_0.3": 1
+    },
+    "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg": {
+      "max_score": 0.3754071295261383,
+      "n_pred_over_0.3": 2
+    },
+    "noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg": {
+      "max_score": 0.46243879199028015,
+      "n_pred_over_0.3": 2
+    },
+    "noris408_jpg.rf.93e87d8e3875978bcd713ad0499afe6b.jpg": {
+      "max_score": 0.2392648309469223,
+      "n_pred_over_0.3": 0
+    },
+    "noris773_jpg.rf.1876193f43dddec8b105a021be40e3fc.jpg": {
+      "max_score": 0.4581277072429657,
+      "n_pred_over_0.3": 9
+    },
+    "noris801_jpg.rf.0d669dcf6415d9b991eac4bd8da1a3ac.jpg": {
+      "max_score": 0.9383978843688965,
+      "n_pred_over_0.3": 1
+    },
+    "noris826_jpg.rf.853e2ebfa321a9f25bd0b7c882634a0c.jpg": {
+      "max_score": 0.92262864112854,
+      "n_pred_over_0.3": 1
+    },
+    "noris831_jpg.rf.d3602b8af813ee06a5c04c84dd37ef05.jpg": {
+      "max_score": 0.9570570588111877,
+      "n_pred_over_0.3": 1
+    },
+    "osstem393_jpg.rf.ee94d7659107937687894ccccba32f2a.jpg": {
+      "max_score": 0.9368294477462769,
+      "n_pred_over_0.3": 1
+    },
+    "osstem394_jpg.rf.3d524760551a256ff0f38e167e2d675c.jpg": {
+      "max_score": 0.9377024173736572,
+      "n_pred_over_0.3": 1
+    },
+    "osstem543_jpg.rf.cc3e06f16081e1f9e61c1c0524a9776b.jpg": {
+      "max_score": 0.410262793302536,
+      "n_pred_over_0.3": 1
+    },
+    "osstem565_jpg.rf.60f374aa11faa867a2004d03d34cc5e1.jpg": {
+      "max_score": 0.966400682926178,
+      "n_pred_over_0.3": 1
+    },
+    "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg": {
+      "max_score": 0.9512899518013,
+      "n_pred_over_0.3": 1
+    }
+  }
+}

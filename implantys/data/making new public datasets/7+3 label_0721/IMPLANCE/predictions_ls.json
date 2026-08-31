@@ -1,0 +1,1907 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/I-MPLANCE-PA-51409351446-_png.rf.28af67572d3c6e3e4a78238244f09cf2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5119,
+        "result": [
+          {
+            "id": "9c6f526817",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.531006902456284,
+              "y": 37.18341439962387,
+              "width": 11.578340828418732,
+              "height": 36.464229226112366,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5119
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-10069287878-PA_png.rf.a3619e477c73bbb9a4c07b738eea857b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.524,
+        "result": [
+          {
+            "id": "54d81faa0d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.096179395914078,
+              "y": 44.05930936336517,
+              "width": 12.809868156909943,
+              "height": 41.07971787452698,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.524
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-11525676946-PA-2_png.rf.1b52dad29d11fc337af468fcf99c96d1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8612,
+        "result": [
+          {
+            "id": "7b8b4f1927",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 58.60823690891266,
+              "y": 40.66266864538193,
+              "width": 15.109354257583618,
+              "height": 30.763283371925354,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8612
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-11525676946-PA-3_png.rf.bf46eafc581b89d0ebe4884dfa1f9c3a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6061000000000001,
+        "result": [
+          {
+            "id": "9d5dc943fd",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.87117221951485,
+              "y": 16.74809753894806,
+              "width": 16.51902049779892,
+              "height": 47.884827852249146,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6369
+          },
+          {
+            "id": "eb7051eccc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.677976697683334,
+              "y": 20.27534246444702,
+              "width": 16.45360440015793,
+              "height": 41.94410443305969,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5753
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-11525676946-PA_png.rf.fae435723153c6bcad1ef0d830c7aa5b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5358,
+        "result": [
+          {
+            "id": "ef40e61d46",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.01849055290222,
+              "y": 18.901163339614868,
+              "width": 17.533886432647705,
+              "height": 39.760661125183105,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5358
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-12662669020-PA_png.rf.f1316447bb4ef92c28d8daee4c4d9c20.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8249,
+        "result": [
+          {
+            "id": "262ba4d478",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.83531811833382,
+              "y": 19.769394397735596,
+              "width": 12.954579293727875,
+              "height": 39.658135175704956,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8249
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-13376641494-PA_png.rf.8c9032ff5ca25c511db603ef7a0f76f7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6881,
+        "result": [
+          {
+            "id": "28c677b1a8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.54931688308716,
+              "y": 10.028067231178284,
+              "width": 12.112182378768921,
+              "height": 50.75088143348694,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6881
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-14870600680-PA-_png.rf.ffb80c6599df82b428cbff8a9660dc4e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5604,
+        "result": [
+          {
+            "id": "59d1ffb02f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.64430958032608,
+              "y": 62.9328653216362,
+              "width": 15.34331738948822,
+              "height": 26.35277807712555,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5604
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-15341570938-PA_png.rf.98bd29b4d3115f587527edf139b247e8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7685,
+        "result": [
+          {
+            "id": "580a3d7114",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.336335927248,
+              "y": 34.90196317434311,
+              "width": 13.02701085805893,
+              "height": 28.740200400352478,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7685
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-15992947950_png.rf.61b79e8be2b5bc49c59eb121609d4298.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8267,
+        "result": [
+          {
+            "id": "0007d11aee",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.801474541425705,
+              "y": 51.034824550151825,
+              "width": 23.063255846500397,
+              "height": 31.83094561100006,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8267
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-23408280850-PA-2_png.rf.a983e0f5792761cb3ecce9314dc2b8d8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.48785,
+        "result": [
+          {
+            "id": "6766aac01f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 10.89634969830513,
+              "y": 58.06453824043274,
+              "width": 13.142110407352448,
+              "height": 36.56882047653198,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6345
+          },
+          {
+            "id": "8731408bb2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.45224726200104,
+              "y": 63.94078880548477,
+              "width": 15.129965543746948,
+              "height": 28.761205077171326,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3412
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-23408280850-PA_png.rf.8811aed5a7880bcb50515d8bc2f47ae0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8309,
+        "result": [
+          {
+            "id": "c9799a9d13",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 5.742668733000755,
+              "y": 34.703291952610016,
+              "width": 11.987016350030899,
+              "height": 34.1836541891098,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8309
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-24182286328-PA_png.rf.036867bc59126d9ab4b0bbdcab5772f4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.46904999999999997,
+        "result": [
+          {
+            "id": "024dba4229",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.19322794675827,
+              "y": 28.861743211746216,
+              "width": 11.687842011451721,
+              "height": 55.351173877716064,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5019
+          },
+          {
+            "id": "143cb7d63e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.6418559551239,
+              "y": 29.824888706207275,
+              "width": 11.196047067642212,
+              "height": 49.817705154418945,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4362
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-26045226298-PA_png.rf.5abfbf5f243920afa1b98f55d58c49b9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.67855,
+        "result": [
+          {
+            "id": "2ab2e3544d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.50655245780945,
+              "y": 36.06300950050354,
+              "width": 11.509209871292114,
+              "height": 34.7434401512146,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7856
+          },
+          {
+            "id": "528ea0bd67",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.68842799961567,
+              "y": 37.016209959983826,
+              "width": 9.74557027220726,
+              "height": 34.847503900527954,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5715
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-30881031824_png.rf.2eb97c2bf65fbd6519b3dbc506a4a54f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.809,
+        "result": [
+          {
+            "id": "323a0dc69c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.742071717977524,
+              "y": 12.652559578418732,
+              "width": 15.497024357318878,
+              "height": 33.27586352825165,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.809
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-31396311456-PA_png.rf.f09ecf3ef49813084776f5c44fee6cb8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9154,
+        "result": [
+          {
+            "id": "3f9af615b1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.82758119702339,
+              "y": 43.6496376991272,
+              "width": 9.104792773723602,
+              "height": 31.213712692260742,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9154
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-32195134840-PA-2_png.rf.e34a58f1b6ce582ea41ae2ff35b0dad6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.39549999999999996,
+        "result": [
+          {
+            "id": "2b3442ff3a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 9.947063773870468,
+              "y": 29.832197725772858,
+              "width": 17.225824296474457,
+              "height": 36.17027699947357,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4436
+          },
+          {
+            "id": "5fde7a9f3b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.47799250483513,
+              "y": 36.38162761926651,
+              "width": 14.911378920078278,
+              "height": 37.428924441337585,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3474
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-34270940346-2_png.rf.aece0530336d6faf4c55b78658f7feaa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.51785,
+        "result": [
+          {
+            "id": "69c1ead5a7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 8.10624584555626,
+              "y": 23.340950906276703,
+              "width": 22.119681537151337,
+              "height": 32.46413171291351,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6875
+          },
+          {
+            "id": "e801c0bb89",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.116584450006485,
+              "y": 28.306865692138672,
+              "width": 20.115964114665985,
+              "height": 41.89106225967407,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3482
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-34270940346-PA_png.rf.598c53465eed5c9ce23d146268c72abd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6219,
+        "result": [
+          {
+            "id": "035aa203ca",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.17943739891052,
+              "y": 31.123368442058563,
+              "width": 26.248633861541748,
+              "height": 40.74319899082184,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6219
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-34636593896-PA_png.rf.5b6a53404916379a3e4e692ac074bcdb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6287,
+        "result": [
+          {
+            "id": "1aff19b43b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.41665092110634,
+              "y": 27.735547721385956,
+              "width": 22.016386687755585,
+              "height": 37.186816334724426,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7534
+          },
+          {
+            "id": "dc2dabd7a7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 65.77363833785057,
+              "y": 15.96161276102066,
+              "width": 18.29100400209427,
+              "height": 29.452618956565857,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.504
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-35158910888-PA_png.rf.743534c35024e13f483cd1f8daef7c05.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.41675,
+        "result": [
+          {
+            "id": "d2dff2b6fa",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.122318014502525,
+              "y": 75.22198557853699,
+              "width": 8.484376221895218,
+              "height": 19.362664222717285,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4288
+          },
+          {
+            "id": "351effcf11",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.709720090031624,
+              "y": 56.50992393493652,
+              "width": 10.644157975912094,
+              "height": 35.00850200653076,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4047
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-37552805982-PA-2_png.rf.d5f3ce9dd17727a72b9e70f6da9532dd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.43406666666666666,
+        "result": [
+          {
+            "id": "0383b857dc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.552118837833405,
+              "y": 11.46426796913147,
+              "width": 19.674625992774963,
+              "height": 53.33365797996521,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5395
+          },
+          {
+            "id": "aa07caf184",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.186182498931885,
+              "y": 5.224740505218506,
+              "width": 23.857271671295166,
+              "height": 55.532217025756836,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4342
+          },
+          {
+            "id": "c8b341be2e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.74367302656174,
+              "y": 0.5690306425094604,
+              "width": 19.009926915168762,
+              "height": 61.144524812698364,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3285
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-37552805982-PA-3_png.rf.15f836e13579f17f78270305f511149d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.45425000000000004,
+        "result": [
+          {
+            "id": "04f16f46ed",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.27764853835106,
+              "y": 22.288836538791656,
+              "width": 22.590412199497223,
+              "height": 43.416669964790344,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.517
+          },
+          {
+            "id": "5b7cc9d311",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.94639518857002,
+              "y": 24.46942627429962,
+              "width": 19.893668591976166,
+              "height": 36.40894293785095,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3915
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-37552805982-PA-4_png.rf.56b606c9c0749b050a3876f7b211ef74.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9465,
+        "result": [
+          {
+            "id": "d0fb57e17a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 75.66105276346207,
+              "y": 55.228035151958466,
+              "width": 13.666185736656189,
+              "height": 37.02527582645416,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9465
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-37552805982-PA-5_png.rf.fd8f732eebb665da052f990e8b4a378c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7835,
+        "result": [
+          {
+            "id": "f69523be54",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.483747571706772,
+              "y": 54.75534498691559,
+              "width": 14.39303308725357,
+              "height": 29.282528162002563,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7835
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-37552805982-PA_png.rf.191fe0e879f79649712ece2131317ffd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5658,
+        "result": [
+          {
+            "id": "4bcebeda42",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.893263787031174,
+              "y": 23.55765998363495,
+              "width": 22.73098975419998,
+              "height": 35.901087522506714,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5658
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-37751180552_png.rf.c7b93554a36ab02b230dae0907c5aa24.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.38549999999999995,
+        "result": [
+          {
+            "id": "9390f2e84b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.579163879156113,
+              "y": 55.61355613172054,
+              "width": 9.766949713230133,
+              "height": 11.696893721818924,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3973
+          },
+          {
+            "id": "36783bc3ff",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.17479062080383,
+              "y": 67.67162755131721,
+              "width": 9.360194206237793,
+              "height": 12.864314019680023,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3737
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-40627728208-PA_png.rf.d1022a2ec5544e4512441f07d6c8cd83.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5653,
+        "result": [
+          {
+            "id": "b13461ae0c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.637269109487534,
+              "y": 33.40836763381958,
+              "width": 10.403437912464142,
+              "height": 30.55298924446106,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6741
+          },
+          {
+            "id": "530526ae9e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.11573837697506,
+              "y": 40.32623916864395,
+              "width": 9.907547384500504,
+              "height": 36.52502000331879,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4565
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-41386707848-PA_png.rf.fceb9274976ffa65e570f4da23923d24.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4654,
+        "result": [
+          {
+            "id": "b2e3d233eb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 66.26228056848049,
+              "y": 23.521089553833008,
+              "width": 11.443615704774857,
+              "height": 34.50559377670288,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4654
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-46447534760-PA_png.rf.dc2c9099ff35ebce03415b751088e1c7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5993,
+        "result": [
+          {
+            "id": "0a84993fc4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.24907073378563,
+              "y": 52.72410064935684,
+              "width": 9.39921885728836,
+              "height": 34.999772906303406,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5993
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-48106484140-PA_png.rf.d8b3eda7a00e375d2e4ac82bcb251594.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8773,
+        "result": [
+          {
+            "id": "e54a3dc2cf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.49866884946823,
+              "y": 20.741763710975647,
+              "width": 17.29348599910736,
+              "height": 52.435070276260376,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8773
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-48361458290-PA-2_png.rf.dbe41202d86f729fb58bdd07399427ad.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4278,
+        "result": [
+          {
+            "id": "1b9e09a4b0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.97102847695351,
+              "y": 4.525391757488251,
+              "width": 19.504545629024506,
+              "height": 33.55051577091217,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4278
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-48361458290-PA_png.rf.069c69ac38b544dcfd62e48655668767.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7715,
+        "result": [
+          {
+            "id": "6a0a53a5bc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.03100928664207,
+              "y": 45.2674925327301,
+              "width": 13.432450592517853,
+              "height": 24.738168716430664,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7715
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-50950074460-PA_png.rf.5f72f6f5f6f14abadb87c1621a7bd0c4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.438,
+        "result": [
+          {
+            "id": "2ede6d3c6c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.316981822252274,
+              "y": 74.8716153204441,
+              "width": 14.410640299320221,
+              "height": 13.134102523326874,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.438
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-53077318790-PA-2_png.rf.b7274a3e992227980ef848bbcaeefa59.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8897,
+        "result": [
+          {
+            "id": "ce2f6f0b97",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.71460695564747,
+              "y": 41.35682284832001,
+              "width": 11.575659364461899,
+              "height": 35.82239747047424,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8897
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-53077318790-PA_png.rf.826e877d23a7fb8f470b4d9ac5974e6c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6026,
+        "result": [
+          {
+            "id": "8a75f32610",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.264292627573013,
+              "y": 48.93164187669754,
+              "width": 12.371920049190521,
+              "height": 35.3727787733078,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6026
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-54343276240-PA_png.rf.09181a38b7d8c7876a57afb84a17f486.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.47485,
+        "result": [
+          {
+            "id": "c8874abccc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.723109751939774,
+              "y": 26.037771999835968,
+              "width": 18.545149266719818,
+              "height": 32.14426338672638,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5269
+          },
+          {
+            "id": "4c015e4625",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.605571210384369,
+              "y": 24.727855622768402,
+              "width": 16.031044721603394,
+              "height": 30.981579422950745,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4228
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-54514247260-PA-2_png.rf.37b69f120ed988ef1e259936b31bbda0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.36819999999999997,
+        "result": [
+          {
+            "id": "d495452e9d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.6521832048893,
+              "y": 27.690359950065613,
+              "width": 13.090197741985321,
+              "height": 53.05405259132385,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4306
+          },
+          {
+            "id": "965fc9f6f1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.787783920764923,
+              "y": 24.93661940097809,
+              "width": 13.665196299552917,
+              "height": 56.73350691795349,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3058
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-54514247260-PA_png.rf.c8b10638dc8c3fa872b30b4b6cea9cbc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4252,
+        "result": [
+          {
+            "id": "9b3e58d128",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.68777447938919,
+              "y": 11.48984432220459,
+              "width": 20.221492648124695,
+              "height": 51.95134878158569,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5163
+          },
+          {
+            "id": "eb907bf339",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.94040924310684,
+              "y": 7.239016890525818,
+              "width": 22.820863127708435,
+              "height": 52.08346247673035,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3341
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-55633233752-PA_png.rf.81fb7526fa644e318a675878068c0928.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.51695,
+        "result": [
+          {
+            "id": "3bd50288aa",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 79.25586402416229,
+              "y": 24.90418702363968,
+              "width": 10.792535543441772,
+              "height": 39.69235718250275,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5213
+          },
+          {
+            "id": "0f0b5291c2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 56.13288953900337,
+              "y": 74.75220113992691,
+              "width": 19.317005574703217,
+              "height": 21.443960070610046,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5126
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-55639227694-PA_png.rf.9c0cffb28f5bd9450123817fb3a2bce0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4226,
+        "result": [
+          {
+            "id": "b8da0405f5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.28681951761246,
+              "y": 17.42982417345047,
+              "width": 13.013455271720886,
+              "height": 28.81210148334503,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4517
+          },
+          {
+            "id": "8e9b499546",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.08871714770794,
+              "y": 15.13865441083908,
+              "width": 12.018922716379166,
+              "height": 34.15578305721283,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3935
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-56185187944-PA_png.rf.3c6433b3914edb1ae2c02f7bfd2915f9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.51615,
+        "result": [
+          {
+            "id": "e0b4763bd2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.772439390420914,
+              "y": 61.22119575738907,
+              "width": 12.671779096126556,
+              "height": 28.432735800743103,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5568
+          },
+          {
+            "id": "a5a68dbc5c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.71521206200123,
+              "y": 49.17869120836258,
+              "width": 10.780926793813705,
+              "height": 27.85416543483734,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4755
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-56731197694-PA_png.rf.18db27318635d7fef150e8832cec7665.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.34745000000000004,
+        "result": [
+          {
+            "id": "ea9a717c86",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 65.64801931381226,
+              "y": 46.9682052731514,
+              "width": 15.588545799255371,
+              "height": 34.6307247877121,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3653
+          },
+          {
+            "id": "dad215d573",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.41229370236397,
+              "y": 38.93227577209473,
+              "width": 17.129598557949066,
+              "height": 54.6481728553772,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3296
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-57604162832-PA_png.rf.927b7a6645aa7a0bf86a64c065bb31e0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.57365,
+        "result": [
+          {
+            "id": "eb2619d572",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.50112211704254,
+              "y": 53.19511443376541,
+              "width": 9.970337152481079,
+              "height": 27.516362071037292,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6038
+          },
+          {
+            "id": "d7be9cb51c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.56399476528168,
+              "y": 51.278094947338104,
+              "width": 11.768317222595215,
+              "height": 28.913000226020813,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5435
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/IMPLANCE/images/IMPLANCE-61483191104-2_png.rf.cdc5fd921fba0329fa98e612da16dfd8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5886,
+        "result": [
+          {
+            "id": "01627a2e4e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 512,
+            "original_height": 512,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.37128511071205,
+              "y": 40.962012112140656,
+              "width": 15.604786574840546,
+              "height": 36.95379197597504,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5886
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>데이터 스케일링 — test 200장 mAP</title>
+<style>
+  :root{ --bg:#ffffff; --fg:#1a1a1a; --muted:#6b7280; --grid:#e5e7eb;
+         --test:#2563eb; --val:#e0662a; --band:rgba(37,99,235,.12); --sat:rgba(120,120,120,.09); }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f1115; --fg:#e8e8ea; --muted:#9aa0aa; --grid:#2a2f3a;
+           --test:#5b9bff; --val:#ff9a5b; --band:rgba(91,155,255,.15); --sat:rgba(160,160,160,.10); }
+  }
+  html,body{margin:0;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Gothic Neo",sans-serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:24px 20px 40px;}
+  h1{font-size:20px;margin:0 0 2px;}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 16px;}
+  svg{width:100%;height:auto;display:block;}
+  .note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:14px;
+    border-top:1px solid var(--grid);padding-top:12px;}
+  .note b{color:var(--fg);}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;margin:6px 0 2px;}
+  .lg{display:flex;align-items:center;gap:6px;}
+  .sw{width:22px;height:0;border-top:3px solid;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>임플란트 탐지 — 학습 데이터량 vs mAP@.5:.95 (test 200장)</h1>
+  <p class="sub">고정 test 200장(GT 289박스) 기준. test 점(106~1000)은 부트스트랩 95% CI(오차막대), zero-shot은 점만. Grounding DINO + LoRA.</p>
+  <div class="legend">
+    <div class="lg"><span class="sw" style="border-color:var(--test)"></span>test mAP (held-out 200장)</div>
+    <div class="lg"><span class="sw" style="border-color:var(--val);border-top-style:dashed"></span>val mAP</div>
+  </div>
+  <svg id="chart" viewBox="0 0 860 500" preserveAspectRatio="xMidYMid meet"></svg>
+  <div class="note">
+    <b>스케일링 지속:</b> zero-shot 0.443에서 fine-tuning 후 급등, 데이터가 늘수록 test mAP가 <b>1,000까지 단조 상승</b>(0.721→0.902).
+    paired 부트스트랩상 106→206→306→506, 706→1000, 전체 106→1000이 모두 <b>유의(CI가 0 미포함)</b>. 506→706만 노이즈(706이 국소적으로 약한 run).<br>
+    <b>test48과 상반:</b> test 48장에서는 306→1000이 전부 노이즈(포화)로 보였으나, 200장에서는 그 차이가 유의하게 드러남 → 이전 "300장 포화"는 소표본(48장, 절대 CI ±0.12) 착시였을 가능성.<br>
+    <b>주의:</b> 신규 152장 GT가 FT-1000 pre-annotation 기반이라 FT-1000(및 LoRA 계열)에 유리한 잔여 편향 가능성. 절대 우위 해석 시 감안.
+  </div>
+</div>
+<script>
+const TEST=[{x:0,y:.443,l:"zero-shot"},{x:106,y:.721,l:"FT-106",ci:[.647,.798]},{x:206,y:.820,l:"FT-206",ci:[.751,.882]},
+  {x:306,y:.873,l:"FT-306",ci:[.808,.928]},{x:506,y:.884,l:"FT-506",ci:[.822,.935]},
+  {x:706,y:.877,l:"FT-706",ci:[.815,.933]},{x:1000,y:.902,l:"FT-1000",ci:[.840,.953]}];
+const VAL=[{x:306,y:.829},{x:506,y:.878},{x:706,y:.881},{x:1000,y:.905}];
+const W=860,H=500,L=64,R=24,T=28,B=54;
+const xmin=0,xmax=1050,ymin=.40,ymax=1.00;
+const px=x=>L+(x-xmin)/(xmax-xmin)*(W-L-R);
+const py=y=>T+(1-(y-ymin)/(ymax-ymin))*(H-T-B);
+const cs=getComputedStyle(document.documentElement);
+const C=n=>cs.getPropertyValue(n).trim();
+let s="";
+// grid + y labels
+for(let v=.4;v<=1.00+1e-9;v+=.1){const Y=py(v);
+  s+=`<line x1="${L}" y1="${Y}" x2="${W-R}" y2="${Y}" stroke="${C('--grid')}" stroke-width="1"/>`;
+  s+=`<text x="${L-8}" y="${Y+4}" text-anchor="end" font-size="12" fill="${C('--muted')}">${v.toFixed(1)}</text>`;}
+// x labels
+[0,106,206,306,506,706,1000].forEach(x=>{
+  s+=`<text x="${px(x)}" y="${H-B+20}" text-anchor="middle" font-size="12" fill="${C('--muted')}">${x}</text>`;});
+s+=`<text x="${(L+W-R)/2}" y="${H-6}" text-anchor="middle" font-size="12.5" fill="${C('--fg')}">학습 이미지 수</text>`;
+s+=`<text transform="translate(16,${T+(H-T-B)/2}) rotate(-90)" text-anchor="middle" font-size="12.5" fill="${C('--fg')}">mAP@.5:.95</text>`;
+const line=(pts,color,dash)=>{let d=pts.map((p,i)=>(i?"L":"M")+px(p.x)+" "+py(p.y)).join(" ");
+  return `<path d="${d}" fill="none" stroke="${color}" stroke-width="2.5" ${dash?`stroke-dasharray="7 5"`:""}/>`;};
+// CI error bars (test)
+TEST.filter(p=>p.ci).forEach(p=>{const X=px(p.x);
+  s+=`<line x1="${X}" y1="${py(p.ci[0])}" x2="${X}" y2="${py(p.ci[1])}" stroke="${C('--test')}" stroke-width="1.5" opacity=".55"/>`;
+  s+=`<line x1="${X-5}" y1="${py(p.ci[0])}" x2="${X+5}" y2="${py(p.ci[0])}" stroke="${C('--test')}" stroke-width="1.5" opacity=".55"/>`;
+  s+=`<line x1="${X-5}" y1="${py(p.ci[1])}" x2="${X+5}" y2="${py(p.ci[1])}" stroke="${C('--test')}" stroke-width="1.5" opacity=".55"/>`;});
+s+=line(VAL,C('--val'),true);
+s+=line(TEST,C('--test'),false);
+const dot=(p,color,dy)=>{let o=`<circle cx="${px(p.x)}" cy="${py(p.y)}" r="4.2" fill="${color}"/>`;
+  o+=`<text x="${px(p.x)}" y="${py(p.y)+(dy||-11)}" text-anchor="middle" font-size="11.5" font-weight="600" fill="${color}">${p.y.toFixed(3)}</text>`;
+  return o;};
+VAL.forEach(p=>s+=dot(p,C('--val'),16));   // val 값은 점 아래에 (test 라벨과 겹침 방지)
+TEST.forEach(p=>s+=dot(p,C('--test'),-11)); // test 값은 점 위에
+document.getElementById("chart").innerHTML=s;
+</script>
+</body>
+</html>

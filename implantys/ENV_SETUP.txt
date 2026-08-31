@@ -1,0 +1,83 @@
+============================================================================
+implantys 환경 설정 리스트업 (전체 코드 실행에 필요한 것 전부)
+============================================================================
+※ md 복사 금지 지침에 따라 .txt로 작성. 원본 문서: setup_pod.sh (같은 폴더에 복사본 있음)
+
+[0] 전제
+  - 기준 이미지: runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04
+    (devel 필수 — nvcc 없으면 ms_deform_attn CUDA 확장을 못 빌드해 gdino 학습 불가)
+  - GPU + CUDA 12.4, 디스크 여유 최소 15GB (torch ~2.5GB + 가중치 ~700MB + 빌드)
+  - CUDA_HOME=/usr/local/cuda 확인
+
+[1] venv 생성 및 pip 업그레이드
+  python -m venv implant-env && source implant-env/bin/activate
+  pip install --upgrade pip
+
+[2] torch 선 설치 (index 지정 필요라 requirements보다 먼저)
+  pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cu124
+
+[3] 나머지 의존성
+  pip install -r requirements.txt
+
+[4] groundingdino repo 클론 + CUDA 확장 빌드 (pip 설치 불가, 수동 단계)
+  git clone https://github.com/Asad-Ismail/Grounding-Dino-FineTuning
+  cd Grounding-Dino-FineTuning
+  pip install -e . --no-build-isolation
+  # --no-build-isolation 필수: 격리 빌드 시 pip이 다른 torch를 받아 핀이 무시됨
+
+[5] LD_LIBRARY_PATH 설정 (activate에 영구 등록 권장 — setup_pod.sh 2단계 그대로)
+  export LD_LIBRARY_PATH="$(python -c 'import torch,os;print(os.path.join(os.path.dirname(torch.__file__),"lib"))'):$LD_LIBRARY_PATH"
+  export TOKENIZERS_PARALLELISM=false
+  # 안 잡으면 ms_deform_attn import 시 libc10.so 못 찾고 깨짐
+
+[6] 사전학습 가중치 + BERT 캐시 (오프라인 대비 미리)
+  wget -O weights/groundingdino_swint_ogc.pth \
+    https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
+  # 정상 크기 ~660MB — 500MB 미만이면 받다 만 것, 지우고 재다운로드
+  python -c "from transformers import AutoTokenizer, AutoModel; AutoTokenizer.from_pretrained('bert-base-uncased'); AutoModel.from_pretrained('bert-base-uncased')"
+
+[7] 검증
+  bash setup_pod.sh 의 7단계 검증 블록 (groundingdino import + 모델 로드) 실행
+  또는: python -c "from groundingdino.util.inference import load_model"
+
+[8] metric learning (DINOv2)은 같은 환경에서 실행 가능
+  - timm이 vit_base_patch14_dinov2.lvd142m을 받아옴 (첫 실행 시 다운로드)
+  - 추가 필요 패키지(scikit-learn 등)는 requirements.txt에 이미 포함
+
+[9] Label Studio (검수용)는 별도 환경/컨테이너
+  - 로컬 implant-env(mac)가 이 용도였음: label-studio==1.23.0, label-studio-sdk==2.0.18
+  - 학습 스택과 같은 venv 금지 (numpy 등 충돌) — docker면 별도 컨테이너로
+
+----------------------------------------------------------------------------
+버전 충돌/주의 사항 (검토 결과)
+----------------------------------------------------------------------------
+1. huggingface_hub: setup_pod.sh는 0.24.6 핀, 실제 pod freeze는 0.36.2로 동작.
+   -> requirements.txt는 0.36.2 채택. get_full_repo_name 에러 재발 시 0.24.6로.
+2. numpy: 학습 스택은 1.26.4 핀(2.x는 pycocotools ABI 에러 사례),
+   Label Studio 환경은 numpy 2.5 사용 -> 두 환경을 절대 합치지 말 것.
+3. opencv: freeze엔 opencv-python(GUI), setup_pod은 headless 설치.
+   -> docker 기준 headless로 통일. 둘을 같이 설치하면 안 됨.
+4. python 버전: pod은 3.11, 로컬 label studio venv는 3.12. 학습 스택은 3.11 기준.
+5. 확장 추가분(sympy, plotly, statsmodels, numba, einops, networkx, hdbscan,
+   scikit-image, albumentations, jupyterlab, tensorboard 등)은 전부
+   numpy 1.26.4 핀과 호환되는 하한(>=)으로만 지정 — pip 해석에 맡김.
+   실제 설치 검증은 pod(py3.11/cu124)에서 [3]단계 때 확인할 것.
+
+----------------------------------------------------------------------------
+멀티라벨(5라벨: implant, crown, ...) 학습 시 추가로 필요한 것 (코드 검토 결과)
+----------------------------------------------------------------------------
+- 새 라이브러리는 필수 아님. 기존 스택이 이미 커버:
+  * 텍스트 프롬프트 토크나이즈: transformers (설치됨)
+  * 클래스별 mAP 평가: pycocotools (설치됨)
+- 대신 코드 수정이 핵심 (전부 "implant" 단일 라벨 하드코딩):
+  * train_code/common/config.sh:36        TEXT_PROMPT="implant"
+  * train_code/common/coco_to_csv.py:34   LABEL = "implant"
+  * gdino finetuning/4th_code/train_code/train_4th.py:58  TEXT_PROMPT = "implant"
+  * gdino finetuning/4th_code/train_code/coco_to_csv_4th.py:33
+  * eval_code/eval_zeroshot.py:28, eval_code/common/eval_coco.py:28,
+    eval_code/common/attention_map.py:55,
+    4th_code/eval_code/occlusion_4th.py:36, nn_bank_4th.py:37
+  -> 프롬프트를 "implant . crown . ..." 형식(클래스 구분자 ' . ')으로 바꾸고,
+     예측 phrase -> category_id 매핑, 클래스별 CSV 라벨 컬럼 처리 필요
+- 편의용으로 pandas를 requirements에 추가해둠 (클래스별 집계/라벨 매핑)
+============================================================================

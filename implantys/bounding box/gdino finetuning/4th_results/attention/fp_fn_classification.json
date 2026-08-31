@@ -1,0 +1,474 @@
+{
+  "run": "FT-1000",
+  "threshold": 0.3,
+  "iou_match": 0.5,
+  "iou_near": 0.1,
+  "fp_summary": {
+    "1_진짜오검출": 7,
+    "2_위치부정확": 3,
+    "3_중복검출": 10
+  },
+  "fn_summary": {
+    "B_위치부정확": 3,
+    "S_점수미달": 19,
+    "X_미검출": 7
+  },
+  "fp": [
+    {
+      "image": "dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg",
+      "kind": "3_중복검출",
+      "score": 0.375,
+      "max_iou_with_gt": 0.663,
+      "why": "이미 매칭된 GT와 IoU 0.66",
+      "bbox": [
+        166.8,
+        322.8,
+        72.0,
+        190.8
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg",
+      "kind": "3_중복검출",
+      "score": 0.362,
+      "max_iou_with_gt": 0.68,
+      "why": "이미 매칭된 GT와 IoU 0.68",
+      "bbox": [
+        384.8,
+        324.9,
+        56.8,
+        197.5
+      ],
+      "nearest_gt_idx": 1
+    },
+    {
+      "image": "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.438,
+      "max_iou_with_gt": 0.0,
+      "why": "최대 IoU 0.00 — 겹치는 GT 없음",
+      "bbox": [
+        328.9,
+        450.1,
+        82.3,
+        84.1
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.413,
+      "max_iou_with_gt": 0.0,
+      "why": "최대 IoU 0.00 — 겹치는 GT 없음",
+      "bbox": [
+        531.4,
+        338.2,
+        81.4,
+        103.2
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.526,
+      "max_iou_with_gt": 0.015,
+      "why": "최대 IoU 0.02 — 겹치는 GT 없음",
+      "bbox": [
+        147.0,
+        239.8,
+        337.9,
+        195.9
+      ],
+      "nearest_gt_idx": 6
+    },
+    {
+      "image": "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg",
+      "kind": "2_위치부정확",
+      "score": 0.857,
+      "max_iou_with_gt": 0.413,
+      "why": "가장 가까운 GT와 IoU 0.41 (<0.5)",
+      "bbox": [
+        110.7,
+        325.4,
+        412.8,
+        122.9
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "adin1008_jpg.rf.b31e87a69e6e3cfac6c7b4a0f6b85594.jpg",
+      "kind": "3_중복검출",
+      "score": 0.316,
+      "max_iou_with_gt": 0.752,
+      "why": "이미 매칭된 GT와 IoU 0.75",
+      "bbox": [
+        203.9,
+        0.2,
+        348.7,
+        114.9
+      ],
+      "nearest_gt_idx": 1
+    },
+    {
+      "image": "adin1174_jpg.rf.8f4b81f1a4fab15a29480115cfd88bd7.jpg",
+      "kind": "3_중복검출",
+      "score": 0.382,
+      "max_iou_with_gt": 0.746,
+      "why": "이미 매칭된 GT와 IoU 0.75",
+      "bbox": [
+        380.9,
+        235.0,
+        75.9,
+        239.6
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg",
+      "kind": "2_위치부정확",
+      "score": 0.585,
+      "max_iou_with_gt": 0.406,
+      "why": "가장 가까운 GT와 IoU 0.41 (<0.5)",
+      "bbox": [
+        93.1,
+        311.5,
+        232.7,
+        248.7
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "adin224_jpg.rf.8e9b15408582a4fa742fdf0894147097.jpg",
+      "kind": "3_중복검출",
+      "score": 0.374,
+      "max_iou_with_gt": 0.886,
+      "why": "이미 매칭된 GT와 IoU 0.89",
+      "bbox": [
+        356.7,
+        174.7,
+        143.9,
+        276.9
+      ],
+      "nearest_gt_idx": 1
+    },
+    {
+      "image": "adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.387,
+      "max_iou_with_gt": 0.007,
+      "why": "최대 IoU 0.01 — 겹치는 GT 없음",
+      "bbox": [
+        346.4,
+        495.3,
+        174.3,
+        80.8
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.329,
+      "max_iou_with_gt": 0.0,
+      "why": "최대 IoU 0.00 — 겹치는 GT 없음",
+      "bbox": [
+        227.2,
+        299.4,
+        169.4,
+        78.9
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "adin294_jpg.rf.589edfdaf350459609ddea679ab98049.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.331,
+      "max_iou_with_gt": 0.0,
+      "why": "최대 IoU 0.00 — 겹치는 GT 없음",
+      "bbox": [
+        263.2,
+        249.5,
+        77.2,
+        161.9
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "dentium227_jpg.rf.f18ccfe453f16301920e39486026c330.jpg",
+      "kind": "3_중복검출",
+      "score": 0.438,
+      "max_iou_with_gt": 0.946,
+      "why": "이미 매칭된 GT와 IoU 0.95",
+      "bbox": [
+        65.0,
+        218.4,
+        75.9,
+        181.4
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg",
+      "kind": "3_중복검출",
+      "score": 0.312,
+      "max_iou_with_gt": 0.717,
+      "why": "이미 매칭된 GT와 IoU 0.72",
+      "bbox": [
+        300.9,
+        72.5,
+        130.3,
+        253.8
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "mis143-copy-2_jpg.rf.1f134ff475f4ba530067db7b6a7cf67a.jpg",
+      "kind": "2_위치부정확",
+      "score": 0.335,
+      "max_iou_with_gt": 0.439,
+      "why": "가장 가까운 GT와 IoU 0.44 (<0.5)",
+      "bbox": [
+        127.9,
+        222.5,
+        187.9,
+        384.4
+      ],
+      "nearest_gt_idx": 1
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "1_진짜오검출",
+      "score": 0.642,
+      "max_iou_with_gt": 0.026,
+      "why": "최대 IoU 0.03 — 겹치는 GT 없음",
+      "bbox": [
+        213.3,
+        323.9,
+        216.1,
+        115.1
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "noris676_jpg.rf.dd4dbb89662e9f647c86e79f26b55dc9.jpg",
+      "kind": "3_중복검출",
+      "score": 0.358,
+      "max_iou_with_gt": 0.98,
+      "why": "이미 매칭된 GT와 IoU 0.98",
+      "bbox": [
+        80.3,
+        240.0,
+        226.6,
+        247.2
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "noris70_jpg.rf.587f81f350fab39f25ee47f726f79855.jpg",
+      "kind": "3_중복검출",
+      "score": 0.314,
+      "max_iou_with_gt": 0.966,
+      "why": "이미 매칭된 GT와 IoU 0.97",
+      "bbox": [
+        397.7,
+        107.2,
+        151.7,
+        239.1
+      ],
+      "nearest_gt_idx": 0
+    },
+    {
+      "image": "osstem92_jpg.rf.6f94117d803159fa458757ef18d312f7.jpg",
+      "kind": "3_중복검출",
+      "score": 0.345,
+      "max_iou_with_gt": 0.58,
+      "why": "이미 매칭된 GT와 IoU 0.58",
+      "bbox": [
+        268.5,
+        295.9,
+        165.8,
+        254.4
+      ],
+      "nearest_gt_idx": 0
+    }
+  ],
+  "fn": [
+    {
+      "image": "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 0,
+      "why": "IoU 0.79 예측이 있었으나 score 0.214 < 0.3"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 0,
+      "why": "IoU 0.92 예측이 있었으나 score 0.092 < 0.3"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 1,
+      "why": "IoU 0.82 예측이 있었으나 score 0.069 < 0.3"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 2,
+      "why": "IoU 0.63 예측이 있었으나 score 0.121 < 0.3"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "B_위치부정확",
+      "gt_idx": 3,
+      "why": "겹치는 예측 최대 IoU 0.46 (<0.5)"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "B_위치부정확",
+      "gt_idx": 4,
+      "why": "겹치는 예측 최대 IoU 0.47 (<0.5)"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "B_위치부정확",
+      "gt_idx": 5,
+      "why": "겹치는 예측 최대 IoU 0.45 (<0.5)"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 6,
+      "why": "IoU 0.60 예측이 있었으나 score 0.124 < 0.3"
+    },
+    {
+      "image": "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 7,
+      "why": "IoU 0.71 예측이 있었으나 score 0.164 < 0.3"
+    },
+    {
+      "image": "noris408_jpg.rf.93e87d8e3875978bcd713ad0499afe6b.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 1,
+      "why": "IoU 0.91 예측이 있었으나 score 0.208 < 0.3"
+    },
+    {
+      "image": "noris773_jpg.rf.1876193f43dddec8b105a021be40e3fc.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 0,
+      "why": "IoU 0.84 예측이 있었으나 score 0.273 < 0.3"
+    },
+    {
+      "image": "noris773_jpg.rf.1876193f43dddec8b105a021be40e3fc.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 5,
+      "why": "IoU 0.91 예측이 있었으나 score 0.234 < 0.3"
+    },
+    {
+      "image": "osstem565_jpg.rf.60f374aa11faa867a2004d03d34cc5e1.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 1,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 0,
+      "why": "IoU 0.70 예측이 있었으나 score 0.116 < 0.3"
+    },
+    {
+      "image": "adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 0,
+      "why": "IoU 0.95 예측이 있었으나 score 0.246 < 0.3"
+    },
+    {
+      "image": "dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 2,
+      "why": "IoU 0.98 예측이 있었으나 score 0.069 < 0.3"
+    },
+    {
+      "image": "dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 2,
+      "why": "IoU 0.96 예측이 있었으나 score 0.219 < 0.3"
+    },
+    {
+      "image": "dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 3,
+      "why": "IoU 0.94 예측이 있었으나 score 0.094 < 0.3"
+    },
+    {
+      "image": "dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 1,
+      "why": "IoU 0.96 예측이 있었으나 score 0.296 < 0.3"
+    },
+    {
+      "image": "dentium64_jpg.rf.7aa429c99086a613a7c980165d77c54a.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 1,
+      "why": "IoU 0.95 예측이 있었으나 score 0.292 < 0.3"
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 0,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 1,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 2,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 3,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 4,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg",
+      "kind": "X_미검출",
+      "gt_idx": 5,
+      "why": "겹치는 예측 없음"
+    },
+    {
+      "image": "noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 2,
+      "why": "IoU 0.93 예측이 있었으나 score 0.229 < 0.3"
+    },
+    {
+      "image": "noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 3,
+      "why": "IoU 0.92 예측이 있었으나 score 0.256 < 0.3"
+    },
+    {
+      "image": "osstem543_jpg.rf.cc3e06f16081e1f9e61c1c0524a9776b.jpg",
+      "kind": "S_점수미달",
+      "gt_idx": 2,
+      "why": "IoU 0.90 예측이 있었으나 score 0.157 < 0.3"
+    }
+  ]
+}

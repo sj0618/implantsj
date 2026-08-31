@@ -1,0 +1,22 @@
+data:
+  batch_size: 4
+  negative_sampling_rate: 0.0
+  num_workers: 4
+  train_ann: multimodal-data/implant_dataset/train_annotations.csv
+  train_dir: multimodal-data/implant_dataset/images/train
+  val_ann: multimodal-data/implant_dataset/val_annotations.csv
+  val_dir: multimodal-data/implant_dataset/images/val
+model:
+  config_path: groundingdino/config/GroundingDINO_SwinT_OGC.py
+  lora_weigths: None
+  weights_path: weights/groundingdino_swint_ogc.pth
+training:
+  learning_rate: 0.0001
+  max_grad_norm: 0.1
+  num_epochs: 30
+  save_dir: weights
+  save_frequency: 5
+  use_gradient_clipping: true
+  use_lora: true
+  visualization_frequency: 5
+  warmup_epochs: 3

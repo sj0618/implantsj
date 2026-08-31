@@ -1,0 +1,5435 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem111_jpg.rf.7024f54b37aac51119e0cc2e7c933f23.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9707,
+        "result": [
+          {
+            "id": "b29d045de3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.321431398391724,
+              "y": 20.287641882896423,
+              "width": 35.592472553253174,
+              "height": 68.20254921913147,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9707
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem122_jpg.rf.67591e15b4b4bbb30ca750daa8d5f5dd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9713,
+        "result": [
+          {
+            "id": "d58b53c0f3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.837971687316895,
+              "y": 8.852317929267883,
+              "width": 42.48824119567871,
+              "height": 71.77484035491943,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9713
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem125_jpg.rf.b4a6ab7f574cd8f8124829fb5c39a7aa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.908,
+        "result": [
+          {
+            "id": "2bed936348",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.70598429441452,
+              "y": 13.71244490146637,
+              "width": 19.73843276500702,
+              "height": 59.28769111633301,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.908
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem126_jpg.rf.b85855bdebf7033188bc25c4a7560313.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9545,
+        "result": [
+          {
+            "id": "59f5175522",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.48347559571266,
+              "y": 22.030475735664368,
+              "width": 23.76670092344284,
+              "height": 54.344016313552856,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9545
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem133_jpg.rf.99ba3131d545c3878332a035ee6a883f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9467,
+        "result": [
+          {
+            "id": "8aefaa27a7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.27375906705856,
+              "y": 19.836080074310303,
+              "width": 29.667356610298157,
+              "height": 51.196545362472534,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9467
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem135_jpg.rf.7d74b7c8649c3f600d08bd5fbde3360e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9735,
+        "result": [
+          {
+            "id": "5139c1d69b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.308045744895935,
+              "y": 40.587954223155975,
+              "width": 56.30952715873718,
+              "height": 26.984158158302307,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9735
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem142_jpg.rf.27d73569a3203474f92ea0374131bf32.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9563,
+        "result": [
+          {
+            "id": "5377bac269",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.220510244369507,
+              "y": 41.05176478624344,
+              "width": 59.67283248901367,
+              "height": 21.05562388896942,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9563
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem146_jpg.rf.b7302f31ab7c371854fbfe8b2368bb96.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.974,
+        "result": [
+          {
+            "id": "d4ea96bcac",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.76341572403908,
+              "y": 18.06211769580841,
+              "width": 21.22461050748825,
+              "height": 53.54071259498596,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.974
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem153_jpg.rf.23ca4604b4bd0486c2010a7818e72f99.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9663,
+        "result": [
+          {
+            "id": "99b569421c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.0455436706543,
+              "y": 24.00246262550354,
+              "width": 16.58235788345337,
+              "height": 51.51934623718262,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9663
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem160_jpg.rf.51b3c7498607fab1457a49561576040d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9521,
+        "result": [
+          {
+            "id": "7ad6c1f3a9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.42614018917084,
+              "y": 27.453070878982544,
+              "width": 26.32477879524231,
+              "height": 57.9459547996521,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9521
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem169_jpg.rf.e86fe6ca653ed8513a74262f1dd69e60.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9756,
+        "result": [
+          {
+            "id": "e3d8aed2be",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.16930556297302,
+              "y": 18.468037247657776,
+              "width": 25.00014305114746,
+              "height": 62.97459602355957,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9756
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem175_jpg.rf.77468da60521538abcdefa318ff8be17.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8651,
+        "result": [
+          {
+            "id": "582ed0f2a3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.091693460941315,
+              "y": 6.408083438873291,
+              "width": 43.17791163921356,
+              "height": 88.14438581466675,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8651
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem183_jpg.rf.e6a1f0134827e8982c4c779ce5846044.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9627,
+        "result": [
+          {
+            "id": "34782d8e40",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.931903660297394,
+              "y": 15.944913029670715,
+              "width": 27.806875109672546,
+              "height": 69.33123469352722,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9627
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem186_jpg.rf.a1cb4c12364f8e819e4b22acb0459e16.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9498,
+        "result": [
+          {
+            "id": "d7b8e023d7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.06162276864052,
+              "y": 35.90459078550339,
+              "width": 15.129344165325165,
+              "height": 34.694913029670715,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9498
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem192_jpg.rf.883567affbe334a73053845106b097b8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9661,
+        "result": [
+          {
+            "id": "5b637f0b30",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.497237861156464,
+              "y": 20.800945162773132,
+              "width": 31.915107369422913,
+              "height": 60.955411195755005,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9661
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem202_jpg.rf.4833d1574ad1a93d1375dd297c4f4929.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9762,
+        "result": [
+          {
+            "id": "f3d76cbc82",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.706739723682404,
+              "y": 37.55113631486893,
+              "width": 48.532119393348694,
+              "height": 24.47477877140045,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9762
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem213_jpg.rf.9090796f8966dc5008f0c7dd19673ab7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9404,
+        "result": [
+          {
+            "id": "db69909b91",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.846618354320526,
+              "y": 27.474704384803772,
+              "width": 32.80508816242218,
+              "height": 56.70767426490784,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9404
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem220_jpg.rf.6384c33939eea918d733a00483e252b1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7844,
+        "result": [
+          {
+            "id": "061c3defd1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.495127975940704,
+              "y": 28.50223034620285,
+              "width": 27.236708998680115,
+              "height": 36.59936487674713,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7928
+          },
+          {
+            "id": "4d641cbca1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.686605334281921,
+              "y": 40.43901115655899,
+              "width": 22.424405813217163,
+              "height": 37.663277983665466,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.776
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem224_jpg.rf.c605fc6545782fd496417954b304a9ee.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.71225,
+        "result": [
+          {
+            "id": "d5bc763ac4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 58.777882158756256,
+              "y": 28.146758675575256,
+              "width": 14.981266856193542,
+              "height": 42.17618107795715,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7259
+          },
+          {
+            "id": "698605a197",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.65844166278839,
+              "y": 27.415625751018524,
+              "width": 14.737814664840698,
+              "height": 41.83441698551178,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6986
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem228_jpg.rf.2987444fedb728bd176d60797f857c86.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9061,
+        "result": [
+          {
+            "id": "531327905f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.08280682563782,
+              "y": 50.45917183160782,
+              "width": 13.855135440826416,
+              "height": 37.979623675346375,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9061
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem238_jpg.rf.ece6ce4b643c6a3cae5886bfca783c2d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9277,
+        "result": [
+          {
+            "id": "7e7e342539",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 65.26002958416939,
+              "y": 40.08494019508362,
+              "width": 15.79800695180893,
+              "height": 45.71748971939087,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9277
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem241_jpg.rf.21107898d3077d6d68cd47d788de19f4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7726,
+        "result": [
+          {
+            "id": "7931433c41",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.04794532060623,
+              "y": 33.642275631427765,
+              "width": 33.412447571754456,
+              "height": 20.07324993610382,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8178
+          },
+          {
+            "id": "9c2d3b6d0d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.093728601932526,
+              "y": 15.24675264954567,
+              "width": 33.983251452445984,
+              "height": 15.14572948217392,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7274
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem248_jpg.rf.d18d1bed902b77e52ed2b2a5150c7f92.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9558,
+        "result": [
+          {
+            "id": "1e57f8392e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.096650421619415,
+              "y": 32.54288733005524,
+              "width": 22.860506176948547,
+              "height": 34.12353992462158,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9558
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem252_jpg.rf.0a1bf16a56a356b2c3ad3ced5f594a28.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9483,
+        "result": [
+          {
+            "id": "929d5fd456",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.357087403535843,
+              "y": 42.03367233276367,
+              "width": 14.424090087413788,
+              "height": 38.2860541343689,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9483
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem257_jpg.rf.4a86e2e5972f4577ced7608b99e85778.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.721,
+        "result": [
+          {
+            "id": "00b59bf59f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.33827891945839,
+              "y": 43.74273419380188,
+              "width": 15.950565040111542,
+              "height": 34.181129932403564,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8278
+          },
+          {
+            "id": "5cc24abed0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.950613617897034,
+              "y": 51.0737270116806,
+              "width": 15.295177698135376,
+              "height": 34.36596989631653,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6142
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem262_jpg.rf.4b3abdb94dd4cead500a57d2d18ae515.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6618999999999999,
+        "result": [
+          {
+            "id": "e85a241a8a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 61.83343306183815,
+              "y": 39.62770402431488,
+              "width": 20.539025962352753,
+              "height": 40.25394320487976,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7663
+          },
+          {
+            "id": "7717bec0b2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.4609309732914,
+              "y": 46.933409571647644,
+              "width": 20.858798921108246,
+              "height": 39.00255560874939,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5575
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem264_jpg.rf.2a9e07abb44de4444be8ddb65bc93bcb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6672,
+        "result": [
+          {
+            "id": "0539bf37d7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.00504696369171,
+              "y": 34.28211510181427,
+              "width": 16.398102045059204,
+              "height": 32.50235915184021,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7114
+          },
+          {
+            "id": "33ca4b6630",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.762422114610672,
+              "y": 41.84116721153259,
+              "width": 15.42186290025711,
+              "height": 32.201361656188965,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.623
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem269_jpg.rf.47ab4432e3a0c8ffacec9c72fd13c0d3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9479,
+        "result": [
+          {
+            "id": "6bede54bbb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.260322749614716,
+              "y": 21.46703749895096,
+              "width": 25.800815224647522,
+              "height": 36.82234585285187,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9479
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem277_jpg.rf.a36671d60278adeee39c0b21cef33803.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9429,
+        "result": [
+          {
+            "id": "4562d95f4a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.61268186569214,
+              "y": 38.36429640650749,
+              "width": 39.103275537490845,
+              "height": 18.58326345682144,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9429
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem279_jpg.rf.400919c90935ab66e316f47fbf83cdb2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7589,
+        "result": [
+          {
+            "id": "1a63b7892c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.46410372853279,
+              "y": 43.571750819683075,
+              "width": 14.205364882946014,
+              "height": 39.68577682971954,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8103
+          },
+          {
+            "id": "112424170f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.271062195301056,
+              "y": 40.58263152837753,
+              "width": 13.87222409248352,
+              "height": 38.70300352573395,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7075
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem280_jpg.rf.feb8c841365105846f08faee299d00fc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8759,
+        "result": [
+          {
+            "id": "3548668ddd",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.050109088420868,
+              "y": 54.28711995482445,
+              "width": 35.730335116386414,
+              "height": 23.65613728761673,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8759
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem289_jpg.rf.db9c17184c09463d2227199b31b457d0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9543,
+        "result": [
+          {
+            "id": "a8385819d8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 56.13037571310997,
+              "y": 38.17892223596573,
+              "width": 20.02485543489456,
+              "height": 37.603363394737244,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9543
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem295_jpg.rf.6160b4440350eaa303a97f57fdcbc9e1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.43465,
+        "result": [
+          {
+            "id": "235ed8aede",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.18540543317795,
+              "y": 34.219659864902496,
+              "width": 20.818796753883362,
+              "height": 37.52548396587372,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4474
+          },
+          {
+            "id": "626f633005",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 75.51143392920494,
+              "y": 43.593913316726685,
+              "width": 15.66745787858963,
+              "height": 38.112080097198486,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4219
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem299_jpg.rf.7eede1012c045c99b9b58b449c7fa0d7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4254,
+        "result": [
+          {
+            "id": "00a07eb1db",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.72121840715408,
+              "y": 40.75924605131149,
+              "width": 16.128501296043396,
+              "height": 35.7240229845047,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4465
+          },
+          {
+            "id": "02dde6fc63",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.93214723467827,
+              "y": 35.30941754579544,
+              "width": 17.342843115329742,
+              "height": 35.45005023479462,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4043
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem301_jpg.rf.978c01d49bf218e5fb9686920818cfa5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9224,
+        "result": [
+          {
+            "id": "f2d15108c6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 79.66934964060783,
+              "y": 28.477606177330017,
+              "width": 12.669123709201813,
+              "height": 39.37459588050842,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9224
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem303_jpg.rf.b3f30a63b3a8d7317ffc33fb1b2b0d7f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5055499999999999,
+        "result": [
+          {
+            "id": "8ad31640b6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 78.28851044178009,
+              "y": 34.61819291114807,
+              "width": 15.955573320388794,
+              "height": 33.59627723693848,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5131
+          },
+          {
+            "id": "316716cee7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.02568727731705,
+              "y": 31.316138803958893,
+              "width": 14.503428339958191,
+              "height": 30.96890151500702,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.498
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem311_jpg.rf.a440e572600dc37c28dfe311b2bb1b23.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3904,
+        "result": [
+          {
+            "id": "c1ae24839b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.122889518737793,
+              "y": 41.85928627848625,
+              "width": 39.935117959976196,
+              "height": 14.553292095661163,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3904
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem315_jpg.rf.7992ca8a59b42105bd7a46d4da42e27b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9677,
+        "result": [
+          {
+            "id": "f54ca9a06e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.54217404127121,
+              "y": 74.9068409204483,
+              "width": 38.75453770160675,
+              "height": 17.627209424972534,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9677
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem323_jpg.rf.5d0ff5f4a351e868f28298eca2827df0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9263,
+        "result": [
+          {
+            "id": "0518770ffb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.645471155643463,
+              "y": 23.647239804267883,
+              "width": 15.7838374376297,
+              "height": 38.34347724914551,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9263
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem329_jpg.rf.d4498c502b2f15c3cbd52e41b5ff577f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9737,
+        "result": [
+          {
+            "id": "7902a9daaa",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.98948907852173,
+              "y": 47.36233502626419,
+              "width": 36.24776601791382,
+              "height": 28.465577960014343,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9737
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem335_jpg.rf.82ca15e04dc29881bebab0b6e1019120.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9774,
+        "result": [
+          {
+            "id": "f5af1a0019",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.357878923416138,
+              "y": 22.137567400932312,
+              "width": 38.86122107505798,
+              "height": 21.719473600387573,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9774
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem336_jpg.rf.5dd32e5b7db7e1ec2affd09b5e4c8382.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.527,
+        "result": [
+          {
+            "id": "bc658c2604",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.794613629579544,
+              "y": 16.488739848136902,
+              "width": 14.529643952846527,
+              "height": 45.623964071273804,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem345_jpg.rf.e3082ac3fa9f1c17c7dc1547ecf235d2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9588,
+        "result": [
+          {
+            "id": "3c7ead9cce",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.788641303777695,
+              "y": 26.814943552017212,
+              "width": 12.335403263568878,
+              "height": 41.29803776741028,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9588
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem352_jpg.rf.5d119391ac053748b995f22e3a503353.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.78815,
+        "result": [
+          {
+            "id": "dc15de6a5c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.66490215063095,
+              "y": 25.553035736083984,
+              "width": 21.754851937294006,
+              "height": 42.40628480911255,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8262
+          },
+          {
+            "id": "e2949c6320",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.148091524839401,
+              "y": 38.80340754985809,
+              "width": 23.216260969638824,
+              "height": 43.18633675575256,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7501
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem358_jpg.rf.b3ce748017693ff9704ca340b3f21fcb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7489,
+        "result": [
+          {
+            "id": "d0569b8862",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.29194501042366,
+              "y": 26.001910865306854,
+              "width": 12.562285363674164,
+              "height": 37.35691010951996,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7735
+          },
+          {
+            "id": "3e18cc7f30",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.061136573553085,
+              "y": 26.33432447910309,
+              "width": 13.780607283115387,
+              "height": 38.329046964645386,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7243
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem367_jpg.rf.b6a55e0080bcaae685b662ae64f87933.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9002,
+        "result": [
+          {
+            "id": "a914d24682",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 7.866594195365906,
+              "y": 16.604439914226532,
+              "width": 35.82690954208374,
+              "height": 47.36761748790741,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9002
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem373_jpg.rf.45a204aeea1ed6a2ae2ac48f135ec13e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7762,
+        "result": [
+          {
+            "id": "96b4af8377",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 64.1923040151596,
+              "y": 29.377242922782898,
+              "width": 17.492562532424927,
+              "height": 54.44512963294983,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8164
+          },
+          {
+            "id": "94d1ac5dbc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.61523273587227,
+              "y": 21.861016750335693,
+              "width": 18.067698180675507,
+              "height": 54.550933837890625,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.736
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem378_jpg.rf.7527729f19250bfdd3955b3471c1d792.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9527,
+        "result": [
+          {
+            "id": "84ca4c0d58",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.15031522512436,
+              "y": 17.82928705215454,
+              "width": 25.139644742012024,
+              "height": 63.41187357902527,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem387_jpg.rf.ed733e913b1214dbea3cbadc6aba4002.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9678,
+        "result": [
+          {
+            "id": "f2740b1fa5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.46739038825035,
+              "y": 14.473551511764526,
+              "width": 21.566851437091827,
+              "height": 68.45473051071167,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9678
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem394_jpg.rf.3d524760551a256ff0f38e167e2d675c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9747,
+        "result": [
+          {
+            "id": "c3d6209830",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.28264206647873,
+              "y": 21.726101636886597,
+              "width": 40.0771290063858,
+              "height": 70.16725540161133,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9747
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem398_jpg.rf.137386fb2ddfbacc494971c398378ba8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9405,
+        "result": [
+          {
+            "id": "8c80e153f7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.50150054693222,
+              "y": 15.914100408554077,
+              "width": 30.22390902042389,
+              "height": 64.07796144485474,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9405
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem399_jpg.rf.e98551a0875ce10571610c4dc54573fa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9704,
+        "result": [
+          {
+            "id": "7f268f476b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.335179269313812,
+              "y": 6.698387861251831,
+              "width": 37.56926953792572,
+              "height": 67.44758486747742,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9704
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem405_jpg.rf.0ac710462e41587e277d4e34e0344752.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9601,
+        "result": [
+          {
+            "id": "f0b8b88d80",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.647909998893738,
+              "y": 36.72111630439758,
+              "width": 58.394986391067505,
+              "height": 20.54387927055359,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9601
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem410_jpg.rf.66766cd66e88c194aeed0b84fd8db6a7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9707,
+        "result": [
+          {
+            "id": "cc50420d77",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.491156578063965,
+              "y": 23.528501391410828,
+              "width": 43.256962299346924,
+              "height": 65.43113589286804,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9707
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem417_jpg.rf.0546cc402adf49f65e3aba993f03f50f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9704,
+        "result": [
+          {
+            "id": "81378def55",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.17246621847153,
+              "y": 23.574158549308777,
+              "width": 25.39459764957428,
+              "height": 56.29252791404724,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9704
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem427_jpg.rf.9754e1ce2eead55f028f3c849fab0f46.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9733,
+        "result": [
+          {
+            "id": "202925105e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.76340240240097,
+              "y": 25.982743501663208,
+              "width": 28.23740541934967,
+              "height": 62.25080490112305,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9733
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem433_jpg.rf.a27197a389b1c23831ea691a0136afde.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9576,
+        "result": [
+          {
+            "id": "01a1f6736d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.812882602214813,
+              "y": 37.794770300388336,
+              "width": 44.96278464794159,
+              "height": 21.750536561012268,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9576
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem439_jpg.rf.5d62e201376d9bcbd8737be933cdba76.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9598,
+        "result": [
+          {
+            "id": "1deec5a7c2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.4486383497715,
+              "y": 23.180094361305237,
+              "width": 23.792336881160736,
+              "height": 57.025450468063354,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9598
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem447_jpg.rf.9d9b6fc9fb8a4f0bcb83f8b787368314.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5063,
+        "result": [
+          {
+            "id": "6f73dd29dd",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.39127695560455,
+              "y": 39.38463479280472,
+              "width": 52.14229226112366,
+              "height": 19.836720824241638,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5063
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem450_jpg.rf.ad9d15d880f24477eeef5da46cfd707d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9572,
+        "result": [
+          {
+            "id": "084243e93d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.072679936885834,
+              "y": 45.064082741737366,
+              "width": 18.150892853736877,
+              "height": 35.6356680393219,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9572
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem452_jpg.rf.365429607b8e4f7b6ed0833d0365a78b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8988,
+        "result": [
+          {
+            "id": "8a2ec402c2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.715291023254395,
+              "y": 15.319770574569702,
+              "width": 17.963260412216187,
+              "height": 60.72569489479065,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8988
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem454_jpg.rf.6587f9b9242e44d0fbbdfb533a5eb6df.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9731,
+        "result": [
+          {
+            "id": "baf7ee1d91",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.053751945495605,
+              "y": 25.78175514936447,
+              "width": 25.825685262680054,
+              "height": 48.053136467933655,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9731
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem467_jpg.rf.063a9d36cb897d868befb401b474dce1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9694,
+        "result": [
+          {
+            "id": "27c198cf8e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.84913527965546,
+              "y": 36.16619259119034,
+              "width": 17.86900758743286,
+              "height": 43.25082004070282,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9694
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem474_jpg.rf.a05273bce6f0488a8331f41ca3839f1c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9627,
+        "result": [
+          {
+            "id": "00d1f172f4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.48025715351105,
+              "y": 29.53331470489502,
+              "width": 26.734942197799683,
+              "height": 55.618155002593994,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9627
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem476_jpg.rf.611fd6521ff76f9fd8f3e8039f4a61b2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9484,
+        "result": [
+          {
+            "id": "fc9e2a8a8b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.036845266819,
+              "y": 40.87693765759468,
+              "width": 35.391899943351746,
+              "height": 15.041224658489227,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9484
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem480_jpg.rf.5a5dae78bec0bb1b7ca3c6e8203c5328.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.79455,
+        "result": [
+          {
+            "id": "ec49e4d68b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.498746037483215,
+              "y": 57.608573883771896,
+              "width": 42.420417070388794,
+              "height": 14.99563604593277,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.841
+          },
+          {
+            "id": "91fa0de7e7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.46295440196991,
+              "y": 26.26882493495941,
+              "width": 42.77655482292175,
+              "height": 14.814168214797974,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7481
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem482_jpg.rf.0c5b4c4da107d65ef2ebf8bf8e5d77f2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7637,
+        "result": [
+          {
+            "id": "268031d973",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.5720956325531,
+              "y": 45.763303339481354,
+              "width": 20.252561569213867,
+              "height": 33.06222856044769,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7863
+          },
+          {
+            "id": "8345c751e8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.231647342443466,
+              "y": 46.2705060839653,
+              "width": 15.303356945514679,
+              "height": 33.48187506198883,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7411
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem483_jpg.rf.f101eb14756d9c2300ae7ab2c2127c61.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9434,
+        "result": [
+          {
+            "id": "b45d92a609",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.26332798600197,
+              "y": 45.70316523313522,
+              "width": 16.406719386577606,
+              "height": 40.2672678232193,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9434
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem485_jpg.rf.6a518d7fa5099561d097e0c7865b05f2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.72875,
+        "result": [
+          {
+            "id": "cd6b39a469",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.821712255477905,
+              "y": 12.848904728889465,
+              "width": 32.32787847518921,
+              "height": 15.330806374549866,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7815
+          },
+          {
+            "id": "b4ea4a3585",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.154218435287476,
+              "y": 36.14443689584732,
+              "width": 32.81623125076294,
+              "height": 16.235801577568054,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.676
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem486_jpg.rf.ffe57732780867b365f8f50035f27f7b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9044,
+        "result": [
+          {
+            "id": "2664ee2e71",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.335206925868988,
+              "y": 24.296830594539642,
+              "width": 37.20829784870148,
+              "height": 25.7808655500412,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9044
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem487_jpg.rf.e573d07cd33fe1e0aeae6d77609d5297.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8584,
+        "result": [
+          {
+            "id": "2762a86171",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.172153770923615,
+              "y": 40.41462987661362,
+              "width": 23.329350352287292,
+              "height": 35.431256890296936,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8584
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem488_jpg.rf.db1b0318b7ae3e1962148387e0634d16.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9338,
+        "result": [
+          {
+            "id": "6b84b66e75",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.891807556152344,
+              "y": 29.95053008198738,
+              "width": 40.029555559158325,
+              "height": 19.75737065076828,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9338
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem490_jpg.rf.541db43d71003b59b43eb0a26011abb9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5326,
+        "result": [
+          {
+            "id": "2b6426930e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 60.00467911362648,
+              "y": 35.34946143627167,
+              "width": 16.975168883800507,
+              "height": 35.40326952934265,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5463
+          },
+          {
+            "id": "d18ab82625",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.218064934015274,
+              "y": 40.535521507263184,
+              "width": 15.991459786891937,
+              "height": 35.85860729217529,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5189
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem491_jpg.rf.f9df21ba07b47782aac6d3a77be02dd5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.809,
+        "result": [
+          {
+            "id": "72e96f1637",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.73541474342346,
+              "y": 41.861966997385025,
+              "width": 40.11136293411255,
+              "height": 14.610801637172699,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.809
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem492_jpg.rf.c20c159e457a34ad87eca48a8b6993a5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9409,
+        "result": [
+          {
+            "id": "908fb97094",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.66571581363678,
+              "y": 26.634185761213303,
+              "width": 39.09650444984436,
+              "height": 15.74716717004776,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9409
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem493_jpg.rf.7de2270e02f4c7a7073ff94e5052a7a3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7461500000000001,
+        "result": [
+          {
+            "id": "f9cb06d869",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.90329936146736,
+              "y": 21.993574500083923,
+              "width": 17.635951936244965,
+              "height": 45.55450677871704,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8063
+          },
+          {
+            "id": "9475173b85",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.804052025079727,
+              "y": 12.55660355091095,
+              "width": 16.923733055591583,
+              "height": 51.45968794822693,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.686
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem494_jpg.rf.96bed580383b52b6e78862bf54091251.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9449,
+        "result": [
+          {
+            "id": "1d2e3a4685",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.791566252708435,
+              "y": 43.00885125994682,
+              "width": 43.747735023498535,
+              "height": 15.404869616031647,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9449
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem497_jpg.rf.e112c4dafff03311aed241f817f6d6a0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.75885,
+        "result": [
+          {
+            "id": "e5227f7fa1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.589020162820816,
+              "y": 24.34728741645813,
+              "width": 16.60037487745285,
+              "height": 46.61105275154114,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8196
+          },
+          {
+            "id": "e67818f77f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.995363384485245,
+              "y": 18.02540123462677,
+              "width": 15.284578502178192,
+              "height": 46.64161205291748,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6981
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem499_jpg.rf.ca1bb6f1e016570a04e1a7b7698b1f99.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9587,
+        "result": [
+          {
+            "id": "4a035ed3fc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.03149476647377,
+              "y": 12.256956100463867,
+              "width": 18.4959813952446,
+              "height": 73.76626133918762,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9587
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem500_jpg.rf.de7e771f8950ca2c14dbba39e0a68102.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9654,
+        "result": [
+          {
+            "id": "e991b9bdc4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.868655681610107,
+              "y": 48.06472659111023,
+              "width": 74.71315860748291,
+              "height": 18.608081340789795,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9654
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem502_jpg.rf.ce8605a1af3b9801583e0c5f2b51f28b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9681,
+        "result": [
+          {
+            "id": "d44b8f43b0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.129456758499146,
+              "y": 24.613717198371887,
+              "width": 35.50400733947754,
+              "height": 63.53132128715515,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9681
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem503_jpg.rf.4c4110b07a7d062b27a7f75b21651108.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9722,
+        "result": [
+          {
+            "id": "64f7822c24",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.86986255645752,
+              "y": 22.259831428527832,
+              "width": 35.39884090423584,
+              "height": 66.61902666091919,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9722
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem506_jpg.rf.050fee1d58df684236b9760fe3e12752.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9649,
+        "result": [
+          {
+            "id": "c982cfa53a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.62506127357483,
+              "y": 24.72507357597351,
+              "width": 25.398409366607666,
+              "height": 62.40193843841553,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9649
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem512_jpg.rf.fb72c8cce57a86ccc734eca937246c1d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9573,
+        "result": [
+          {
+            "id": "43eb62d99e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.813393712043762,
+              "y": 37.80048191547394,
+              "width": 44.965195655822754,
+              "height": 21.74925208091736,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9573
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem513_jpg.rf.df9eba9e810f5fa7176d470375d3f7ea.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9677,
+        "result": [
+          {
+            "id": "8554cc8f3b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.86235037446022,
+              "y": 36.20445132255554,
+              "width": 17.81385987997055,
+              "height": 43.251001834869385,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9677
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem515_jpg.rf.f63d0eb8be4b874f170eeaa45649307c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9305,
+        "result": [
+          {
+            "id": "a56576f0a4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.50306168198586,
+              "y": 14.561767876148224,
+              "width": 18.695752322673798,
+              "height": 34.65210497379303,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9305
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem516_jpg.rf.c8c153659d1b8f5d6c3bb821977532e7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9622,
+        "result": [
+          {
+            "id": "aea809285a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.592577159404755,
+              "y": 63.23421597480774,
+              "width": 26.37448012828827,
+              "height": 24.591422080993652,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9622
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem517_jpg.rf.78e03637c90767af3c75581b2180b781.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9627,
+        "result": [
+          {
+            "id": "5685bf95e2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 7.837770879268646,
+              "y": 45.09214758872986,
+              "width": 29.086613655090332,
+              "height": 27.647066116333008,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9627
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem518_jpg.rf.ad9e43cb1840a816eafadf502f51b7dd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.498,
+        "result": [
+          {
+            "id": "209711c1d0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.063256561756134,
+              "y": 20.530524849891663,
+              "width": 21.43060266971588,
+              "height": 37.32351064682007,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7049
+          },
+          {
+            "id": "d8a40d70fe",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.16892370581627,
+              "y": 17.57061928510666,
+              "width": 19.20620948076248,
+              "height": 38.46537172794342,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4226
+          },
+          {
+            "id": "ef0cc83696",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.21927270293236,
+              "y": 22.79636859893799,
+              "width": 18.058867752552032,
+              "height": 30.784177780151367,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3665
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem519_jpg.rf.022b5595581552413313dc9d3f86f9da.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9176,
+        "result": [
+          {
+            "id": "fd4e0210fd",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.94955325126648,
+              "y": 41.50432124733925,
+              "width": 55.81348538398743,
+              "height": 15.220962464809418,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9176
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem524_jpg.rf.46def45acc39870cb23262159349981d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9558,
+        "result": [
+          {
+            "id": "e01237a95e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.63441729545593,
+              "y": 33.25877785682678,
+              "width": 26.21508240699768,
+              "height": 35.62674522399902,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9558
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem525_jpg.rf.8ef748696bc3ae0b00be9a46038e3ac2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.914,
+        "result": [
+          {
+            "id": "e933de902c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.198359966278076,
+              "y": 34.56268310546875,
+              "width": 26.44333839416504,
+              "height": 49.47347640991211,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.914
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem527_jpg.rf.983599ed535b7a83348a5f15dcd36edb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7033,
+        "result": [
+          {
+            "id": "b7b9ed738a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.294897735118866,
+              "y": 38.10370713472366,
+              "width": 23.00303280353546,
+              "height": 42.092832922935486,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7575
+          },
+          {
+            "id": "677467c7a4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.480672121047974,
+              "y": 48.74623864889145,
+              "width": 26.527196168899536,
+              "height": 42.1545535326004,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6491
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem528_jpg.rf.93c5faab530258656692db6c23b1371b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9608,
+        "result": [
+          {
+            "id": "98057018ed",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.07689094543457,
+              "y": 20.269185304641724,
+              "width": 52.540719509124756,
+              "height": 57.57262706756592,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9608
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem529_jpg.rf.1261854b24d4cf81265c2821e0a66a33.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9317,
+        "result": [
+          {
+            "id": "44c4ed0437",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.159657418727875,
+              "y": 16.389164328575134,
+              "width": 45.25214731693268,
+              "height": 69.03384327888489,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9317
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem532_jpg.rf.ed7ba7d2eaf4fb962b7cf98c758411c0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9643,
+        "result": [
+          {
+            "id": "ad0622fec6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.17294269800186,
+              "y": 18.68947148323059,
+              "width": 29.525956511497498,
+              "height": 61.321455240249634,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9643
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem539_jpg.rf.8d9e30995af546dcf068524ce901ac32.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9117,
+        "result": [
+          {
+            "id": "b6a4a91e22",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.44141420722008,
+              "y": 39.058955013751984,
+              "width": 13.903196156024933,
+              "height": 35.37777364253998,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9117
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem540_jpg.rf.ee33bd8ca0bf3a9ab84eb20921268517.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7483,
+        "result": [
+          {
+            "id": "a82dc57a6e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.853058248758316,
+              "y": 35.970816016197205,
+              "width": 16.60626381635666,
+              "height": 35.23079752922058,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7762
+          },
+          {
+            "id": "358d8fb4d3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.305867731571198,
+              "y": 38.92033398151398,
+              "width": 13.836345076560974,
+              "height": 31.784242391586304,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7204
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem542_jpg.rf.a34aa6a6708939595faa4fa37a41256f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.75515,
+        "result": [
+          {
+            "id": "89f43b3247",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.607954502105713,
+              "y": 46.05998247861862,
+              "width": 28.349822759628296,
+              "height": 13.643363118171692,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8377
+          },
+          {
+            "id": "c4b3c01fff",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.58075189590454,
+              "y": 69.4887213408947,
+              "width": 28.240221738815308,
+              "height": 14.047028124332428,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6726
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem544_jpg.rf.1db47b77c6d7e79db97b6eeb052d4409.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.49593333333333334,
+        "result": [
+          {
+            "id": "887ce061e0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.73027302324772,
+              "y": 47.97637164592743,
+              "width": 12.278913706541061,
+              "height": 34.39221978187561,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6175
+          },
+          {
+            "id": "4b5055e04b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.801772385835648,
+              "y": 46.69031798839569,
+              "width": 10.40305346250534,
+              "height": 35.131269693374634,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5296
+          },
+          {
+            "id": "49f933d6f6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.47269460558891,
+              "y": 66.41107946634293,
+              "width": 13.706518709659576,
+              "height": 22.211405634880066,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3407
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem552_jpg.rf.34cd3171979bc662df01d1427b5b98da.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9446,
+        "result": [
+          {
+            "id": "57bd489e6c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.037749230861664,
+              "y": 50.71614235639572,
+              "width": 27.887240052223206,
+              "height": 18.126335740089417,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9446
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem556_jpg.rf.4d7293514c1a6ad83e750c58ef03d596.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9422,
+        "result": [
+          {
+            "id": "2b9bd7d572",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.981947720050812,
+              "y": 40.60778170824051,
+              "width": 15.839225053787231,
+              "height": 35.94362437725067,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9422
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem557_jpg.rf.6d4b71c316a5f0ed9b86d0088904e368.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7185,
+        "result": [
+          {
+            "id": "36e110e20e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.497011750936508,
+              "y": 21.459564566612244,
+              "width": 13.930965960025787,
+              "height": 35.17656326293945,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7185
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem558_jpg.rf.4301b7a655d8ad287a4ea734c0d6f6f1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9485,
+        "result": [
+          {
+            "id": "591e1284e5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.240236699581146,
+              "y": 41.77471026778221,
+              "width": 38.18376362323761,
+              "height": 19.820185005664825,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9485
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem575_jpg.rf.32188c45148bca27b41cc1c4a2025c92.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8966,
+        "result": [
+          {
+            "id": "0cd2245cfc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.49613219499588,
+              "y": 65.85564464330673,
+              "width": 39.275237917900085,
+              "height": 21.29209339618683,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8966
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem582_jpg.rf.e477437d9677317bdedd2a5758507426.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9475,
+        "result": [
+          {
+            "id": "efa1e4d69a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.002310901880264,
+              "y": 43.188926577568054,
+              "width": 24.786575138568878,
+              "height": 26.22019648551941,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9475
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem596_jpg.rf.621540128d956b4edffc0a8ebbe34d14.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.76955,
+        "result": [
+          {
+            "id": "6c035a2783",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.676531195640564,
+              "y": 40.31194448471069,
+              "width": 22.53963351249695,
+              "height": 37.119436264038086,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7792
+          },
+          {
+            "id": "ebb2b32c0a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 72.37027585506439,
+              "y": 29.913677275180817,
+              "width": 25.978392362594604,
+              "height": 36.782291531562805,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7599
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem598_jpg.rf.c6b4357ae6edacf50a1dfa436dda8be6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7708999999999999,
+        "result": [
+          {
+            "id": "264974513b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 67.60872900485992,
+              "y": 43.56364756822586,
+              "width": 20.884710550308228,
+              "height": 34.70977246761322,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.842
+          },
+          {
+            "id": "79e2f83b0e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.28386226296425,
+              "y": 51.04775130748749,
+              "width": 18.116270005702972,
+              "height": 34.662896394729614,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6998
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem599_jpg.rf.80ce291bb5d684cf0d4df473aae24f64.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.62605,
+        "result": [
+          {
+            "id": "e26efa1e58",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.988282680511475,
+              "y": 14.208760857582092,
+              "width": 26.83851718902588,
+              "height": 44.31278109550476,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7354
+          },
+          {
+            "id": "bb036c9021",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.67127203941345,
+              "y": 0.14025568962097168,
+              "width": 27.491426467895508,
+              "height": 40.704989433288574,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5167
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem600_jpg.rf.2c8f5214417f5e5fc42199879d81d3fb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9102,
+        "result": [
+          {
+            "id": "a159cbe970",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.7320054769516,
+              "y": 48.879674077034,
+              "width": 29.28432822227478,
+              "height": 46.740931272506714,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9102
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem603_jpg.rf.839350407c23bddea1890f972219866e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.47953333333333337,
+        "result": [
+          {
+            "id": "bfe0271843",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.587758898735046,
+              "y": 20.580586791038513,
+              "width": 21.279197931289673,
+              "height": 37.28898763656616,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6149
+          },
+          {
+            "id": "5ba96f517a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 7.5162239372730255,
+              "y": 17.572833597660065,
+              "width": 19.145895540714264,
+              "height": 38.73567879199982,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4737
+          },
+          {
+            "id": "415b4945d1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.75123271346092,
+              "y": 22.86941409111023,
+              "width": 17.690695822238922,
+              "height": 30.716663599014282,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.35
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem607_jpg.rf.0f83d4072d37c11c8d89fd7fc7ab7f49.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8748,
+        "result": [
+          {
+            "id": "c8474376c6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.690820276737213,
+              "y": 40.00495821237564,
+              "width": 34.08540189266205,
+              "height": 33.76167714595795,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8748
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem608_jpg.rf.78a20f2bb163c47961c50beeaf71732c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9646,
+        "result": [
+          {
+            "id": "2398874a63",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.44619870185852,
+              "y": 30.517306923866272,
+              "width": 27.422845363616943,
+              "height": 57.5264036655426,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9646
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem621_jpg.rf.6958194c1d775fcf4e0fea2b5ee2f88e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.968,
+        "result": [
+          {
+            "id": "4c703cf8c1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.88864141702652,
+              "y": 24.067115783691406,
+              "width": 30.370554327964783,
+              "height": 65.7668948173523,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.968
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem630_jpg.rf.d8688954774586f4b0a9d76fde60f032.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9351,
+        "result": [
+          {
+            "id": "b123bcb392",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.68450725078583,
+              "y": 50.83529353141785,
+              "width": 16.45987629890442,
+              "height": 46.67278528213501,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9351
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem637_jpg.rf.1fdac206e1673111cc2d7ca4db2fe3bc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9644,
+        "result": [
+          {
+            "id": "498e9b1c39",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.31143909692764,
+              "y": 26.722055673599243,
+              "width": 28.159603476524353,
+              "height": 39.869314432144165,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9644
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem638_jpg.rf.9dae8d628533c7ac66bdac0dbc945a2a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9528,
+        "result": [
+          {
+            "id": "ee1c2cb261",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.550938457250595,
+              "y": 41.64890497922897,
+              "width": 12.788034975528717,
+              "height": 29.343679547309875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9528
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem647_jpg.rf.c227ec4de7a19f432330f5daa8e8783e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9635,
+        "result": [
+          {
+            "id": "df924010ff",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.274778842926025,
+              "y": 20.135492086410522,
+              "width": 29.076218605041504,
+              "height": 50.99181532859802,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9635
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem655_jpg.rf.c45d769389e71c8656861b9311e24595.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8175,
+        "result": [
+          {
+            "id": "8037c61fe9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.195892214775085,
+              "y": 31.106269359588623,
+              "width": 23.457854986190796,
+              "height": 58.73919725418091,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8175
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem660_jpg.rf.fb2814cefc04a6e94608a639281ef8e5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9081,
+        "result": [
+          {
+            "id": "25fd378c16",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.21111434698105,
+              "y": 0.23049414157867432,
+              "width": 35.15198528766632,
+              "height": 86.40814423561096,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9081
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem668_jpg.rf.c20418ff8206623c69a6f84d56daf22f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5534,
+        "result": [
+          {
+            "id": "37b404a01a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.174428939819336,
+              "y": 37.995558977127075,
+              "width": 34.805357456207275,
+              "height": 22.979742288589478,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7645
+          },
+          {
+            "id": "c04e12b442",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.27918767929077,
+              "y": 57.522062957286835,
+              "width": 28.590452671051025,
+              "height": 17.423728108406067,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3423
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem676_jpg.rf.8346ba53b6608cd038a90a0270553a59.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.60995,
+        "result": [
+          {
+            "id": "24e19d015f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.72276046872139,
+              "y": 38.0847692489624,
+              "width": 22.887645661830902,
+              "height": 42.18844175338745,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6238
+          },
+          {
+            "id": "339c0e5d80",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.240838050842285,
+              "y": 48.80020618438721,
+              "width": 26.13924741744995,
+              "height": 42.16187000274658,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5961
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem683_jpg.rf.e0159fbf9b4f709b4d843073bf9d6ad7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9208,
+        "result": [
+          {
+            "id": "c05b79c450",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.616679549217224,
+              "y": 19.56331729888916,
+              "width": 49.03997778892517,
+              "height": 58.1213116645813,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9208
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem688_jpg.rf.fff10d292f43055a04fb2db65f7a67c6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9304,
+        "result": [
+          {
+            "id": "0286a29ed1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.5744606256485,
+              "y": 17.409545183181763,
+              "width": 45.86704969406128,
+              "height": 74.0592360496521,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9304
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem694_jpg.rf.6aebb833ab5d742a2dcf09fcb6273d08.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9757,
+        "result": [
+          {
+            "id": "7eba0af1e2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.299786418676376,
+              "y": 22.84340262413025,
+              "width": 21.993394196033478,
+              "height": 61.1850380897522,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9757
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem702_jpg.rf.adfaa6b104bb14509c737c582b00618a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8657,
+        "result": [
+          {
+            "id": "585aa27802",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.300612926483154,
+              "y": 47.9541152715683,
+              "width": 14.164423942565918,
+              "height": 50.373369455337524,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8657
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem710_jpg.rf.9c3d7c770ec694205fbc558625c9f563.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.975,
+        "result": [
+          {
+            "id": "88e2776177",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.412055253982544,
+              "y": 24.11920428276062,
+              "width": 29.435265064239502,
+              "height": 56.41059875488281,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.975
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem717_jpg.rf.9c5639c7b33840435fb8cb538937f47e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.977,
+        "result": [
+          {
+            "id": "f3a3b38ad2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.05135923624039,
+              "y": 27.720078825950623,
+              "width": 33.99355113506317,
+              "height": 53.28294634819031,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.977
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem725_jpg.rf.35a3fbd865b487d0e91524a0c684d90f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9652,
+        "result": [
+          {
+            "id": "003b6a7615",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.014415234327316,
+              "y": 25.768481194972992,
+              "width": 20.634914934635162,
+              "height": 49.67428743839264,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9652
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem726_jpg.rf.973f9365bfb9ce91cb1428bf178425a7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.771,
+        "result": [
+          {
+            "id": "6b84e00240",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.53123390674591,
+              "y": 25.583702325820923,
+              "width": 13.98991346359253,
+              "height": 35.29609441757202,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.771
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem731_jpg.rf.5d6348a00c94ac4123211dcddd457cb6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6810499999999999,
+        "result": [
+          {
+            "id": "219e9b6941",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.32911843061447,
+              "y": 48.41791242361069,
+              "width": 17.291012406349182,
+              "height": 40.22522270679474,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7421
+          },
+          {
+            "id": "8de6334890",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.55100810527802,
+              "y": 37.8150150179863,
+              "width": 24.964672327041626,
+              "height": 45.382872223854065,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.62
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem741_jpg.rf.e3fa7e62454b481661ec5eac6e6556f3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7435,
+        "result": [
+          {
+            "id": "ee2d9c50d1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.067449271678925,
+              "y": 26.243532449007034,
+              "width": 32.26273953914642,
+              "height": 13.891027867794037,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7467
+          },
+          {
+            "id": "103cbbb8c8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.445307910442352,
+              "y": 45.740192383527756,
+              "width": 35.959163308143616,
+              "height": 16.955222189426422,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7403
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem746_jpg.rf.b38b074e90a4b6d375dae48b67ea27e8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7726,
+        "result": [
+          {
+            "id": "110f1ebc39",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.284545719623566,
+              "y": 45.32046020030975,
+              "width": 13.549801707267761,
+              "height": 27.625173330307007,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7731
+          },
+          {
+            "id": "1493f3a821",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.753125935792923,
+              "y": 46.39933407306671,
+              "width": 13.735456764698029,
+              "height": 27.754181623458862,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7721
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem752_jpg.rf.b312a0d330275de27afa2cb35fa834d5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.71045,
+        "result": [
+          {
+            "id": "58d86cbb85",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.7426715195179,
+              "y": 31.43468201160431,
+              "width": 16.832540929317474,
+              "height": 34.4678521156311,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7442
+          },
+          {
+            "id": "178e6ec37e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.749056428670883,
+              "y": 37.16836869716644,
+              "width": 16.702552139759064,
+              "height": 36.30300164222717,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6767
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem754_jpg.rf.0cdc5324fad43a032811015be51cef0d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6958,
+        "result": [
+          {
+            "id": "dfd9960767",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.120036393404007,
+              "y": 42.76478737592697,
+              "width": 16.68591946363449,
+              "height": 43.45676004886627,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7445
+          },
+          {
+            "id": "8d5809296c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.61058038473129,
+              "y": 36.15052402019501,
+              "width": 21.67157232761383,
+              "height": 33.51892828941345,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6471
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem796_jpg.rf.c5f9dde69c42e8b3d573c73f496a9089.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9132,
+        "result": [
+          {
+            "id": "1815913c2a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 63.66250962018967,
+              "y": 16.000309586524963,
+              "width": 15.405204892158508,
+              "height": 28.35933566093445,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9132
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem800_jpg.rf.d98897b1a5f3c471fb648f974c026d8b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9153,
+        "result": [
+          {
+            "id": "1f413655e4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.22404843568802,
+              "y": 43.00183057785034,
+              "width": 18.431994318962097,
+              "height": 28.728830814361572,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9153
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem806_jpg.rf.7d052f9de3eea60976ae4826363ece9b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9474,
+        "result": [
+          {
+            "id": "92e4aa863e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 72.08720743656158,
+              "y": 40.55539518594742,
+              "width": 15.922385454177856,
+              "height": 35.95220744609833,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9474
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem810_jpg.rf.7d19e5bc4c2de5f4939a690135c3e27d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4394,
+        "result": [
+          {
+            "id": "cd3db2ea93",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 65.63595235347748,
+              "y": 15.72316288948059,
+              "width": 12.43470311164856,
+              "height": 39.85978364944458,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.536
+          },
+          {
+            "id": "46550a514f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.247055172920227,
+              "y": 10.673931241035461,
+              "width": 16.942131519317627,
+              "height": 40.8619225025177,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3428
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem92_jpg.rf.6f94117d803159fa458757ef18d312f7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5563,
+        "result": [
+          {
+            "id": "8754719970",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.85013324022293,
+              "y": 30.170956254005432,
+              "width": 31.77412450313568,
+              "height": 55.883973836898804,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5563
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/osstem/osstem97_jpg.rf.8b639d5bcb4f8d78f2b0252a843341a8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9343,
+        "result": [
+          {
+            "id": "3078e8aaf8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.57670307159424,
+              "y": 11.628815531730652,
+              "width": 30.950313806533813,
+              "height": 84.23183560371399,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9343
+          }
+        ]
+      }
+    ]
+  }
+]

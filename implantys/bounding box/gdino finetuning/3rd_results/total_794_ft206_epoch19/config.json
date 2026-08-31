@@ -1,0 +1,14 @@
+{
+  "run": "total_794_ft206_epoch19",
+  "purpose": "pseudo-label inference on 794 unlabeled images (rounds 03-06 pool) for manual review",
+  "model": "Grounding DINO SwinT-OGC + LoRA (FT-206, best epoch 19)",
+  "base_weights": "weights/groundingdino_swint_ogc.pth",
+  "lora_weights": "2nd/results/02/FT-206_lr1e-4/weights/epoch_19.pth",
+  "prompt": "implant",
+  "box_threshold": 0.30,
+  "text_threshold": 0.20,
+  "nms_iou": 0.5,
+  "n_images": 794,
+  "dataset": "3rd/dataset/total_794/images",
+  "venv": "Grounding-Dino-FineTuning/implant-env (repo-local; /workspace/implant-env was missing after restart)"
+}

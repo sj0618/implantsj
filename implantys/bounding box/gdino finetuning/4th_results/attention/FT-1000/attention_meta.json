@@ -1,0 +1,816 @@
+{
+  "kind": "FT(epoch_09)",
+  "weights": "/workspace/Grounding-Dino-FineTuning/3rd/results/FT-1000/weights/epoch_09.pth",
+  "caption": "implant.",
+  "tokens": [
+    "[CLS]",
+    "implant",
+    ".",
+    "[SEP]"
+  ],
+  "implant_token_index": [
+    1
+  ],
+  "images": {
+    "adin1008_jpg.rf.b31e87a69e6e3cfac6c7b4a0f6b85594.jpg": {
+      "max_score": 0.6456339359283447,
+      "n_pred_over_0.3": 3
+    },
+    "adin1020_jpg.rf.10af4cb859f2d54a7132e9e671761bec.jpg": {
+      "max_score": 0.8333661556243896,
+      "n_pred_over_0.3": 2
+    },
+    "adin1043_jpg.rf.1745778e0b9d071968e3544199085ca0.jpg": {
+      "max_score": 0.5764891505241394,
+      "n_pred_over_0.3": 1
+    },
+    "adin104_jpg.rf.dbcff1de96559a7efd0a2f408ae66493.jpg": {
+      "max_score": 0.9407515525817871,
+      "n_pred_over_0.3": 1
+    },
+    "adin1051_jpg.rf.491ee84911a5349f12107bffe3661c70.jpg": {
+      "max_score": 0.6566476225852966,
+      "n_pred_over_0.3": 1
+    },
+    "adin1099_jpg.rf.ad5ff2bacc0dd4458c512d5a322604a6.jpg": {
+      "max_score": 0.8276552557945251,
+      "n_pred_over_0.3": 2
+    },
+    "adin1115_jpg.rf.08db73cf588cfb199bf9db0be2cb124c.jpg": {
+      "max_score": 0.9357165098190308,
+      "n_pred_over_0.3": 1
+    },
+    "adin1127_jpg.rf.2ffdad1a94af50f3a165ef752a16edaa.jpg": {
+      "max_score": 0.9515763521194458,
+      "n_pred_over_0.3": 1
+    },
+    "adin1130_jpg.rf.c8a4ae4f4fef2f4f62aef9d82fbb0905.jpg": {
+      "max_score": 0.7328178882598877,
+      "n_pred_over_0.3": 2
+    },
+    "adin1174_jpg.rf.8f4b81f1a4fab15a29480115cfd88bd7.jpg": {
+      "max_score": 0.49717435240745544,
+      "n_pred_over_0.3": 2
+    },
+    "adin134_jpg.rf.462f23a5efabeacbb84a5f35bcde5809.jpg": {
+      "max_score": 0.6409059166908264,
+      "n_pred_over_0.3": 1
+    },
+    "adin174_jpg.rf.b0fa96985024b08eedada218cb2dc4fd.jpg": {
+      "max_score": 0.8670578002929688,
+      "n_pred_over_0.3": 1
+    },
+    "adin187_jpg.rf.0dbe655d2977f5c374364d56a5b7d1df.jpg": {
+      "max_score": 0.6553083658218384,
+      "n_pred_over_0.3": 3
+    },
+    "adin203_jpg.rf.a18e35d1ea60f4d3a0ddb38ce2283ceb.jpg": {
+      "max_score": 0.9149330854415894,
+      "n_pred_over_0.3": 1
+    },
+    "adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg": {
+      "max_score": 0.5884270071983337,
+      "n_pred_over_0.3": 2
+    },
+    "adin221_jpg.rf.4ccaed2c1c53dc814fa05eea132b1180.jpg": {
+      "max_score": 0.577055811882019,
+      "n_pred_over_0.3": 2
+    },
+    "adin224_jpg.rf.8e9b15408582a4fa742fdf0894147097.jpg": {
+      "max_score": 0.5842157006263733,
+      "n_pred_over_0.3": 3
+    },
+    "adin234_jpg.rf.c23ae944ca8f59c05585afdf216255e2.jpg": {
+      "max_score": 0.7329535484313965,
+      "n_pred_over_0.3": 2
+    },
+    "adin249_jpg.rf.c70036f8e1fadeb28ac3c4b68588bd1d.jpg": {
+      "max_score": 0.689135730266571,
+      "n_pred_over_0.3": 2
+    },
+    "adin282_jpg.rf.1847acd9c2d355b3a6f129f157c70bf6.jpg": {
+      "max_score": 0.5742752552032471,
+      "n_pred_over_0.3": 1
+    },
+    "adin291_jpg.rf.624b8c045b4674fca3d255c5c13403da.jpg": {
+      "max_score": 0.8308765888214111,
+      "n_pred_over_0.3": 1
+    },
+    "adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg": {
+      "max_score": 0.5964935421943665,
+      "n_pred_over_0.3": 3
+    },
+    "adin294_jpg.rf.589edfdaf350459609ddea679ab98049.jpg": {
+      "max_score": 0.7276413440704346,
+      "n_pred_over_0.3": 2
+    },
+    "adin302_jpg.rf.2b2958a05c783d3c716799399c6734ff.jpg": {
+      "max_score": 0.9059833884239197,
+      "n_pred_over_0.3": 1
+    },
+    "adin308_jpg.rf.ee54b010ab2a6cab9b6b371413dc86f1.jpg": {
+      "max_score": 0.9165570735931396,
+      "n_pred_over_0.3": 1
+    },
+    "adin354_jpg.rf.c42463dbabe52b584b315f40d5b214fe.jpg": {
+      "max_score": 0.9031800627708435,
+      "n_pred_over_0.3": 1
+    },
+    "adin393_jpg.rf.931279b75975d1d72f7b7c5bd0029d80.jpg": {
+      "max_score": 0.9252257943153381,
+      "n_pred_over_0.3": 1
+    },
+    "adin402_jpg.rf.c57f98b8c6d7bd99956718e110806489.jpg": {
+      "max_score": 0.967322051525116,
+      "n_pred_over_0.3": 1
+    },
+    "adin406_jpg.rf.39650bd3a4edbe5b88c43faca52f95f0.jpg": {
+      "max_score": 0.6834172606468201,
+      "n_pred_over_0.3": 2
+    },
+    "adin434_jpg.rf.374ff43d7831e2bc40a210c54795f43a.jpg": {
+      "max_score": 0.641616940498352,
+      "n_pred_over_0.3": 2
+    },
+    "adin449_jpg.rf.739006352565c00d99e55c50699f331b.jpg": {
+      "max_score": 0.8086642026901245,
+      "n_pred_over_0.3": 2
+    },
+    "adin473_jpg.rf.f10df2cf3836b3bf9f2595ba136d59d2.jpg": {
+      "max_score": 0.7879734039306641,
+      "n_pred_over_0.3": 2
+    },
+    "adin487_jpg.rf.da536f69a8ecdd5c76114e67a1fc0fbf.jpg": {
+      "max_score": 0.841838538646698,
+      "n_pred_over_0.3": 1
+    },
+    "adin503_jpg.rf.dcbfeb2bc9b716d535c9206b75ffbd87.jpg": {
+      "max_score": 0.9578294157981873,
+      "n_pred_over_0.3": 1
+    },
+    "adin504_jpg.rf.c8eda8ddc7977d81872d60b4978fd03b.jpg": {
+      "max_score": 0.9636929631233215,
+      "n_pred_over_0.3": 1
+    },
+    "adin519_jpg.rf.696216b285cbf0a9f5936bc5fff958f9.jpg": {
+      "max_score": 0.9661334156990051,
+      "n_pred_over_0.3": 1
+    },
+    "adin523_jpg.rf.445b41b32dd44f135922eaeb6072dea8.jpg": {
+      "max_score": 0.942386269569397,
+      "n_pred_over_0.3": 1
+    },
+    "adin555_jpg.rf.55648169fc15f6610568ace1d0f59d2f.jpg": {
+      "max_score": 0.8114668130874634,
+      "n_pred_over_0.3": 2
+    },
+    "adin562_jpg.rf.4062dc09c35b168f6dec655d6cd8faf2.jpg": {
+      "max_score": 0.962438702583313,
+      "n_pred_over_0.3": 1
+    },
+    "adin577_jpg.rf.c92536fc7ead09ef847a748da011c16d.jpg": {
+      "max_score": 0.9245452284812927,
+      "n_pred_over_0.3": 1
+    },
+    "adin595_jpg.rf.b3a54574f0d2527246cdd10090e57f2e.jpg": {
+      "max_score": 0.6718626022338867,
+      "n_pred_over_0.3": 2
+    },
+    "adin610_jpg.rf.a24bccb831d79f9d32940f69ae169085.jpg": {
+      "max_score": 0.9670316576957703,
+      "n_pred_over_0.3": 1
+    },
+    "adin615_jpg.rf.d2919ade3287f8d201c8d088b1df59de.jpg": {
+      "max_score": 0.9577397704124451,
+      "n_pred_over_0.3": 1
+    },
+    "adin618_jpg.rf.f5b6809b4c67625c37d3c1336772b432.jpg": {
+      "max_score": 0.9595462083816528,
+      "n_pred_over_0.3": 1
+    },
+    "adin631_jpg.rf.c5d4d4e337b7f7863b83173e81984932.jpg": {
+      "max_score": 0.9288334846496582,
+      "n_pred_over_0.3": 1
+    },
+    "adin646_jpg.rf.06adafed35043f585281acf32261edbd.jpg": {
+      "max_score": 0.9010459184646606,
+      "n_pred_over_0.3": 2
+    },
+    "adin670_jpg.rf.f9bdecce841bea961ddef67f5c4ab818.jpg": {
+      "max_score": 0.892907440662384,
+      "n_pred_over_0.3": 1
+    },
+    "adin683_jpg.rf.575453df94fc626f24030ac1167ad1be.jpg": {
+      "max_score": 0.9672331213951111,
+      "n_pred_over_0.3": 1
+    },
+    "adin696_jpg.rf.d4fbcf9a71ebb6e895524e277a921d42.jpg": {
+      "max_score": 0.9662348031997681,
+      "n_pred_over_0.3": 1
+    },
+    "adin699_jpg.rf.234c0a79f0df557967caf9b99841ba01.jpg": {
+      "max_score": 0.9515395164489746,
+      "n_pred_over_0.3": 1
+    },
+    "adin706_jpg.rf.1834b64a741369c22647dbefaf2db7a3.jpg": {
+      "max_score": 0.90388023853302,
+      "n_pred_over_0.3": 1
+    },
+    "adin731_jpg.rf.873b167511ec8834d414631e0abb126a.jpg": {
+      "max_score": 0.9636431336402893,
+      "n_pred_over_0.3": 1
+    },
+    "adin739_jpg.rf.873f5ac9a3bd95b04c0dbc1699a3dbd7.jpg": {
+      "max_score": 0.9144062995910645,
+      "n_pred_over_0.3": 1
+    },
+    "adin740_jpg.rf.5e18b365aae62d007e9f61aef277e5ca.jpg": {
+      "max_score": 0.8006808757781982,
+      "n_pred_over_0.3": 2
+    },
+    "adin742_jpg.rf.2fd3aad7db6abd09209e0718050bad3f.jpg": {
+      "max_score": 0.9527855515480042,
+      "n_pred_over_0.3": 1
+    },
+    "adin746_jpg.rf.9d505d0109c86c86a6d60b35b74f7c0d.jpg": {
+      "max_score": 0.9603828191757202,
+      "n_pred_over_0.3": 1
+    },
+    "adin754_jpg.rf.87982bb809d88ca05c34583d413bdf22.jpg": {
+      "max_score": 0.8191554546356201,
+      "n_pred_over_0.3": 2
+    },
+    "adin781_jpg.rf.b5813333d7353654225a4f6d47077f97.jpg": {
+      "max_score": 0.8752044439315796,
+      "n_pred_over_0.3": 2
+    },
+    "adin850_jpg.rf.0ada82b045f4bc1887eddb5f198777dd.jpg": {
+      "max_score": 0.6764259934425354,
+      "n_pred_over_0.3": 2
+    },
+    "adin854_jpg.rf.d8ad65d162027cf5ade575ceb21c265a.jpg": {
+      "max_score": 0.820551335811615,
+      "n_pred_over_0.3": 2
+    },
+    "adin878_jpg.rf.c636b5758b4044a4abdc7b837ceca921.jpg": {
+      "max_score": 0.8995959162712097,
+      "n_pred_over_0.3": 1
+    },
+    "adin901_jpg.rf.d0604ed5de86f1c8aeed426d2c4ad08d.jpg": {
+      "max_score": 0.9512017369270325,
+      "n_pred_over_0.3": 1
+    },
+    "adin912_jpg.rf.4a9ed557e4cd735962e36b69daedd39e.jpg": {
+      "max_score": 0.9445739388465881,
+      "n_pred_over_0.3": 1
+    },
+    "adin919_jpg.rf.6bf84fbb7bfae12b6d804b669bcab758.jpg": {
+      "max_score": 0.9457623958587646,
+      "n_pred_over_0.3": 1
+    },
+    "adin950_jpg.rf.e4d856c3b50398088b45383516509507.jpg": {
+      "max_score": 0.9582986235618591,
+      "n_pred_over_0.3": 1
+    },
+    "adin963_jpg.rf.c37451a739cf05f1c2a3c900020cba42.jpg": {
+      "max_score": 0.9701064229011536,
+      "n_pred_over_0.3": 1
+    },
+    "dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg": {
+      "max_score": 0.46315526962280273,
+      "n_pred_over_0.3": 2
+    },
+    "dentium152_jpg.rf.92ecca2a097d41fac25d702227243e6b.jpg": {
+      "max_score": 0.7359551787376404,
+      "n_pred_over_0.3": 2
+    },
+    "dentium157_jpg.rf.07226bc006c014f5ce908b2a825e8874.jpg": {
+      "max_score": 0.7879896759986877,
+      "n_pred_over_0.3": 2
+    },
+    "dentium170_jpg.rf.f6013288ae3857bcf2323051f933e89e.jpg": {
+      "max_score": 0.5249309539794922,
+      "n_pred_over_0.3": 2
+    },
+    "dentium191_jpg.rf.998c3626e1baf36a37416d5679446d66.jpg": {
+      "max_score": 0.4894009232521057,
+      "n_pred_over_0.3": 1
+    },
+    "dentium213_jpg.rf.ae4112144911d8b0b764b5d60b4c7065.jpg": {
+      "max_score": 0.686735987663269,
+      "n_pred_over_0.3": 2
+    },
+    "dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg": {
+      "max_score": 0.4403132200241089,
+      "n_pred_over_0.3": 2
+    },
+    "dentium227_jpg.rf.f18ccfe453f16301920e39486026c330.jpg": {
+      "max_score": 0.4583367705345154,
+      "n_pred_over_0.3": 2
+    },
+    "dentium263_jpg.rf.cefd12d1cf2ef29ec4f76ae5ecb15fdb.jpg": {
+      "max_score": 0.742327868938446,
+      "n_pred_over_0.3": 2
+    },
+    "dentium270_jpg.rf.59ca092fb4ae59011c025ff815809831.jpg": {
+      "max_score": 0.7231542468070984,
+      "n_pred_over_0.3": 1
+    },
+    "dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg": {
+      "max_score": 0.42031604051589966,
+      "n_pred_over_0.3": 2
+    },
+    "dentium314_jpg.rf.c2fea5539e7049f7918a694ea8f9c24b.jpg": {
+      "max_score": 0.8088442087173462,
+      "n_pred_over_0.3": 2
+    },
+    "dentium349_jpg.rf.690e2e2a09fac781c4a82ffb23266349.jpg": {
+      "max_score": 0.9504458904266357,
+      "n_pred_over_0.3": 1
+    },
+    "dentium385_jpg.rf.cefaa76d7d598dea37966108aeedc630.jpg": {
+      "max_score": 0.6871982216835022,
+      "n_pred_over_0.3": 2
+    },
+    "dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg": {
+      "max_score": 0.5016674399375916,
+      "n_pred_over_0.3": 2
+    },
+    "dentium420_jpg.rf.03bc5ffb319f661fb2de00ff16d61d6e.jpg": {
+      "max_score": 0.7981462478637695,
+      "n_pred_over_0.3": 2
+    },
+    "dentium437_jpg.rf.4e04ba3e843c5b23ecdc6f16ad998d39.jpg": {
+      "max_score": 0.6993512511253357,
+      "n_pred_over_0.3": 1
+    },
+    "dentium453_jpg.rf.c5fb829fc856737fada486f07054f280.jpg": {
+      "max_score": 0.9139647483825684,
+      "n_pred_over_0.3": 1
+    },
+    "dentium461_jpg.rf.71f44a60003ee392810bf45226cd6b54.jpg": {
+      "max_score": 0.9387549161911011,
+      "n_pred_over_0.3": 1
+    },
+    "dentium464_jpg.rf.fbfe0a4413f343e78013cfc595331156.jpg": {
+      "max_score": 0.8856684565544128,
+      "n_pred_over_0.3": 1
+    },
+    "dentium466_jpg.rf.3de40b910014fc0c41a07419dc1152bf.jpg": {
+      "max_score": 0.8649064302444458,
+      "n_pred_over_0.3": 1
+    },
+    "dentium478_jpg.rf.d17e8420c85ea7f0b6903802d4a41740.jpg": {
+      "max_score": 0.6470528244972229,
+      "n_pred_over_0.3": 1
+    },
+    "dentium499_jpg.rf.bed07a4b6190550f7cf7168d100fd2e5.jpg": {
+      "max_score": 0.7189307808876038,
+      "n_pred_over_0.3": 2
+    },
+    "dentium519_jpg.rf.469acde1b4c2981b647d3ffd2973f79c.jpg": {
+      "max_score": 0.6459399461746216,
+      "n_pred_over_0.3": 2
+    },
+    "dentium52_jpg.rf.264ae69cf11428aed9ddd2ae43756f32.jpg": {
+      "max_score": 0.8423940539360046,
+      "n_pred_over_0.3": 2
+    },
+    "dentium543_jpg.rf.1ec6ecd18fbd79b281eac1b4c8bc5830.jpg": {
+      "max_score": 0.6800118684768677,
+      "n_pred_over_0.3": 1
+    },
+    "dentium554_jpg.rf.d734782873c537338f738097b8aa7f05.jpg": {
+      "max_score": 0.8697861433029175,
+      "n_pred_over_0.3": 1
+    },
+    "dentium64_jpg.rf.7aa429c99086a613a7c980165d77c54a.jpg": {
+      "max_score": 0.8828138113021851,
+      "n_pred_over_0.3": 1
+    },
+    "dentium71_jpg.rf.cfa3f9be0c8deb2c2d8b72ddecac4c42.jpg": {
+      "max_score": 0.5485067367553711,
+      "n_pred_over_0.3": 1
+    },
+    "dentium87_jpg.rf.056c915ecd3ede0974859c18f680dd20.jpg": {
+      "max_score": 0.8335981965065002,
+      "n_pred_over_0.3": 2
+    },
+    "dentium90_jpg.rf.b81e9c7884207e870b7a4a3e498869ec.jpg": {
+      "max_score": 0.757235586643219,
+      "n_pred_over_0.3": 2
+    },
+    "dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg": {
+      "max_score": 0.41504937410354614,
+      "n_pred_over_0.3": 4
+    },
+    "mis104-copy-2_jpg.rf.f41f7ed40905c41eec0c9c03be0f1f58.jpg": {
+      "max_score": 0.7703227996826172,
+      "n_pred_over_0.3": 1
+    },
+    "mis118-copy-2_jpg.rf.737221ef875fa9851319fff58861079e.jpg": {
+      "max_score": 0.94249427318573,
+      "n_pred_over_0.3": 1
+    },
+    "mis143-copy-2_jpg.rf.1f134ff475f4ba530067db7b6a7cf67a.jpg": {
+      "max_score": 0.34682947397232056,
+      "n_pred_over_0.3": 3
+    },
+    "mis21-copy-2_jpg.rf.094cb2566ed4f90279898293e533a412.jpg": {
+      "max_score": 0.5304666757583618,
+      "n_pred_over_0.3": 1
+    },
+    "mis31-copy-2_jpg.rf.eeeffc4d6b9b1438a80ad31d2f04ee4e.jpg": {
+      "max_score": 0.7594330906867981,
+      "n_pred_over_0.3": 1
+    },
+    "mis72-copy-2_jpg.rf.622df2d9eef98e7a0f43f877186a85ed.jpg": {
+      "max_score": 0.8030999898910522,
+      "n_pred_over_0.3": 2
+    },
+    "mis81-copy-2_jpg.rf.750c3eaa55ecc801187e00eb36537bfd.jpg": {
+      "max_score": 0.970395565032959,
+      "n_pred_over_0.3": 1
+    },
+    "mis85-copy-2_jpg.rf.09bbf47ae76a0e0ffc4514e87edfbbde.jpg": {
+      "max_score": 0.9638833999633789,
+      "n_pred_over_0.3": 1
+    },
+    "mis98-copy-2_jpg.rf.6b7e3729c308798f3f694efebad35142.jpg": {
+      "max_score": 0.9700286388397217,
+      "n_pred_over_0.3": 1
+    },
+    "noris108_jpg.rf.39ca080f1713ac21c12f314f544e8de3.jpg": {
+      "max_score": 0.7750239968299866,
+      "n_pred_over_0.3": 1
+    },
+    "noris134_jpg.rf.a24e08ca87c6d08ac9b704b44cec829e.jpg": {
+      "max_score": 0.8557262420654297,
+      "n_pred_over_0.3": 1
+    },
+    "noris141_jpg.rf.971f7a7d0075391d549bd23dbac32d1d.jpg": {
+      "max_score": 0.6432924270629883,
+      "n_pred_over_0.3": 1
+    },
+    "noris151_jpg.rf.fc173a8ee790afb0f6316a4fb7113409.jpg": {
+      "max_score": 0.9544382095336914,
+      "n_pred_over_0.3": 1
+    },
+    "noris157_jpg.rf.48de5843105a2fc79f80802c40f42d02.jpg": {
+      "max_score": 0.9381716251373291,
+      "n_pred_over_0.3": 1
+    },
+    "noris185_jpg.rf.251bcb4da1a657cbbd25bfd73b4785bf.jpg": {
+      "max_score": 0.8953701257705688,
+      "n_pred_over_0.3": 1
+    },
+    "noris196_jpg.rf.624316fb5124494e25e5b9a9170810e0.jpg": {
+      "max_score": 0.4894055724143982,
+      "n_pred_over_0.3": 1
+    },
+    "noris198_jpg.rf.8373464b07f8704696d1ee862435a5e1.jpg": {
+      "max_score": 0.9696131348609924,
+      "n_pred_over_0.3": 1
+    },
+    "noris199_jpg.rf.84ba2a1cbd14211ac98ac7fad264edda.jpg": {
+      "max_score": 0.925258457660675,
+      "n_pred_over_0.3": 1
+    },
+    "noris203_jpg.rf.0ff1afb6bce555819cc2dfa974ff67ac.jpg": {
+      "max_score": 0.9414097666740417,
+      "n_pred_over_0.3": 1
+    },
+    "noris224_jpg.rf.861f5a69bc58b1326ea14d6c41fb2530.jpg": {
+      "max_score": 0.9666085839271545,
+      "n_pred_over_0.3": 1
+    },
+    "noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg": {
+      "max_score": 0.646424412727356,
+      "n_pred_over_0.3": 1
+    },
+    "noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg": {
+      "max_score": 0.6364462375640869,
+      "n_pred_over_0.3": 2
+    },
+    "noris285_jpg.rf.453b370e6812175bfdaa108846616684.jpg": {
+      "max_score": 0.7936277985572815,
+      "n_pred_over_0.3": 2
+    },
+    "noris311_jpg.rf.75ce9dfd32b60bde0ebd2115fe40747f.jpg": {
+      "max_score": 0.952156126499176,
+      "n_pred_over_0.3": 1
+    },
+    "noris344_jpg.rf.5397f0a12430eb35f6fce2b2297c12e2.jpg": {
+      "max_score": 0.9123759269714355,
+      "n_pred_over_0.3": 1
+    },
+    "noris350_jpg.rf.48370619be555e83ba04c9de1f91615a.jpg": {
+      "max_score": 0.7098908424377441,
+      "n_pred_over_0.3": 2
+    },
+    "noris360_jpg.rf.a846623b6e71c5ef2d12fe9beb6c89c9.jpg": {
+      "max_score": 0.750397801399231,
+      "n_pred_over_0.3": 2
+    },
+    "noris388_jpg.rf.5ac159572f730667cf85ddf13bcc8547.jpg": {
+      "max_score": 0.8211895227432251,
+      "n_pred_over_0.3": 1
+    },
+    "noris408_jpg.rf.93e87d8e3875978bcd713ad0499afe6b.jpg": {
+      "max_score": 0.3659629225730896,
+      "n_pred_over_0.3": 1
+    },
+    "noris435_jpg.rf.2574e6b672d38747f19c27c8d6fd286b.jpg": {
+      "max_score": 0.584823489189148,
+      "n_pred_over_0.3": 1
+    },
+    "noris445_jpg.rf.142be57145fc32c1a9414b6d84bc7524.jpg": {
+      "max_score": 0.9497132301330566,
+      "n_pred_over_0.3": 1
+    },
+    "noris449_jpg.rf.6f5644a8ffab2a4ba200edb1b9bd3e41.jpg": {
+      "max_score": 0.9511193037033081,
+      "n_pred_over_0.3": 1
+    },
+    "noris462_jpg.rf.1f9668085e713ccf63ff68ee0bcd3b16.jpg": {
+      "max_score": 0.7983275651931763,
+      "n_pred_over_0.3": 2
+    },
+    "noris493_jpg.rf.507168718265e637ebb07fa1b5294072.jpg": {
+      "max_score": 0.8087882995605469,
+      "n_pred_over_0.3": 1
+    },
+    "noris528_jpg.rf.aba736fdb92c41b5f2a9d36cc8f5460b.jpg": {
+      "max_score": 0.9407303333282471,
+      "n_pred_over_0.3": 1
+    },
+    "noris564_jpg.rf.8817eea94a949b884330ad013fae575c.jpg": {
+      "max_score": 0.9514830112457275,
+      "n_pred_over_0.3": 1
+    },
+    "noris571_jpg.rf.616ec9650112ef3adf8e846d8b522125.jpg": {
+      "max_score": 0.9394868016242981,
+      "n_pred_over_0.3": 1
+    },
+    "noris572_jpg.rf.8a7165d6bdb055e4fd347bf5624a3d56.jpg": {
+      "max_score": 0.933296263217926,
+      "n_pred_over_0.3": 1
+    },
+    "noris583_jpg.rf.14b5bd7175820678652603809962108f.jpg": {
+      "max_score": 0.8983331322669983,
+      "n_pred_over_0.3": 1
+    },
+    "noris639_jpg.rf.ada469de4dc9321ba4c585edd0b7cf75.jpg": {
+      "max_score": 0.9566952586174011,
+      "n_pred_over_0.3": 1
+    },
+    "noris676_jpg.rf.dd4dbb89662e9f647c86e79f26b55dc9.jpg": {
+      "max_score": 0.540022611618042,
+      "n_pred_over_0.3": 2
+    },
+    "noris683_jpg.rf.30d0eae0f21e3b73402cd90cb99ef2a2.jpg": {
+      "max_score": 0.6002511978149414,
+      "n_pred_over_0.3": 1
+    },
+    "noris692_jpg.rf.62c4479e217af89ee6c4636228da3ae0.jpg": {
+      "max_score": 0.6245712637901306,
+      "n_pred_over_0.3": 1
+    },
+    "noris70_jpg.rf.587f81f350fab39f25ee47f726f79855.jpg": {
+      "max_score": 0.3186507225036621,
+      "n_pred_over_0.3": 2
+    },
+    "noris742_jpg.rf.47b5d0a99d3afe4596d9c0e22ff8e93d.jpg": {
+      "max_score": 0.9494131207466125,
+      "n_pred_over_0.3": 1
+    },
+    "noris750_jpg.rf.4d952ad3ac300f2e99d0865ef971cffe.jpg": {
+      "max_score": 0.9110540747642517,
+      "n_pred_over_0.3": 1
+    },
+    "noris754_jpg.rf.72a4632fb3bb9b503bcef671b157b82c.jpg": {
+      "max_score": 0.8812777400016785,
+      "n_pred_over_0.3": 1
+    },
+    "noris773_jpg.rf.1876193f43dddec8b105a021be40e3fc.jpg": {
+      "max_score": 0.4922489821910858,
+      "n_pred_over_0.3": 8
+    },
+    "noris777_jpg.rf.580edfef7ff557b7f17cb3da29c8ad2a.jpg": {
+      "max_score": 0.9460991621017456,
+      "n_pred_over_0.3": 1
+    },
+    "noris801_jpg.rf.0d669dcf6415d9b991eac4bd8da1a3ac.jpg": {
+      "max_score": 0.9711741209030151,
+      "n_pred_over_0.3": 1
+    },
+    "noris803_jpg.rf.701d5b3f240895710bc4542cc48b771e.jpg": {
+      "max_score": 0.9673577547073364,
+      "n_pred_over_0.3": 1
+    },
+    "noris810_jpg.rf.74511e14046b641c82a3254d22f8b29a.jpg": {
+      "max_score": 0.953031063079834,
+      "n_pred_over_0.3": 1
+    },
+    "noris814_jpg.rf.7df935b7d0e4e03ba2e22ef3a8f9b6f9.jpg": {
+      "max_score": 0.9100956320762634,
+      "n_pred_over_0.3": 1
+    },
+    "noris816_jpg.rf.605333aa0daf8c6c2a07e13966f82eef.jpg": {
+      "max_score": 0.9524350762367249,
+      "n_pred_over_0.3": 1
+    },
+    "noris826_jpg.rf.853e2ebfa321a9f25bd0b7c882634a0c.jpg": {
+      "max_score": 0.9719484448432922,
+      "n_pred_over_0.3": 1
+    },
+    "noris830_jpg.rf.995ad91ed475f2d1e6ca4af3793b09c3.jpg": {
+      "max_score": 0.9631483554840088,
+      "n_pred_over_0.3": 1
+    },
+    "noris831_jpg.rf.d3602b8af813ee06a5c04c84dd37ef05.jpg": {
+      "max_score": 0.9710230827331543,
+      "n_pred_over_0.3": 1
+    },
+    "noris836_jpg.rf.864ddcc122816b4425c1024cfc190f2e.jpg": {
+      "max_score": 0.9197182059288025,
+      "n_pred_over_0.3": 1
+    },
+    "noris843_jpg.rf.7a7bd05ec62c03be55b8500da5e31d3c.jpg": {
+      "max_score": 0.6886985898017883,
+      "n_pred_over_0.3": 2
+    },
+    "osstem103_jpg.rf.5afb9c79c468bf2460fb2b0a6e47046b.jpg": {
+      "max_score": 0.9703841209411621,
+      "n_pred_over_0.3": 1
+    },
+    "osstem108_jpg.rf.5c2fcfc219b2f0a0996fdd25be1cbcbb.jpg": {
+      "max_score": 0.9691776633262634,
+      "n_pred_over_0.3": 1
+    },
+    "osstem112_jpg.rf.badb5447941118732083d4d167b69a0d.jpg": {
+      "max_score": 0.9299342632293701,
+      "n_pred_over_0.3": 1
+    },
+    "osstem130_jpg.rf.6e49b396778e8cb2e1697237959d3f3a.jpg": {
+      "max_score": 0.9673065543174744,
+      "n_pred_over_0.3": 1
+    },
+    "osstem165_jpg.rf.822a52a61f327a6f16a0cf446a4cd466.jpg": {
+      "max_score": 0.9674977660179138,
+      "n_pred_over_0.3": 1
+    },
+    "osstem179_jpg.rf.ac3c04a328671eb787ab2acc20b36af1.jpg": {
+      "max_score": 0.9335119128227234,
+      "n_pred_over_0.3": 1
+    },
+    "osstem180_jpg.rf.f6bfc201cde3c5736f84bf5caaa3012c.jpg": {
+      "max_score": 0.9522199034690857,
+      "n_pred_over_0.3": 1
+    },
+    "osstem181_jpg.rf.ddc0a97a1edc66e5a2f061ce653d50d4.jpg": {
+      "max_score": 0.9391295909881592,
+      "n_pred_over_0.3": 1
+    },
+    "osstem236_jpg.rf.4728b32b8a1bd63068b79833275e6842.jpg": {
+      "max_score": 0.9545953869819641,
+      "n_pred_over_0.3": 1
+    },
+    "osstem246_jpg.rf.a5723b72415632b2bef3f7600e5e9c93.jpg": {
+      "max_score": 0.7437674403190613,
+      "n_pred_over_0.3": 2
+    },
+    "osstem247_jpg.rf.91771e593c5622b8831eaf7576566c86.jpg": {
+      "max_score": 0.9505735039710999,
+      "n_pred_over_0.3": 1
+    },
+    "osstem267_jpg.rf.bd7624b91e06b6a287b15275e226512a.jpg": {
+      "max_score": 0.7068257927894592,
+      "n_pred_over_0.3": 2
+    },
+    "osstem277_jpg.rf.a36671d60278adeee39c0b21cef33803.jpg": {
+      "max_score": 0.9436950087547302,
+      "n_pred_over_0.3": 1
+    },
+    "osstem301_jpg.rf.978c01d49bf218e5fb9686920818cfa5.jpg": {
+      "max_score": 0.9246025085449219,
+      "n_pred_over_0.3": 1
+    },
+    "osstem305_jpg.rf.e18209f85bce48f142357a2e784c4c18.jpg": {
+      "max_score": 0.8373346924781799,
+      "n_pred_over_0.3": 2
+    },
+    "osstem316_jpg.rf.5d6470522fe5a172c04395ee304d1754.jpg": {
+      "max_score": 0.9577202200889587,
+      "n_pred_over_0.3": 1
+    },
+    "osstem330_jpg.rf.d044b71abb2b13ff149eea569b6d8c24.jpg": {
+      "max_score": 0.9071457386016846,
+      "n_pred_over_0.3": 1
+    },
+    "osstem363_jpg.rf.c099caebc09e712d6cb638942c419e59.jpg": {
+      "max_score": 0.7661017179489136,
+      "n_pred_over_0.3": 2
+    },
+    "osstem393_jpg.rf.ee94d7659107937687894ccccba32f2a.jpg": {
+      "max_score": 0.9718149900436401,
+      "n_pred_over_0.3": 1
+    },
+    "osstem394_jpg.rf.3d524760551a256ff0f38e167e2d675c.jpg": {
+      "max_score": 0.9749821424484253,
+      "n_pred_over_0.3": 1
+    },
+    "osstem401_jpg.rf.c4f0b4634387c35e2f8fd48a69a73a84.jpg": {
+      "max_score": 0.963023841381073,
+      "n_pred_over_0.3": 1
+    },
+    "osstem407_jpg.rf.d35fac710eeb578bd12a1d5311987587.jpg": {
+      "max_score": 0.957643449306488,
+      "n_pred_over_0.3": 1
+    },
+    "osstem414_jpg.rf.748023034a65194a8fd0a5dd57f95dd4.jpg": {
+      "max_score": 0.9680707454681396,
+      "n_pred_over_0.3": 1
+    },
+    "osstem421_jpg.rf.88af681fc0f899b06f160f28455b7ca6.jpg": {
+      "max_score": 0.6921120882034302,
+      "n_pred_over_0.3": 1
+    },
+    "osstem469_jpg.rf.b3078f390ad2b2b570e620f09352e537.jpg": {
+      "max_score": 0.9589968323707581,
+      "n_pred_over_0.3": 1
+    },
+    "osstem502_jpg.rf.ce8605a1af3b9801583e0c5f2b51f28b.jpg": {
+      "max_score": 0.96888667345047,
+      "n_pred_over_0.3": 1
+    },
+    "osstem508_jpg.rf.c91a4588d8436bcaed7e10913e374b68.jpg": {
+      "max_score": 0.9597123861312866,
+      "n_pred_over_0.3": 1
+    },
+    "osstem516_jpg.rf.c8c153659d1b8f5d6c3bb821977532e7.jpg": {
+      "max_score": 0.9630829095840454,
+      "n_pred_over_0.3": 1
+    },
+    "osstem528_jpg.rf.93c5faab530258656692db6c23b1371b.jpg": {
+      "max_score": 0.9614601135253906,
+      "n_pred_over_0.3": 1
+    },
+    "osstem542_jpg.rf.a34aa6a6708939595faa4fa37a41256f.jpg": {
+      "max_score": 0.8420743346214294,
+      "n_pred_over_0.3": 2
+    },
+    "osstem543_jpg.rf.cc3e06f16081e1f9e61c1c0524a9776b.jpg": {
+      "max_score": 0.6593856811523438,
+      "n_pred_over_0.3": 2
+    },
+    "osstem565_jpg.rf.60f374aa11faa867a2004d03d34cc5e1.jpg": {
+      "max_score": 0.9579989910125732,
+      "n_pred_over_0.3": 1
+    },
+    "osstem579_jpg.rf.3cf3316743744eaa984d16c993f05520.jpg": {
+      "max_score": 0.9062988758087158,
+      "n_pred_over_0.3": 1
+    },
+    "osstem632_jpg.rf.de1e7495a15af66ee900b28f16313e92.jpg": {
+      "max_score": 0.9627877473831177,
+      "n_pred_over_0.3": 1
+    },
+    "osstem648_jpg.rf.50355815eedda7dd85e83a63c68e5f94.jpg": {
+      "max_score": 0.916312575340271,
+      "n_pred_over_0.3": 1
+    },
+    "osstem730_jpg.rf.e970c9f6a5214c9673d23f1561e88c9a.jpg": {
+      "max_score": 0.8457454442977905,
+      "n_pred_over_0.3": 2
+    },
+    "osstem738_jpg.rf.2bdf3c82b36720f55c6efcc54e15f620.jpg": {
+      "max_score": 0.7880825400352478,
+      "n_pred_over_0.3": 2
+    },
+    "osstem746_jpg.rf.b38b074e90a4b6d375dae48b67ea27e8.jpg": {
+      "max_score": 0.7767462730407715,
+      "n_pred_over_0.3": 2
+    },
+    "osstem747_jpg.rf.bbb5ad68d1b6b255a9c5c1daeffb39ec.jpg": {
+      "max_score": 0.7806317806243896,
+      "n_pred_over_0.3": 2
+    },
+    "osstem798_jpg.rf.5e508e638e76981447c4f4fd5dad4304.jpg": {
+      "max_score": 0.9348183870315552,
+      "n_pred_over_0.3": 1
+    },
+    "osstem814_jpg.rf.d3c60114acb085c04b3d42ed517e7c28.jpg": {
+      "max_score": 0.7250521183013916,
+      "n_pred_over_0.3": 2
+    },
+    "osstem818_jpg.rf.3b870af585bd747e1d174ea8099e8296.jpg": {
+      "max_score": 0.8585692644119263,
+      "n_pred_over_0.3": 1
+    },
+    "osstem92_jpg.rf.6f94117d803159fa458757ef18d312f7.jpg": {
+      "max_score": 0.555689811706543,
+      "n_pred_over_0.3": 2
+    }
+  }
+}

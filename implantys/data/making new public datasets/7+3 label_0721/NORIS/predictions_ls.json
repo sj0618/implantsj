@@ -1,0 +1,6845 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris101_jpg.rf.dafdf235df35e4c45d5cebeed20128d1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.849,
+        "result": [
+          {
+            "id": "5e5bb848d2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.4720401763916,
+              "y": 36.43980026245117,
+              "width": 20.472723245620728,
+              "height": 44.636642932891846,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.849
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris109_jpg.rf.d8268812532e82f9ae658bcb3c8093af.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9327,
+        "result": [
+          {
+            "id": "f84694368e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.03053331375122,
+              "y": 29.470601677894592,
+              "width": 19.49676275253296,
+              "height": 36.75093054771423,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9327
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris110_jpg.rf.5fc32f386d63705bf6367172efe22a88.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8181,
+        "result": [
+          {
+            "id": "7cc5913606",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.89021414518356,
+              "y": 12.784382700920105,
+              "width": 41.70784056186676,
+              "height": 27.86971926689148,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8181
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris119_jpg.rf.16cc7c9bd82aa708cffa53cd44fa2e00.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9413,
+        "result": [
+          {
+            "id": "a647835838",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 67.64161139726639,
+              "y": 42.840294539928436,
+              "width": 19.917032122612,
+              "height": 40.4872328042984,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9413
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris125_jpg.rf.6bee45a7154f5bef617f20f4559b8a60.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9535,
+        "result": [
+          {
+            "id": "091b445cb4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.866421818733215,
+              "y": 26.56927853822708,
+              "width": 35.96786856651306,
+              "height": 41.06569588184357,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9535
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris137_jpg.rf.fbb8d60816d3c990dbf43b6e553718de.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5291,
+        "result": [
+          {
+            "id": "b2cda24acf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.986777663230896,
+              "y": 25.74004828929901,
+              "width": 26.17143988609314,
+              "height": 40.70630073547363,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5291
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris142_jpg.rf.7eb314a6d3e1f31ec729c58dc18eabfc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8783,
+        "result": [
+          {
+            "id": "6ff0a8dd57",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.615584373474121,
+              "y": 16.38975739479065,
+              "width": 29.218310117721558,
+              "height": 40.36194086074829,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8783
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris151_jpg.rf.fc173a8ee790afb0f6316a4fb7113409.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9542,
+        "result": [
+          {
+            "id": "257b647ec4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.23060196638107,
+              "y": 31.161676347255707,
+              "width": 36.03890240192413,
+              "height": 49.849215149879456,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9542
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris156_jpg.rf.56df0e4b192cc9b93de6c03c97f8aa5b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5244,
+        "result": [
+          {
+            "id": "ec6cd351ab",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.667170107364655,
+              "y": 43.329040706157684,
+              "width": 25.069376826286316,
+              "height": 34.517231583595276,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5244
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris157_jpg.rf.48de5843105a2fc79f80802c40f42d02.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9377,
+        "result": [
+          {
+            "id": "d593406d49",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.629073441028595,
+              "y": 29.18373942375183,
+              "width": 24.89006221294403,
+              "height": 50.916898250579834,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9377
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris158_jpg.rf.55fc6f6180409ea3388140a4fdd94a99.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.886,
+        "result": [
+          {
+            "id": "f2eedf4f60",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.3737787604332,
+              "y": 49.48705434799194,
+              "width": 20.742884278297424,
+              "height": 31.477069854736328,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.886
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris167_jpg.rf.1e205d84b13a0936d107cc7dbe98c4c5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.48055000000000003,
+        "result": [
+          {
+            "id": "3d2f861789",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.461577236652374,
+              "y": 31.102198362350464,
+              "width": 26.222583651542664,
+              "height": 56.43035173416138,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.532
+          },
+          {
+            "id": "c8c34f0cba",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.657743632793427,
+              "y": 38.9813095331192,
+              "width": 26.34776532649994,
+              "height": 48.526543378829956,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4291
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris175_jpg.rf.58d5765a3450a2e9c30efffcd41f8364.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5279,
+        "result": [
+          {
+            "id": "725d3d76d3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.835738599300385,
+              "y": 41.64582043886185,
+              "width": 41.53779447078705,
+              "height": 25.807568430900574,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5279
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris176_jpg.rf.42765d002b5d8eba84830d2e31cc04f4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7598,
+        "result": [
+          {
+            "id": "02a14069d8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.56810641288757,
+              "y": 35.03864407539368,
+              "width": 39.683711528778076,
+              "height": 29.302990436553955,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7598
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris177_jpg.rf.2109a643e7d811af201962471b08ff2b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9503,
+        "result": [
+          {
+            "id": "9a729de69b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.721967577934265,
+              "y": 16.692960262298584,
+              "width": 26.542383432388306,
+              "height": 74.04377460479736,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9503
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris178_jpg.rf.dce5e51e4e1da834526d2e4b11a04724.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8932,
+        "result": [
+          {
+            "id": "3fca409715",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.1140872836113,
+              "y": 27.69172489643097,
+              "width": 22.58460223674774,
+              "height": 61.648768186569214,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8932
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris187_jpg.rf.20ece56c00b51d568af1fb6a12f053c5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9615,
+        "result": [
+          {
+            "id": "504d4f5f91",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.1007034778595,
+              "y": 26.514798402786255,
+              "width": 21.45519256591797,
+              "height": 50.62817335128784,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9615
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris189_jpg.rf.51e9489b16f2b6c94ab37be6ac7be459.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9596,
+        "result": [
+          {
+            "id": "5fa5ba3876",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.476420640945435,
+              "y": 40.735381841659546,
+              "width": 56.40914440155029,
+              "height": 25.305593013763428,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9596
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris190_jpg.rf.8c3585664de53dd9992233789af61090.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9246,
+        "result": [
+          {
+            "id": "af11dd9a97",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.950021147727966,
+              "y": 22.50632643699646,
+              "width": 21.04765772819519,
+              "height": 59.15827751159668,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9246
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris192_jpg.rf.d5c527b002d88a5580d3a5fb910fb793.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9676,
+        "result": [
+          {
+            "id": "301c37a21f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.02261525392532,
+              "y": 24.13596510887146,
+              "width": 16.300496459007263,
+              "height": 50.78275203704834,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9676
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris193_jpg.rf.c1406cca04744d5337797629dbefa864.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9664,
+        "result": [
+          {
+            "id": "9fc58acd97",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.49822473526001,
+              "y": 13.596230745315552,
+              "width": 28.271102905273438,
+              "height": 57.56117105484009,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9664
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris202_jpg.rf.b3b9135b7d71505802e86d1d4813fee7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9714,
+        "result": [
+          {
+            "id": "e53fc88459",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.54228514432907,
+              "y": 18.608638644218445,
+              "width": 27.87494957447052,
+              "height": 59.124261140823364,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9714
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris203_jpg.rf.0ff1afb6bce555819cc2dfa974ff67ac.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9409,
+        "result": [
+          {
+            "id": "1fae5acf50",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.85532605648041,
+              "y": 2.8219640254974365,
+              "width": 32.78564810752869,
+              "height": 82.82442092895508,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9409
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris214_jpg.rf.8144b9e2005b190ba5bf3fe69107c550.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9608,
+        "result": [
+          {
+            "id": "5ff0d61f16",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.71125030517578,
+              "y": 43.78806874155998,
+              "width": 63.31371068954468,
+              "height": 20.962120592594147,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9608
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris222_jpg.rf.0c335c0a226a68abc6835756c015f382.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9272,
+        "result": [
+          {
+            "id": "ce765012ce",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.37958604097366,
+              "y": 11.064592003822327,
+              "width": 26.61004364490509,
+              "height": 69.10536289215088,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9272
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris242_jpg.rf.5f173764731fbf31551f9bffea9c30fa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9737,
+        "result": [
+          {
+            "id": "ae9af71969",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.56654578447342,
+              "y": 20.77529728412628,
+              "width": 32.290515303611755,
+              "height": 66.24881625175476,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9737
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris248_jpg.rf.a8295551b041bd67c8cd3cea368de49b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9613,
+        "result": [
+          {
+            "id": "9a4b282c1e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.713976830244064,
+              "y": 16.77567958831787,
+              "width": 21.66062742471695,
+              "height": 67.27999448776245,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9613
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris254_jpg.rf.efcdcad0c123280b2113becf9f7097fe.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9728,
+        "result": [
+          {
+            "id": "0907c3d6fc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.593006134033203,
+              "y": 30.352455377578735,
+              "width": 58.09295177459717,
+              "height": 32.10601806640625,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9728
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris269_jpg.rf.ad17a3f325026e7f7f9a6de2fbc11aea.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9321,
+        "result": [
+          {
+            "id": "d7b3bfab10",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.2477810382843,
+              "y": 22.92698323726654,
+              "width": 26.94714069366455,
+              "height": 74.97827410697937,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9321
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris273_jpg.rf.0369c4735a96db68c562d024413383e6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9679,
+        "result": [
+          {
+            "id": "3cf4f4763e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.709284842014313,
+              "y": 20.47598958015442,
+              "width": 43.95856559276581,
+              "height": 71.50096893310547,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9679
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris279_jpg.rf.eb5fdb0062a40824446f3404aa168e04.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.71435,
+        "result": [
+          {
+            "id": "04b4439356",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.084147930145264,
+              "y": 32.26339817047119,
+              "width": 40.6615674495697,
+              "height": 32.94094800949097,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.85
+          },
+          {
+            "id": "69c31b08f9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.359678864479065,
+              "y": 69.38666850328445,
+              "width": 41.628044843673706,
+              "height": 23.39772880077362,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5787
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris281_jpg.rf.70b18cd973b517106367fc752cf01dfe.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8831,
+        "result": [
+          {
+            "id": "60fad49c41",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.13047417998314,
+              "y": 11.360307037830353,
+              "width": 13.764549791812897,
+              "height": 38.19497525691986,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8831
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris285_jpg.rf.453b370e6812175bfdaa108846616684.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.634,
+        "result": [
+          {
+            "id": "a1a0602090",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.70414412021637,
+              "y": 39.63730037212372,
+              "width": 20.46484351158142,
+              "height": 40.31594395637512,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7842
+          },
+          {
+            "id": "ffe1b5586e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.77726697921753,
+              "y": 46.97218835353851,
+              "width": 20.663034915924072,
+              "height": 39.062243700027466,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4838
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris287_jpg.rf.d3529de04b8b8805187448383075d93b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5912999999999999,
+        "result": [
+          {
+            "id": "4535aa08e7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.22003799676895,
+              "y": 32.43862986564636,
+              "width": 20.11248767375946,
+              "height": 35.74167490005493,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6207
+          },
+          {
+            "id": "b4da692121",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 77.30844914913177,
+              "y": 24.21391010284424,
+              "width": 18.364423513412476,
+              "height": 36.14669442176819,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5619
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris289_jpg.rf.03522dc26163ac77de478ef0bd9cb6f2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9529,
+        "result": [
+          {
+            "id": "cb2dc72be5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.769205152988434,
+              "y": 43.08052957057953,
+              "width": 38.90828788280487,
+              "height": 18.701833486557007,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9529
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris291_jpg.rf.509a6548b6004fe3a484c4af5ed74daf.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9033,
+        "result": [
+          {
+            "id": "52fa217b61",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.17400732636452,
+              "y": 41.92285239696503,
+              "width": 18.049006164073944,
+              "height": 43.38330626487732,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9033
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris292_jpg.rf.33932d94afe636f593215d02f1268d63.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9335,
+        "result": [
+          {
+            "id": "f1e8792a40",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 6.452076882123947,
+              "y": 15.345624089241028,
+              "width": 14.777515828609467,
+              "height": 42.135125398635864,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9335
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris293_jpg.rf.7b2b1764b8b3ed93c7728eb97acb8fbb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9366,
+        "result": [
+          {
+            "id": "94c27c1a18",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.68087789416313,
+              "y": 24.59494173526764,
+              "width": 20.092250406742096,
+              "height": 40.76187610626221,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9366
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris294_jpg.rf.890df8f5049037e485882175abbbb222.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9671,
+        "result": [
+          {
+            "id": "b6140f5fcc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.403381526470184,
+              "y": 58.90565738081932,
+              "width": 42.7522212266922,
+              "height": 22.586913406848907,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9671
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris295_jpg.rf.7f883792736e0a102da5dbf7a97262f8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9547,
+        "result": [
+          {
+            "id": "f4f6e3756b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.77942571043968,
+              "y": 26.884616911411285,
+              "width": 12.474937736988068,
+              "height": 41.187265515327454,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9547
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris296_jpg.rf.ff9c1d2aaa69b3e29ab4fb91e154e23b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6934,
+        "result": [
+          {
+            "id": "b36798b0a2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.996550261974335,
+              "y": 30.109837651252747,
+              "width": 29.56276834011078,
+              "height": 46.49671912193298,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7895
+          },
+          {
+            "id": "8181a598f3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 66.2714071571827,
+              "y": 14.078712463378906,
+              "width": 17.054031789302826,
+              "height": 47.923433780670166,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5973
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris297_jpg.rf.f5602e987c5f2765c712750c8535ea6c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7827,
+        "result": [
+          {
+            "id": "205bef2a46",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.38206624984741,
+              "y": 13.60979825258255,
+              "width": 27.31335163116455,
+              "height": 42.06952154636383,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7827
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris298_jpg.rf.b8bd365286f21faf588aa35971fe1010.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8102,
+        "result": [
+          {
+            "id": "1a0325909e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.835621953010559,
+              "y": 18.03280860185623,
+              "width": 55.328720808029175,
+              "height": 17.775192856788635,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8876
+          },
+          {
+            "id": "e5ba3c5d2e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.391523957252502,
+              "y": 61.27634271979332,
+              "width": 55.05374073982239,
+              "height": 18.123359978199005,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7328
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris302_jpg.rf.301b3200ba2f40d5d09d9fbcfede4a0e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9339,
+        "result": [
+          {
+            "id": "8bfcf2bcf0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.38454321026802,
+              "y": 23.824630677700043,
+              "width": 15.720055997371674,
+              "height": 33.111825585365295,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9339
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris308_jpg.rf.5f95be519ae809cc4f81bdb2ef168a26.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9463,
+        "result": [
+          {
+            "id": "2a0b887c1b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 6.40454962849617,
+              "y": 14.074483513832092,
+              "width": 21.77412360906601,
+              "height": 42.01241135597229,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9463
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris322_jpg.rf.ec5629cc524929c791eb6cfcac32b832.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9188,
+        "result": [
+          {
+            "id": "681b3f2c24",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.95699968934059,
+              "y": 36.60082668066025,
+              "width": 14.937971532344818,
+              "height": 30.622699856758118,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9188
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris326_jpg.rf.8c57f39cb13dc0712df6f8e701f7807c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8859,
+        "result": [
+          {
+            "id": "8d67cb8658",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.538649678230286,
+              "y": 20.11050283908844,
+              "width": 14.594781398773193,
+              "height": 39.287978410720825,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8859
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris331_jpg.rf.46e8dd4c26c294934cf665fa37ef6f36.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9514,
+        "result": [
+          {
+            "id": "75eb4cfee6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.861377716064453,
+              "y": 73.32282662391663,
+              "width": 39.29084539413452,
+              "height": 16.50463342666626,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9514
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris339_jpg.rf.4cf0851d15d96cfc91f563f9a9a03ff7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7152499999999999,
+        "result": [
+          {
+            "id": "40b47d80e6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.01049876213074,
+              "y": 43.745388090610504,
+              "width": 14.814507961273193,
+              "height": 28.905746340751648,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7884
+          },
+          {
+            "id": "471ecfd5b4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.031150132417678833,
+              "y": 19.107548892498016,
+              "width": 13.668680191040039,
+              "height": 40.58307707309723,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6421
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris340_jpg.rf.d2223279ac913dc449c475104a1c1f69.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5525,
+        "result": [
+          {
+            "id": "0cab0af9f3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.280376613140106,
+              "y": 21.141649782657623,
+              "width": 15.1773601770401,
+              "height": 29.855236411094666,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5525
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris347_jpg.rf.a18fd058e82b05528c339cdc73094bb1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6446,
+        "result": [
+          {
+            "id": "3fb2b92ae2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.64813458919525,
+              "y": 46.18140012025833,
+              "width": 14.59718942642212,
+              "height": 33.78877341747284,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6446
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris350_jpg.rf.48370619be555e83ba04c9de1f91615a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.67705,
+        "result": [
+          {
+            "id": "31f86573de",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.23843002319336,
+              "y": 36.96255385875702,
+              "width": 14.790111780166626,
+              "height": 34.2526376247406,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7102
+          },
+          {
+            "id": "4612fbe7f7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.4061798453331,
+              "y": 36.226919293403625,
+              "width": 17.946162819862366,
+              "height": 28.04272770881653,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6439
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris359_jpg.rf.c8248f1d8e4cebaa512663de4b1e6d83.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6890000000000001,
+        "result": [
+          {
+            "id": "e3ad854dbf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.10556504130363464,
+              "y": 37.96560913324356,
+              "width": 20.250360667705536,
+              "height": 42.88590848445892,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7223
+          },
+          {
+            "id": "2a87a24d28",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.375697910785675,
+              "y": 39.04827684164047,
+              "width": 21.489211916923523,
+              "height": 35.04050076007843,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6557
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris365_jpg.rf.9e471c00c963e7c3fd5605235c680406.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8568,
+        "result": [
+          {
+            "id": "b152f6e4cc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.416771292686462,
+              "y": 30.09205088019371,
+              "width": 30.448520183563232,
+              "height": 19.966723024845123,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8568
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris375_jpg.rf.2226f988f26ea715a98ec80eafe128ec.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8502,
+        "result": [
+          {
+            "id": "7fe5eb1a4c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.44723108410835,
+              "y": 29.609599709510803,
+              "width": 15.649519860744476,
+              "height": 47.282737493515015,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8502
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris376_jpg.rf.9340742bd6ecf9fb76245c54278de59d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9516,
+        "result": [
+          {
+            "id": "f056710bb3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.173775523900986,
+              "y": 40.3088316321373,
+              "width": 17.585797607898712,
+              "height": 39.164236187934875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9516
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris377_jpg.rf.9d4adc06129f924f729ee523692fe623.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8866,
+        "result": [
+          {
+            "id": "cba4461e46",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 67.8568109869957,
+              "y": 50.85194408893585,
+              "width": 14.838996529579163,
+              "height": 35.16008257865906,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8866
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris384_jpg.rf.af0d065af6c598167c470d2ffafcaea2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9699,
+        "result": [
+          {
+            "id": "f88ea06c2e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.14699625968933,
+              "y": 47.7448508143425,
+              "width": 16.827845573425293,
+              "height": 36.0380083322525,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9699
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris385_jpg.rf.6a078d071147066c4a27228d8e6a7677.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.84,
+        "result": [
+          {
+            "id": "170ef01327",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.69250822067261,
+              "y": 13.103323429822922,
+              "width": 33.53985548019409,
+              "height": 15.55272787809372,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.84
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris393_jpg.rf.37dcae9ee637c5e7d86ec4ac79bde722.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.65085,
+        "result": [
+          {
+            "id": "52f7215164",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.060142874717712,
+              "y": 15.015079081058502,
+              "width": 32.14019536972046,
+              "height": 16.645899415016174,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7354
+          },
+          {
+            "id": "e6e9d6f443",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.405470848083496,
+              "y": 39.843837916851044,
+              "width": 27.4605393409729,
+              "height": 20.79644501209259,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5663
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris399_jpg.rf.c5cd15c306f0e36d3560a50b52315abd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9299,
+        "result": [
+          {
+            "id": "0606549f42",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.28170382976532,
+              "y": 12.530060112476349,
+              "width": 29.50533628463745,
+              "height": 37.07487881183624,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9299
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris407_jpg.rf.936bb961adb9849636a356f9c866c44c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.56635,
+        "result": [
+          {
+            "id": "b255634839",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.157321095466614,
+              "y": 41.78887903690338,
+              "width": 28.25162410736084,
+              "height": 18.411999940872192,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.702
+          },
+          {
+            "id": "bd42b79789",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.773366063833237,
+              "y": 71.43640220165253,
+              "width": 23.71942549943924,
+              "height": 14.609450101852417,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4307
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris416_jpg.rf.60f6c9259897cb220df5ad4ce7f5209a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6157,
+        "result": [
+          {
+            "id": "8fc346c56e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.402231842279434,
+              "y": 31.307964026927948,
+              "width": 18.808172643184662,
+              "height": 46.25740349292755,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6157
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris424_jpg.rf.68ed335904b4ae30e11aac5cbeb32f04.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9557,
+        "result": [
+          {
+            "id": "ca3da53146",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.232776165008545,
+              "y": 20.720449090003967,
+              "width": 41.031354665756226,
+              "height": 32.99434185028076,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9557
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris425_jpg.rf.af3635a9e8543df37150d4c3a2bc6e50.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9419,
+        "result": [
+          {
+            "id": "e6dcbb591a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.58435982465744,
+              "y": 21.181511878967285,
+              "width": 23.928138613700867,
+              "height": 33.181166648864746,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9419
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris443_jpg.rf.fe6fd40a395935b3b31bebae561433b6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9749,
+        "result": [
+          {
+            "id": "21f80a4b07",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.62621980905533,
+              "y": 8.546818047761917,
+              "width": 44.344720244407654,
+              "height": 15.21681398153305,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9749
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris447_jpg.rf.d8f1426bac0f5fb0f8ab23e8df7e016e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4321,
+        "result": [
+          {
+            "id": "26ed48543a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 6.701469421386719,
+              "y": 29.65262681245804,
+              "width": 17.492583394050598,
+              "height": 42.46726930141449,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4321
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris452_jpg.rf.cebedf549003ed13463b41b8d9b18a8a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9421,
+        "result": [
+          {
+            "id": "3c060fc64a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.569805800914764,
+              "y": 26.04059875011444,
+              "width": 27.108457684516907,
+              "height": 43.92300248146057,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9421
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris456_jpg.rf.701f7622b04f50313c0e7c1dbbb5cb92.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.969,
+        "result": [
+          {
+            "id": "9111e2d046",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.224192500114441,
+              "y": 33.331722766160965,
+              "width": 69.2034363746643,
+              "height": 21.53014987707138,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.969
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris457_jpg.rf.e34ca7bd9d85ffd35bc0c1983941f2ed.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9722,
+        "result": [
+          {
+            "id": "7c0884164d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.28041881322861,
+              "y": 7.658609747886658,
+              "width": 40.47570526599884,
+              "height": 70.71586847305298,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9722
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris463_jpg.rf.d2e87720e4e56f09ca12a04e40e04bd0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.73445,
+        "result": [
+          {
+            "id": "53ca283347",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 56.541480123996735,
+              "y": 30.677630007267,
+              "width": 14.97628390789032,
+              "height": 37.631651759147644,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7573
+          },
+          {
+            "id": "9f73117584",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.368862003088,
+              "y": 30.425353348255157,
+              "width": 14.826036989688873,
+              "height": 37.5567764043808,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7116
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris468_jpg.rf.f867653a94bd324aa40be00a30259a8e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9478,
+        "result": [
+          {
+            "id": "4ad3d22612",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.09429335594177,
+              "y": 39.370739459991455,
+              "width": 31.290912628173828,
+              "height": 20.31041979789734,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9478
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris472_jpg.rf.58e64d9a327fd98137d2813c86550406.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9451,
+        "result": [
+          {
+            "id": "809c7b5dc7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.49069708585739,
+              "y": 44.75216865539551,
+              "width": 46.50386869907379,
+              "height": 16.66092872619629,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9451
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris481_jpg.rf.0ae837417452163a7a17333b4e37a018.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9421,
+        "result": [
+          {
+            "id": "d2089242af",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.40880584716797,
+              "y": 28.75046730041504,
+              "width": 28.333234786987305,
+              "height": 57.76177644729614,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9421
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris484_jpg.rf.c99bf10ae2e3be20a974fcae2084e6fb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9121,
+        "result": [
+          {
+            "id": "275dfb2c68",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.094816386699677,
+              "y": 16.0302072763443,
+              "width": 25.49627721309662,
+              "height": 44.07450556755066,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9121
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris496_jpg.rf.82de4eb551511c25a7289a056eb203c6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9352,
+        "result": [
+          {
+            "id": "1bd44f04ca",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.01320171356201,
+              "y": 13.933828473091125,
+              "width": 30.50803542137146,
+              "height": 58.09190273284912,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9352
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris499_jpg.rf.6c52e55a6b8f1900a7cf0d8869d8b234.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9243,
+        "result": [
+          {
+            "id": "986ffe92ed",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.63881814479828,
+              "y": 26.368039846420288,
+              "width": 33.08812975883484,
+              "height": 59.67215299606323,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9243
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris504_jpg.rf.d32375b496345d064062263d0ae08354.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9803,
+        "result": [
+          {
+            "id": "7478a8816b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.940217554569244,
+              "y": 23.502829670906067,
+              "width": 32.83737599849701,
+              "height": 58.56298804283142,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9803
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris506_jpg.rf.b81b71442b20ef1b717c3c1004a9f987.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7676499999999999,
+        "result": [
+          {
+            "id": "9b2a230530",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.625648617744446,
+              "y": 42.619551718235016,
+              "width": 50.89113116264343,
+              "height": 27.167245745658875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8447
+          },
+          {
+            "id": "0d482158d7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.654460072517395,
+              "y": 24.733294546604156,
+              "width": 50.963419675827026,
+              "height": 26.02701485157013,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6906
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris515_jpg.rf.701235985db164447c8e4d85a45bfd9a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9233,
+        "result": [
+          {
+            "id": "7eacf6be10",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.8063485622406,
+              "y": 0.31838715076446533,
+              "width": 20.538997650146484,
+              "height": 55.85412383079529,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9233
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris522_jpg.rf.a54b45783907dc784fc757d4d3b30fd9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9503,
+        "result": [
+          {
+            "id": "f23dd1f37d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.37250977754593,
+              "y": 47.066208720207214,
+              "width": 18.80464255809784,
+              "height": 37.82781958580017,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9503
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris528_jpg.rf.aba736fdb92c41b5f2a9d36cc8f5460b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9407,
+        "result": [
+          {
+            "id": "2b123e9995",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.08945691585541,
+              "y": 27.83888280391693,
+              "width": 30.163896083831787,
+              "height": 58.221858739852905,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9407
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris529_jpg.rf.6648eb7e728aceadc7110eaaa203252f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6747,
+        "result": [
+          {
+            "id": "acac1014a5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 63.039857149124146,
+              "y": 17.391888797283173,
+              "width": 23.223626613616943,
+              "height": 39.91757929325104,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6747
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris530_jpg.rf.81248eca49d4a7a2744d20a1b4308209.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9496,
+        "result": [
+          {
+            "id": "1bc56f0458",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.87589085102081,
+              "y": 14.189589023590088,
+              "width": 14.660513401031494,
+              "height": 48.209625482559204,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9496
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris531_jpg.rf.033135c22ca92989a85dfc79910a30ad.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9217,
+        "result": [
+          {
+            "id": "0965b82b36",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 79.9530528485775,
+              "y": 16.912658512592316,
+              "width": 19.262345135211945,
+              "height": 39.92657959461212,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9217
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris533_jpg.rf.7508c8fad57461ae33c5869b7088169c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8625,
+        "result": [
+          {
+            "id": "2e12c81df8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.581727862358093,
+              "y": 30.523781478405,
+              "width": 64.83901143074036,
+              "height": 39.615002274513245,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8625
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris534_jpg.rf.4e721bdfab2c6f98d67e2b1005e45619.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9348,
+        "result": [
+          {
+            "id": "6c149c28ec",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.40456581115723,
+              "y": 24.783682823181152,
+              "width": 35.00782251358032,
+              "height": 63.85962963104248,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9348
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris539_jpg.rf.a3e59d5a5a029938e42930d77072aea6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9144,
+        "result": [
+          {
+            "id": "4a5ba2e412",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 80.03533482551575,
+              "y": 43.297988176345825,
+              "width": 19.962680339813232,
+              "height": 38.52057456970215,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9144
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris542_jpg.rf.543bb8c4b6e00e73c8634adfd684b1ae.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.904,
+        "result": [
+          {
+            "id": "cd21ae33ae",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.174471348524094,
+              "y": 28.72139811515808,
+              "width": 23.166944086551666,
+              "height": 40.53117632865906,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.904
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris543_jpg.rf.0019f7a055ea566b9777648be83aeb73.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8789,
+        "result": [
+          {
+            "id": "a38c220200",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.25611835718155,
+              "y": 15.500698983669281,
+              "width": 40.39473831653595,
+              "height": 28.899386525154114,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8789
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris544_jpg.rf.91ea1734de8c1c4734ba6de860fde606.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.957,
+        "result": [
+          {
+            "id": "9143486d5a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.37873387336731,
+              "y": 33.699728548526764,
+              "width": 34.02233123779297,
+              "height": 40.74927270412445,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.957
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris547_jpg.rf.1df39ac5b73b8ed0515fd7d5e4f2c590.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9098,
+        "result": [
+          {
+            "id": "4650c74ecb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.413037896156311,
+              "y": 31.470027565956116,
+              "width": 83.04337859153748,
+              "height": 32.754307985305786,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9098
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris548_jpg.rf.d5ad60667f2c1c80bbeb0b2a08e7d93f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9318,
+        "result": [
+          {
+            "id": "67d1a7a2f0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.850636661052704,
+              "y": 29.77674901485443,
+              "width": 30.489853024482727,
+              "height": 60.237377882003784,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9318
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris549_jpg.rf.625051aa59af7fa15ebc0a1326b9fb35.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9546,
+        "result": [
+          {
+            "id": "78381b8587",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.48016418516636,
+              "y": 37.68961727619171,
+              "width": 10.45072004199028,
+              "height": 28.196698427200317,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9546
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris551_jpg.rf.c14caf73aeee17005f41f4c87d8472a4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9543,
+        "result": [
+          {
+            "id": "bfae8b9c30",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.80175566673279,
+              "y": 18.62831711769104,
+              "width": 22.46534824371338,
+              "height": 65.32453298568726,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9543
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris552_jpg.rf.03e52846c34c510e7990b5bbe7a5e9bf.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9611,
+        "result": [
+          {
+            "id": "4abe3af791",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.47540932893753,
+              "y": 13.724863529205322,
+              "width": 31.86333477497101,
+              "height": 57.67921805381775,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9611
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris555_jpg.rf.c89fe94cd378e19d58a4bf156adb887c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9115,
+        "result": [
+          {
+            "id": "18d57e7a84",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.17000874876976,
+              "y": 23.73347133398056,
+              "width": 20.48303633928299,
+              "height": 35.24569571018219,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9115
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris556_jpg.rf.086f2d249130bcf5e6b05a25d910b05c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9226,
+        "result": [
+          {
+            "id": "af324a2ce0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 72.91671708226204,
+              "y": 30.01357465982437,
+              "width": 15.075574815273285,
+              "height": 38.60650956630707,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9226
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris558_jpg.rf.889e6b507e5ff53019ae5bf35891d4ce.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8672,
+        "result": [
+          {
+            "id": "2b48822bc0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.11861324310302734,
+              "y": 27.999506890773773,
+              "width": 19.930200278759003,
+              "height": 45.64993679523468,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8672
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris562_jpg.rf.7f99ad3fe1dac47ec370706c58390630.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9132,
+        "result": [
+          {
+            "id": "f16f83b99e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 72.15147167444229,
+              "y": 38.81132751703262,
+              "width": 14.94128406047821,
+              "height": 35.43047606945038,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9132
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris564_jpg.rf.8817eea94a949b884330ad013fae575c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9487,
+        "result": [
+          {
+            "id": "fbe29fc9a7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.83141326904297,
+              "y": 38.55399638414383,
+              "width": 32.467055320739746,
+              "height": 24.217578768730164,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9487
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris567_jpg.rf.d4c5c2fa6576c0769f723c2de61a1f88.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8998,
+        "result": [
+          {
+            "id": "a970c21452",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.716767370700836,
+              "y": 20.41770964860916,
+              "width": 44.51296031475067,
+              "height": 27.282831072807312,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8998
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris569_jpg.rf.b2f7e42367d24c3f756c2fdb1ba804fc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8527,
+        "result": [
+          {
+            "id": "da9d05e3c1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.71154898405075,
+              "y": 28.022533655166626,
+              "width": 33.333560824394226,
+              "height": 59.87046957015991,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris571_jpg.rf.616ec9650112ef3adf8e846d8b522125.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9401,
+        "result": [
+          {
+            "id": "2d869be051",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.20025360584259,
+              "y": 22.719645500183105,
+              "width": 42.04499125480652,
+              "height": 65.47790765762329,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9401
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris572_jpg.rf.8a7165d6bdb055e4fd347bf5624a3d56.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9325,
+        "result": [
+          {
+            "id": "334c3c119a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.190048575401306,
+              "y": 3.651154041290283,
+              "width": 15.768307447433472,
+              "height": 53.20867300033569,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9325
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris573_jpg.rf.446cbf91a7ca7843f7c56922d79b13a6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.944,
+        "result": [
+          {
+            "id": "3f0f8ee6a0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.056162536144257,
+              "y": 52.17980146408081,
+              "width": 39.94262516498566,
+              "height": 20.9641695022583,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.944
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris576_jpg.rf.27397195bbbe54d0d9107d452bc36051.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9628,
+        "result": [
+          {
+            "id": "e3b429eb40",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.935691595077515,
+              "y": 35.28539836406708,
+              "width": 22.317421436309814,
+              "height": 51.334863901138306,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9628
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris577_jpg.rf.1060a4acc114df93c01052a7d5f7ef2e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9332,
+        "result": [
+          {
+            "id": "c9c095d962",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.53750756382942,
+              "y": 40.284718573093414,
+              "width": 21.333645284175873,
+              "height": 39.44201171398163,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9332
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris578_jpg.rf.d6fdd25b028111bafa3f981cf23b3d96.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.949,
+        "result": [
+          {
+            "id": "b5d49eca6e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.43139377236366,
+              "y": 41.17389917373657,
+              "width": 22.884397208690643,
+              "height": 37.87515163421631,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.949
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris579_jpg.rf.6d51cf753fa6b35064264cf565b09702.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.58785,
+        "result": [
+          {
+            "id": "807ad66955",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.38835942745209,
+              "y": 15.271653234958649,
+              "width": 23.28769564628601,
+              "height": 42.526814341545105,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6965
+          },
+          {
+            "id": "d25557d58e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.489558815956116,
+              "y": 23.03643226623535,
+              "width": 16.401660442352295,
+              "height": 42.70791411399841,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4792
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris580_jpg.rf.78e5f28c2090e66e9c5744527035a1c5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6296,
+        "result": [
+          {
+            "id": "4e1d404ebc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 60.443445295095444,
+              "y": 39.17528539896011,
+              "width": 20.817776024341583,
+              "height": 48.16281497478485,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6296
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris581_jpg.rf.f967f4844faa150ae0c5c1007a08779d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9437,
+        "result": [
+          {
+            "id": "a0c6d49a87",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.773873805999756,
+              "y": 62.21928596496582,
+              "width": 37.82390356063843,
+              "height": 20.810389518737793,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9437
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris583_jpg.rf.14b5bd7175820678652603809962108f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.898,
+        "result": [
+          {
+            "id": "ce8f7d059b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.062713146209717,
+              "y": 65.69566130638123,
+              "width": 48.29446077346802,
+              "height": 34.201228618621826,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.898
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris584_jpg.rf.e1dd62f87dc4757c13082090112da395.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.956,
+        "result": [
+          {
+            "id": "4127660ab7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.22972533106804,
+              "y": 33.1682950258255,
+              "width": 22.517849504947662,
+              "height": 44.144684076309204,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.956
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris586_jpg.rf.f9cd6964d261a9958e3485cc01b4777b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8418,
+        "result": [
+          {
+            "id": "f47dd0d51f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.796818733215332,
+              "y": 39.070942997932434,
+              "width": 31.392359733581543,
+              "height": 34.14267897605896,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8418
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris589_jpg.rf.6a130700a641f46c09e86c62523136e9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9366,
+        "result": [
+          {
+            "id": "8cf5218182",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.911596834659576,
+              "y": 19.364824891090393,
+              "width": 14.832291007041931,
+              "height": 41.23693108558655,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9366
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris592_jpg.rf.ecf3ce774a5ca73f7c0da47622d49ccb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5095,
+        "result": [
+          {
+            "id": "1ee69b3eaf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 58.1334225833416,
+              "y": 26.313798129558563,
+              "width": 16.682101786136627,
+              "height": 49.8680979013443,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5095
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris594_jpg.rf.b30c58c57df6f0e91ed953b7c3c6b093.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9437,
+        "result": [
+          {
+            "id": "94a68e22ae",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.10303819179535,
+              "y": 37.402039766311646,
+              "width": 17.8095281124115,
+              "height": 33.49182605743408,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9437
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris599_jpg.rf.85459a0246ecb8043b85b7ed62d0c738.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9657,
+        "result": [
+          {
+            "id": "971de16227",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.479427754879,
+              "y": 16.75586700439453,
+              "width": 38.92126381397247,
+              "height": 60.415810346603394,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9657
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris603_jpg.rf.52a7e92c4c600711870a8eac21cfd044.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9618,
+        "result": [
+          {
+            "id": "a2bb2022d5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.28222048282623,
+              "y": 23.384763300418854,
+              "width": 28.7114679813385,
+              "height": 48.51870238780975,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9618
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris604_jpg.rf.1f9e8f3b365c910a558ff4bbb16a1778.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9583,
+        "result": [
+          {
+            "id": "d96bee6c8c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.956634640693665,
+              "y": 27.23812609910965,
+              "width": 70.63611149787903,
+              "height": 46.17118537425995,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9583
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris606_jpg.rf.d357a41cd6e2dc9d426a12be6dbdebfd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9733,
+        "result": [
+          {
+            "id": "2af257c72d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.700720071792603,
+              "y": 39.46208879351616,
+              "width": 51.59046649932861,
+              "height": 16.534622013568878,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9733
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris608_jpg.rf.9b0471248edb2949353157d0602e46a9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.39165,
+        "result": [
+          {
+            "id": "acb6133d04",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 10.22922694683075,
+              "y": 37.33343854546547,
+              "width": 60.84834933280945,
+              "height": 20.67892998456955,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3937
+          },
+          {
+            "id": "8eef8936d5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 70.13113796710968,
+              "y": 40.548909455537796,
+              "width": 29.062169790267944,
+              "height": 22.930918633937836,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3896
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris609_jpg.rf.848a3fb0c72afdfbff369306473429ba.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.72865,
+        "result": [
+          {
+            "id": "21b8d0b1b1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.15425282716751,
+              "y": 41.45849794149399,
+              "width": 21.332135796546936,
+              "height": 38.68301212787628,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7892
+          },
+          {
+            "id": "ec3497cd92",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.08115172386169434,
+              "y": 31.109073758125305,
+              "width": 29.472780227661133,
+              "height": 37.746602296829224,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6681
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris612_jpg.rf.e57cb594bb81abb1751bc3603ee387d4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.54445,
+        "result": [
+          {
+            "id": "a35110e85d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.812572836875916,
+              "y": 76.5616662800312,
+              "width": 42.8722620010376,
+              "height": 23.274658620357513,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5609
+          },
+          {
+            "id": "9107966c1f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.885155022144318,
+              "y": 13.579686731100082,
+              "width": 42.18533933162689,
+              "height": 23.050464689731598,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.528
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris613_jpg.rf.ee9a3f267f6bcc6747ec5c8869591911.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9673,
+        "result": [
+          {
+            "id": "bbc27d4462",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.991950869560242,
+              "y": 33.49800854921341,
+              "width": 57.72973895072937,
+              "height": 27.217397093772888,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9673
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris616_jpg.rf.fed34b13c03f5ee1f8a3025d6cef53d3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9532,
+        "result": [
+          {
+            "id": "bd9b443a9b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.398042023181915,
+              "y": 16.541248559951782,
+              "width": 14.98619019985199,
+              "height": 54.85597848892212,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9532
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris620_jpg.rf.bcce712ecb50c33ebbd93b6f0961c42c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9108,
+        "result": [
+          {
+            "id": "e035bf4287",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.769815772771835,
+              "y": 26.13159567117691,
+              "width": 19.923420250415802,
+              "height": 41.52351915836334,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9108
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris621_jpg.rf.e515b47000dae94e8347a68ecf21384a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.71805,
+        "result": [
+          {
+            "id": "887c9b8573",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.381871044635773,
+              "y": 23.668409883975983,
+              "width": 21.59404158592224,
+              "height": 48.73006045818329,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8036
+          },
+          {
+            "id": "078f1eb806",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.84835347533226,
+              "y": 18.778616189956665,
+              "width": 24.321962893009186,
+              "height": 58.252424001693726,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6325
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris622_jpg.rf.a2fa1855d5aedc0fc62f41dbb59c6a4d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9119,
+        "result": [
+          {
+            "id": "57ea8dbf03",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.76856854557991,
+              "y": 26.133400201797485,
+              "width": 19.924472272396088,
+              "height": 41.52060151100159,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9119
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris627_jpg.rf.c7e7e49fc521159f4e62ec68312be280.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.95,
+        "result": [
+          {
+            "id": "4aafd5c034",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.082623183727264,
+              "y": 38.85175585746765,
+              "width": 17.264237999916077,
+              "height": 42.8381085395813,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.95
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris628_jpg.rf.c0a3f5e77dc6cf4370bac46387b4b861.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9614,
+        "result": [
+          {
+            "id": "1555c8574d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.176640689373016,
+              "y": 26.00160539150238,
+              "width": 39.18096125125885,
+              "height": 19.52912211418152,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9614
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris633_jpg.rf.aba94a6205f2c93d298133cf7994d124.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9544,
+        "result": [
+          {
+            "id": "2d35c79aa1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.18685010075569,
+              "y": 38.89409005641937,
+              "width": 17.202173173427582,
+              "height": 42.82462000846863,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9544
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris634_jpg.rf.756b5dc8c0f2dd6dd5c8f4b00e60a50b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.75165,
+        "result": [
+          {
+            "id": "fac9c085f4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.69215163588524,
+              "y": 23.703014850616455,
+              "width": 23.23426753282547,
+              "height": 42.51624345779419,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8171
+          },
+          {
+            "id": "e16b73c70c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 61.08192428946495,
+              "y": 17.755809426307678,
+              "width": 21.31117135286331,
+              "height": 51.952195167541504,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6862
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris635_jpg.rf.dd13e70f055037bc02526d15984e5112.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9397,
+        "result": [
+          {
+            "id": "d4a46cc8b1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.64934876561165,
+              "y": 40.772952139377594,
+              "width": 19.196520745754242,
+              "height": 37.35428750514984,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9397
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris639_jpg.rf.ada469de4dc9321ba4c585edd0b7cf75.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9564,
+        "result": [
+          {
+            "id": "d15cd364fe",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.06262591481209,
+              "y": 42.08630174398422,
+              "width": 20.47363370656967,
+              "height": 38.28319609165192,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9564
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris641_jpg.rf.8d68505adededf09c9577c56a9ab6f72.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.958,
+        "result": [
+          {
+            "id": "96e00803ac",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.72859442234039,
+              "y": 21.85918241739273,
+              "width": 17.146259546279907,
+              "height": 48.67787063121796,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.958
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris643_jpg.rf.1bcb73a40cd0be72a5c39a242218467c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6604,
+        "result": [
+          {
+            "id": "dc8c26ca18",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.899275183677673,
+              "y": 66.57291352748871,
+              "width": 45.61005234718323,
+              "height": 14.020639657974243,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7974
+          },
+          {
+            "id": "f416937d81",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.672812044620514,
+              "y": 13.514518737792969,
+              "width": 45.68816125392914,
+              "height": 23.314929008483887,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5234
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris644_jpg.rf.7dd20d18175a9bdb13cb153ad4ded082.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6603,
+        "result": [
+          {
+            "id": "be12de2ac1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.338956475257874,
+              "y": 27.710166573524475,
+              "width": 14.069312810897827,
+              "height": 45.12777924537659,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8367
+          },
+          {
+            "id": "f3c6b6d24a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 63.15581426024437,
+              "y": 21.941548585891724,
+              "width": 23.512597382068634,
+              "height": 45.017075538635254,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4839
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris645_jpg.rf.ec23d3ec3b1a12bc5a2569144dc84f3f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5029,
+        "result": [
+          {
+            "id": "30f5363e4e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.725821763277054,
+              "y": 38.630521297454834,
+              "width": 23.140083253383636,
+              "height": 39.827537536621094,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5277
+          },
+          {
+            "id": "da5c8e99ed",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.411485135555267,
+              "y": 32.160210609436035,
+              "width": 21.629342436790466,
+              "height": 40.16481637954712,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4781
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris647_jpg.rf.acd99a58d53940c0db52ceb7be9725c5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9699,
+        "result": [
+          {
+            "id": "d77a060776",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.88249650597572,
+              "y": 33.52683037519455,
+              "width": 17.74526685476303,
+              "height": 43.520334362983704,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9699
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris648_jpg.rf.3b056793362de1c66c2ce5098c9f333d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9591,
+        "result": [
+          {
+            "id": "9c68bedd2b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.57813239097595,
+              "y": 28.610172867774963,
+              "width": 27.415692806243896,
+              "height": 36.92870736122131,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9591
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris650_jpg.rf.b7dcdb86793987daba4bed5d77f7195f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9457,
+        "result": [
+          {
+            "id": "1a42df420f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.992612302303314,
+              "y": 12.90297657251358,
+              "width": 21.431508660316467,
+              "height": 42.98900663852692,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9457
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris654_jpg.rf.efd784a84f2e7e35d1f49b9c6fb4a678.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9545,
+        "result": [
+          {
+            "id": "56f656e0d8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.474295496940613,
+              "y": 5.502808094024658,
+              "width": 41.74792766571045,
+              "height": 28.87040674686432,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9545
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris655_jpg.rf.5e7b956b13ff62701af718d2046ca584.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9456,
+        "result": [
+          {
+            "id": "d09cab6cb6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.96886318922043,
+              "y": 39.710502326488495,
+              "width": 17.40296185016632,
+              "height": 44.38624680042267,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9456
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris656_jpg.rf.63e8c8f6c28366114719d5d4f8273524.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.959,
+        "result": [
+          {
+            "id": "e384f5b886",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.813472658395767,
+              "y": 47.846245765686035,
+              "width": 21.086572110652924,
+              "height": 37.594640254974365,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.959
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris658_jpg.rf.89237cd1e63876203dd91f1ef2536bba.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8156,
+        "result": [
+          {
+            "id": "393a182b49",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.681259602308273,
+              "y": 15.941047668457031,
+              "width": 17.54215508699417,
+              "height": 44.25798058509827,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8156
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris669_jpg.rf.935d08199e69587b35c0eab322cd55f4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9436,
+        "result": [
+          {
+            "id": "1297cb07e6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.868347972631454,
+              "y": 27.962151169776917,
+              "width": 15.480734407901764,
+              "height": 38.17708492279053,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9436
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris676_jpg.rf.dd4dbb89662e9f647c86e79f26b55dc9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5393,
+        "result": [
+          {
+            "id": "d6f574be78",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.40745335817337,
+              "y": 27.319999039173126,
+              "width": 42.95964539051056,
+              "height": 49.04715716838837,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5393
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris679_jpg.rf.dbd7f68452e0e999767d8f4f11df1aea.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8051,
+        "result": [
+          {
+            "id": "a539b11870",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.56646692752838,
+              "y": 28.8014717400074,
+              "width": 67.70928502082825,
+              "height": 19.869552552700043,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8051
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris685_jpg.rf.b18f2ed2d6aea75ccc0bf3a96c632885.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5047,
+        "result": [
+          {
+            "id": "5605262633",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 67.2023631632328,
+              "y": 40.39512574672699,
+              "width": 24.745909869670868,
+              "height": 40.66696763038635,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6034
+          },
+          {
+            "id": "67db39c34d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.6772940158844,
+              "y": 46.701258420944214,
+              "width": 27.460789680480957,
+              "height": 40.606629848480225,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.406
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris695_jpg.rf.8986d95f478a2af5746dac0d1ad688fc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.954,
+        "result": [
+          {
+            "id": "b891dc13f3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.80636602640152,
+              "y": 40.55626094341278,
+              "width": 18.626460433006287,
+              "height": 37.145501375198364,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.954
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris697_jpg.rf.925399ae4536771916d8ea4540c31de5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4941,
+        "result": [
+          {
+            "id": "974c86fea4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.43049514293671,
+              "y": 23.032093048095703,
+              "width": 27.837949991226196,
+              "height": 55.728304386138916,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4941
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris699_jpg.rf.ab83822c60d957f68bb0387f74b284d4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5239,
+        "result": [
+          {
+            "id": "b7784d0593",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.52809104323387,
+              "y": 21.35290503501892,
+              "width": 24.657268822193146,
+              "height": 41.28929376602173,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5239
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris700_jpg.rf.772938ced091576cd3fbae694501cc42.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9249,
+        "result": [
+          {
+            "id": "5e4eff9ea6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.763138592243195,
+              "y": 27.249005436897278,
+              "width": 29.47411835193634,
+              "height": 30.666178464889526,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9249
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris701_jpg.rf.ba90bd932958b5251df2cb64de98457e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9192,
+        "result": [
+          {
+            "id": "0ccdf3651a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.94771361351013,
+              "y": 40.194620192050934,
+              "width": 34.50438976287842,
+              "height": 36.96301877498627,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9192
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris703_jpg.rf.3156d39cbfe0ba3c12e45e52507bcc89.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8894,
+        "result": [
+          {
+            "id": "8198a2a912",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.40287810564041,
+              "y": 26.775531470775604,
+              "width": 17.913159728050232,
+              "height": 35.83012521266937,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8894
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris705_jpg.rf.e81133e2a76db4ef485de8550b601a1b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8527,
+        "result": [
+          {
+            "id": "0f2e544904",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.82945096492767,
+              "y": 26.652152836322784,
+              "width": 31.309157609939575,
+              "height": 34.303876757621765,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris706_jpg.rf.b1be90007bbf7f03d8f4cf163aecf5f7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.956,
+        "result": [
+          {
+            "id": "94402fc782",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.33740854263306,
+              "y": 36.222367733716965,
+              "width": 41.709113121032715,
+              "height": 14.99948650598526,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.956
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris707_jpg.rf.b55d827d17e2d4b9150aa80cfaa74bdb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9358,
+        "result": [
+          {
+            "id": "40f4d7db2e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.01937997341156,
+              "y": 17.836306989192963,
+              "width": 14.545756578445435,
+              "height": 42.13018715381622,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9358
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris713_jpg.rf.11ed532840faf8f51a891b5301ec231f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.837,
+        "result": [
+          {
+            "id": "4e94dd5b5a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.66389161348343,
+              "y": 55.95935583114624,
+              "width": 37.79166638851166,
+              "height": 26.835179328918457,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.837
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris71_jpg.rf.2a48a4f79a2dcb448487e131125cf3b3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9283,
+        "result": [
+          {
+            "id": "30d9ab1ee4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.356152951717377,
+              "y": 22.54616469144821,
+              "width": 17.811885476112366,
+              "height": 47.02581465244293,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9283
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris722_jpg.rf.726cc04beaa7a02695d222aebe6e4054.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9224,
+        "result": [
+          {
+            "id": "7f59aa704e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.064818024635315,
+              "y": 33.53360742330551,
+              "width": 32.80649781227112,
+              "height": 41.149428486824036,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9224
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris723_jpg.rf.c13dcf5bf113b8f060dc0d79007bc5cf.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5678,
+        "result": [
+          {
+            "id": "2778036239",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.285779684782028,
+              "y": 23.68016242980957,
+              "width": 16.647644340991974,
+              "height": 50.07780194282532,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5678
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris724_jpg.rf.a70a00d6bd97c69756adcac553c90073.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9611,
+        "result": [
+          {
+            "id": "ec9df1c315",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.003202438354492,
+              "y": 49.13084730505943,
+              "width": 39.45897817611694,
+              "height": 18.088002502918243,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9611
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris727_jpg.rf.afcdc3c776f799d727a95c08428140c9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6615,
+        "result": [
+          {
+            "id": "1c7e251bdc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.33712723851204,
+              "y": 26.84807777404785,
+              "width": 23.589526116847992,
+              "height": 54.641735553741455,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6615
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris72_jpg.rf.79d856899bfb3364e167442c84f5a2f6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7691,
+        "result": [
+          {
+            "id": "436b8fea35",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.97320872545242,
+              "y": 17.38600581884384,
+              "width": 23.26006591320038,
+              "height": 39.86842930316925,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7691
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris739_jpg.rf.94283f9d27a64d5dbb53def45504a214.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8608,
+        "result": [
+          {
+            "id": "722f97d7fc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.76919341087341,
+              "y": 34.18745696544647,
+              "width": 22.14571237564087,
+              "height": 39.100247621536255,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8608
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris744_jpg.rf.f2c7a88a3bc4c0a31fcda2f26ac08cb4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9504,
+        "result": [
+          {
+            "id": "55c1c92243",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.433358430862427,
+              "y": 20.87045907974243,
+              "width": 49.313610792160034,
+              "height": 73.86971712112427,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9504
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris755_jpg.rf.2e3bbba2378d8492c98cc651f7f794f1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8993,
+        "result": [
+          {
+            "id": "f6a0f0d04a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.79484033584595,
+              "y": 14.089637994766235,
+              "width": 30.16256093978882,
+              "height": 57.95408487319946,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8993
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris760_jpg.rf.9c9910245bd64fda3a5b51d45eb004aa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9626,
+        "result": [
+          {
+            "id": "e66fa06b37",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.770248651504517,
+              "y": 37.69253045320511,
+              "width": 58.97102355957031,
+              "height": 33.04466903209686,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9626
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris771_jpg.rf.93787e421de34fa478ceb197fe25ee19.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9272,
+        "result": [
+          {
+            "id": "178989cd68",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.84090876579285,
+              "y": 17.984414100646973,
+              "width": 23.827195167541504,
+              "height": 49.477386474609375,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9272
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris774_jpg.rf.a9cf6c32111469736c2ff6de4c869542.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9433,
+        "result": [
+          {
+            "id": "e33c826f21",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.7043594121933,
+              "y": 26.40618085861206,
+              "width": 32.85709023475647,
+              "height": 59.590160846710205,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9433
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris778_jpg.rf.03a8f6fbc1238f99f1ad5a5d0aea3ace.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9516,
+        "result": [
+          {
+            "id": "2080b07e8e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.09467124938965,
+              "y": 11.236441135406494,
+              "width": 45.817601680755615,
+              "height": 67.82987713813782,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9516
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris788_jpg.rf.289dcbbf5118cc25e926677fdc9dca0c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9434,
+        "result": [
+          {
+            "id": "c879676561",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.90458822250366,
+              "y": 19.762814044952393,
+              "width": 23.834246397018433,
+              "height": 45.963120460510254,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9434
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris799_jpg.rf.ef8490ecd5e6c11764ae27178f77df96.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9651,
+        "result": [
+          {
+            "id": "b273983879",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.337297677993774,
+              "y": 21.35051190853119,
+              "width": 44.57215070724487,
+              "height": 60.334497690200806,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9651
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris79_jpg.rf.8d837dbe0825d86b85c0fb12039a5339.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9147,
+        "result": [
+          {
+            "id": "8c17b2f8e8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.519933104515076,
+              "y": 32.42642730474472,
+              "width": 38.16491961479187,
+              "height": 35.08547842502594,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9147
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris812_jpg.rf.2f984af8f306e78e020d75c07d559895.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7207,
+        "result": [
+          {
+            "id": "b10fbc76fa",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.39163649082184,
+              "y": 21.04630172252655,
+              "width": 36.98468208312988,
+              "height": 64.1302764415741,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7207
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris813_jpg.rf.06a073f7ea2e88ed3cc0a15ded5274f3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9664,
+        "result": [
+          {
+            "id": "fb8b10ce40",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.095302641391754,
+              "y": 18.159887194633484,
+              "width": 30.65953552722931,
+              "height": 52.01629996299744,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9664
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris814_jpg.rf.7df935b7d0e4e03ba2e22ef3a8f9b6f9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.912,
+        "result": [
+          {
+            "id": "da09083c23",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.42967128753662,
+              "y": 24.7846782207489,
+              "width": 34.8138689994812,
+              "height": 63.765811920166016,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.912
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris829_jpg.rf.e6a20d209f5c5427068e1b48eb6eaaed.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.968,
+        "result": [
+          {
+            "id": "f297c72a6f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.393405437469482,
+              "y": 37.9337802529335,
+              "width": 54.089534282684326,
+              "height": 30.088898539543152,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.968
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris831_jpg.rf.d3602b8af813ee06a5c04c84dd37ef05.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9706,
+        "result": [
+          {
+            "id": "c7553803c5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.92564344406128,
+              "y": 27.68794894218445,
+              "width": 34.245991706848145,
+              "height": 53.31926345825195,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9706
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris833_jpg.rf.fb504f644c7995144bd5f09a17b3ed28.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9184,
+        "result": [
+          {
+            "id": "ff699d132f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.99605616927147,
+              "y": 37.65597492456436,
+              "width": 16.151423752307892,
+              "height": 34.93628203868866,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9184
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris837_jpg.rf.00cd9d2a3070756b315b11dcf49f3f5c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9134,
+        "result": [
+          {
+            "id": "21a1ea9bad",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.476279735565186,
+              "y": 39.24740254878998,
+              "width": 13.030505180358887,
+              "height": 35.34223437309265,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9134
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris840_jpg.rf.47de0ba76422c0fb56936572ba507e12.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.78285,
+        "result": [
+          {
+            "id": "9b3464de25",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.76748162508011,
+              "y": 28.72561514377594,
+              "width": 16.719016432762146,
+              "height": 35.303425788879395,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8134
+          },
+          {
+            "id": "d9aff8331e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.11382156610489,
+              "y": 29.312491416931152,
+              "width": 14.096847176551819,
+              "height": 31.685280799865723,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7523
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris841_jpg.rf.53fa3ca0ed194fdba5c46343002a044c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.78165,
+        "result": [
+          {
+            "id": "564aff1044",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.636254012584686,
+              "y": 21.430814266204834,
+              "width": 15.114358067512512,
+              "height": 31.160682439804077,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.799
+          },
+          {
+            "id": "11d4508551",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.29203516244888,
+              "y": 19.983568787574768,
+              "width": 21.048471331596375,
+              "height": 31.33609890937805,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7643
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris843_jpg.rf.7a7bd05ec62c03be55b8500da5e31d3c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6694,
+        "result": [
+          {
+            "id": "b171547173",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.979272544384,
+              "y": 34.4267338514328,
+              "width": 17.70370900630951,
+              "height": 30.28467893600464,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6833
+          },
+          {
+            "id": "13f0a13035",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 64.92542624473572,
+              "y": 40.397052466869354,
+              "width": 15.580201148986816,
+              "height": 39.20007050037384,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6555
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris847_jpg.rf.6276b806c8e4803dc99afb9c7f31afe1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9028,
+        "result": [
+          {
+            "id": "dc17256d61",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.85727071762085,
+              "y": 31.43339306116104,
+              "width": 32.54619836807251,
+              "height": 25.607964396476746,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9028
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris848_jpg.rf.655cbf8acaaf7f1672920e28daca9875.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9524,
+        "result": [
+          {
+            "id": "874b34aa89",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 72.17135429382324,
+              "y": 40.557438135147095,
+              "width": 15.856683254241943,
+              "height": 36.018407344818115,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9524
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris849_jpg.rf.0119e1e0011120a8a094e99ec582f4fb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6772,
+        "result": [
+          {
+            "id": "03e38d983e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.743424117565155,
+              "y": 19.875598698854446,
+              "width": 41.15897715091705,
+              "height": 15.126673877239227,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8501
+          },
+          {
+            "id": "fd6b25c6cc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.74036556482315,
+              "y": 59.561534225940704,
+              "width": 41.1355584859848,
+              "height": 22.598859667778015,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5043
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/NORIS/noris87_jpg.rf.a29e2670a442f13f9e5b04ed7c355d63.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9631,
+        "result": [
+          {
+            "id": "f578c91630",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.256720155477524,
+              "y": 10.599750280380249,
+              "width": 16.925962269306183,
+              "height": 55.098193883895874,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9631
+          }
+        ]
+      }
+    ]
+  }
+]

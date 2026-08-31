@@ -1,0 +1,20 @@
+{
+  "kind": "zero-shot",
+  "weights": null,
+  "caption": "implant.",
+  "tokens": [
+    "[CLS]",
+    "implant",
+    ".",
+    "[SEP]"
+  ],
+  "implant_token_index": [
+    1
+  ],
+  "images": {
+    "adin434_jpg.rf.374ff43d7831e2bc40a210c54795f43a.jpg": {
+      "max_score": 0.7101545929908752,
+      "n_pred_over_0.3": 1
+    }
+  }
+}

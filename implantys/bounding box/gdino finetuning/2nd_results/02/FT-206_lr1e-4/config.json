@@ -1,0 +1,56 @@
+{
+  "run_id": "FT-206_lr1e-4",
+  "created": "2026-07-21 04:13:47",
+  "seed": 42,
+  "rounds": [
+    "01",
+    "02"
+  ],
+  "hyperparams": {
+    "lr": 0.0001,
+    "epochs": 30,
+    "batch_size": 4,
+    "steps_per_epoch": 36,
+    "total_steps": 1080,
+    "optimizer": "AdamW",
+    "scheduler": "OneCycleLR",
+    "pct_start": 0.1,
+    "div_factor": 25,
+    "final_div_factor": 10000.0,
+    "anneal_strategy": "cos",
+    "max_grad_norm": 5.0,
+    "class_loss_coef": 1.0,
+    "bbox_loss_coef": 5.0,
+    "giou_loss_coef": 1.0,
+    "eos_coef": 0.1,
+    "use_lora": true,
+    "text_prompt": "implant",
+    "early_stopping": false
+  },
+  "data": {
+    "train": {
+      "n_images": 144,
+      "n_boxes": 211,
+      "split_hash": "3bbbac88d7677fbb",
+      "box_hash": "e3efa904b9ac8cf6"
+    },
+    "val": {
+      "n_images": 62,
+      "n_boxes": 88,
+      "split_hash": "24a7af7fec691e5e",
+      "box_hash": "b1405ac46cb36544"
+    }
+  },
+  "model": {
+    "trainable_params": 2991108,
+    "total_params": 175830790
+  },
+  "code": {
+    "repo_git_rev": "d241d21",
+    "train_py_sha": "582b7fa4d5d17c30"
+  },
+  "val_ap": {
+    "box_threshold": 0.05,
+    "text_threshold": 0.2
+  }
+}

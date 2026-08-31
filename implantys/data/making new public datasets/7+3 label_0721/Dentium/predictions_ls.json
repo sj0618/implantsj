@@ -1,0 +1,3289 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium105_jpg.rf.60e92b8e2e5aee7c8e56f342f0862c1f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4328,
+        "result": [
+          {
+            "id": "830bb1502e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.634653508663177,
+              "y": 48.3735665678978,
+              "width": 33.85853469371796,
+              "height": 18.777063488960266,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4328
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium120_jpg.rf.f6beeebdb4027d4dc6114d554430e90d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5451,
+        "result": [
+          {
+            "id": "4b307478bf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.170748591423035,
+              "y": 27.47003138065338,
+              "width": 14.718395471572876,
+              "height": 28.31057906150818,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7818
+          },
+          {
+            "id": "262289968e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.11496323347092,
+              "y": 21.815266460180283,
+              "width": 11.563816666603088,
+              "height": 21.04208618402481,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3084
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium121_jpg.rf.e97f0f30d4fb39a1429c5d7f0601b0d6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9123,
+        "result": [
+          {
+            "id": "c063023503",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 65.741828083992,
+              "y": 34.64442789554596,
+              "width": 12.566286325454712,
+              "height": 27.777832746505737,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9123
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium124_jpg.rf.d2b55b8f03e78b800995ebd6bf00416d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7704,
+        "result": [
+          {
+            "id": "1df2f1e81d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.50328862667084,
+              "y": 63.45975026488304,
+              "width": 15.111225843429565,
+              "height": 23.361332714557648,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7704
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium128_jpg.rf.60925c7bfdea99c7bfa31f36fd5ec665.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6628,
+        "result": [
+          {
+            "id": "62fccba36a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.74585221707821,
+              "y": 61.44559159874916,
+              "width": 11.389488726854324,
+              "height": 23.53392094373703,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6628
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium129_jpg.rf.c435d7860724e5f6b3ae71becb566bc1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8378,
+        "result": [
+          {
+            "id": "12bc3366bf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.27352583408356,
+              "y": 18.980441987514496,
+              "width": 22.890454530715942,
+              "height": 39.02083933353424,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8378
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.42625,
+        "result": [
+          {
+            "id": "ce205d153f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.845879912376404,
+              "y": 18.371382355690002,
+              "width": 33.92030596733093,
+              "height": 40.55962562561035,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4609
+          },
+          {
+            "id": "490a9af6e7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 1.61685049533844,
+              "y": 18.264245986938477,
+              "width": 48.20696711540222,
+              "height": 60.61379909515381,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3916
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium150_jpg.rf.cfa0c3affbf624a3e2af8548409aed02.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5246,
+        "result": [
+          {
+            "id": "29785f02b6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 67.13942512869835,
+              "y": 34.103697538375854,
+              "width": 22.535772621631622,
+              "height": 41.133105754852295,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5246
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium158_jpg.rf.47820117a92d8faf397b04415a48dd3b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.61215,
+        "result": [
+          {
+            "id": "9de3a160df",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.5565465092659,
+              "y": 45.97782492637634,
+              "width": 43.85548532009125,
+              "height": 29.97283935546875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6421
+          },
+          {
+            "id": "8c65bf8b50",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.015387773513794,
+              "y": 24.897025525569916,
+              "width": 42.31919050216675,
+              "height": 29.827603697776794,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5822
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium182_jpg.rf.29a9d5cbb16fae16544c9cfb986e0ec4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.52385,
+        "result": [
+          {
+            "id": "a4148fe034",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.35189437866211,
+              "y": 26.970811188220978,
+              "width": 30.673855543136597,
+              "height": 15.19692838191986,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6401
+          },
+          {
+            "id": "cf87436b7f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.483669817447662,
+              "y": 76.35979428887367,
+              "width": 33.422377705574036,
+              "height": 17.177562415599823,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4076
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium185_jpg.rf.43f03f512bed52df5650d3866a3766ca.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8786,
+        "result": [
+          {
+            "id": "471092c68d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.36045032739639,
+              "y": 39.89389315247536,
+              "width": 10.112908482551575,
+              "height": 14.839260280132294,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8786
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium201_jpg.rf.e72cb787473c04641039ebe58075a577.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7181,
+        "result": [
+          {
+            "id": "c8392696cf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.68830192089081,
+              "y": 35.91432794928551,
+              "width": 8.559221029281616,
+              "height": 21.26068025827408,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7194
+          },
+          {
+            "id": "53cb2affcf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.588329389691353,
+              "y": 38.4094774723053,
+              "width": 8.064516633749008,
+              "height": 20.916718244552612,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7168
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium210_jpg.rf.00c6419d080611a03af85d8448840567.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8359,
+        "result": [
+          {
+            "id": "f8ee126e33",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.687108427286148,
+              "y": 34.94956120848656,
+              "width": 6.737630069255829,
+              "height": 16.25790148973465,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8359
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium218_jpg.rf.012264549608a78f5f9c48134293874e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.741,
+        "result": [
+          {
+            "id": "6eea06e82b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.95240253210068,
+              "y": 13.232095539569855,
+              "width": 35.90179979801178,
+              "height": 41.587063670158386,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.741
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium225_jpg.rf.7b14739a3a4fddf92cb856f4541e4d54.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.42569999999999997,
+        "result": [
+          {
+            "id": "c178b38d0a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.395536959171295,
+              "y": 70.33345773816109,
+              "width": 12.858745455741882,
+              "height": 13.14687579870224,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4381
+          },
+          {
+            "id": "584d9ba2af",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 83.03151875734329,
+              "y": 52.84699872136116,
+              "width": 12.718698382377625,
+              "height": 16.128967702388763,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4133
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium226_jpg.rf.06e60c4ce9b159a5907687d8cabd659b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9331,
+        "result": [
+          {
+            "id": "0569e4dff9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.87261465191841,
+              "y": 60.14218479394913,
+              "width": 13.62975686788559,
+              "height": 32.79045522212982,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9331
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium227_jpg.rf.f18ccfe453f16301920e39486026c330.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4584,
+        "result": [
+          {
+            "id": "fb411b503b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 7.5929246842861176,
+              "y": 25.4642054438591,
+              "width": 15.988297760486603,
+              "height": 36.92222535610199,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4584
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium231_jpg.rf.ed6ae383ee440048334729cbf4281ec7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5772,
+        "result": [
+          {
+            "id": "2a27d65025",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.46394193172455,
+              "y": 22.800860553979874,
+              "width": 34.32118892669678,
+              "height": 14.230231940746307,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5772
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium241_jpg.rf.3ea3a051f46ca3371f845d1ef6aa379e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8711,
+        "result": [
+          {
+            "id": "ab1b611faa",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.94847071170807,
+              "y": 58.65186005830765,
+              "width": 16.788870096206665,
+              "height": 28.186926245689392,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8711
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium245_jpg.rf.7b4a95fbcd6095e8e5d01a87ac96c70a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5855,
+        "result": [
+          {
+            "id": "65815492a8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.16501212120056,
+              "y": 57.37917274236679,
+              "width": 17.744088172912598,
+              "height": 31.136944890022278,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5855
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium251_jpg.rf.243dd6563432a4723631b93185b8c7fe.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7895,
+        "result": [
+          {
+            "id": "d0fbc518ab",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.056156635284424,
+              "y": 50.793106853961945,
+              "width": 51.03975534439087,
+              "height": 29.86184060573578,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7895
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium258_jpg.rf.8a7f3eee090dce6ceb239b7f06f9bbd8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4884,
+        "result": [
+          {
+            "id": "772b96a51f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.809310376644135,
+              "y": 28.42431664466858,
+              "width": 29.789867997169495,
+              "height": 50.350964069366455,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5744
+          },
+          {
+            "id": "f7aab8438f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 4.129580408334732,
+              "y": 44.542090594768524,
+              "width": 17.8636834025383,
+              "height": 32.45226442813873,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4024
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium259_jpg.rf.7db4d900b6beda0cfb9fb046ec3737f4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.54825,
+        "result": [
+          {
+            "id": "af20550b12",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.84248059988022,
+              "y": 11.449901759624481,
+              "width": 16.270217299461365,
+              "height": 27.18486487865448,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7526
+          },
+          {
+            "id": "5c884a7701",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 10.456261038780212,
+              "y": 11.224408447742462,
+              "width": 19.026148319244385,
+              "height": 24.54717457294464,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3439
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium278_jpg.rf.03e1b02edeaa17858241d8d431bd5ae4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5428,
+        "result": [
+          {
+            "id": "ebadd3a426",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.85889849066734,
+              "y": 51.96362808346748,
+              "width": 18.97861510515213,
+              "height": 17.03474372625351,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5428
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium279_jpg.rf.293dfd6ee4b4f60399a5417ef9f39e99.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6778,
+        "result": [
+          {
+            "id": "c9f9d81403",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.636192709207535,
+              "y": 28.082048892974854,
+              "width": 23.734818398952484,
+              "height": 31.209027767181396,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7499
+          },
+          {
+            "id": "67c2e1fb02",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.45751905441284,
+              "y": 30.13358563184738,
+              "width": 17.942631244659424,
+              "height": 30.85399568080902,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6057
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium299_jpg.rf.b5f30bbe0e9fe33e8e4abfe15bcf1c7a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.926,
+        "result": [
+          {
+            "id": "ba8c8cabef",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.168313682079315,
+              "y": 22.701773047447205,
+              "width": 30.898883938789368,
+              "height": 16.937577724456787,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.926
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium301_jpg.rf.9df6bf466b0aaaf6a375f28b8e91699f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6333666666666667,
+        "result": [
+          {
+            "id": "bf91f2fa23",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.94174975156784,
+              "y": 43.045638501644135,
+              "width": 18.075379729270935,
+              "height": 26.439741253852844,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7034
+          },
+          {
+            "id": "3c41163862",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.95624774694443,
+              "y": 51.77507549524307,
+              "width": 16.53236448764801,
+              "height": 26.950296759605408,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6474
+          },
+          {
+            "id": "565e3fd9f5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 75.49783736467361,
+              "y": 56.67909532785416,
+              "width": 13.43972384929657,
+              "height": 26.838061213493347,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5493
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium307_jpg.rf.a5b4deac54cc894f8527963b7e92780d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5555333333333333,
+        "result": [
+          {
+            "id": "3f9a3e725b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.832931771874428,
+              "y": 31.926600635051727,
+              "width": 11.27498671412468,
+              "height": 27.930942177772522,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6278
+          },
+          {
+            "id": "7b7416c7bd",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 61.71916127204895,
+              "y": 32.64251351356506,
+              "width": 17.155146598815918,
+              "height": 23.353159427642822,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5402
+          },
+          {
+            "id": "8f0e783bf0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 6.391817331314087,
+              "y": 27.130360901355743,
+              "width": 12.103363871574402,
+              "height": 22.650495171546936,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4986
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium308_jpg.rf.d6839d45ab385039bd71d27121e2351e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.66035,
+        "result": [
+          {
+            "id": "153f23a2d9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.61326307058334,
+              "y": 60.47775745391846,
+              "width": 24.467459321022034,
+              "height": 14.799153804779053,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8609
+          },
+          {
+            "id": "1b9e240e87",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.787834376096725,
+              "y": 31.615711003541946,
+              "width": 21.22451215982437,
+              "height": 16.741900146007538,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4598
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium315_jpg.rf.1e8ce66f23d376621b662b58802ac9e3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8452,
+        "result": [
+          {
+            "id": "483b9381e6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.486453622579575,
+              "y": 36.300528049468994,
+              "width": 12.863989174365997,
+              "height": 33.01370143890381,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8452
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium323_jpg.rf.a595c5d78414c1c240fffc2f9965d08c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7959,
+        "result": [
+          {
+            "id": "15692323d7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.928494065999985,
+              "y": 30.654139816761017,
+              "width": 16.02558046579361,
+              "height": 41.68045222759247,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7959
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium337_jpg.rf.d2a738749c46806cf65c19c6cb2ec842.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9597,
+        "result": [
+          {
+            "id": "8b439d7e9d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.37101086974144,
+              "y": 36.920347809791565,
+              "width": 24.364693462848663,
+              "height": 31.87803626060486,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9597
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium338_jpg.rf.3f75baa4fd75d4f0cee2a22be353eafd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.63545,
+        "result": [
+          {
+            "id": "a8cf43f3ca",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.179284662008286,
+              "y": 29.527082294225693,
+              "width": 16.55827909708023,
+              "height": 20.990683138370514,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8349
+          },
+          {
+            "id": "752d0e98a0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.086363166570663,
+              "y": 24.019482731819153,
+              "width": 15.95427542924881,
+              "height": 22.145122289657593,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.436
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium355_jpg.rf.e6db9768db6b0933334a3c0a15905ac8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8421,
+        "result": [
+          {
+            "id": "c63eeab753",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 63.260842859745026,
+              "y": 60.838039964437485,
+              "width": 15.35855233669281,
+              "height": 23.19398671388626,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8421
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium356_jpg.rf.392e8e0771e035038602b7d0d71e78f9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.816,
+        "result": [
+          {
+            "id": "35678bf3bc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.9180608689785,
+              "y": 60.51810681819916,
+              "width": 13.00850659608841,
+              "height": 22.627025842666626,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.816
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium363_jpg.rf.c4986610fe9449139d915324d2545ee8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9147,
+        "result": [
+          {
+            "id": "8c622dd152",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.19657728075981,
+              "y": 37.463946640491486,
+              "width": 20.01878172159195,
+              "height": 44.32724416255951,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9147
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium372_jpg.rf.77aa853405d7669a2d824c988f89019f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.44520000000000004,
+        "result": [
+          {
+            "id": "cea9401ee4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.81313629448414,
+              "y": 23.674294352531433,
+              "width": 11.184164136648178,
+              "height": 29.14721369743347,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.556
+          },
+          {
+            "id": "2c3db9fba8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 74.51956123113632,
+              "y": 10.604313015937805,
+              "width": 10.424628853797913,
+              "height": 32.67852067947388,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3344
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium391_jpg.rf.74d9be049685dd8f2e8c4b307c989ed2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7784500000000001,
+        "result": [
+          {
+            "id": "208aa055a8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.92376098036766,
+              "y": 35.795699059963226,
+              "width": 14.955110847949982,
+              "height": 30.68329393863678,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.805
+          },
+          {
+            "id": "a035f2e7e6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.57606142759323,
+              "y": 29.68594878911972,
+              "width": 13.096871972084045,
+              "height": 31.755205988883972,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7519
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium415_jpg.rf.08a9a7069c509f5613346238bcc51fb5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.74065,
+        "result": [
+          {
+            "id": "9507ce1737",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.82146197557449,
+              "y": 41.51365980505943,
+              "width": 13.235530257225037,
+              "height": 23.657305538654327,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7455
+          },
+          {
+            "id": "75294645ac",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 83.33363346755505,
+              "y": 43.4231698513031,
+              "width": 11.106065660715103,
+              "height": 28.320026397705078,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7358
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium416_jpg.rf.f2888e3b5c002b64dc1fb6305ac6758e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7873,
+        "result": [
+          {
+            "id": "a78c657350",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.928996950387955,
+              "y": 29.619072377681732,
+              "width": 16.45810455083847,
+              "height": 30.122700333595276,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7988
+          },
+          {
+            "id": "a42082315e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 7.689940184354782,
+              "y": 36.05787605047226,
+              "width": 14.548783004283905,
+              "height": 30.58704435825348,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7758
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium425_jpg.rf.3f15883970f8c70c0411c57d788800eb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9177,
+        "result": [
+          {
+            "id": "0832a6cf08",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.830733716487885,
+              "y": 7.4019655585289,
+              "width": 42.231157422065735,
+              "height": 30.95625936985016,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9177
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium431_jpg.rf.b155d38a1c9bc2bba27f03196255662f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7097,
+        "result": [
+          {
+            "id": "28acbcfcbf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.48975118994713,
+              "y": 32.03560411930084,
+              "width": 14.726413786411285,
+              "height": 27.087533473968506,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7333
+          },
+          {
+            "id": "2440ef2917",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.07920864224434,
+              "y": 26.31346881389618,
+              "width": 17.201565206050873,
+              "height": 26.67769193649292,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6861
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium433_jpg.rf.f0875f04d673c90b6d50ddd76569057b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7227,
+        "result": [
+          {
+            "id": "83c72c6121",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.696738079190254,
+              "y": 50.0838503241539,
+              "width": 10.762148350477219,
+              "height": 33.90773832798004,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7227
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium439_jpg.rf.723556250d3d37901bb5671aa487f597.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8903,
+        "result": [
+          {
+            "id": "4eae10f369",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.034744679927826,
+              "y": 72.73914143443108,
+              "width": 34.0846985578537,
+              "height": 10.570372641086578,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8903
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium440_jpg.rf.38ebcb815de7ec87364a3d820dc195e9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9703,
+        "result": [
+          {
+            "id": "b4269f260d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.415355801582336,
+              "y": 70.41239365935326,
+              "width": 38.70798945426941,
+              "height": 22.935505211353302,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9703
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium448_jpg.rf.9a84bcafadb00fc774d9e16521c5d09a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9343,
+        "result": [
+          {
+            "id": "b013592ef2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.19636270403862,
+              "y": 45.05730867385864,
+              "width": 13.313640654087067,
+              "height": 34.9318265914917,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9343
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium463_jpg.rf.15e8254777e703ffb19c0ee1d0e28117.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9035,
+        "result": [
+          {
+            "id": "4dd7f8e080",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.781876266002655,
+              "y": 55.32512813806534,
+              "width": 13.936486840248108,
+              "height": 32.96402394771576,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9035
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium467_jpg.rf.f3cfd939d3a7391d508b21737f065271.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6301,
+        "result": [
+          {
+            "id": "b01de6c143",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.45263147354126,
+              "y": 14.277070760726929,
+              "width": 33.70776176452637,
+              "height": 56.43516182899475,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7037
+          },
+          {
+            "id": "752bed7f24",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.54503870010376,
+              "y": 6.179788708686829,
+              "width": 25.886988639831543,
+              "height": 51.22685432434082,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5565
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium468_jpg.rf.488cc54c4ca53f4b8ca954763ad5bd51.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.919,
+        "result": [
+          {
+            "id": "0e8cb07a17",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.588266491889954,
+              "y": 75.09852424263954,
+              "width": 28.212207555770874,
+              "height": 11.87850683927536,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.919
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium46_jpg.rf.7cd5c4acae1b237f6f09c17101f84e92.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7895,
+        "result": [
+          {
+            "id": "96b7027401",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 63.9446422457695,
+              "y": 58.724624291062355,
+              "width": 27.65240967273712,
+              "height": 12.1436707675457,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7895
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium484_jpg.rf.9abb0344877eecce530d9002e76031d9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8219,
+        "result": [
+          {
+            "id": "75da5fa6c1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.560506492853165,
+              "y": 46.09935134649277,
+              "width": 21.551506221294403,
+              "height": 31.653884053230286,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8219
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium486_jpg.rf.c30c3a89d316f3bb5e52ef5fbf79c1af.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.59375,
+        "result": [
+          {
+            "id": "ab0ef9cb19",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.40151780843735,
+              "y": 40.5427485704422,
+              "width": 38.79195749759674,
+              "height": 11.692005395889282,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8872
+          },
+          {
+            "id": "7852047fcb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.838278770446777,
+              "y": 14.773321896791458,
+              "width": 54.83368635177612,
+              "height": 24.04029220342636,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3003
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium495_jpg.rf.d8ba79fe2c419666b44e0afbbc99000a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6195999999999999,
+        "result": [
+          {
+            "id": "907794969a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.371780037879944,
+              "y": 54.602522403001785,
+              "width": 43.16602349281311,
+              "height": 22.31968492269516,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7665
+          },
+          {
+            "id": "ba4974fde8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 64.59026634693146,
+              "y": 30.45360893011093,
+              "width": 35.58071255683899,
+              "height": 18.291130661964417,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4727
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium496_jpg.rf.7fa7041fc922d9c69f099e2811fef886.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7282,
+        "result": [
+          {
+            "id": "b586f9804c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.047919064760208,
+              "y": 64.00622129440308,
+              "width": 12.119875848293304,
+              "height": 27.43774652481079,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7282
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium497_jpg.rf.042a4014911ce275ee37490dffa8a8c4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5169,
+        "result": [
+          {
+            "id": "e46aeb7ebc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.0,
+              "y": 28.666570782661438,
+              "width": 35.11752188205719,
+              "height": 61.03915572166443,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5169
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium499_jpg.rf.bed07a4b6190550f7cf7168d100fd2e5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.58525,
+        "result": [
+          {
+            "id": "bb6698329e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 56.74121081829071,
+              "y": 46.29673957824707,
+              "width": 21.063965559005737,
+              "height": 26.310133934020996,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7148
+          },
+          {
+            "id": "eadec13ed5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.761231422424316,
+              "y": 58.38121324777603,
+              "width": 18.39776039123535,
+              "height": 27.034208178520203,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4557
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium503_jpg.rf.90de9da8764b34fcb8a6f8b8391a2683.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3713,
+        "result": [
+          {
+            "id": "5045d6e950",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 10.694386065006256,
+              "y": 27.387434244155884,
+              "width": 49.508288502693176,
+              "height": 12.05136775970459,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3713
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium508_jpg.rf.5de97bd91cbf77128fc28fdb88881da9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.45835,
+        "result": [
+          {
+            "id": "a236ccd988",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 80.08490949869156,
+              "y": 27.97652930021286,
+              "width": 19.992920756340027,
+              "height": 32.09507167339325,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6134
+          },
+          {
+            "id": "c1b6e83738",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.0,
+              "y": 34.12954807281494,
+              "width": 34.67780947685242,
+              "height": 55.03894090652466,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3033
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium510_jpg.rf.734629059484fa96a46b8f8171a2b6f8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8607,
+        "result": [
+          {
+            "id": "ee238c4e17",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.39168035984039,
+              "y": 16.563811898231506,
+              "width": 29.29168939590454,
+              "height": 37.6229465007782,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8607
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium511_jpg.rf.7cff6fdb9dce521ddfe901d1d0bddc3b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3544,
+        "result": [
+          {
+            "id": "a87ef08c49",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.41420340538025,
+              "y": 36.03096157312393,
+              "width": 16.201186180114746,
+              "height": 16.73091948032379,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3649
+          },
+          {
+            "id": "58655e14f5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.10242968797684,
+              "y": 11.254318058490753,
+              "width": 17.726656794548035,
+              "height": 27.14349925518036,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3439
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium512_jpg.rf.257418b3950a1c26faabbea7508e92f1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7782,
+        "result": [
+          {
+            "id": "7b93870412",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.197353661060333,
+              "y": 27.419334650039673,
+              "width": 45.442888140678406,
+              "height": 24.956971406936646,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7782
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium513_jpg.rf.13feecacc57c509bb2c8b8f4282ccfa2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6164,
+        "result": [
+          {
+            "id": "75a399fa73",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.80191969871521,
+              "y": 32.09560811519623,
+              "width": 31.534886360168457,
+              "height": 18.42280626296997,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6164
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium518_jpg.rf.b31f4ea0881e8b80e780cb40bfd60d9e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6707000000000001,
+        "result": [
+          {
+            "id": "5b5ebee96c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.104616284370422,
+              "y": 36.33420318365097,
+              "width": 30.55093288421631,
+              "height": 19.68581974506378,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6816
+          },
+          {
+            "id": "8137afaaf4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.956097781658173,
+              "y": 56.19002878665924,
+              "width": 33.67849886417389,
+              "height": 20.961540937423706,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6598
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium521_jpg.rf.88aafdfce831f498648c9f3f5d792c23.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9199,
+        "result": [
+          {
+            "id": "3a90dc6e77",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 60.50385609269142,
+              "y": 40.36761820316315,
+              "width": 16.867320239543915,
+              "height": 30.311685800552368,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9199
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium522_jpg.rf.eb0439367e8a9abc03990a02007ae126.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5491333333333334,
+        "result": [
+          {
+            "id": "7f520a23c0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.46387392282486,
+              "y": 21.322059631347656,
+              "width": 16.69262945652008,
+              "height": 26.8532931804657,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7021
+          },
+          {
+            "id": "dc84a80767",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.99076068401337,
+              "y": 30.550390481948853,
+              "width": 18.05287003517151,
+              "height": 26.363706588745117,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5191
+          },
+          {
+            "id": "01395ec8f0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.085706949234009,
+              "y": 16.468141973018646,
+              "width": 13.532370328903198,
+              "height": 26.898983120918274,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4262
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium530_jpg.rf.88d12fac3bce8ba95685dc421bce0672.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8091999999999999,
+        "result": [
+          {
+            "id": "54ffca1767",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.989787340164185,
+              "y": 31.01397380232811,
+              "width": 30.517292022705078,
+              "height": 16.31544977426529,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8427
+          },
+          {
+            "id": "34ec20edf9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.124010264873505,
+              "y": 7.795370370149612,
+              "width": 30.946245789527893,
+              "height": 14.328999817371368,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7757
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium531_jpg.rf.5f7ef53eb8f4f47a195bffd86975e0ab.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6412,
+        "result": [
+          {
+            "id": "a83bd7a5d5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.213467717170715,
+              "y": 24.70497339963913,
+              "width": 28.243297338485718,
+              "height": 37.60955035686493,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9113
+          },
+          {
+            "id": "16cbbf7bba",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.91691154241562,
+              "y": 34.637363255023956,
+              "width": 31.310060620307922,
+              "height": 33.06865394115448,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3711
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium532_jpg.rf.9543f5b86f727fa320541146ebea7e4a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9376,
+        "result": [
+          {
+            "id": "df2a352a1b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.62785464525223,
+              "y": 37.33000010251999,
+              "width": 23.93803298473358,
+              "height": 17.97073781490326,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9376
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium534_jpg.rf.b3cab27822d62843151d0e9cc6cd06b2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9042,
+        "result": [
+          {
+            "id": "6da674b7f4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.73636344075203,
+              "y": 55.412253737449646,
+              "width": 12.784342467784882,
+              "height": 32.058554887771606,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9042
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium539_jpg.rf.487fc615de930a5a4b3d39b4fb88bb4e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9698,
+        "result": [
+          {
+            "id": "87e39f1c8f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.922197222709656,
+              "y": 20.56664228439331,
+              "width": 24.613744020462036,
+              "height": 61.09126806259155,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9698
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium540_jpg.rf.5e8f33571cb1ae6043fa889b740470b4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5318499999999999,
+        "result": [
+          {
+            "id": "1c522b82af",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.84477213025093,
+              "y": 36.47696226835251,
+              "width": 15.383993089199066,
+              "height": 28.15263569355011,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7602
+          },
+          {
+            "id": "a9168fdec7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.37438257038593,
+              "y": 37.03497052192688,
+              "width": 8.74505266547203,
+              "height": 26.944398880004883,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3035
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium558_jpg.rf.d0c9174b018e71d72abbcc2dc4694ab2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9212,
+        "result": [
+          {
+            "id": "8e98baac74",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 53.642527014017105,
+              "y": 42.64217019081116,
+              "width": 16.668300330638885,
+              "height": 39.14945125579834,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9212
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium55_jpg.rf.f6b46ff7836edc516902821218239882.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.559,
+        "result": [
+          {
+            "id": "b13dc4211c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.47669264674187,
+              "y": 37.83484697341919,
+              "width": 16.495193541049957,
+              "height": 31.679272651672363,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.559
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium561_jpg.rf.2866bbbabac9b4197533a2665cf0a8f0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9647,
+        "result": [
+          {
+            "id": "0023233e3c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.55025935173035,
+              "y": 25.793176889419556,
+              "width": 22.605061531066895,
+              "height": 51.557183265686035,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9647
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium56_jpg.rf.d1c97545ac22fd820a1c48ca47cb7a92.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7335499999999999,
+        "result": [
+          {
+            "id": "9dd4c2c65f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.5332273542881,
+              "y": 42.37080216407776,
+              "width": 16.846685111522675,
+              "height": 28.34334373474121,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8479
+          },
+          {
+            "id": "9886a52314",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.22623187303543,
+              "y": 54.882922768592834,
+              "width": 12.16786801815033,
+              "height": 28.257232904434204,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6192
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium65_jpg.rf.eeee020e454fe0f02725d0ebbbfbf309.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8979,
+        "result": [
+          {
+            "id": "38e6223b14",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.858618319034576,
+              "y": 23.708917945623398,
+              "width": 38.51109445095062,
+              "height": 21.995700895786285,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8979
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium73_jpg.rf.2d123a836329584b18c242923830ab73.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5501,
+        "result": [
+          {
+            "id": "5b38326c5f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.43341016769409,
+              "y": 5.074191093444824,
+              "width": 40.44831991195679,
+              "height": 29.863810539245605,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5501
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium76_jpg.rf.7722651d4a2e6c566dcaa40acf4bb6ba.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7946500000000001,
+        "result": [
+          {
+            "id": "72cb556491",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.510355561971664,
+              "y": 40.45416861772537,
+              "width": 22.086699306964874,
+              "height": 31.123337149620056,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8447
+          },
+          {
+            "id": "6d14836720",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.36761316657066,
+              "y": 50.37566423416138,
+              "width": 20.02873569726944,
+              "height": 31.75380229949951,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7446
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/Dentium/dentium97_jpg.rf.59096bf616de2a20573ed1dff5ffea8c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9301,
+        "result": [
+          {
+            "id": "a94d41deed",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.707864224910736,
+              "y": 37.71555870771408,
+              "width": 27.03501284122467,
+              "height": 35.92281639575958,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9301
+          }
+        ]
+      }
+    ]
+  }
+]

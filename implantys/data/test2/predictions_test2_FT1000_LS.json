@@ -1,0 +1,5958 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1008_jpg.rf.b31e87a69e6e3cfac6c7b4a0f6b85594.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.55225,
+        "result": [
+          {
+            "id": "8a8b0d7540",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.423966079950333,
+              "y": 56.661856919527054,
+              "width": 20.024089515209198,
+              "height": 18.515191972255707,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6323
+          },
+          {
+            "id": "3c6be71fe6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 45.039309561252594,
+              "y": 0.07682442665100098,
+              "width": 41.264256834983826,
+              "height": 17.81994253396988,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4722
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1020_jpg.rf.10af4cb859f2d54a7132e9e671761bec.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.57915,
+        "result": [
+          {
+            "id": "421e3a4258",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.62385755777359,
+              "y": 79.26790565252304,
+              "width": 39.557114243507385,
+              "height": 17.251554131507874,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8296
+          },
+          {
+            "id": "19702f1c83",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.34646660089493,
+              "y": 6.775350868701935,
+              "width": 32.174500823020935,
+              "height": 16.636818647384644,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3287
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1043_jpg.rf.1745778e0b9d071968e3544199085ca0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5735,
+        "result": [
+          {
+            "id": "fcf3062012",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 11.483094096183777,
+              "y": 43.85049194097519,
+              "width": 46.22201919555664,
+              "height": 37.86502182483673,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5735
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1051_jpg.rf.491ee84911a5349f12107bffe3661c70.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6615,
+        "result": [
+          {
+            "id": "d38ec192c2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.865226566791534,
+              "y": 8.844448626041412,
+              "width": 30.625614523887634,
+              "height": 29.577109217643738,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6615
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1099_jpg.rf.ad5ff2bacc0dd4458c512d5a322604a6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7759,
+        "result": [
+          {
+            "id": "ea7c7754f1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.486697852611542,
+              "y": 19.568228721618652,
+              "width": 16.600430011749268,
+              "height": 52.241820096969604,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8247
+          },
+          {
+            "id": "2b9117e52d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.24608442187309,
+              "y": 12.577211856842041,
+              "width": 23.967815935611725,
+              "height": 59.223681688308716,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7271
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1115_jpg.rf.08db73cf588cfb199bf9db0be2cb124c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9355,
+        "result": [
+          {
+            "id": "ba8d30fb6b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.128350794315338,
+              "y": 41.09216779470444,
+              "width": 16.076409816741943,
+              "height": 40.0250107049942,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9355
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1127_jpg.rf.2ffdad1a94af50f3a165ef752a16edaa.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9511,
+        "result": [
+          {
+            "id": "2c0de69585",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 60.01769006252289,
+              "y": 1.6246914863586426,
+              "width": 26.62450671195984,
+              "height": 52.09918022155762,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9511
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1130_jpg.rf.c8a4ae4f4fef2f4f62aef9d82fbb0905.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7242999999999999,
+        "result": [
+          {
+            "id": "cf3a8effbc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.19833895564079,
+              "y": 33.609744906425476,
+              "width": 18.17357689142227,
+              "height": 30.872541666030884,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7304
+          },
+          {
+            "id": "ae2b4f539c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.367639064788818,
+              "y": 38.200657069683075,
+              "width": 22.46963381767273,
+              "height": 43.18198263645172,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7182
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin1174_jpg.rf.8f4b81f1a4fab15a29480115cfd88bd7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4951,
+        "result": [
+          {
+            "id": "6c1fb0dbc4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.59409773349762,
+              "y": 44.34942156076431,
+              "width": 11.125677824020386,
+              "height": 29.854819178581238,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4951
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin134_jpg.rf.462f23a5efabeacbb84a5f35bcde5809.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6401,
+        "result": [
+          {
+            "id": "5e111536fc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.45092138648033,
+              "y": 22.9174867272377,
+              "width": 18.16989928483963,
+              "height": 47.897663712501526,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6401
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin174_jpg.rf.b0fa96985024b08eedada218cb2dc4fd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8661,
+        "result": [
+          {
+            "id": "6f66aa776a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.38835006952286,
+              "y": 20.559504628181458,
+              "width": 20.138725638389587,
+              "height": 41.56532883644104,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8661
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin187_jpg.rf.0dbe655d2977f5c374364d56a5b7d1df.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5843666666666666,
+        "result": [
+          {
+            "id": "e2601a8408",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.668711811304092,
+              "y": 21.02629393339157,
+              "width": 20.45053094625473,
+              "height": 40.504202246665955,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6521
+          },
+          {
+            "id": "26e056c688",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.73045825958252,
+              "y": 21.43183946609497,
+              "width": 27.74631977081299,
+              "height": 48.1610894203186,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6274
+          },
+          {
+            "id": "17ef76a9cc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.50908696651459,
+              "y": 17.24107563495636,
+              "width": 18.76029372215271,
+              "height": 40.55345058441162,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4736
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin203_jpg.rf.a18e35d1ea60f4d3a0ddb38ce2283ceb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9145,
+        "result": [
+          {
+            "id": "dbd629c645",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.02447420358658,
+              "y": 5.566856265068054,
+              "width": 21.29872739315033,
+              "height": 63.95353674888611,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9145
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin220_jpg.rf.9b434f4260672a70c9d8f8bc1ef50a54.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.44920000000000004,
+        "result": [
+          {
+            "id": "79312d341b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 14.551080763339996,
+              "y": 48.67779165506363,
+              "width": 36.3579124212265,
+              "height": 38.86377513408661,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5852
+          },
+          {
+            "id": "9b21afb9a4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.006584823131561279,
+              "y": 54.10677343606949,
+              "width": 28.022226691246033,
+              "height": 33.385130763053894,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3132
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin221_jpg.rf.4ccaed2c1c53dc814fa05eea132b1180.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5502,
+        "result": [
+          {
+            "id": "93d50ff55b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.24238273501396,
+              "y": 41.484734416007996,
+              "width": 16.2493959069252,
+              "height": 37.478142976760864,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5744
+          },
+          {
+            "id": "459dc5697a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.412690103054047,
+              "y": 30.17164021730423,
+              "width": 14.969614148139954,
+              "height": 41.04084670543671,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.526
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin224_jpg.rf.8e9b15408582a4fa742fdf0894147097.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4972,
+        "result": [
+          {
+            "id": "a8dbd4f4bc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.180153340101242,
+              "y": 40.61019718647003,
+              "width": 20.75733095407486,
+              "height": 37.859922647476196,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5855
+          },
+          {
+            "id": "5f81f06fac",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.77375918626785,
+              "y": 16.349047422409058,
+              "width": 27.41529643535614,
+              "height": 54.212141036987305,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4089
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin234_jpg.rf.c23ae944ca8f59c05585afdf216255e2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5549,
+        "result": [
+          {
+            "id": "ea55898765",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.762621819972992,
+              "y": 13.801942765712738,
+              "width": 16.324040293693542,
+              "height": 37.48347461223602,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7299
+          },
+          {
+            "id": "12e2c706c9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.94328594207764,
+              "y": 12.894448637962341,
+              "width": 22.363877296447754,
+              "height": 30.678468942642212,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3799
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin282_jpg.rf.1847acd9c2d355b3a6f129f157c70bf6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5734,
+        "result": [
+          {
+            "id": "11a52e07d0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 82.08374194800854,
+              "y": 43.96076053380966,
+              "width": 10.999158769845963,
+              "height": 35.09942591190338,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5734
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin291_jpg.rf.624b8c045b4674fca3d255c5c13403da.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.828,
+        "result": [
+          {
+            "id": "3f8571e4e1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.848540276288986,
+              "y": 46.22074514627457,
+              "width": 13.711847364902496,
+              "height": 28.507861495018005,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.828
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin292_jpg.rf.e8a94790fd7fb67d9c001468a049928b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.43543333333333334,
+        "result": [
+          {
+            "id": "22636b5cd5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.082547962665558,
+              "y": 76.80578008294106,
+              "width": 29.482731223106384,
+              "height": 11.062650382518768,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5901
+          },
+          {
+            "id": "7a333f3441",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.1309729218483,
+              "y": 77.38548070192337,
+              "width": 27.233335375785828,
+              "height": 12.623342871665955,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3866
+          },
+          {
+            "id": "570a9cbcf8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.50238162279129,
+              "y": 46.7829704284668,
+              "width": 26.470419764518738,
+              "height": 12.334632873535156,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3296
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin294_jpg.rf.589edfdaf350459609ddea679ab98049.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.528,
+        "result": [
+          {
+            "id": "1e07004142",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.149310111999512,
+              "y": 45.5182671546936,
+              "width": 11.124292016029358,
+              "height": 29.37932014465332,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7249
+          },
+          {
+            "id": "0582965f80",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.12494997680187,
+              "y": 38.98611068725586,
+              "width": 12.056360393762589,
+              "height": 25.304269790649414,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3311
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin308_jpg.rf.ee54b010ab2a6cab9b6b371413dc86f1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9163,
+        "result": [
+          {
+            "id": "fe469924fd",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.681317299604416,
+              "y": 20.117762684822083,
+              "width": 17.76408702135086,
+              "height": 44.71309185028076,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9163
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin354_jpg.rf.c42463dbabe52b584b315f40d5b214fe.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9017,
+        "result": [
+          {
+            "id": "1e09d82428",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 58.73642489314079,
+              "y": 35.004739463329315,
+              "width": 15.486671030521393,
+              "height": 35.4101687669754,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9017
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin393_jpg.rf.931279b75975d1d72f7b7c5bd0029d80.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9247,
+        "result": [
+          {
+            "id": "145a3d7a6b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.707725405693054,
+              "y": 44.08724457025528,
+              "width": 23.67519736289978,
+              "height": 42.8665965795517,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9247
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin473_jpg.rf.f10df2cf3836b3bf9f2595ba136d59d2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7451000000000001,
+        "result": [
+          {
+            "id": "0d53b61ce1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.37276402115822,
+              "y": 57.29297995567322,
+              "width": 16.159014403820038,
+              "height": 27.222251892089844,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7819
+          },
+          {
+            "id": "4c8f316bd7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.039869755506516,
+              "y": 60.978709906339645,
+              "width": 12.10944801568985,
+              "height": 21.628297865390778,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7083
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin487_jpg.rf.da536f69a8ecdd5c76114e67a1fc0fbf.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8416,
+        "result": [
+          {
+            "id": "ffd53839e0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.132631480693817,
+              "y": 33.07191953063011,
+              "width": 39.64802324771881,
+              "height": 14.23301249742508,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8416
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin503_jpg.rf.dcbfeb2bc9b716d535c9206b75ffbd87.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9571,
+        "result": [
+          {
+            "id": "f38139631a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.560926139354706,
+              "y": 51.49535536766052,
+              "width": 38.99520933628082,
+              "height": 23.297810554504395,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9571
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin519_jpg.rf.696216b285cbf0a9f5936bc5fff958f9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9663,
+        "result": [
+          {
+            "id": "a7bd25192c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.97044849395752,
+              "y": 57.995250821113586,
+              "width": 30.733788013458252,
+              "height": 15.276116132736206,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9663
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin523_jpg.rf.445b41b32dd44f135922eaeb6072dea8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9418,
+        "result": [
+          {
+            "id": "5d2c2becd5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.735886931419373,
+              "y": 37.16989457607269,
+              "width": 15.379476547241211,
+              "height": 30.412644147872925,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9418
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin555_jpg.rf.55648169fc15f6610568ace1d0f59d2f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.70235,
+        "result": [
+          {
+            "id": "3da4987528",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.926349222660065,
+              "y": 15.554974973201752,
+              "width": 18.719813227653503,
+              "height": 34.99193489551544,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8095
+          },
+          {
+            "id": "a8a0bda512",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 3.285197913646698,
+              "y": 28.249338269233704,
+              "width": 19.238439202308655,
+              "height": 30.12516498565674,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5952
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin562_jpg.rf.4062dc09c35b168f6dec655d6cd8faf2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9616,
+        "result": [
+          {
+            "id": "91af7614f6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.524570643901825,
+              "y": 54.48300614953041,
+              "width": 42.87566840648651,
+              "height": 14.760522544384003,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9616
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin577_jpg.rf.c92536fc7ead09ef847a748da011c16d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.924,
+        "result": [
+          {
+            "id": "ba1536fc28",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.847162902355194,
+              "y": 19.50649917125702,
+              "width": 40.78109562397003,
+              "height": 16.33008122444153,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.924
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin595_jpg.rf.b3a54574f0d2527246cdd10090e57f2e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.53975,
+        "result": [
+          {
+            "id": "d5d2de9324",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 56.334567070007324,
+              "y": 39.50996249914169,
+              "width": 31.635284423828125,
+              "height": 12.091359496116638,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6652
+          },
+          {
+            "id": "05cc49b459",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.273966670036316,
+              "y": 2.501548081636429,
+              "width": 29.79854941368103,
+              "height": 19.472165405750275,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4143
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin610_jpg.rf.a24bccb831d79f9d32940f69ae169085.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9669,
+        "result": [
+          {
+            "id": "5a3fe8f7ff",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.054182410240173,
+              "y": 52.66244634985924,
+              "width": 45.55659890174866,
+              "height": 13.802631199359894,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9669
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin646_jpg.rf.06adafed35043f585281acf32261edbd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6825,
+        "result": [
+          {
+            "id": "a597b00768",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.805541217327118,
+              "y": 66.42344444990158,
+              "width": 37.792977690696716,
+              "height": 19.738367199897766,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8988
+          },
+          {
+            "id": "e22468d682",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.96373242139816,
+              "y": 11.650115251541138,
+              "width": 30.01296818256378,
+              "height": 18.8429594039917,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4662
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin670_jpg.rf.f9bdecce841bea961ddef67f5c4ab818.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8834,
+        "result": [
+          {
+            "id": "a1fa3d52d7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.716769576072693,
+              "y": 23.575973510742188,
+              "width": 37.33370900154114,
+              "height": 40.70239067077637,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8834
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin683_jpg.rf.575453df94fc626f24030ac1167ad1be.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9661,
+        "result": [
+          {
+            "id": "510057c48b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.92973339557648,
+              "y": 35.5020210146904,
+              "width": 37.13236451148987,
+              "height": 14.568039774894714,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9661
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin696_jpg.rf.d4fbcf9a71ebb6e895524e277a921d42.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9664,
+        "result": [
+          {
+            "id": "5d1baf54b1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.069821417331696,
+              "y": 15.54243117570877,
+              "width": 36.2503319978714,
+              "height": 13.718539476394653,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9664
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin699_jpg.rf.234c0a79f0df557967caf9b99841ba01.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.95,
+        "result": [
+          {
+            "id": "2b5afa3956",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 6.20235949754715,
+              "y": 46.46114036440849,
+              "width": 40.134987235069275,
+              "height": 20.431865751743317,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.95
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin731_jpg.rf.873b167511ec8834d414631e0abb126a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9627,
+        "result": [
+          {
+            "id": "1630a24dba",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.8060085773468,
+              "y": 18.16112846136093,
+              "width": 30.083918571472168,
+              "height": 44.5402592420578,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9627
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin740_jpg.rf.5e18b365aae62d007e9f61aef277e5ca.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.626,
+        "result": [
+          {
+            "id": "291877b9e0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.777630627155304,
+              "y": 28.299584984779358,
+              "width": 34.92354452610016,
+              "height": 51.213401556015015,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7982
+          },
+          {
+            "id": "18ebbdda3e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.34636443853378,
+              "y": 9.216570854187012,
+              "width": 24.10924732685089,
+              "height": 38.97126913070679,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4538
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin742_jpg.rf.2fd3aad7db6abd09209e0718050bad3f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9501,
+        "result": [
+          {
+            "id": "761f861a93",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.691808462142944,
+              "y": 20.328453928232193,
+              "width": 37.07505464553833,
+              "height": 19.822166860103607,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9501
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin754_jpg.rf.87982bb809d88ca05c34583d413bdf22.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7093,
+        "result": [
+          {
+            "id": "5c2054a0f4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.2405144572258,
+              "y": 18.97263377904892,
+              "width": 18.82822811603546,
+              "height": 29.95212972164154,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8168
+          },
+          {
+            "id": "85c0892d9b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 2.482282370328903,
+              "y": 44.047749042510986,
+              "width": 13.540920615196228,
+              "height": 37.425291538238525,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6018
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin781_jpg.rf.b5813333d7353654225a4f6d47077f97.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7334499999999999,
+        "result": [
+          {
+            "id": "cbb26adddb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.356350779533386,
+              "y": 50.967052578926086,
+              "width": 35.70203185081482,
+              "height": 26.26318335533142,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8699
+          },
+          {
+            "id": "1beaea8e6d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.792226374149323,
+              "y": 2.695596218109131,
+              "width": 27.097156643867493,
+              "height": 24.547231197357178,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.597
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin850_jpg.rf.0ada82b045f4bc1887eddb5f198777dd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.63995,
+        "result": [
+          {
+            "id": "4549a2c051",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.80846327543259,
+              "y": 68.81672739982605,
+              "width": 43.21489632129669,
+              "height": 20.640170574188232,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6664
+          },
+          {
+            "id": "768153f572",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.22622233629227,
+              "y": 33.75580757856369,
+              "width": 43.033191561698914,
+              "height": 19.249269366264343,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6135
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin878_jpg.rf.c636b5758b4044a4abdc7b837ceca921.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8976,
+        "result": [
+          {
+            "id": "4c6c8bc7a5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.203526854515076,
+              "y": 26.11660659313202,
+              "width": 24.131685495376587,
+              "height": 70.93806862831116,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8976
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin901_jpg.rf.d0604ed5de86f1c8aeed426d2c4ad08d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9505,
+        "result": [
+          {
+            "id": "258a95ba76",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.091303646564484,
+              "y": 42.64424070715904,
+              "width": 43.54427754878998,
+              "height": 21.95173054933548,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9505
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin912_jpg.rf.4a9ed557e4cd735962e36b69daedd39e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9451,
+        "result": [
+          {
+            "id": "2052417283",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.61814171075821,
+              "y": 45.62895745038986,
+              "width": 33.84401500225067,
+              "height": 16.792550683021545,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9451
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin919_jpg.rf.6bf84fbb7bfae12b6d804b669bcab758.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9454,
+        "result": [
+          {
+            "id": "7b2ee82d28",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.247754126787186,
+              "y": 36.0312819480896,
+              "width": 15.610764920711517,
+              "height": 35.341620445251465,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9454
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin950_jpg.rf.e4d856c3b50398088b45383516509507.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9576,
+        "result": [
+          {
+            "id": "fd1e1e4d3d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.83879551291466,
+              "y": 54.51943725347519,
+              "width": 17.408855259418488,
+              "height": 43.95209848880768,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9576
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/adin963_jpg.rf.c37451a739cf05f1c2a3c900020cba42.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9693,
+        "result": [
+          {
+            "id": "f98bd9e557",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 52.169208228588104,
+              "y": 35.956503450870514,
+              "width": 31.377282738685608,
+              "height": 44.09674108028412,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9693
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium142_jpg.rf.afd9728d8068fdf537c661166a1b3632.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4262,
+        "result": [
+          {
+            "id": "f03949714f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.84593951702118,
+              "y": 18.371452391147614,
+              "width": 33.92011523246765,
+              "height": 40.559497475624084,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4609
+          },
+          {
+            "id": "3286a34cdc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 1.6168341040611267,
+              "y": 18.264317512512207,
+              "width": 48.20689857006073,
+              "height": 60.6137216091156,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3915
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium152_jpg.rf.92ecca2a097d41fac25d702227243e6b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7193,
+        "result": [
+          {
+            "id": "7eecf5e6e7",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 10.680382698774338,
+              "y": 28.638339787721634,
+              "width": 8.242766559123993,
+              "height": 23.267929255962372,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7332
+          },
+          {
+            "id": "b22aa212fb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.65071524679661,
+              "y": 30.050640553236008,
+              "width": 7.691024988889694,
+              "height": 23.225535452365875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7054
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium157_jpg.rf.07226bc006c014f5ce908b2a825e8874.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7374,
+        "result": [
+          {
+            "id": "6b05001765",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.25126540660858,
+              "y": 80.13176172971725,
+              "width": 20.780211687088013,
+              "height": 7.209518551826477,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7801
+          },
+          {
+            "id": "c83fd2bd4d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.90420565009117,
+              "y": 44.3615160882473,
+              "width": 20.995040237903595,
+              "height": 6.9491758942604065,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6947
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium170_jpg.rf.f6013288ae3857bcf2323051f933e89e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.51785,
+        "result": [
+          {
+            "id": "179d9d1ce0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.00251875072718,
+              "y": 53.42326536774635,
+              "width": 2.395908161997795,
+              "height": 5.727820098400116,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.526
+          },
+          {
+            "id": "2e54274f86",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.71879532933235,
+              "y": 52.63584516942501,
+              "width": 2.7306780219078064,
+              "height": 5.670041590929031,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5097
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium227_jpg.rf.f18ccfe453f16301920e39486026c330.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4584,
+        "result": [
+          {
+            "id": "ee644a936c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 7.592913508415222,
+              "y": 25.463886559009552,
+              "width": 15.988236665725708,
+              "height": 36.922451853752136,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4584
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium263_jpg.rf.cefd12d1cf2ef29ec4f76ae5ecb15fdb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7004,
+        "result": [
+          {
+            "id": "437afb5004",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.730300694704056,
+              "y": 60.10277718305588,
+              "width": 15.736006200313568,
+              "height": 28.45264971256256,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7429
+          },
+          {
+            "id": "695a20616d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 70.00502124428749,
+              "y": 62.35417723655701,
+              "width": 16.129080951213837,
+              "height": 26.269841194152832,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6579
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium288_jpg.rf.1edf29056d8478b73c105b306de46143.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3728,
+        "result": [
+          {
+            "id": "846a08d171",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.48394775390625,
+              "y": 22.405993938446045,
+              "width": 11.352002620697021,
+              "height": 39.73289728164673,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4202
+          },
+          {
+            "id": "2af5e93b17",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 2.7531802654266357,
+              "y": 36.90483868122101,
+              "width": 9.748479723930359,
+              "height": 33.03132653236389,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3254
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium349_jpg.rf.690e2e2a09fac781c4a82ffb23266349.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9499,
+        "result": [
+          {
+            "id": "5b396dd601",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.821165204048157,
+              "y": 36.31140887737274,
+              "width": 54.50485348701477,
+              "height": 57.262057065963745,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9499
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium385_jpg.rf.cefaa76d7d598dea37966108aeedc630.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.58865,
+        "result": [
+          {
+            "id": "4591e686c8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.6254488825798,
+              "y": 32.94772803783417,
+              "width": 12.994351983070374,
+              "height": 28.64823341369629,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6809
+          },
+          {
+            "id": "9be1ee0fe4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 75.80008655786514,
+              "y": 32.00186640024185,
+              "width": 11.871537566184998,
+              "height": 23.416492342948914,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4964
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium400_jpg.rf.04fa145bdaae5f3c8ad87923aa78dd9e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5056,
+        "result": [
+          {
+            "id": "3300c0f00f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.334432393312454,
+              "y": 11.347919702529907,
+              "width": 19.096611440181732,
+              "height": 30.469900369644165,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5056
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium420_jpg.rf.03bc5ffb319f661fb2de00ff16d61d6e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7277,
+        "result": [
+          {
+            "id": "388393c132",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.83347809314728,
+              "y": 54.83378469944,
+              "width": 32.781440019607544,
+              "height": 19.427376985549927,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7963
+          },
+          {
+            "id": "f607b99c90",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.982740223407745,
+              "y": 83.15034657716751,
+              "width": 33.196839690208435,
+              "height": 14.43767249584198,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6591
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium437_jpg.rf.4e04ba3e843c5b23ecdc6f16ad998d39.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6901,
+        "result": [
+          {
+            "id": "0e10bad2d2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.494452834129333,
+              "y": 67.94156804680824,
+              "width": 41.734111309051514,
+              "height": 15.505902469158173,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6901
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium453_jpg.rf.c5fb829fc856737fada486f07054f280.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9136,
+        "result": [
+          {
+            "id": "352a5c16a5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 48.26812595129013,
+              "y": 20.957404375076294,
+              "width": 13.114050030708313,
+              "height": 33.63842964172363,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9136
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium461_jpg.rf.71f44a60003ee392810bf45226cd6b54.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9372,
+        "result": [
+          {
+            "id": "ff7333c5ae",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.494485944509506,
+              "y": 45.062391459941864,
+              "width": 20.169265568256378,
+              "height": 26.98477804660797,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9372
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium464_jpg.rf.fbfe0a4413f343e78013cfc595331156.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8823,
+        "result": [
+          {
+            "id": "3b58663227",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.26048541069031,
+              "y": 62.13536560535431,
+              "width": 32.46316909790039,
+              "height": 13.116616010665894,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8823
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium466_jpg.rf.3de40b910014fc0c41a07419dc1152bf.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8658,
+        "result": [
+          {
+            "id": "b0689c7354",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 64.12408873438835,
+              "y": 49.86587166786194,
+              "width": 14.879883825778961,
+              "height": 37.48966455459595,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8658
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium478_jpg.rf.d17e8420c85ea7f0b6903802d4a41740.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6449,
+        "result": [
+          {
+            "id": "31467b0892",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.356899201869965,
+              "y": 67.42679700255394,
+              "width": 28.428778052330017,
+              "height": 17.749901115894318,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6449
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium499_jpg.rf.bed07a4b6190550f7cf7168d100fd2e5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.58565,
+        "result": [
+          {
+            "id": "c265e0d7e1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 56.741129606962204,
+              "y": 46.296994388103485,
+              "width": 21.06431871652603,
+              "height": 26.310542225837708,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7147
+          },
+          {
+            "id": "bf051018df",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.761212795972824,
+              "y": 58.38123261928558,
+              "width": 18.39780956506729,
+              "height": 27.03436017036438,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4566
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium543_jpg.rf.1ec6ecd18fbd79b281eac1b4c8bc5830.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6734,
+        "result": [
+          {
+            "id": "08bb26642c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 69.24382727593184,
+              "y": 56.77145831286907,
+              "width": 3.2467667013406754,
+              "height": 7.278392463922501,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6734
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium554_jpg.rf.d734782873c537338f738097b8aa7f05.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.866,
+        "result": [
+          {
+            "id": "95de45327b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.63038405776024,
+              "y": 46.41997963190079,
+              "width": 20.085670053958893,
+              "height": 40.84157645702362,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.866
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium64_jpg.rf.7aa429c99086a613a7c980165d77c54a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8794,
+        "result": [
+          {
+            "id": "4000930b24",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.635953664779663,
+              "y": 50.8980467915535,
+              "width": 22.22048044204712,
+              "height": 38.29128444194794,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8794
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium71_jpg.rf.cfa3f9be0c8deb2c2d8b72ddecac4c42.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.55,
+        "result": [
+          {
+            "id": "106080287b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.6758691072464,
+              "y": 65.37895053625107,
+              "width": 61.14963889122009,
+              "height": 34.61298048496246,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.55
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium87_jpg.rf.056c915ecd3ede0974859c18f680dd20.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6051,
+        "result": [
+          {
+            "id": "32190200d2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 44.23699229955673,
+              "y": 51.248931884765625,
+              "width": 35.90356409549713,
+              "height": 22.720813751220703,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8326
+          },
+          {
+            "id": "1ad4bb55f3",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.54018199443817,
+              "y": 33.170004934072495,
+              "width": 36.68493628501892,
+              "height": 14.642037451267242,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3776
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/dentium90_jpg.rf.b81e9c7884207e870b7a4a3e498869ec.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5423,
+        "result": [
+          {
+            "id": "8c29cd2525",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 55.010952800512314,
+              "y": 22.150519490242004,
+              "width": 21.35384827852249,
+              "height": 29.265594482421875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7517
+          },
+          {
+            "id": "362ef810ab",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.34406062960625,
+              "y": 11.20532900094986,
+              "width": 19.830496609210968,
+              "height": 26.767468452453613,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3329
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/mis104-copy-2_jpg.rf.f41f7ed40905c41eec0c9c03be0f1f58.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7675,
+        "result": [
+          {
+            "id": "08aa2eee3d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.462334752082825,
+              "y": 58.29341858625412,
+              "width": 28.981149196624756,
+              "height": 29.336920380592346,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7675
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/mis118-copy-2_jpg.rf.737221ef875fa9851319fff58861079e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9421,
+        "result": [
+          {
+            "id": "c33171cfdc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.522540509700775,
+              "y": 56.436415016651154,
+              "width": 41.67322218418121,
+              "height": 14.960643649101257,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9421
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/mis143-copy-2_jpg.rf.1f134ff475f4ba530067db7b6a7cf67a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3312,
+        "result": [
+          {
+            "id": "8f8c301dd0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.60345131158829,
+              "y": 71.80467993021011,
+              "width": 24.675366282463074,
+              "height": 28.1240314245224,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3498
+          },
+          {
+            "id": "c4dd1a8a71",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.991111755371094,
+              "y": 34.75943207740784,
+              "width": 29.363781213760376,
+              "height": 60.06138324737549,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3331
+          },
+          {
+            "id": "e603b3b1d6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.997551292181015,
+              "y": 58.02352726459503,
+              "width": 21.105922758579254,
+              "height": 36.70417666435242,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3107
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/mis72-copy-2_jpg.rf.622df2d9eef98e7a0f43f877186a85ed.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.73875,
+        "result": [
+          {
+            "id": "4bc83c8c2a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 57.603126764297485,
+              "y": 48.76856207847595,
+              "width": 18.296778202056885,
+              "height": 45.72104215621948,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8015
+          },
+          {
+            "id": "29104bcccc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.91417309641838,
+              "y": 36.68435662984848,
+              "width": 14.621563255786896,
+              "height": 40.11191427707672,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.676
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/mis81-copy-2_jpg.rf.750c3eaa55ecc801187e00eb36537bfd.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.97,
+        "result": [
+          {
+            "id": "f702537f0e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.031461894512177,
+              "y": 12.483927607536316,
+              "width": 33.9101105928421,
+              "height": 33.078980445861816,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.97
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/mis85-copy-2_jpg.rf.09bbf47ae76a0e0ffc4514e87edfbbde.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9645,
+        "result": [
+          {
+            "id": "a08d3927a2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 37.36182078719139,
+              "y": 34.99806970357895,
+              "width": 20.08204609155655,
+              "height": 48.218539357185364,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9645
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris108_jpg.rf.39ca080f1713ac21c12f314f544e8de3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7795,
+        "result": [
+          {
+            "id": "b2126e68c2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.78427344560623,
+              "y": 40.317532420158386,
+              "width": 31.90569579601288,
+              "height": 51.79212689399719,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7795
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris134_jpg.rf.a24e08ca87c6d08ac9b704b44cec829e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8529,
+        "result": [
+          {
+            "id": "10010f5c81",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.31508058309555,
+              "y": 27.815017104148865,
+              "width": 36.36371195316315,
+              "height": 25.929659605026245,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8529
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris151_jpg.rf.fc173a8ee790afb0f6316a4fb7113409.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9542,
+        "result": [
+          {
+            "id": "18b835e87a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 51.23070925474167,
+              "y": 31.16174191236496,
+              "width": 36.03880703449249,
+              "height": 49.849048256874084,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9542
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris157_jpg.rf.48de5843105a2fc79f80802c40f42d02.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9377,
+        "result": [
+          {
+            "id": "ddcf0c6845",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.62908536195755,
+              "y": 29.183730483055115,
+              "width": 24.89008605480194,
+              "height": 50.91705918312073,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9377
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris196_jpg.rf.624316fb5124494e25e5b9a9170810e0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4877,
+        "result": [
+          {
+            "id": "e5f245dd1c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.60709369182587,
+              "y": 30.561143159866333,
+              "width": 30.41321635246277,
+              "height": 63.78856897354126,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4877
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris199_jpg.rf.84ba2a1cbd14211ac98ac7fad264edda.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9262,
+        "result": [
+          {
+            "id": "be31578a3f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.429959535598755,
+              "y": 28.802207112312317,
+              "width": 28.38311195373535,
+              "height": 57.7780544757843,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9262
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris203_jpg.rf.0ff1afb6bce555819cc2dfa974ff67ac.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9409,
+        "result": [
+          {
+            "id": "0417693d72",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 35.85545867681503,
+              "y": 2.821674942970276,
+              "width": 32.785192131996155,
+              "height": 82.82446265220642,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9409
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris224_jpg.rf.861f5a69bc58b1326ea14d6c41fb2530.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9663,
+        "result": [
+          {
+            "id": "bc2e66eb9c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 21.63023352622986,
+              "y": 37.01887130737305,
+              "width": 72.8747010231018,
+              "height": 35.20282506942749,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9663
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris241_jpg.rf.851563b19942884764ef44d7582b92bc.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.643,
+        "result": [
+          {
+            "id": "f386c64c45",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.32185000181198,
+              "y": 50.60127452015877,
+              "width": 33.75941812992096,
+              "height": 17.989324033260345,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.643
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris264_jpg.rf.6ff3e8237b54b8c90e84018df3fbe770.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.61095,
+        "result": [
+          {
+            "id": "e2735b0c0b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.074646189808846,
+              "y": 27.633768692612648,
+              "width": 6.176533550024033,
+              "height": 3.4166626632213593,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6298
+          },
+          {
+            "id": "d0bf572bdb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.683263301849365,
+              "y": 32.035575062036514,
+              "width": 6.3294947147369385,
+              "height": 2.0891889929771423,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5921
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris285_jpg.rf.453b370e6812175bfdaa108846616684.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.63385,
+        "result": [
+          {
+            "id": "df6cfb5c71",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 17.704465985298157,
+              "y": 39.63737487792969,
+              "width": 20.464760065078735,
+              "height": 40.31559228897095,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7841
+          },
+          {
+            "id": "5acbfe59f0",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.777324348688126,
+              "y": 46.97221964597702,
+              "width": 20.66313475370407,
+              "height": 39.06184732913971,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4836
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris311_jpg.rf.75ce9dfd32b60bde0ebd2115fe40747f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.952,
+        "result": [
+          {
+            "id": "ceb08e1c00",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.684800267219543,
+              "y": 6.456421315670013,
+              "width": 42.77164340019226,
+              "height": 21.484839916229248,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.952
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris344_jpg.rf.5397f0a12430eb35f6fce2b2297c12e2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.912,
+        "result": [
+          {
+            "id": "ea21924d3c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 47.77113497257233,
+              "y": 64.95931297540665,
+              "width": 37.7752959728241,
+              "height": 19.758328795433044,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.912
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris360_jpg.rf.a846623b6e71c5ef2d12fe9beb6c89c9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6779,
+        "result": [
+          {
+            "id": "d896b5b36a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 79.61695045232773,
+              "y": 37.91213631629944,
+              "width": 20.440390706062317,
+              "height": 43.02276372909546,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7442
+          },
+          {
+            "id": "4eba03e766",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 43.140558153390884,
+              "y": 38.9445960521698,
+              "width": 21.73094004392624,
+              "height": 35.11383533477783,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6116
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris445_jpg.rf.142be57145fc32c1a9414b6d84bc7524.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9499,
+        "result": [
+          {
+            "id": "56c7646a9d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.375640094280243,
+              "y": 7.438120245933533,
+              "width": 47.8655606508255,
+              "height": 16.8805330991745,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9499
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris449_jpg.rf.6f5644a8ffab2a4ba200edb1b9bd3e41.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9503,
+        "result": [
+          {
+            "id": "09e3aa0fab",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.364117443561554,
+              "y": 24.285496026277542,
+              "width": 40.3984934091568,
+              "height": 18.21662038564682,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9503
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris493_jpg.rf.507168718265e637ebb07fa1b5294072.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.808,
+        "result": [
+          {
+            "id": "68b905fc25",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.721789479255676,
+              "y": 29.4886976480484,
+              "width": 60.420483350753784,
+              "height": 33.555155992507935,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.808
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris528_jpg.rf.aba736fdb92c41b5f2a9d36cc8f5460b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9406,
+        "result": [
+          {
+            "id": "988b294769",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.08947777748108,
+              "y": 27.83896028995514,
+              "width": 30.16383647918701,
+              "height": 58.2214891910553,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9406
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris564_jpg.rf.8817eea94a949b884330ad013fae575c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9483,
+        "result": [
+          {
+            "id": "fcb0c2b6ab",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 50.831420719623566,
+              "y": 38.55401128530502,
+              "width": 32.4671596288681,
+              "height": 24.21744167804718,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9483
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris572_jpg.rf.8a7165d6bdb055e4fd347bf5624a3d56.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9323,
+        "result": [
+          {
+            "id": "0cbb38b2f6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.19068932533264,
+              "y": 3.651091456413269,
+              "width": 15.769410133361816,
+              "height": 53.20847034454346,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9323
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris583_jpg.rf.14b5bd7175820678652603809962108f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8978,
+        "result": [
+          {
+            "id": "2595cb66d4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.06178331375122,
+              "y": 65.69568067789078,
+              "width": 48.2951283454895,
+              "height": 34.200939536094666,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8978
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris676_jpg.rf.dd4dbb89662e9f647c86e79f26b55dc9.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.538,
+        "result": [
+          {
+            "id": "cacda04f2c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 12.407992780208588,
+              "y": 27.32023596763611,
+              "width": 42.958518862724304,
+              "height": 49.046456813812256,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.538
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris683_jpg.rf.30d0eae0f21e3b73402cd90cb99ef2a2.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6,
+        "result": [
+          {
+            "id": "9068807d79",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.37193724513054,
+              "y": 32.3776975274086,
+              "width": 22.687645256519318,
+              "height": 49.024698138237,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris692_jpg.rf.62c4479e217af89ee6c4636228da3ae0.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6265,
+        "result": [
+          {
+            "id": "32b574bc3e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.41428077220917,
+              "y": 39.30651247501373,
+              "width": 40.840715169906616,
+              "height": 28.197675943374634,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6265
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris70_jpg.rf.587f81f350fab39f25ee47f726f79855.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.3187,
+        "result": [
+          {
+            "id": "ce4280e4c2",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.158411741256714,
+              "y": 26.8245667219162,
+              "width": 21.375417709350586,
+              "height": 27.27646231651306,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3187
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris742_jpg.rf.47b5d0a99d3afe4596d9c0e22ff8e93d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9491,
+        "result": [
+          {
+            "id": "5fe8388d11",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.78128182888031,
+              "y": 36.96041777729988,
+              "width": 39.1312837600708,
+              "height": 21.72289937734604,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9491
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris750_jpg.rf.4d952ad3ac300f2e99d0865ef971cffe.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9119,
+        "result": [
+          {
+            "id": "2fe6f3b80d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.576784789562225,
+              "y": 16.783985495567322,
+              "width": 39.46382701396942,
+              "height": 75.9265124797821,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9119
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris754_jpg.rf.72a4632fb3bb9b503bcef671b157b82c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.8833,
+        "result": [
+          {
+            "id": "c48eaae22a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.62305909395218,
+              "y": 12.58842945098877,
+              "width": 40.85027873516083,
+              "height": 61.481887102127075,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8833
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris801_jpg.rf.0d669dcf6415d9b991eac4bd8da1a3ac.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9715,
+        "result": [
+          {
+            "id": "595d98fb6a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.61631065607071,
+              "y": 18.970194458961487,
+              "width": 34.006133675575256,
+              "height": 60.190463066101074,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9715
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris803_jpg.rf.701d5b3f240895710bc4542cc48b771e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9673,
+        "result": [
+          {
+            "id": "5114001db6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.417664229869843,
+              "y": 16.948536038398743,
+              "width": 34.167638421058655,
+              "height": 62.46323585510254,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9673
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris810_jpg.rf.74511e14046b641c82a3254d22f8b29a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9527,
+        "result": [
+          {
+            "id": "31600ae027",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 3.334870934486389,
+              "y": 32.82231390476227,
+              "width": 77.84891128540039,
+              "height": 37.87497878074646,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris816_jpg.rf.605333aa0daf8c6c2a07e13966f82eef.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9527,
+        "result": [
+          {
+            "id": "9ecb0907a9",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.58374321460724,
+              "y": 20.49383521080017,
+              "width": 32.56593942642212,
+              "height": 64.24189805984497,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris826_jpg.rf.853e2ebfa321a9f25bd0b7c882634a0c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9719,
+        "result": [
+          {
+            "id": "decfde0a66",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.91328728199005,
+              "y": 21.377043426036835,
+              "width": 40.45747518539429,
+              "height": 47.36621081829071,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9719
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris830_jpg.rf.995ad91ed475f2d1e6ca4af3793b09c3.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9627,
+        "result": [
+          {
+            "id": "98f9689c1f",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.15155476331711,
+              "y": 23.841258883476257,
+              "width": 29.949143528938293,
+              "height": 53.65815758705139,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9627
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris831_jpg.rf.d3602b8af813ee06a5c04c84dd37ef05.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9705,
+        "result": [
+          {
+            "id": "a76cab3c15",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.925410985946655,
+              "y": 27.688178420066833,
+              "width": 34.24655199050903,
+              "height": 53.319185972213745,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9705
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris836_jpg.rf.864ddcc122816b4425c1024cfc190f2e.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9171,
+        "result": [
+          {
+            "id": "85b0d786ba",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 39.759597927331924,
+              "y": 37.595583498477936,
+              "width": 16.27638190984726,
+              "height": 34.972187876701355,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9171
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/noris843_jpg.rf.7a7bd05ec62c03be55b8500da5e31d3c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6694,
+        "result": [
+          {
+            "id": "153e3e51bc",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 38.9792799949646,
+              "y": 34.426721930503845,
+              "width": 17.70380735397339,
+              "height": 30.28465509414673,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6834
+          },
+          {
+            "id": "7a2de1532e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 64.92544934153557,
+              "y": 40.39710313081741,
+              "width": 15.580202639102936,
+              "height": 39.199694991111755,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6554
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem103_jpg.rf.5afb9c79c468bf2460fb2b0a6e47046b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9697,
+        "result": [
+          {
+            "id": "7588bf5dac",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.002392292022705,
+              "y": 11.626750230789185,
+              "width": 43.20861101150513,
+              "height": 69.6810781955719,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9697
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem108_jpg.rf.5c2fcfc219b2f0a0996fdd25be1cbcbb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9695,
+        "result": [
+          {
+            "id": "2f1fb79099",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.520069122314453,
+              "y": 31.306174397468567,
+              "width": 62.56101131439209,
+              "height": 36.03217601776123,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9695
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem112_jpg.rf.badb5447941118732083d4d167b69a0d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9291,
+        "result": [
+          {
+            "id": "15c320abf4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 10.985291004180908,
+              "y": 36.534617841243744,
+              "width": 66.26681685447693,
+              "height": 26.628294587135315,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9291
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem130_jpg.rf.6e49b396778e8cb2e1697237959d3f3a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9674,
+        "result": [
+          {
+            "id": "dc22362c00",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 42.38413870334625,
+              "y": 22.781607508659363,
+              "width": 21.55199646949768,
+              "height": 50.969988107681274,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9674
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem165_jpg.rf.822a52a61f327a6f16a0cf446a4cd466.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9672,
+        "result": [
+          {
+            "id": "69d52d07eb",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.465979754924774,
+              "y": 25.530871748924255,
+              "width": 37.5301867723465,
+              "height": 60.32781004905701,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9672
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem179_jpg.rf.ac3c04a328671eb787ab2acc20b36af1.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9336,
+        "result": [
+          {
+            "id": "601a1b7811",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.772363483905792,
+              "y": 10.519799590110779,
+              "width": 46.89435660839081,
+              "height": 89.130038022995,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9336
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem180_jpg.rf.f6bfc201cde3c5736f84bf5caaa3012c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.952,
+        "result": [
+          {
+            "id": "600d39835d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.32735097408295,
+              "y": 8.027297258377075,
+              "width": 34.16848182678223,
+              "height": 81.82319402694702,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.952
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem181_jpg.rf.ddc0a97a1edc66e5a2f061ce653d50d4.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9384,
+        "result": [
+          {
+            "id": "5f5e478b7a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 29.01812195777893,
+              "y": 5.681374669075012,
+              "width": 43.17033290863037,
+              "height": 87.97149658203125,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9384
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem236_jpg.rf.4728b32b8a1bd63068b79833275e6842.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9527,
+        "result": [
+          {
+            "id": "cdf79ac15c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 63.0755789577961,
+              "y": 38.21243941783905,
+              "width": 14.148782193660736,
+              "height": 41.547971963882446,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9527
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem246_jpg.rf.a5723b72415632b2bef3f7600e5e9c93.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6705,
+        "result": [
+          {
+            "id": "c807fd15f8",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.06698900461197,
+              "y": 45.7808643579483,
+              "width": 20.064005255699158,
+              "height": 34.073406457901,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7408
+          },
+          {
+            "id": "bbaa07c008",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 67.47442036867142,
+              "y": 46.25222086906433,
+              "width": 20.559152960777283,
+              "height": 33.6745023727417,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6002
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem247_jpg.rf.91771e593c5622b8831eaf7576566c86.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9494,
+        "result": [
+          {
+            "id": "6d5b2417a4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 69.2589282989502,
+              "y": 38.48266899585724,
+              "width": 14.659559726715088,
+              "height": 41.1293089389801,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9494
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem277_jpg.rf.a36671d60278adeee39c0b21cef33803.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.943,
+        "result": [
+          {
+            "id": "033743e39e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 19.612668454647064,
+              "y": 38.36437165737152,
+              "width": 39.10297453403473,
+              "height": 18.583261966705322,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.943
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem301_jpg.rf.978c01d49bf218e5fb9686920818cfa5.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9226,
+        "result": [
+          {
+            "id": "14a3ae29c5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 79.66920211911201,
+              "y": 28.477419912815094,
+              "width": 12.669418752193451,
+              "height": 39.37465846538544,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9226
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem305_jpg.rf.e18209f85bce48f142357a2e784c4c18.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7615000000000001,
+        "result": [
+          {
+            "id": "da668586af",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.257692098617554,
+              "y": 6.756053119897842,
+              "width": 34.813666343688965,
+              "height": 13.89547735452652,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8313
+          },
+          {
+            "id": "6c2a61938c",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.745331943035126,
+              "y": 26.79898738861084,
+              "width": 31.408986449241638,
+              "height": 21.570760011672974,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6917
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem330_jpg.rf.d044b71abb2b13ff149eea569b6d8c24.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9067,
+        "result": [
+          {
+            "id": "f5a751c70d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 13.812625408172607,
+              "y": 53.512052446603775,
+              "width": 42.51059889793396,
+              "height": 23.70733469724655,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9067
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem393_jpg.rf.ee94d7659107937687894ccccba32f2a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9714,
+        "result": [
+          {
+            "id": "764dfaaec1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.374738693237305,
+              "y": 21.84801995754242,
+              "width": 40.12737274169922,
+              "height": 70.11043429374695,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9714
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem394_jpg.rf.3d524760551a256ff0f38e167e2d675c.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9747,
+        "result": [
+          {
+            "id": "957a042aa4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 33.28266739845276,
+              "y": 21.72600030899048,
+              "width": 40.0770902633667,
+              "height": 70.16756534576416,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9747
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem401_jpg.rf.c4f0b4634387c35e2f8fd48a69a73a84.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9631,
+        "result": [
+          {
+            "id": "25c8304b8a",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 22.181284427642822,
+              "y": 25.584304332733154,
+              "width": 44.930070638656616,
+              "height": 69.85741853713989,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9631
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem421_jpg.rf.88af681fc0f899b06f160f28455b7ca6.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6909,
+        "result": [
+          {
+            "id": "7486036e79",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 28.454488515853882,
+              "y": 35.40872931480408,
+              "width": 60.36562919616699,
+              "height": 31.920111179351807,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6909
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem469_jpg.rf.b3078f390ad2b2b570e620f09352e537.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.959,
+        "result": [
+          {
+            "id": "f9ca3c8e19",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.32541120052338,
+              "y": 30.72369694709778,
+              "width": 19.180697202682495,
+              "height": 47.923099994659424,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.959
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem508_jpg.rf.c91a4588d8436bcaed7e10913e374b68.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9588,
+        "result": [
+          {
+            "id": "f12267a44e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.44453446567059,
+              "y": 24.19154942035675,
+              "width": 11.897514015436172,
+              "height": 17.257750034332275,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9588
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem516_jpg.rf.c8c153659d1b8f5d6c3bb821977532e7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9623,
+        "result": [
+          {
+            "id": "df83f51933",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.592577159404755,
+              "y": 63.23412284255028,
+              "width": 26.37447416782379,
+              "height": 24.59142953157425,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9623
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem528_jpg.rf.93c5faab530258656692db6c23b1371b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9609,
+        "result": [
+          {
+            "id": "046cee0419",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 24.076437950134277,
+              "y": 20.269101858139038,
+              "width": 52.540016174316406,
+              "height": 57.573115825653076,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9609
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem542_jpg.rf.a34aa6a6708939595faa4fa37a41256f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7554,
+        "result": [
+          {
+            "id": "039e2c30e5",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 26.60805583000183,
+              "y": 46.05969339609146,
+              "width": 28.34952473640442,
+              "height": 13.643714785575867,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8382
+          },
+          {
+            "id": "3235df80f4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.58082640171051,
+              "y": 69.48857232928276,
+              "width": 28.239989280700684,
+              "height": 14.047206938266754,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6726
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem543_jpg.rf.cc3e06f16081e1f9e61c1c0524a9776b.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.6484,
+        "result": [
+          {
+            "id": "b615843dbf",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.260404884815216,
+              "y": 69.33688968420029,
+              "width": 36.904069781303406,
+              "height": 12.939968705177307,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6513
+          },
+          {
+            "id": "e29925d249",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 15.434291958808899,
+              "y": 48.44924472272396,
+              "width": 36.11094951629639,
+              "height": 12.067825347185135,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6455
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem579_jpg.rf.3cf3316743744eaa984d16c993f05520.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9044,
+        "result": [
+          {
+            "id": "0db40f7ee1",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.54324415326118,
+              "y": 50.835120677948,
+              "width": 18.51087659597397,
+              "height": 34.63538885116577,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9044
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem632_jpg.rf.de1e7495a15af66ee900b28f16313e92.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9626,
+        "result": [
+          {
+            "id": "79bd3b70c6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.36513543128967,
+              "y": 36.70107647776604,
+              "width": 40.81693887710571,
+              "height": 20.351530611515045,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9626
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem648_jpg.rf.50355815eedda7dd85e83a63c68e5f94.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9162,
+        "result": [
+          {
+            "id": "1386f86281",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 30.413614213466644,
+              "y": 15.78691303730011,
+              "width": 43.148985505104065,
+              "height": 57.203710079193115,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9162
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem730_jpg.rf.e970c9f6a5214c9673d23f1561e88c9a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.673,
+        "result": [
+          {
+            "id": "7c3c055a11",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.05479308962822,
+              "y": 19.124826788902283,
+              "width": 11.87833696603775,
+              "height": 38.14438581466675,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.8431
+          },
+          {
+            "id": "67954e7d74",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 0.052761659026145935,
+              "y": 28.040321171283722,
+              "width": 9.808558225631714,
+              "height": 33.327892422676086,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5029
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem738_jpg.rf.2bdf3c82b36720f55c6efcc54e15f620.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7177,
+        "result": [
+          {
+            "id": "45cf8d0207",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 49.55873563885689,
+              "y": 11.19508296251297,
+              "width": 16.8374165892601,
+              "height": 40.35181105136871,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7872
+          },
+          {
+            "id": "e61c97ad97",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.66089001297951,
+              "y": 16.867829859256744,
+              "width": 24.884574115276337,
+              "height": 45.379266142845154,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6482
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem746_jpg.rf.b38b074e90a4b6d375dae48b67ea27e8.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.773,
+        "result": [
+          {
+            "id": "c66078a060",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 40.28539955615997,
+              "y": 45.32023072242737,
+              "width": 13.549339771270752,
+              "height": 27.62550115585327,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7743
+          },
+          {
+            "id": "a6679ed4de",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.753388196229935,
+              "y": 46.399398148059845,
+              "width": 13.734762370586395,
+              "height": 27.754244208335876,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7717
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem747_jpg.rf.bbb5ad68d1b6b255a9c5c1daeffb39ec.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.7625,
+        "result": [
+          {
+            "id": "dd85e3157b",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 69.55354064702988,
+              "y": 46.45248502492905,
+              "width": 13.692274689674377,
+              "height": 27.695730328559875,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7773
+          },
+          {
+            "id": "c1dd9d4022",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 46.189988404512405,
+              "y": 45.38257271051407,
+              "width": 13.53144496679306,
+              "height": 27.645739912986755,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.7477
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem798_jpg.rf.5e508e638e76981447c4f4fd5dad4304.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.9336,
+        "result": [
+          {
+            "id": "fa2f1261d6",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 20.995893329381943,
+              "y": 55.50413727760315,
+              "width": 15.38008600473404,
+              "height": 28.441858291625977,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.9336
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=images/osstem92_jpg.rf.6f94117d803159fa458757ef18d312f7.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5563,
+        "result": [
+          {
+            "id": "134f7c6d85",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 41.85016751289368,
+              "y": 30.171102285385132,
+              "width": 31.77400827407837,
+              "height": 55.88350296020508,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5563
+          }
+        ]
+      }
+    ]
+  }
+]

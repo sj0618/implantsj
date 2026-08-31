@@ -1,0 +1,433 @@
+[
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi1-copy-10_jpg.rf.5ba23dc10ab81bd4e5e0c1cc2dbfcc7f.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.446925,
+        "result": [
+          {
+            "id": "141aa6edd4",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 27.6126217097044,
+              "y": 27.75976061820984,
+              "width": 10.343269258737564,
+              "height": 29.148179292678833,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6143
+          },
+          {
+            "id": "90aa81c516",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 23.40579815208912,
+              "y": 65.41257575154305,
+              "width": 8.413907140493393,
+              "height": 22.40501493215561,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4012
+          },
+          {
+            "id": "a4525d5995",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 68.0084079504013,
+              "y": 68.68894174695015,
+              "width": 8.185380697250366,
+              "height": 21.855054795742035,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3957
+          },
+          {
+            "id": "046944fffe",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 71.10418789088726,
+              "y": 18.267206847667694,
+              "width": 9.874127060174942,
+              "height": 31.73172175884247,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3765
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi11-copy-10_jpg.rf.64628c6dba1a8a29a33be10552ffa267.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5195333333333334,
+        "result": [
+          {
+            "id": "ec1e863b26",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 73.81499335169792,
+              "y": 35.719701647758484,
+              "width": 14.31424766778946,
+              "height": 25.858402252197266,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5489
+          },
+          {
+            "id": "4b9c42ea25",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 32.671354711055756,
+              "y": 43.77271234989166,
+              "width": 7.321414351463318,
+              "height": 20.955806970596313,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.538
+          },
+          {
+            "id": "d5672981ad",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 18.110286071896553,
+              "y": 43.479958921670914,
+              "width": 8.475034683942795,
+              "height": 18.51366013288498,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4717
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi14-copy-10_jpg.rf.50872789a1f2a53b586036fcab380e5a.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4552,
+        "result": [
+          {
+            "id": "28131d1908",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 31.003617122769356,
+              "y": 44.7503998875618,
+              "width": 8.75936970114708,
+              "height": 36.83249652385712,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5426
+          },
+          {
+            "id": "17279f617d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 62.62480653822422,
+              "y": 50.630347430706024,
+              "width": 11.460541933774948,
+              "height": 29.778125882148743,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3678
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi18-copy-10_jpg.rf.0a024896a8f5863ada1b77cf80af4073.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5872,
+        "result": [
+          {
+            "id": "ecd93e857e",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 36.13104969263077,
+              "y": 31.83119297027588,
+              "width": 22.22250998020172,
+              "height": 53.26485633850098,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5872
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi4-copy-10_jpg.rf.a57622eda1801d52a8e36fea8dea2ecb.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.40125,
+        "result": [
+          {
+            "id": "990ef14191",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 25.93422345817089,
+              "y": 44.65121477842331,
+              "width": 11.405698210000992,
+              "height": 35.636118054389954,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.4103
+          },
+          {
+            "id": "f8f688ab61",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 60.14017462730408,
+              "y": 44.88625079393387,
+              "width": 8.75769853591919,
+              "height": 36.711034178733826,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3922
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi5-copy-10_jpg.rf.9ddca0b02bc02ab7b6b68ad076d05d2d.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.4775,
+        "result": [
+          {
+            "id": "f783144781",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 34.35589745640755,
+              "y": 22.710254788398743,
+              "width": 13.603191077709198,
+              "height": 50.26049017906189,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.479
+          },
+          {
+            "id": "a1aa0a6d8d",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 59.54972356557846,
+              "y": 21.73416018486023,
+              "width": 13.143649697303772,
+              "height": 50.708770751953125,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.476
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "image": "/data/local-files/?d=7+3 label_0721/DIONAVI/dionavi8-copy-10_jpg.rf.5b89cefe036ad13aacd793bf12c257ab.jpg"
+    },
+    "predictions": [
+      {
+        "model_version": "gdino_ft1000_epoch9",
+        "score": 0.5012666666666666,
+        "result": [
+          {
+            "id": "76f754b965",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 54.25473898649216,
+              "y": 35.438983142375946,
+              "width": 18.974509835243225,
+              "height": 47.19541370868683,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.6233
+          },
+          {
+            "id": "3a61dd4a49",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 16.326650232076645,
+              "y": 36.99706792831421,
+              "width": 20.193596184253693,
+              "height": 46.277737617492676,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.5138
+          },
+          {
+            "id": "2a02ee6647",
+            "type": "rectanglelabels",
+            "from_name": "label",
+            "to_name": "image",
+            "original_width": 640,
+            "original_height": 640,
+            "image_rotation": 0,
+            "value": {
+              "rotation": 0,
+              "x": 83.14859792590141,
+              "y": 23.190000653266907,
+              "width": 16.36963039636612,
+              "height": 53.36563587188721,
+              "rectanglelabels": [
+                "implant"
+              ]
+            },
+            "score": 0.3667
+          }
+        ]
+      }
+    ]
+  }
+]
