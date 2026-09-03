@@ -46,6 +46,21 @@ CLOSED_LABELS: tuple[str, ...] = (
 
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff", ".webp"}
 
+# --closed-labels 에 이 값을 주면 라벨 목록을 파일이나 CLOSED_LABELS 에서 읽지 않고
+# 실제 데이터에 있는 클래스를 그대로 쓴다. 클래스 수가 27/42 가 아닌 데이터셋
+# (7label, 11label, 새로 만든 crop 데이터셋 등)에 이 빌더를 쓰기 위한 것이다.
+AUTO_LABELS = "auto"
+
+
+def labels_from_data(frame: pd.DataFrame) -> tuple[str, ...]:
+    """데이터프레임의 label 컬럼에 실제로 등장하는 클래스를 정렬해 돌려준다."""
+    labels = tuple(
+        sorted({clean_label(value) for value in frame["label"]} - {""}, key=label_key)
+    )
+    if not labels:
+        raise ValueError("data has no usable labels")
+    return labels
+
 
 def clean_label(value: object) -> str:
     return " ".join(unicodedata.normalize("NFKC", str(value)).strip().split())
@@ -313,10 +328,12 @@ def build_manifests(args: argparse.Namespace) -> dict[str, Path]:
     aliases = read_aliases(
         Path(args.aliases).expanduser().resolve() if args.aliases else None
     )
+    # auto 는 데이터를 읽은 뒤에야 정할 수 있으므로 여기서는 표시만 해둔다.
+    requested = getattr(args, "closed_labels", None)
+    auto_labels = str(requested or "").strip().lower() == AUTO_LABELS
     closed_labels = read_label_list(
-        Path(args.closed_labels).expanduser().resolve()
-        if getattr(args, "closed_labels", None)
-        else None
+        None if auto_labels or not requested
+        else Path(requested).expanduser().resolve()
     )
 
     if args.source_manifest:
@@ -337,6 +354,12 @@ def build_manifests(args: argparse.Namespace) -> dict[str, Path]:
             ],
             ignore_index=True,
         )
+
+    if auto_labels:
+        # 데이터에 있는 클래스를 전부 closed 로 본다. 42-라벨 계약과 per-split
+        # 커버리지 검사는 이 목록 기준으로 자동으로 성립하므로 걸리지 않는다.
+        closed_labels = labels_from_data(source)
+        print(f"[labels] auto: 데이터에서 클래스 {len(closed_labels)}개를 읽었다")
 
     source = _canonicalize_labels(source, aliases, closed_labels)
     duplicated_paths = source[source["path"].duplicated(keep=False)][
@@ -504,7 +527,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--aliases", help="optional CSV: source_label,canonical_label")
     parser.add_argument(
         "--closed-labels",
-        help="optional newline-delimited closed-set labels; defaults to the canonical 27",
+        help=(
+            "optional newline-delimited closed-set labels; defaults to the canonical 27. "
+            f"pass '{AUTO_LABELS}' to read the classes from the data itself, which is "
+            "what you want for datasets that are not the 42-label closed/open protocol"
+        ),
     )
     parser.add_argument("--valid-fraction", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=2026)

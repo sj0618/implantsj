@@ -73,6 +73,23 @@ py() {
   return $rc
 }
 
+# src 안에 자체 CLI 를 가진 모듈(예: src.arcface)을 실행한다.
+# py() 는 tools/run.py 전용이라 -m 실행에는 쓸 수 없어서 같은 로그 규칙만 재사용한다.
+pym() {
+  mkdir -p "$LOG_DIR"
+  local ts; ts="$(date +%Y%m%d_%H%M%S)"
+  local log="$LOG_DIR/${ts}_$(sanitize "${1}_${2:-run}").log"
+  say ""
+  say "${C_BOLD}>>> $PYTHON -m $*${C_OFF}"
+  say "${C_DIM}    (로그: $log)${C_OFF}"
+  hr
+  "$PYTHON" -m "$@" 2>&1 | tee "$log"
+  local rc=${PIPESTATUS[0]}
+  hr
+  if [[ $rc -eq 0 ]]; then ok "완료 (exit 0)"; else err "실패 (exit $rc) — 위 로그 확인"; fi
+  return $rc
+}
+
 # 명령의 출력을 한 줄씩 배열 PICK_ITEMS 에 담는다.
 # mapfile/readarray 는 bash 4+ 전용이라 macOS 기본 bash 3.2 에서 깨진다.
 # 컨테이너는 bash 5 지만, 컨테이너 밖에서도 그대로 돌아가도록 이식성 있게 쓴다.
@@ -336,6 +353,85 @@ act_eval_patch_feature() {
     "${extra[@]+"${extra[@]}"}" $(allow_cpu_flag)
 }
 
+# 얼굴인식(face recognition) 방식. 학습 -> 갤러리 등록 -> 인식을 한 번에 돌린다.
+# 분류 head 대신 ArcFace margin 으로 임베딩을 또렷하게 만들고, 인식은 갤러리
+# centroid 와의 코사인 최근접으로 한다. 그래서 학습에 없던 임플란트 시스템도
+# 재학습 없이 레퍼런스 몇 장만 갤러리에 넣으면 인식되고, 유사도가
+# ARCFACE_THRESHOLD 미만이면 "모름"으로 뺀다(open-set).
+act_arcface() {
+  need_dataset || return 1
+  local mani; mani="$(ensure_manifest "$DATASET")" || return 1
+  local out="$OUTPUT_ROOT/arcface/$(sanitize "${DATASET}__${MODEL}")"
+
+  pym src.arcface train --manifest "$mani" --out "$out" --model-name "$MODEL" \
+      --embedding-dim "$ARCFACE_DIM" --epochs "$EPOCHS" --batch-size "$BATCH_SIZE" \
+      --image-size "$IMAGE_SIZE" --lr "$LR" --seed "$SEED" \
+      --num-workers "$NUM_WORKERS" --device "$DEVICE" || return 1
+
+  # train 은 make_run_dir 로 타임스탬프 폴더를 만든다. 방금 만든 것을 고른다.
+  local run; run="$(ls -1dt "$out"/*_arcface 2>/dev/null | head -1)"
+  [[ -n "$run" && -f "$run/model.pt" ]] || { err "학습 결과를 찾지 못했습니다: $out"; return 1; }
+
+  pym src.arcface gallery --manifest "$mani" --ckpt "$run/model.pt" \
+      --out "$run/gallery.npz" --split train --image-size "$IMAGE_SIZE" \
+      --batch-size "$BATCH_SIZE" --num-workers "$NUM_WORKERS" --device "$DEVICE" || return 1
+
+  pym src.arcface recognize --manifest "$mani" --ckpt "$run/model.pt" \
+      --gallery "$run/gallery.npz" --split test --threshold "$ARCFACE_THRESHOLD" \
+      --image-size "$IMAGE_SIZE" --batch-size "$BATCH_SIZE" \
+      --num-workers "$NUM_WORKERS" --device "$DEVICE" --report "$run/recognize.json" || return 1
+
+  ok "결과: $run  (model.pt / gallery.npz / recognize.json)"
+}
+
+# 얼굴인식(ArcFace) 임베딩 위에 13 feature 예측을 얹은 실험. VLM 은 쓰지 않는다.
+# 정답은 configs/class_features.csv 한 장에서만 나오고, feature 를 뽑는 일은
+# 학습된 attribute head 가 한다.
+#   갤러리 유사도 >= threshold  -> 아는 시스템이므로 그 클래스의 표 행을 그대로
+#   threshold 미만             -> 처음 보는 시스템이므로 head 예측으로 표를 채움
+# head 를 임베딩(128d)에서 뽑을지 백본 raw feature 에서 뽑을지는 미리 정하지 않고
+# 둘 다 돌려서 비교한다. 어느 쪽이 나은지는 측정으로 정할 문제다.
+act_arcface_attr() {
+  need_dataset || return 1
+  local mani; mani="$(ensure_manifest "$DATASET")" || return 1
+  local reports=()
+  local src
+  for src in embedding backbone; do
+    say ""
+    hr
+    say "${C_BOLD} head_source = $src${C_OFF}"
+    hr
+    local out="$OUTPUT_ROOT/arcface_attr/$(sanitize "${DATASET}__${MODEL}__${src}")"
+    pym src.arcface_attributes train --manifest "$mani" --out "$out" \
+        --model-name "$MODEL" --feature-table "$FEATURE_TABLE" --head-source "$src" \
+        --attr-weight "$ARCFACE_ATTR_WEIGHT" --holdout-classes "$ARCFACE_HOLDOUT" \
+        --embedding-dim "$ARCFACE_DIM" --epochs "$EPOCHS" --batch-size "$BATCH_SIZE" \
+        --image-size "$IMAGE_SIZE" --lr "$LR" --seed "$SEED" \
+        --num-workers "$NUM_WORKERS" --device "$DEVICE" || return 1
+
+    local run; run="$(ls -1dt "$out"/*_arcface_attr_"$src" 2>/dev/null | head -1)"
+    [[ -n "$run" && -f "$run/model.pt" ]] || { err "학습 결과를 찾지 못했습니다: $out"; return 1; }
+
+    pym src.arcface_attributes gallery --manifest "$mani" --ckpt "$run/model.pt" \
+        --out "$run/gallery.npz" --split train --image-size "$IMAGE_SIZE" \
+        --batch-size "$BATCH_SIZE" --num-workers "$NUM_WORKERS" --device "$DEVICE" || return 1
+
+    pym src.arcface_attributes recognize --manifest "$mani" --ckpt "$run/model.pt" \
+        --gallery "$run/gallery.npz" --split test --threshold "$ARCFACE_THRESHOLD" \
+        --feature-table "$FEATURE_TABLE" --image-size "$IMAGE_SIZE" \
+        --batch-size "$BATCH_SIZE" --num-workers "$NUM_WORKERS" --device "$DEVICE" \
+        --report "$run/attributes.json" || return 1
+    reports+=("$run/attributes.json")
+  done
+
+  say ""
+  hr
+  say "${C_BOLD} 두 표현 비교 (최빈값 baseline 대비로 읽는다)${C_OFF}"
+  hr
+  "$PYTHON" tools/afa_compare.py "${reports[@]}"
+  ok "완료"
+}
+
 _pick_checkpoint() {
   collect discover_checkpoints
   pick_from_list "체크포인트 선택  ($OUTPUT_ROOT)" "${PICK_ITEMS[@]}" || return 1
@@ -442,6 +538,10 @@ menu() {
     say " 15) 학습 · 클래스->13feature attribute"
     say " 16) 평가 · 처음 보는 클래스의 13feature 표 채우기"
     say "  ${C_DIM}---${C_OFF}"
+    say "  ${C_DIM}--- 얼굴인식(ArcFace) 방식 ---${C_OFF}"
+    say " 17) 학습+갤러리+인식 · unseen 은 재학습 없이 등록만"
+    say " 18) 학습+평가 · ArcFace 로 13feature 표 채우기 ${C_DIM}(VLM 미사용)${C_OFF}"
+    say "  ${C_DIM}---${C_OFF}"
     say " 14) 설정 보기/임시 변경"
     say "  0) 종료"
     hr
@@ -463,6 +563,8 @@ menu() {
       13) act_yolo_crop ;;
       15) act_train_feature_attr ;;
       16) act_eval_feature_attr ;;
+      17) act_arcface ;;
+      18) act_arcface_attr ;;
       14) act_settings ;;
       0|q|quit|exit) ok "종료"; break ;;
       "") ;;
@@ -483,6 +585,10 @@ implantsj 실험 실행기
   ./run.sh maha   <ds> <ckpt>    Mahalanobis 평가
   ./run.sh patch  <ds> <model> [patch|none|zero|shuffle]
                                  ViT + VLM feature 패치 주입 학습
+  ./run.sh arcface <ds> <model>  얼굴인식(ArcFace) 학습+갤러리+인식
+  ./run.sh arcface-selftest      데이터 없이 ArcFace 학습 가능 여부만 확인
+  ./run.sh afa <ds> <model>      ArcFace + 13feature 표 채우기 (두 표현 비교)
+  ./run.sh afa-selftest          데이터 없이 멀티태스크·분기 동작만 확인
   ds  = $DATA_ROOT 아래 데이터셋 폴더 이름
   model = configs/backbones.txt 의 timm 모델 이름
 EOF
@@ -498,6 +604,10 @@ main() {
     prep)    DATASET="${2:?ds required}"; act_prepare ;;
     train)   DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_train_supervised ;;
     featattr) DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_train_feature_attr ;;
+    arcface) DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_arcface ;;
+    arcface-selftest) pym src.arcface selftest ;;
+    afa)     DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_arcface_attr ;;
+    afa-selftest) pym src.arcface_attributes selftest ;;
     metric)  DATASET="${2:?ds required}"; MODEL="${3:-$MODEL}"; act_train_metric ;;
     eval)    DATASET="${2:?ds required}"; CHECKPOINT="${3:?ckpt required}";
              mani="$(ensure_manifest "$DATASET")" || exit 1

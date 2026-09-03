@@ -24,6 +24,15 @@
 ```
 
 `implantsj_<날짜>.tar.gz` 파일이 생성된다. 폐쇄망에는 이 파일만 반입한다.
+
+인터넷이 되는 중계 서버가 있다면 Docker Hub 에서 바로 받아도 된다.
+받은 뒤 tar.gz 로 만들어 반입하는 것은 동일하다.
+
+```bash
+docker pull --platform linux/amd64 yahoexpert/implantsj:latest
+docker save yahoexpert/implantsj:latest | gzip > implantsj.tar.gz
+```
+
 이미지에 파이썬 패키지와 pretrained weight가 들어 있으므로,
 폐쇄망에서 추가 다운로드가 필요하지 않다.
 
@@ -65,12 +74,19 @@ DATA=/mnt/실제데이터 OUT=/mnt/결과 ./docker/run_container.sh
   --- 13 feature 표 채우기 (VLM 미사용) ---
  15) 학습 · 클래스->13feature attribute
  16) 평가 · 처음 보는 클래스의 13feature 표 채우기
+  --- 얼굴인식(ArcFace) 방식 ---
+ 17) 학습+갤러리+인식 · unseen 은 재학습 없이 등록만
+ 18) 학습+평가 · ArcFace 로 13feature 표 채우기 (VLM 미사용)
   ---
  14) 설정 보기/임시 변경
 ```
 
 일반적인 순서는 `1 → 2 → 3 → 4 → 6` 또는 `7` 이후 `9` 또는 `10`이다.
 13 feature 실험은 `1 → 2 → 3 → 4 → 15`를 실행한 뒤, 메뉴 3에서 unseen 데이터셋으로 바꾸고 `16`을 실행한다.
+얼굴인식 실험은 `1 → 2 → 3 → 4 → 17` 한 번이면 학습·갤러리 등록·인식까지 끝난다.
+메뉴 `8`/`11`(멀티모달, ViT + VLM feature)은 실행 전에
+[`docs/vlm/MULTIMODAL_STATUS.md`](docs/vlm/MULTIMODAL_STATUS.md)를 먼저 읽는다.
+feature 파일은 이미지 안에 있지만 현재 manifest 와 커버리지가 맞지 않을 수 있다.
 
 ---
 
@@ -229,6 +245,138 @@ python3 tools/run.py featattreval --checkpoint best.pt --manifest unseen.csv --s
 
 ---
 
+## 4-2. 얼굴인식 방식으로 인식하기 (메뉴 17)
+
+클래스를 고정된 출력층으로 맞히는 대신, 얼굴인식에서 쓰는 방법을 그대로 가져온다.
+학습은 ArcFace margin softmax 로 임베딩을 또렷하게 만들고, 인식은 클래스별
+임베딩 평균(갤러리 centroid)과의 **코사인 최근접**으로 한다.
+
+이렇게 하면 얻는 것이 두 가지다.
+
+- **재학습 없이 새 시스템 추가**: 새 임플란트 시스템은 레퍼런스 이미지를 갤러리에
+  등록하기만 하면 인식된다. 출력층 크기를 바꿔 다시 학습할 필요가 없다.
+- **모르는 것을 모른다고 답함(open-set)**: 최근접 유사도가 `ARCFACE_THRESHOLD`
+  (기본 `0.30`) 미만이면 `__unknown__` 으로 뺀다. 학습에 없던 시스템을 억지로
+  아는 클래스 중 하나로 찍지 않는다.
+
+메뉴 `17` 은 아래 세 단계를 순서대로 돌리고 결과를
+`outputs/arcface/<데이터셋>__<모델>/<날짜>_arcface/` 에 남긴다.
+`model.pt`(체크포인트), `gallery.npz`(등록된 시스템), `recognize.json`(인식 결과)이다.
+
+### 메뉴 없이
+
+```bash
+./run.sh arcface <데이터셋> <모델>
+```
+
+단계를 따로 돌리려면 이렇게 한다.
+
+```bash
+python3 -m src.arcface train --manifest m.csv --out outputs/arcface
+```
+
+```bash
+python3 -m src.arcface gallery --manifest m.csv --ckpt outputs/arcface/model.pt --split train --out outputs/arcface/gallery.npz
+```
+
+```bash
+python3 -m src.arcface recognize --manifest m.csv --ckpt outputs/arcface/model.pt --gallery outputs/arcface/gallery.npz --split test --threshold 0.3
+```
+
+데이터 없이 코드만 확인하려면 합성 데이터 자가검증을 쓴다.
+이 검사는 이미지 빌드 때도 실행되므로, 실패하는 이미지는 애초에 만들어지지 않는다.
+
+```bash
+./run.sh arcface-selftest
+```
+
+### threshold 를 정할 때
+
+`recognize.json` 의 `predicted_unknown` 이 지나치게 많으면 threshold 가 높은 것이고,
+학습에 없던 시스템까지 아는 클래스로 찍히면 낮은 것이다. `exp.conf` 의
+`ARCFACE_THRESHOLD` 를 고치거나 한 번만 바꿔서 돌린다.
+
+```bash
+ARCFACE_THRESHOLD=0.45 ./run.sh arcface <데이터셋> <모델>
+```
+
+---
+
+## 4-3. ArcFace 로 13 feature 표 채우기 (메뉴 18)
+
+메뉴 `15`/`16`은 일반 ViT 백본 위에 attribute head 를 얹는다. 메뉴 `18`은 같은 일을
+**얼굴인식 모델 위에서** 한다. VLM 은 쓰지 않는다. 정답의 출처는 여전히
+`configs/class_features.csv` 한 장이고, feature 를 뽑는 일은 학습된 attribute head 가 한다.
+
+### 무엇이 달라지는가
+
+학습은 한 백본에서 두 가지를 동시에 건다.
+
+- **ArcFace margin loss** — 같은 임플란트 시스템끼리 임베딩을 모은다
+- **attribute CE** — 그 임베딩에서 13 feature 를 읽어낸다
+
+추론은 얼굴인식의 open-set 판정을 그대로 쓴다.
+
+```
+갤러리 최근접 유사도 >= ARCFACE_THRESHOLD  ->  아는 시스템. 그 클래스의 표 행을 그대로 답한다
+                              threshold 미만  ->  처음 보는 시스템. attribute head 로 표를 채운다
+```
+
+아는 시스템을 굳이 추측할 이유가 없고, 처음 보는 시스템은 추측하는 수밖에 없다.
+새 임플란트 시스템이 생기면 레퍼런스 몇 장을 갤러리에 등록하고 표에 행 하나를
+추가하면 된다. **재학습이 필요 없다.**
+
+### 두 표현을 비교한다
+
+attribute head 를 어디서 뽑을지는 미리 정하지 않았다. 메뉴 `18`은 둘 다 돌린다.
+
+- `embedding` — 128d L2 정규화 임베딩. 갤러리와 head 가 같은 공간을 본다
+- `backbone` — projector 이전 raw feature. 정보 손실이 없는 대신 갤러리와 다른 공간을 본다
+
+끝나면 비교표가 나온다. `tools/afa_compare.py` 로 나중에 다시 볼 수도 있다.
+
+### 숫자를 읽는 법
+
+**절대 정확도만 보면 안 된다.** 표의 최빈값만 찍어도 이미 높다.
+
+```
+Apex_Hole  91.1%     System  77.8%     Connection_1  77.8%
+Body_Shape 37.8%  <- 가장 어려움
+Body_Type 은 값이 1종뿐이라 자동으로 제외된다
+```
+
+그래서 리포트는 항상 `majority_baseline` 과 그 차이를 같이 낸다. 비교표의 `+` 표시는
+최빈값 baseline 을 넘긴 항목이다. 넘기지 못한 항목은 학습이 아무것도 더하지
+못했다는 뜻이다.
+
+### unseen 이 없으면 측정이 안 된다
+
+이 실험의 목적은 **처음 보는 시스템**의 표를 채우는 것이다. 갤러리가 모든 클래스를
+알고 있으면 head 분기가 한 번도 돌지 않고, 그때 나오는 숫자는 seen 성능일 뿐이다.
+학습 시작 시 unseen 클래스 수가 출력되고 0 이면 경고가 뜬다.
+
+데이터셋에 unseen 이 분리돼 있지 않으면 `exp.conf` 의 `ARCFACE_HOLDOUT` 을 올린다.
+train 에서 희귀 클래스를 그만큼 빼 unseen 으로 만든다.
+
+```bash
+ARCFACE_HOLDOUT=5 ./run.sh afa <데이터셋> <모델>
+```
+
+### 메뉴 없이
+
+```bash
+./run.sh afa <데이터셋> <모델>
+```
+
+```bash
+./run.sh afa-selftest
+```
+
+산출물은 각 run 디렉터리에 `model.pt`, `gallery.npz`, `attributes.json`,
+`fit_manifest.csv`(실제로 학습에 쓴 manifest) 로 남는다.
+
+---
+
 ## 5. 자주 막히는 곳
 
 **GPU를 못 잡을 때**: 메뉴 `1`로 먼저 확인한다. `cuda_available: False`면
@@ -238,6 +386,12 @@ nvidia-container-toolkit 이 설치돼 있어야 한다.
 **JSON이 없는 이미지가 있을 때**: 메뉴 `2`는 기본적으로 중단한다. 의도적으로
 제외해야 하는 데이터라면 직접 실행할 때 `--allow-missing-json`을 지정하고,
 빠진 개수와 샘플을 `summary.json`에서 확인한다.
+
+**클래스 수가 42가 아니라고 거부당할 때**: `src/manifests.py` 는 원래 closed 27 +
+open 15 = 42 라벨 계약을 강제한다. 클래스 수가 다른 데이터셋이면
+`--closed-labels auto` 를 준다. 데이터에 있는 클래스를 그대로 읽는다.
+메뉴 `2`(원본 -> 학습용 변환)와 학습/평가 경로는 원래부터 클래스 수를
+manifest 에서 동적으로 읽으므로 이 옵션이 필요 없다.
 
 **SupCon loss가 이상할 때**: 기본 배치는 라벨마다 서로 다른 이미지 2장을
 강제로 뽑는다. 클래스별 이미지가 부족하거나 `BATCH_SIZE`가 2의 배수가 아니면
@@ -258,8 +412,11 @@ exp.conf               경로·하이퍼파라미터 기본값
 pyproject.toml         pytest 수집 범위(legacy 제외)
 configs/backbones.txt  실험에 쓸 모델 목록 (이미지 빌드 시 weight 함께 구움)
 configs/class_features.csv  클래스 -> 13 feature 정답표 (메뉴 15/16)
+configs/vlm/            VLM feature jsonl 사본 (메뉴 8/11 입력, 이미지에 구움)
 tools/run.py           명령 -> python 모듈 디스패처
 src/                   데이터·모델·학습·평가 공용 코드
+src/arcface.py         얼굴인식 방식 (ArcFace + 갤러리/probe, 메뉴 17)
+src/arcface_attributes.py  ArcFace + 13feature 표 채우기 (메뉴 18, VLM 미사용)
 pipelines/             단계별 실행 스크립트 (data/train/eval/yolo/visualize)
 docker/                빌드·반입·실행 스크립트
 legacy/                예전 중복 구조 (삭제하지 않고 보관)

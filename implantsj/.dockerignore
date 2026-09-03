@@ -15,6 +15,7 @@
 !pipelines/
 !tools/
 !configs/
+!weights/
 !two_stage/
 !tests/
 !docker/

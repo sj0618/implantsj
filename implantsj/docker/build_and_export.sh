@@ -40,6 +40,19 @@ docker save "$IMAGE:$TAG" | gzip -c > "$OUT"
 echo
 echo "완료: $OUT  ($(du -sh "$OUT" | cut -f1))"
 echo
+# 중계 서버에서 docker pull 로 받아가려면 Hub 에도 올린다. 기본은 올리지 않는다.
+#   PUSH=1 ./docker/build_and_export.sh
+if [[ "${PUSH:-0}" == "1" ]]; then
+  HUB_REPO="${HUB_REPO:-yahoexpert/implantsj}"
+  echo
+  echo "=============================================================="
+  echo " +1    docker push  ->  $HUB_REPO:$TAG"
+  echo "=============================================================="
+  docker tag "$IMAGE:$TAG" "$HUB_REPO:$TAG"
+  docker push "$HUB_REPO:$TAG"
+  echo "받는 쪽: docker pull --platform linux/amd64 $HUB_REPO:$TAG"
+fi
+
 echo "폐쇄망 반입 후 실행할 명령:"
 echo "  gunzip -c $(basename "$OUT") | docker load"
 echo "  ./docker/run_container.sh"
