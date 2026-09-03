@@ -235,7 +235,10 @@ class ImageClassificationDataset:
         row = self.df.iloc[idx]
         path = Path(row['path'])
         label = str(row['label'])
-        y = self.class_to_idx[label]
+        # 갤러리/학습 클래스에 없는 라벨은 -1 로 준다. open-set 평가는 정의상
+        # 학습에 없던 클래스를 만나므로 여기서 KeyError 를 내면 평가 자체가 불가능하다.
+        # 학습 경로는 manifest 에서 만든 매핑을 그대로 쓰므로 -1 이 나오지 않는다.
+        y = self.class_to_idx.get(label, -1)
         with Image.open(path) as opened:
             img = opened.convert('RGB')
         if self.transform is not None:
