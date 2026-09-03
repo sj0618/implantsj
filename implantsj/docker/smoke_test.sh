@@ -37,7 +37,10 @@ labels = [f"Model{chr(65+i)}" for i in range(4)]
 def make(img, js, split, per):
     for li, lab in enumerate(labels):
         for k in range(per):
-            h = f"h{(k%2)+1:02d}"; c = f"{h}_{k:04d}"
+            # case id 에 split 과 라벨을 모두 넣는다. 실제 데이터에서 촬영건 하나는
+            # 한 시스템만 담고 train/test 가 같은 촬영건을 공유하지 않는다.
+            # split_train_valid 가 두 조건을 모두 검사하므로 fixture 도 지켜야 한다.
+            h = f"h{(k%2)+1:02d}"; c = f"{h}_{split}_L{li}_{k:04d}"
             (root/img/h/c).mkdir(parents=True, exist_ok=True)
             (root/js/h/c).mkdir(parents=True, exist_ok=True)
             stem = f"{split}_{lab}_{k}"
