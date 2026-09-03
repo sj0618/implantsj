@@ -1,0 +1,9 @@
+# 빌드 타임에 이미지에 구울 YOLO 가중치 (한 줄에 하나: 파일명).
+# docker/prefetch_weights.py 가 이 목록을 ultralytics assets 릴리스에서 받아
+# weights/ 에 넣는다. pipelines/yolo/train_yolo.py 의 기본 경로가 그곳이다.
+# timm 백본은 configs/backbones.txt 가 따로 관리한다.
+#
+# 폐쇄망에서는 ultralytics 가 가중치를 내려받을 수 없으므로, 여기 없는 모델을
+# --model 로 지정하면 실패한다. 필요한 것을 미리 추가해 두어야 한다.
+yolov8s.pt
+yolov8n.pt
