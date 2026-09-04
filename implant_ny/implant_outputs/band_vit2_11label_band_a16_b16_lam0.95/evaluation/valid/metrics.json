@@ -1,0 +1,29 @@
+{
+  "samples": 102,
+  "accuracy": 0.8235294117647058,
+  "macro_precision": 0.8164653289653291,
+  "macro_recall": 0.817171717171717,
+  "macro_f1": 0.8084081359816654,
+  "weighted_precision": 0.8008707236648412,
+  "weighted_recall": 0.8235294117647058,
+  "weighted_f1": 0.8015792346350304,
+  "checkpoint": "/workspace/implant_seg/implant_outputs/band_vit2_11label_band_a16_b16_lam0.95/checkpoints/best.pt",
+  "manifest": "/workspace/data/11label_crop_final_8_1_1/valid.csv",
+  "device": "cuda",
+  "input_size": 224,
+  "labels": [
+    "adin",
+    "bego",
+    "bicon",
+    "bilim",
+    "dentium",
+    "implance",
+    "iti",
+    "mis",
+    "noris",
+    "nucleoss",
+    "osstem"
+  ],
+  "attention_samples_saved": 0,
+  "attention_map_method": null
+}

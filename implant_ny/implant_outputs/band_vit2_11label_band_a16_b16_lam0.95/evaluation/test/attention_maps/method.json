@@ -1,0 +1,17 @@
+{
+  "name": "mean_cls_to_patch_self_attention",
+  "display_name": "Mean CLS-to-Patch Self-Attention",
+  "description": "Raw ViT self-attention probabilities are taken from the CLS query to image-patch keys in the last transformer blocks. Attention is averaged across heads and then across blocks, and normalized to sum to one for each image.",
+  "not_attention_rollout": true,
+  "not_grad_cam": true,
+  "source_blocks": "last_12_transformer_blocks",
+  "head_aggregation": "arithmetic_mean",
+  "block_aggregation": "arithmetic_mean",
+  "query_token": "CLS token (token index 0)",
+  "key_tokens": "patch tokens after excluding 1 prefix token(s)",
+  "patch_normalization": "sum_to_one_per_image",
+  "visualization_scaling": "min_max_for_color_display_only",
+  "upsampling": "bilinear_from_patch_grid_to_model_input_resolution",
+  "image_basis": "square-padded and resized model input, then unnormalized",
+  "same_attention_used_by_band_loss": true
+}

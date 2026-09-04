@@ -1,0 +1,140 @@
+
+#best_sam 모델로 이미지의 마스크 생성하기 (파인튜닝된 샘 모델로 잘 나오는지 보기 )
+#이미지 전처리 부분 해당 코드에 있음 
+
+'''
+원본 이미지
+ → SAM image_encoder
+ → feature
+ → ImplantMaskHead   <- 이 부분이 파인튜닝 된거임 (best_sam_implant_head1.pth)
+ → mask
+ '''
+
+import os
+import cv2
+import torch
+import numpy as np
+from pathlib import Path
+from PIL import Image
+from sam2.build_sam import build_sam2
+from sam2_adapter_decoder_train import Adapter, UNetDecoder,SAM2AdapterUNet
+
+# =====================
+# 경로 설정
+# =====================
+
+#IMAGE_DIR = "/home/ubuntu/workspace/seg_test_sample_2"
+IMAGE_DIR = "/workspace/data/11label_crop_final_8_1_1"
+MODEL_PATH = "/workspace/implant_seg/model_pt/best_sam2.1_tiny_adapter_unet.pth"
+#SAVE_DIR = "/home/ubuntu/workspace/implantny/seg_test_res_AIhub1_preprocessing_ver2"
+SAVE_DIR = "/workspace/data/11label_crop_final_8_1_1/seg_masks"
+
+SAM2_CHECKPOINT = "/workspace/implant_seg/checkpoints/sam2.1_hiera_tiny.pt"
+SAM2_CONFIG="configs/sam2.1/sam2.1_hiera_t.yaml"
+
+# Keep inference preprocessing identical to adapter/decoder training.
+IMAGE_SIZE = 512
+MASK_THRESHOLD = 0.5
+MORPH_KERNEL_SIZE = 3
+
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# =====================
+# 학습 코드에 있던 head import
+# =====================
+
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print("Device:", device)
+
+# =====================
+# SAM 불러오기
+# =====================
+sam2_model=build_sam2(SAM2_CONFIG,SAM2_CHECKPOINT,device=device)
+adapter=Adapter(in_channels=256, out_channels=256)
+decoder=UNetDecoder(in_channels=256)
+model=SAM2AdapterUNet(sam2_model,adapter,decoder).to(device)
+model.load_state_dict(torch.load(MODEL_PATH))
+model.eval()
+
+
+# =====================
+# SAM 입력 전처리 함수
+# =====================
+def preprocess_for_sam(image_pil):
+    image = np.array(image_pil.convert("RGB"))
+    image = cv2.resize(image, (IMAGE_SIZE, IMAGE_SIZE), interpolation=cv2.INTER_LINEAR)
+    image = image.astype(np.float32) / 255.0
+
+    x = torch.from_numpy(image).permute(2, 0, 1).contiguous()
+    return x.unsqueeze(0).to(device)
+
+
+# =====================
+# 예측
+# =====================
+image_root = Path(IMAGE_DIR)
+save_root = Path(SAVE_DIR)
+
+with torch.no_grad():
+    count=0
+    image_paths = sorted(
+        p for p in image_root.rglob("*")
+        if p.suffix.lower() in [".jpg", ".jpeg", ".png"]
+        and save_root not in p.parents
+    )
+
+    for img_path in image_paths:
+        img_name=img_path.name
+        relative_parent = img_path.parent.relative_to(image_root)
+
+        image_pil = Image.open(img_path).convert("RGB")
+        original_w, original_h = image_pil.size
+
+        x = preprocess_for_sam(image_pil)
+
+        pred=model(x)
+        pred = torch.sigmoid(pred)
+
+        mask = pred.squeeze().cpu().numpy()
+
+
+        # 원본 크기로 복원
+        mask = cv2.resize(mask, (original_w, original_h), interpolation=cv2.INTER_LINEAR)
+
+        # threshold 적용
+        mask = (mask > MASK_THRESHOLD).astype(np.uint8) * 255
+
+        #0. 팽창으로 끊긴 부분 연결 후 구멍 채우기 
+        kernel=cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(MORPH_KERNEL_SIZE,MORPH_KERNEL_SIZE))
+        mask=cv2.morphologyEx(mask,cv2.MORPH_CLOSE,kernel)
+
+        #1. 내부 구멍 채우기 
+        contours,_ =cv2.findContours(mask,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+        mask= np.zeros_like(mask)
+        cv2.drawContours(mask,contours,-1,255,thickness=cv2.FILLED)
+
+        #2. 작은 노이즈 제거 (가장 큰 덩어리만 남기고 나머지 제거)
+        num_labels,labels,stats, _ =cv2.connectedComponentsWithStats(mask)
+        if num_labels>1:
+            largest= 1+ np.argmax(stats[1:, cv2.CC_STAT_AREA])
+            mask=np.where(labels==largest,255,0).astype(np.uint8)
+        else:
+            print("EMPTY mask:",img_name)
+        
+
+     
+        
+
+        save_name = Path(img_name).stem + "_pred.png"
+        class_save_dir = Path(SAVE_DIR) / relative_parent
+        class_save_dir.mkdir(parents=True, exist_ok=True)
+        save_path = class_save_dir / save_name
+
+        cv2.imwrite(str(save_path), mask)
+
+        count+=1
+        if count%1000==0:
+            print(count,"done")
+
+print("예측 마스크 저장 완료:", SAVE_DIR)

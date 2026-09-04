@@ -1,0 +1,81 @@
+{
+  "adin": {
+    "precision": 0.696969696969697,
+    "recall": 0.8846153846153846,
+    "f1-score": 0.7796610169491526,
+    "support": 26.0
+  },
+  "bego": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1-score": 0.8571428571428571,
+    "support": 4.0
+  },
+  "bicon": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10.0
+  },
+  "bilim": {
+    "precision": 0.6,
+    "recall": 1.0,
+    "f1-score": 0.75,
+    "support": 3.0
+  },
+  "dentium": {
+    "precision": 0.8571428571428571,
+    "recall": 0.75,
+    "f1-score": 0.8,
+    "support": 8.0
+  },
+  "implance": {
+    "precision": 0.8,
+    "recall": 1.0,
+    "f1-score": 0.8888888888888888,
+    "support": 4.0
+  },
+  "iti": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4.0
+  },
+  "mis": {
+    "precision": 1.0,
+    "recall": 0.3333333333333333,
+    "f1-score": 0.5,
+    "support": 3.0
+  },
+  "noris": {
+    "precision": 0.7058823529411765,
+    "recall": 0.6,
+    "f1-score": 0.6486486486486487,
+    "support": 20.0
+  },
+  "nucleoss": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 2.0
+  },
+  "osstem": {
+    "precision": 0.75,
+    "recall": 0.7058823529411765,
+    "f1-score": 0.7272727272727273,
+    "support": 17.0
+  },
+  "accuracy": 0.7722772277227723,
+  "macro avg": {
+    "precision": 0.7645449915503391,
+    "recall": 0.7294391882627175,
+    "f1-score": 0.7228740126274795,
+    "support": 101.0
+  },
+  "weighted avg": {
+    "precision": 0.770752495417609,
+    "recall": 0.7722772277227723,
+    "f1-score": 0.7598210174397454,
+    "support": 101.0
+  }
+}

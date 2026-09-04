@@ -1,0 +1,6 @@
+{
+  "best_valid_loss": 0.8739133535646925,
+  "best_checkpoint": "/workspace/implant_seg/runs/band_vit_11label/checkpoints/best.pt",
+  "test_loss": 1.0662903537844668,
+  "test_accuracy": 0.7920792079207921
+}

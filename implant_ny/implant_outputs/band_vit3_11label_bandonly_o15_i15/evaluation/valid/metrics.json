@@ -1,0 +1,55 @@
+{
+  "samples": 102,
+  "accuracy": 0.8235294117647058,
+  "macro_precision": 0.9146005509641874,
+  "macro_recall": 0.8582338536883991,
+  "macro_f1": 0.871766192340355,
+  "weighted_precision": 0.8397207367795604,
+  "weighted_recall": 0.8235294117647058,
+  "weighted_f1": 0.8189993700829614,
+  "device": "cuda",
+  "labels": [
+    "adin",
+    "bego",
+    "bicon",
+    "bilim",
+    "dentium",
+    "implance",
+    "iti",
+    "mis",
+    "noris",
+    "nucleoss",
+    "osstem"
+  ],
+  "input_kind": "sam2_predicted_boundary_band_only_crop",
+  "attention_samples_requested": 0,
+  "attention_samples_saved": 0,
+  "attention_map_method": null,
+  "preprocessing": {
+    "input_kind": "sam2_predicted_boundary_band_only_crop",
+    "mask_files_written": false,
+    "cache_lifetime": "current_training_process_only",
+    "segmenter_frozen": true,
+    "segmenter": {
+      "sam2_config": "configs/sam2.1/sam2.1_hiera_t.yaml",
+      "sam2_checkpoint": "/workspace/implant_seg/checkpoints/sam2.1_hiera_tiny.pt",
+      "model_checkpoint": "/workspace/implant_seg/model_pt/best_sam2.1_tiny_adapter_unet.pth",
+      "input_size": 512,
+      "threshold": 0.5,
+      "morph_kernel_size": 3,
+      "batch_size": 2,
+      "preprocessing": "direct_resize_512_rgb_float_0_1",
+      "source_implementation": "make_mask/SAM_mask_produce_util.py"
+    },
+    "band_crop": {
+      "working_size": 224,
+      "outer_radius": 15,
+      "inner_radius": 15,
+      "crop_margin": 4,
+      "output_size": 224,
+      "definition": "dilation(mask, outer) AND NOT erosion(mask, inner)",
+      "background": "black_zero",
+      "crop": "tight_band_bbox_then_square_pad"
+    }
+  }
+}
