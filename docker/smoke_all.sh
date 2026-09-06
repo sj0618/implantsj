@@ -28,6 +28,8 @@ step() {
 # ys 는 ms_deform_attn CUDA 확장이 libc10.so 를 찾아야 한다.
 ys_ld() {
   export LD_LIBRARY_PATH="$(/opt/venv/ys/bin/python -c 'import torch,os;print(os.path.join(os.path.dirname(torch.__file__),"lib"))'):${LD_LIBRARY_PATH:-}"
+  # gdino 포크는 저장소 루트의 config.py 를 `from config import ...` 로 부른다.
+  export PYTHONPATH="${GDINO_REPO:-/opt/Grounding-Dino-FineTuning}:${PYTHONPATH:-}"
 }
 
 # ---------------------------------------------------------------- 1. 격리
@@ -54,7 +56,7 @@ s_ys_gdino() {
   /opt/venv/ys/bin/python -c "
 import torch, numpy, cv2, transformers, timm
 from groundingdino import _C
-from groundingdino.util.inference import load_model
+from groundingdino.util.inference import load_model  # config.py 경로까지 확인
 from pathlib import Path
 w = Path('weights/groundingdino_swint_ogc.pth')
 assert w.is_file() and w.stat().st_size > 500*1048576, w

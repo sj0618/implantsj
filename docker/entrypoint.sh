@@ -40,6 +40,8 @@ ys_env() {
   local torch_lib
   torch_lib="$(/opt/venv/ys/bin/python -c 'import torch,os;print(os.path.join(os.path.dirname(torch.__file__),"lib"))' 2>/dev/null)"
   export LD_LIBRARY_PATH="${torch_lib}:${LD_LIBRARY_PATH:-}"
+  # gdino 포크가 저장소 루트의 config.py 를 `from config import ...` 로 부른다.
+  export PYTHONPATH="${GDINO_REPO:-/opt/Grounding-Dino-FineTuning}:${PYTHONPATH:-}"
 }
 
 cmd="${1:-menu}"

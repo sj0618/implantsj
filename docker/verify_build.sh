@@ -38,6 +38,8 @@ bash -n run.sh
 step "ys: Grounding DINO CUDA 확장 + 가중치"
 cd "$ROOT/implantys"
 export LD_LIBRARY_PATH="$(/opt/venv/ys/bin/python -c 'import torch,os;print(os.path.join(os.path.dirname(torch.__file__),"lib"))'):${LD_LIBRARY_PATH:-}"
+# gdino 포크의 util/inference.py 가 저장소 루트의 config.py 를 부른다.
+export PYTHONPATH="${GDINO_REPO:-/opt/Grounding-Dino-FineTuning}:${PYTHONPATH:-}"
 /opt/venv/ys/bin/python -c "
 import torch, transformers, timm
 print('torch', torch.__version__, '| transformers', transformers.__version__)
@@ -46,12 +48,15 @@ import cv2; print('opencv', cv2.__version__)
 "
 # 여기가 이 이미지에서 가장 잘 깨지는 지점이다. ms_deform_attn 은 소스에서
 # 컴파일한 CUDA 확장이라, 빌드가 조용히 실패하면 import 할 때 드러난다.
+# _C 를 먼저 본다. 이게 nvcc 로 컴파일한 CUDA 확장이고, 빌드가 조용히 실패하면
+# 여기서 드러난다. inference 모듈 import 는 그 다음 문제다.
 /opt/venv/ys/bin/python -c "
-from groundingdino.util.inference import load_model
-import groundingdino
-print('groundingdino import OK:', groundingdino.__file__)
 from groundingdino import _C
 print('ms_deform_attn CUDA 확장 로드 OK')
+import groundingdino
+print('groundingdino:', groundingdino.__file__)
+from groundingdino.util.inference import load_model
+print('util.inference import OK (config.py 경로 확인됨)')
 "
 /opt/venv/ys/bin/python - <<'PY'
 from pathlib import Path
