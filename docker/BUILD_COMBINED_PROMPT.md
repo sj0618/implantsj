@@ -3,9 +3,15 @@
 아래 `---` 사이를 원격 x86 서버의 에이전트 세션에 붙여넣는다.
 사람이 직접 할 경우에도 같은 순서로 따라가면 된다.
 
-이 문서는 맥(ARM)에서 작성됐고 **빌드는 한 번도 실행되지 않았다.** Grounding DINO 의
-CUDA 확장을 에뮬레이션에서 컴파일할 수 없어 x86 에 넘긴다. 그래서 아래 절차에는
+이 문서는 맥(ARM)에서 작성됐고 **이미지 빌드는 한 번도 실행되지 않았다.** Grounding
+DINO 의 CUDA 확장을 에뮬레이션에서 컴파일할 수 없어 x86 에 넘긴다. 그래서 아래 절차에는
 "실패하면 이렇게 보고하라"가 함께 들어 있다.
+
+다만 smoke 5·7 단계가 부르는 명령 자체는 맥에서 합성 데이터로 한 번씩 실제로 돌려
+확인했다. implantys `train.py --cond M2` 는 학습과 test 평가까지, implant_ny
+`band_vit_2.training` 은 학습·평가·metrics.json 생성까지 돌았다. 확인된 것은 인자
+이름과 데이터 형식과 코드 경로이고, 컨테이너 안의 고정 버전 조합에서 같은 결과가
+나오는지는 확인하지 못했다.
 
 ---
 
@@ -119,21 +125,27 @@ docker run --rm implantid:latest smoke
 **기대 출력**: 마지막 부분이 이래야 한다.
 
 ```
-통과 5 / 실패 0
+통과 7 / 실패 0
 전부 통과.
 ```
 
-5단계의 내용:
+7단계의 내용:
 
-1. 환경 격리 — venv 3개의 torch/numpy 버전이 실제로 다른지
+1. 환경 격리 — venv 3개의 torch/numpy 버전이 실제로 갈라져 있는지
 2. implantsj 전체 파이프라인 — 합성 데이터로 10단계 (학습·평가·ArcFace 포함)
-3. implantys 환경 + gdino CUDA 확장 로드
+3. implantys gdino CUDA 확장 로드 + 가중치
 4. implantys BERT 오프라인 로드 — 폐쇄망에서 텍스트 인코더를 받으러 나가지 않는지
-5. implant_ny 환경 + SAM2 체크포인트
+5. **implantys metric learning 학습 1 epoch + 평가 + 임베딩 추출** (합성 데이터)
+6. implant_ny SAM2 체크포인트
+7. **implant_ny band_vit 학습 1 epoch + 평가** (합성 데이터)
 
-**2번만 실제 학습·평가를 돌린다.** 3~5 는 환경과 가중치가 살아 있는지만 본다.
-implantys / implant_ny 에는 이 저장소에 자가진단이 없어서, 그 학습·평가 로직이
-맞는지는 검사하지 않는다. 그렇게 보고한다 — "전부 검증됨"이라고 하지 않는다.
+**2·5·7 이 실제 학습과 평가를 돌린다.** 정확도 숫자는 무작위 잡음 이미지 기준이라
+의미가 없다 — 배선이 끝까지 도는지만 보는 것이다. 3·4·6 은 확장 로드와 가중치 확인이다.
+
+**검사하지 않는 것**: implantys 의 gdino 파인튜닝 학습(COCO 형식 검출 데이터가 필요),
+implant_ny 의 band_vit_3(파인튜닝된 SAM2 adapter 체크포인트가 저장소에 없다).
+이 둘은 실제 데이터로 처음 돌릴 때 따로 확인해야 한다. 그렇게 보고한다 —
+"전부 검증됨"이라고 하지 않는다.
 
 ## 6단계 — 반입 파일
 
@@ -179,7 +191,7 @@ help          도움말
 전부 이진 판정이다. 하나라도 아니면 빌드가 끝난 게 아니다.
 
 1. `docker image inspect implantid:latest --format '{{.Architecture}}'` 가 `amd64`
-2. `docker run --rm implantid:latest smoke` 가 `통과 5 / 실패 0`
+2. `docker run --rm implantid:latest smoke` 가 `통과 7 / 실패 0`
 3. `docker run --rm implantid:latest ys -c "from groundingdino import _C"` 가 조용히 성공
 4. `docker run --rm implantid:latest help` 가 세 프로젝트를 나열
 
@@ -187,8 +199,7 @@ help          도움말
 
 - 핀을 바꿔 빌드를 통과시키지 않는다. 세 프로젝트의 버전 고정에는 문서화된 이유가 있다.
 - 검증을 건너뛰고 "빌드 완료"라고 하지 않는다. 2번 기준의 출력이 근거다.
-- 3~5 단계를 근거로 implantys / implant_ny 가 "동작 검증됐다"고 말하지 않는다.
-  환경이 살아 있는 것과 실험이 맞게 도는 것은 다르다.
+- gdino 파인튜닝과 band_vit_3 를 "동작 검증됐다"고 말하지 않는다. smoke 가 안 건드린다.
 - 실패를 성공으로 뭉개지 않는다. 실패한 단계의 로그를 그대로 붙여 보고한다.
 
 ## 보고 형식

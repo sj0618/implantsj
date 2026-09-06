@@ -104,9 +104,14 @@ RUN git clone https://github.com/Asad-Ismail/Grounding-Dino-FineTuning "$GDINO_R
 RUN python3.11 -m venv /opt/venv/ny \
  && /opt/venv/ny/bin/pip install --upgrade pip setuptools wheel
 COPY implant_ny/requirements-sam2.txt /tmp/req.ny.txt
+COPY docker/requirements-ny-extra.txt /tmp/req.ny.extra.txt
+# requirements-sam2.txt 는 SAM2 환경의 freeze 라 band_vit 학습이 쓰는 timm/pandas/
+# scikit-learn/scipy/safetensors 가 빠져 있다. 빠진 채로도 이미지는 빌드되지만
+# 폐쇄망에서 band_vit_2.training 이 ImportError 로 죽는다. 근거는 extra 파일에 적었다.
 RUN /opt/venv/ny/bin/pip install \
       --extra-index-url https://download.pytorch.org/whl/cu124 \
-      -r /tmp/req.ny.txt
+      -r /tmp/req.ny.txt \
+ && /opt/venv/ny/bin/pip install -r /tmp/req.ny.extra.txt
 
 # =====================================================================
 # pretrained 가중치 — 전부 빌드 타임에 굽는다. 여기가 인터넷을 쓰는 마지막 지점.

@@ -1,0 +1,24 @@
+# implant_ny 가 import 하지만 requirements-sam2.txt 에 없는 것들.
+# ----------------------------------------------------------------------------
+# requirements-sam2.txt 는 SAM2 세그멘테이션 환경의 freeze 라서 band_vit 학습·평가가
+# 쓰는 패키지가 빠져 있다. 그대로 두면 이미지는 정상적으로 빌드되지만 폐쇄망에서
+# `python -m band_vit_2.training` 이 ImportError 로 죽는다. 그때는 고칠 수 없다.
+#
+# 아래 5개는 implant_ny/**/*.py 의 import 를 훑어 확인한 것이다:
+#   timm         band_vit_2/models.py, band_vit_2/training.py
+#   pandas       band_vit_2/data.py, band_vit_2/evaluation.py, band_vit_3/*
+#   scikit-learn band_vit_2/evaluation.py, band_vit_2/losses.py
+#   scipy        band_vit_3/band_preprocessing.py, band_vit_2/make_band_masks.py
+#   safetensors  band_vit_2/models.py, band_vit_2/training.py
+#
+# 원본 freeze 를 고쳐 쓰지 않고 별도 파일로 두는 이유: requirements-sam2.txt 는
+# 실제로 동작하던 환경의 기록이라 그 자체로 가치가 있다. 여기에 무엇을 왜 더했는지
+# 남기는 편이 나중에 추적하기 쉽다.
+#
+# 버전은 느슨하게 잡는다. 이 venv 의 numpy 가 2.4.4 이므로 numpy 2 를 지원하는
+# 최신 계열이어야 하고, 위쪽을 조이면 오히려 해석이 꼬인다.
+timm>=1.0
+pandas>=2.2
+scikit-learn>=1.5
+scipy>=1.14
+safetensors>=0.4

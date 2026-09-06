@@ -41,6 +41,9 @@ YS_TIMM_MODELS = ["vit_base_patch14_dinov2.lvd142m"]
 # Grounding DINO 의 텍스트 인코더.
 YS_HF_MODELS = ["bert-base-uncased"]
 
+# implant_ny 의 band_vit 분류기 백본.
+NY_TIMM_MODELS = ["vit_base_patch16_224"]
+
 
 def read_list(path: Path) -> list[str]:
     if not path.is_file():
@@ -117,10 +120,17 @@ def do_ys() -> None:
 
 
 def do_ny() -> None:
-    """implant_ny: SAM 2.1 체크포인트."""
+    """implant_ny: SAM 2.1 체크포인트 + band_vit 이 쓰는 timm 백본."""
     print("[ny] SAM 2.1 tiny", flush=True)
     download(SAM2_URL, ROOT / "implant_ny" / "checkpoints" / "sam2.1_hiera_tiny.pt",
              SAM2_MIN_BYTES)
+
+    # band_vit_2 / band_vit_3 는 --model 로 timm ViT 를 받는다. 기존 run 기록
+    # (implant_ny/runs/*/metrics.json)에 쓰인 값이 vit_base_patch16_224 다.
+    # HF 캐시는 세 venv 가 공유하므로 sj 가 이미 받아뒀을 수 있지만, timm 버전이
+    # 달라 캐시 키가 어긋날 수 있어 이 venv 에서도 한 번 확인한다.
+    print("[ny] band_vit 백본", flush=True)
+    prefetch_timm(NY_TIMM_MODELS)
 
 
 TASKS = {"sj": do_sj, "ys": do_ys, "ny": do_ny}
