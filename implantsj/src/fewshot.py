@@ -36,6 +36,9 @@ ROLES = ('train', 'val', 'test', 'unseen', 'excluded')
 
 def _read_manifest(path) -> pd.DataFrame:
     df = pd.read_csv(path, dtype={'label': str, 'group': str, 'class_key': str, 'domain': str})
+    # 상대경로는 manifest 파일이 있는 폴더 기준으로 푼다(zip 으로 다른 PC·OS 에 옮긴 데이터를 그대로 쓰기 위해)
+    base = Path(path).resolve().parent
+    df['path'] = [p if Path(p).is_absolute() else str(base / p) for p in df['path'].astype(str)]
     return _prep(df)
 
 

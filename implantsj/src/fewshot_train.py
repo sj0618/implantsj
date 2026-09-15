@@ -270,6 +270,7 @@ def export(manifest, out, ckpt=None, pretrained=None, batch_size=64, num_workers
     net.to(dev).eval()
     tf, norm = _transforms(net.encoder.backbone if ckpt else net, train=False)
     ds = ImageClassificationDataset(manifest, None, {}, tf)
+    ds.df = _read_manifest(manifest)  # 상대경로를 manifest 기준으로 푼 같은 행(평가의 path 와 문자열이 같아야 맞춰진다)
     embs, probs = [], {a: [] for a in attrs}
     for x, _ in DataLoader(ds, batch_size=batch_size, **_loader_kw(num_workers)):
         x = x.to(dev)
