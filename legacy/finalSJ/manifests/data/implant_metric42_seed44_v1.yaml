@@ -1,0 +1,32 @@
+schema_version: 1
+kind: dataset
+id: implant-metric42-seed44-v1
+duplicate_policy: error
+sources:
+  - id: metric42-samples-seed44
+    type: csv
+    role: sample
+    path: ${DATA_ROOT}/manifests/metric42_samples_seed44.csv
+    image_root: ${DATA_ROOT}/images
+    columns:
+      image_uri: image_uri
+      label: label
+      sample_id: sample_id
+      split: split
+      group_id: group_id
+  - id: metric42-gt
+    type: csv
+    role: prototype
+    path: ${DATA_ROOT}/manifests/metric42_gt.csv
+    image_root: ${DATA_ROOT}/images
+    columns:
+      image_uri: image_uri
+      label: label
+      sample_id: sample_id
+      group_id: group_id
+labels:
+  mode: derived
+  aliases: {}
+label_spaces:
+  closed: [IS I, IS II, IS III, EB, Branemark, Astra, Xive, Implantium, Superline, UF, UF II, Any ridge, Anyone internal, Anyone external, Exfeel external, TS standard, TS standard plus, Bone level, Luna, GS II, SS II, TS III, US II, US III, Hexplant, Internal, IT]
+  open: [Simpleline, exfeel internal, 55 III, Biohorizon external, TSV, 5 clean tapered, GS III, screw vent, atlas internal, stella, 3i, ankylos, iu, replace select, core1]

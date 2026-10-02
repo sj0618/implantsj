@@ -1,0 +1,20 @@
+schema_version: 1
+kind: dataset
+id: implant-v1
+duplicate_policy: error
+sources:
+  - id: closed-images
+    type: folder_label
+    role: sample
+    path: ${DATA_ROOT}/known
+  - id: gt-prototypes
+    type: folder_label
+    role: prototype
+    path: ${DATA_ROOT}/prototype
+  - id: open-images
+    type: folder_label
+    role: unknown
+    path: ${DATA_ROOT}/unknown
+labels:
+  mode: derived
+  aliases: {}
