@@ -1,0 +1,46 @@
+idx,class_key,name_key,Company,Name,System,Connection_1,Connection_2,Flange,Collar,Microthread,Body_Shape,Body_Type,Thread_Shape,Apex_Shape,Apex_Hole,notes
+1,osstem_gsii,gsii,Osstem,GSII,Bone Level,Internal,HEX,Parallel,Yes,Yes,Non-tapered,Threaded,V-shaped,Flat,No,
+2,osstem_gsiii,gsiii,Osstem,GSIII,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,V-shaped,Rounded,No,
+3,osstem_ssii,ssii,Osstem,SSII,Tissue Level,Internal,OCTA,Convergent,Yes,No,Non-tapered,Threaded,V-shaped,Flat,No,
+4,osstem_tsiii,tsiii,Osstem,TSIII,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Flat,No,web20260929: Osstem TS catalog; 1.5° tapered body
+5,osstem_usii,usii,Osstem,USII,Bone Level,External,HEX,Convergent,No,No,Non-tapered,Threaded,V-shaped,Flat,No,web20260929: FDA K161103; straight body
+6,osstem_ssiii,ssiii,Osstem,SSIII,Tissue Level,Internal,OCTA,Convergent,Yes,No,Tapered body,Threaded,V-shaped,Flat,No,web20260929: Osstem TS catalog; 1.5° tapered body
+7,osstem_usiii,usiii,Osstem,USIII,Bone Level,External,HEX,Convergent,No,No,Tapered body,Threaded,V-shaped,Flat,No,web20260929: Osstem TS catalog; 1.5° tapered body
+8,dentium_implantium,implantium,Dentium,Implantium,Bone Level,Internal,HEX,Convergent,No,No,Tapered apex,Threaded,V-shaped,Flat,No,
+9,dentium_superline,superline,Dentium,SuperLine,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Flat,No,
+10,dentium_simpleline,simpleline,Dentium,SimpleLine,Tissue Level,Internal,OCTA,Convergent,Yes,No,Tapered apex,Threaded,V-shaped,Flat,No,web20260929: Dentium SimpleLine II; 8° Morse Taper Octagon; I/II variant not encoded
+11,neobiotech_isi,isi,NeoBiotech,ISI,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,Buttress,Rounded,No,
+12,neobiotech_isii,isii,NeoBiotech,ISII,Bone Level,Internal,HEX,Parallel,No,No,Tapered apex,Threaded,V-shaped,Rounded,No,
+13,neobiotech_isiii,isiii,NeoBiotech,ISIII,Bone Level,Internal,HEX,Parallel,Yes,No,Tapered body,Threaded,V-shaped,Rounded,No,
+14,neobiotech_eb,eb,NeoBiotech,EB,Bone Level,External,HEX,Parallel,No,Yes,Tapered body,Threaded,Buttress,Rounded,No,
+15,shinhung_luna1,luna1,Shinhung,Luna1,Bone Level,Internal,HEX,Parallel,No,Yes,Tapered body,Threaded,V-shaped,Flat,No,
+16,dio_smsubmerged,smsubmerged,DIO,SM_Submerged,Bone Level,Internal,SIX-LOBE,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,
+17,dio_sm,sm,DIO,SM,Tissue Level,Internal,SIX-LOBE,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,
+18,dio_uf,uf,DIO,UF,Bone Level,Internal,HEX,Parallel,No,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,
+19,dio_uf2,uf2,DIO,UF2,Bone Level,Internal,HEX,Parallel,No,Yes,Tapered apex,Threaded,V-shaped,Rounded,No,
+20,megagen_anyridge,anyridge,Megagen,AnyRidge,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Rounded,No,
+21,megagen_exfeelinternal,exfeelinternal,Megagen,ExFeel_Internal,Tissue Level,Internal,OCTA,Convergent,Yes,Yes,Non-tapered,Threaded,Reverse buttress,Flat,No,web20260929: ExFeel transgingival/machined collar
+22,megagen_exfeelexternal,exfeelexternal,Megagen,ExFeel_External,Bone Level,External,HEX,Parallel,No,Yes,Non-tapered,Threaded,V-shaped,Flat,No,
+23,megagen_anyoneexternal,anyoneexternal,Megagen,AnyOne_External,Bone Level,External,HEX,Convergent,No,No,Tapered apex,Threaded,V-shaped,Flat,No,
+24,megagen_anyoneinternal,anyoneinternal,Megagen,AnyOne_Internal,Bone Level,Internal,HEX,Parallel,No,No,Tapered apex,Threaded,V-shaped,Flat,No,web20260929: AnyOne internal collar; machined-neck criterion
+25,dentis_scleantapered,scleantapered,Dentis,SClean_Tapered,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,
+26,cowellmedi_atlasinternal,atlasinternal,Cowellmedi,Atlas_Internal,Tissue Level,Internal,OCTA,Convergent,Yes,Yes,Non-tapered,Threaded,Reverse buttress,Rounded,No,
+27,cowellmedi_atlasexternal,atlasexternal,Cowellmedi,Atlas_External,Bone Level,External,HEX,Convergent,Yes,Yes,Non-tapered,Threaded,Reverse buttress,Rounded,No,
+28,warantec_explant,explant,Warantec,Explant,Bone Level,External,HEX,unknown,unknown,unknown,unknown,Threaded,unknown,unknown,unknown,
+29,warantec_internal,internal,Warantec,Internal,Bone Level,Internal,OCTA,Parallel,Yes,Yes,Tapered body,Threaded,V-shaped,Rounded,No,
+30,cybermed_core1,core1,Cybermed,Core1,Bone Level,Internal,HEX,Parallel,unknown,unknown,Taper-straight-taper,Threaded,unknown,unknown,unknown,Thread_Shape: Sharp double/compact/open 병기->unknown
+31,straumann_tsstandard,tsstandard,Straumann,TS_Standard,Tissue Level,Internal,OCTA,Convergent,Yes,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,web20260929: Straumann machined neck; Collar=Yes
+32,straumann_tsstandardplus,tsstandardplus,Straumann,TS_StandardPlus,Tissue Level,Internal,OCTA,Parallel,Yes,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,web20260929: Straumann Standard Plus machined neck; Collar=Yes
+33,straumann_bonelevel,bonelevel,Straumann,BoneLevel,Bone Level,Internal,CROSSFIT,Parallel,No,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,web20260929: CrossFit; 15° conical-cylindrical + 4 internal grooves
+34,nobelbiocareshinhung_branemark,branemark,NobelBiocare(Shinhung),Branemark,Bone Level,External,HEX,Parallel,Yes,No,Non-tapered,Threaded,V-shaped,Flat,No,web20260929: machined collar; microthread=No
+35,nobelbiocareshinhung_replaceselect,replaceselect,NobelBiocare(Shinhung),ReplaceSelect,Bone Level,Internal,TRI-LOBE,Parallel,Yes,No,Tapered apex,Threaded,Buttress,Rounded,No,web20260929: machined collar; variant check required
+36,dentsply_astra,astra,Dentsply,Astra,Bone Level,Internal,DOUBLE-HEX,Convergent,Yes,Yes,Non-tapered,Threaded,V-shaped,Flat,No,web20260929: double hex indexing
+37,dentsply_xive,xive,Dentsply,Xive,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,web20260929: structure-polished collar
+38,zimmer_swissplus,swissplus,Zimmer,SwissPlus,Tissue Level,Internal,OCTA,Convergent,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,web20260929: fluted machined neck
+39,zimmer_screwvent,screwvent,Zimmer,ScrewVent,Tissue Level,Internal,HEX,Parallel,Yes,No,Non-tapered,Threaded,V-shaped,Flat,Yes,web20260929: machined collar
+40,zimmer_tsv,tsv,Zimmer,TSV,Bone Level,Internal,HEX,Parallel,Yes,unknown,Tapered body,Threaded,V-shaped,Rounded,Yes,web20260929: machined collar; TSVT variant may differ
+41,biomet_3i,3i,Biomet,3i,Bone Level,External,HEX,Parallel,No,Yes,Non-tapered,Threaded,V-shaped,Flat,No,
+42,biohorizons_external,external,BioHorizons,External,Bone Level,External,HEX,Parallel,No,Yes,Tapered apex,Threaded,Square,Flat,No,web20260929: manufacturer square thread
+43,bego_semadosrsrsx,semadosrsrsx,BEGO,Semados RS/RSX,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,V-shaped,Rounded,No,Connection_2: Hexagon->HEX; Flange: Straight->Parallel; Body_Shape: Tapered->Tapered body; Apex_Shape: Dome->Rounded
+44,bicon_integracp,integracp,Bicon,Integra-CP,Bone Level,Internal,NONE,Parallel,No,No,Tapered apex,Plateau-fin,N/A,Flat,No,web20260929: engagement=LOCKING-TAPER; indexing=NONE; plateau design; conventional thread=N/A
+45,straumann_standardplus,standardplus,Straumann,Standard Plus,Tissue Level,Internal,OCTA,Parallel,Yes,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,Connection_2: Octagon->OCTA; Flange: Straight->Parallel; Body_Shape: Straight->Non-tapered; Apex_Shape: Dome->Rounded
