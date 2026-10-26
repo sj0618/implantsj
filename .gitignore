@@ -9,6 +9,8 @@
 .DS_Store
 .gjc/
 .omx/
+.omc/state/
+.omc/sessions/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -21,9 +23,7 @@ __pycache__/
 /tmp/
 
 # --- 대용량: git 에 올리지 않는다 ------------------------------------
-# 이 저장소는 .git 만 65GB 다. 아래 항목이 실수로 커밋되면 clone 이
-# 불가능해지므로 명시적으로 막는다. 모델 가중치와 데이터셋은 git 이
-# 아니라 별도 반입 경로로 옮긴다.
+# 모델 가중치와 데이터셋은 별도 반입 경로로 옮긴다.
 /AI_HUB_model_download/
 /data/
 
@@ -36,6 +36,7 @@ __pycache__/
 *.ckpt
 *.onnx
 *.zip
+!/legacy/archives/implantsj.zip
 *.tar
 *.tar.gz
 

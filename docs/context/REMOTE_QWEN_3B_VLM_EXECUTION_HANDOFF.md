@@ -1,5 +1,7 @@
 # Remote qwen_3B_VLM 실행 핸드오프
 
+> 과거 작업 기록입니다. 실행 상태·경로·우선순위는 작성 당시 기준입니다. [문서 목차](../README.md)에서 현재 실행 가이드를 확인하세요.
+
 ## 목적
 
 이 문서는 로컬에서 수정한 `pipelines/vlm/generate_13feature_21reason_7label.py`를

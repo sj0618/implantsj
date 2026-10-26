@@ -1,5 +1,7 @@
 # implant_python_only_final 전체 분석 보고서
 
+> 과거 작업 기록입니다. 실행 상태·경로·우선순위는 작성 당시 기준입니다. [문서 목차](../README.md)에서 현재 실행 가이드를 확인하세요.
+
 - 생성일: 2026-05-26
 - 분석 범위: `/workspace/implant_python_only_final`
 - 산출물: 이 파일 (`PROJECT_ANALYSIS.md`)

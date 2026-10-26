@@ -1,5 +1,7 @@
 # Current Context Handoff
 
+> 과거 작업 기록입니다. 실행 상태·경로·우선순위는 작성 당시 기준입니다. [문서 목차](../README.md)에서 현재 실행 가이드를 확인하세요.
+
 - Saved at UTC: 2026-05-26T12:58:26Z
 - Project dir: `/workspace/implant_python_only_final`
 - Purpose: Preserve current session context, running jobs, outputs, commands, and conclusions.

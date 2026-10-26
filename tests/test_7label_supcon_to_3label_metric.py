@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 from PIL import Image
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 
@@ -96,7 +96,7 @@ def make_supcon_checkpoint(eval_module, checkpoint: Path) -> None:
 def main() -> None:
     install_fake_timm()
 
-    import evaluate_3label_metric_from_7label as eval_module
+    from pipelines.eval import evaluate_3label_metric_from_7label as eval_module
 
     install_simple_transform(eval_module)
 

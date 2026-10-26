@@ -20,14 +20,13 @@ Expected VLM feature file:
 from __future__ import annotations
 
 import argparse
-import csv
 import json
 import math
 import sys
 import time
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 import pandas as pd

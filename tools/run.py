@@ -44,10 +44,6 @@ COMMANDS: dict[str, str] = {
     'attention': 'pipelines.visualize.visualize_attention',
     'tsne': 'pipelines.visualize.visualize_classifier_tsne',
     'summary': 'pipelines.report.summarize_runs',
-    # src/ 를 직접 부르는 예전 진입점. tests/test_dynamic_experiment.py 가
-    # 이 두 이름을 검사하므로 유지한다.
-    'experiment': 'src.training',
-    'visualize': 'src.visualization',
 }
 
 

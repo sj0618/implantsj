@@ -38,7 +38,7 @@ import sys
 import time
 import threading
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from PIL import Image
 

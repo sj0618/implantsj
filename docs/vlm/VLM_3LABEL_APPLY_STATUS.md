@@ -1,5 +1,7 @@
 # 3-label 최신 VLM 분석 적용 상태
 
+> 과거 작업 기록입니다. 실행 상태·경로·우선순위는 작성 당시 기준입니다. [문서 목차](../README.md)에서 현재 실행 가이드를 확인하세요.
+
 - 갱신 시각: 2026-05-26T11:56:03Z
 - 적용 schema: 13 core attributes + 21 supporting visual features
 - 대상 manifest: `data/manifests/plain_vit_3label.csv`

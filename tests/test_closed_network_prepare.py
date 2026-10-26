@@ -24,7 +24,7 @@ def write_sample_pair(image_root: Path, json_root: Path, hospital: str, case_id:
     json_path.write_text(json.dumps({"모델명": label}, ensure_ascii=False), encoding="utf-8")
 
 
-def main() -> None:
+def test_closed_network_prepare() -> None:
     with tempfile.TemporaryDirectory(prefix="closed_network_prepare_") as tmp:
         tmp_dir = Path(tmp)
         tl1 = tmp_dir / "TL1"
@@ -69,24 +69,24 @@ def main() -> None:
         ]
         subprocess.run(cmd, check=True)
 
-        manifest_42 = pd.read_csv(out_root / "manifests" / "closed_network_42label.csv")
-        manifest_seen = pd.read_csv(out_root / "manifests" / "closed_network_seen27.csv")
-        manifest_unseen = pd.read_csv(out_root / "manifests" / "closed_network_unseen15.csv")
+        manifest_all = pd.read_csv(out_root / "manifests" / "closed_network_3label.csv")
+        manifest_seen = pd.read_csv(out_root / "manifests" / "closed_network_seen2.csv")
+        manifest_unseen = pd.read_csv(out_root / "manifests" / "closed_network_unseen1.csv")
         summary = json.loads((out_root / "summary.json").read_text(encoding="utf-8"))
 
-        assert sorted(manifest_42["label"].unique().tolist()) == ["NovelC", "SeenA", "SeenB"]
-        assert set(manifest_42["split"].unique().tolist()) == {"train", "valid", "test"}
+        assert sorted(manifest_all["label"].unique().tolist()) == ["NovelC", "SeenA", "SeenB"]
+        assert set(manifest_all["split"].unique().tolist()) == {"train", "valid", "test"}
         assert sorted(manifest_seen["label"].unique().tolist()) == ["SeenA", "SeenB"]
         assert sorted(manifest_unseen["label"].unique().tolist()) == ["NovelC"]
         assert set(manifest_unseen["split"].unique().tolist()) == {"test"}
 
         # Materialized ImageFolder structures exist.
-        assert (out_root / "imagefolders" / "data_42label" / "train").is_dir()
-        assert (out_root / "imagefolders" / "data_metric_seen27" / "val").is_dir()
-        assert (out_root / "imagefolders" / "data_metric_unseen15" / "test").is_dir()
+        assert (out_root / "imagefolders" / "data_3label" / "train").is_dir()
+        assert (out_root / "imagefolders" / "data_metric_seen2" / "val").is_dir()
+        assert (out_root / "imagefolders" / "data_metric_unseen1" / "test").is_dir()
 
         # The smallest train-count label should have been selected as unseen.
-        unseen_labels = (out_root / "label_splits" / "unseen15_labels.txt").read_text(encoding="utf-8").strip().splitlines()
+        unseen_labels = (out_root / "label_splits" / "unseen1_labels.txt").read_text(encoding="utf-8").strip().splitlines()
         assert unseen_labels == ["NovelC"]
         assert summary["seen_label_count"] == 2
         assert summary["unseen_label_count"] == 1
@@ -95,4 +95,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    test_closed_network_prepare()

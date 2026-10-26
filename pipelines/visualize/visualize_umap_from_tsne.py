@@ -16,7 +16,6 @@ then re-run incrementally when new t-SNE artifacts appear.
 from __future__ import annotations
 
 import argparse
-import math
 from pathlib import Path
 
 import matplotlib
