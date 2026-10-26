@@ -44,6 +44,7 @@ COMMANDS: dict[str, str] = {
     'attention': 'pipelines.visualize.visualize_attention',
     'tsne': 'pipelines.visualize.visualize_classifier_tsne',
     'summary': 'pipelines.report.summarize_runs',
+    'reproduce': 'tools.reproduce_reports',
 }
 
 

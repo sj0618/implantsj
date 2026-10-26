@@ -21,6 +21,7 @@
 !run.sh
 !exp.conf
 !README.md
+!implant_experiment_summary_table.md
 
 # 문서도 이미지에 넣는다. 폐쇄망 경계를 넘는 복붙이 불가능하므로,
 # 안에서 복사해 쓸 수 있는 텍스트는 이미지에 구워 보내는 수밖에 없다.
@@ -32,6 +33,10 @@
 !docs/references/
 !docs/context/
 !docs/README.md
+!docs/reports/
+docs/reports/**
+!docs/reports/**/
+!docs/reports/**/*.md
 
 # 3) 포함한 트리 안의 잡동사니는 다시 제외
 **/__pycache__/

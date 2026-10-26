@@ -1,0 +1,90 @@
+[
+  {
+    "path": "tools/improve_unseen_mahalanobis.py",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "ea221ffbd401423fa3e308778c51a8ef40680c67a3691c0b346071b8c4b5782a",
+    "local_changes": "Skip K-means counts exceeding the smallest class; original distance formulas retained."
+  },
+  {
+    "path": "docs/reports/MAHALANOBIS_SPECTRUM_VALIDATION_FINAL_REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "e35266da553a100328fca4de35330736a3e6e497390179ecfc1199cfa0ef57fb"
+  },
+  {
+    "path": "docs/reports/METRIC_DIAGNOSIS_FINAL_REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "c20109f5efd9113ed1c8951cd170c2c425760d029c0cffe560f1f29edaa19cd4",
+    "local_changes": "Trailing whitespace removed; report content retained."
+  },
+  {
+    "path": "docs/reports/mahalanobis_method_selection_20260816/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "28de480f286d823bff03738effbbb094164d5f54cd4e137cc45a9bcf6fc9d6d3"
+  },
+  {
+    "path": "docs/reports/legacy_7to3_reproduction_20260807/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "e7bac5476392b834ed0341fefe0fd3019014bc295d66c2e6ced953591731fcbd"
+  },
+  {
+    "path": "docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/REPORT_TABLE.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "4f4a13e7a0116448dcb97842f0c8b4e8382582edc135b2b6cf21aec2903d7231"
+  },
+  {
+    "path": "docs/reports/full_uncropped_7to3_metric/report/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "f69927400f914986c25a3e138b75d4d39958aa9c15882d3fd40f6120b370c945"
+  },
+  {
+    "path": "docs/reports/mahalanobis_improvement_20260813/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "7fc9d70743ad46ace10fca3cc67d4f9375853403f34547af358269b9ae493143"
+  },
+  {
+    "path": "docs/reports/mahalanobis_10shot_prototype_20260814/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "f235dafac080e9ecfba85ab0e1b387baea30d5f28ad23ead406e1edcd91dd327"
+  },
+  {
+    "path": "docs/reports/mahalanobis_strict_10shot_20260814/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "590f2107ea83445da8670b245cf1648ac290e7d4be1d8db49ddf99a7aa1b2e6f"
+  },
+  {
+    "path": "docs/reports/vit42ft_local_mean_4dist_20260806/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "58540f0efde2876f6e9bbc1b7da44d79129791d8d679371ec77c965c9013525f"
+  },
+  {
+    "path": "docs/reports/vit6supcon_to_5label_strict10_20260814/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "a66031dff94fd13ea8b85de4c011cf765b08674c182088a9a199de12de1c4e89"
+  },
+  {
+    "path": "docs/reports/mahalanobis_spectrum_validation_20260816/VALIDATION.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "2b68410f0e157f1eaa79358345918c7981a0e8fb83d174ab59a56fab95ce6d18"
+  },
+  {
+    "path": "docs/reports/vit7ce_to_3label_mahalanobis_20260806/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "b7c0b98c6949f17b37b328fc15042c97e6d467af8c5dfb0c779ae309c3b5ceb0"
+  },
+  {
+    "path": "docs/reports/vit42ft_local_metric_20260806/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "b6ed45bca05d6048d5bd686164097a86fa354ebae67d19484799c5519e807c30"
+  },
+  {
+    "path": "docs/reports/vit7supcon_to_3label_mahalanobis_20260807/REPORT.md",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "8cdc9e81e52531339a0d2c3f59e575740e2172909e8d391f71046a634c02fef3"
+  },
+  {
+    "path": "tools/validate_mahalanobis_methods.py",
+    "source": "preserved implantsj worktree (2026-09-24 snapshot)",
+    "source_sha256": "3ca176f1130c3b954f56ac7c6fbab06071b4ae8c30364de3af70039640916733",
+    "local_changes": "Explicit input paths, strict membership/content checks, validation-first selection, new output directory and measured reporting."
+  }
+]

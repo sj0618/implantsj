@@ -12,6 +12,7 @@
 - 모델 목록: [`configs/backbones.txt`](configs/backbones.txt)
 - 반입·실행 절차: [시작 가이드](docs/usage/QUICKSTART.md)
 - 전체 문서: [문서 목차](docs/README.md)
+- 보고서별 재현: [실행 방법·재현 범위](docs/usage/REPRODUCE_REPORTS.md), `python3 tools/run.py reproduce list`
 
 ## 코드 구조
 
