@@ -2744,7 +2744,7 @@
       ],
       "steps": [],
       "blocked": [
-        "Restore aihub_run_new source and per-run training configs for all reported backbones, including band construction and exact splits. Band-ViT-Large has no completed summary."
+        "September-8 model definitions and default training configs are restored. Recover the September-18/19/20 run-specific config overrides, Band masks, exact split manifests, checkpoints and summary.json, and verify the executed source revision. Band-ViT-Large has no completed summary."
       ]
     },
     {

@@ -2,6 +2,7 @@
 
 보관된 Docker 이미지에서 **백본 학습과 metric 평가에 필요한 소스·설정 20개**를 복구했다.
 원본 소스를 수정하지 않았으며 파일별 Docker layer와 SHA-256은 [provenance.json](provenance.json)에 있다.
+전체 이미지 대조에서도 20개 파일 모두 일치했다. [비교 결과](../../docs/analysis/DOCKER_REPRODUCTION_COMPARISON_20261026.md)를 참고한다.
 데이터, 모델, 이미지, Docker 바이너리는 포함하지 않는다.
 
 - 백본: ViT / DINOv2 / Band 변형, full/partial fine-tuning, 27/42-class protocol.

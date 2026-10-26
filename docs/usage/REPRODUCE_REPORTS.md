@@ -132,7 +132,7 @@ outputs/reproduction/run01/
 
 - **서버 OAS**: 2026-09-28 `galcov.sh`, evaluator, grid 설정, checkpoint 이력, gallery/query manifest.
   2026-09-08 Docker 소스의 존재만으로 같은 버전이라고 간주할 수 없다. OAS 중심화·정규화·후보 라벨·거절 설정이 필요하다.
-- **서버 백본 비교**: `aihub_run_new`의 각 모델 정의와 설정, Band 구성, 27/42-class split 및 원래 `summary.json`.
+- **서버 백본 비교**: 모델 정의와 9월 8일 기본 설정은 복구했다. 9월 18~20일 실제 적용 설정, Band mask, 27/42-class split, checkpoint 및 원래 `summary.json`과 실행 소스 버전은 추가 확인이 필요하다.
 - **GT27 최종 진단**: 다섯 모델의 실제 model spec, checkpoint, support 189/query 52의 고정 배정.
   계획했던 canonical 42-way evaluator로 대체하면 다른 실험이 된다.
 - **발표문에 연결된 May-26 fine-tuning**: 누락된 `RESULT_ANALYSIS.md`, `args.json`, 원본 split.
@@ -144,6 +144,7 @@ outputs/reproduction/run01/
 서버 반입 이미지에서는 [백본·metric 소스](../../legacy/ai_hub_pipeline_20260908/README.md)를 별도로 복구했다.
 이 버전은 `closed27_open15`의 공분산을 closed train으로 적합하므로 9월 28일 gallery 적합 보고서와 다르다.
 백본 소스가 전혀 없는 상태는 해소했지만, 실제 실행 버전과 설정은 추가 확인이 필요하다.
+전체 이미지 대조 결과와 구현 차이는 [Docker 파일 비교](../analysis/DOCKER_REPRODUCTION_COMPARISON_20261026.md)에 정리했다.
 
 ## 검증
 
