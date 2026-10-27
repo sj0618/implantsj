@@ -1,0 +1,2791 @@
+{
+  "schema_version": 1,
+  "scope": "Current implantsj reports plus distinct reports recovered from its preserved worktree; excludes the separate implantys project, raw data and presentation binaries.",
+  "status_definition": {
+    "protocol": "Runnable recorded protocol; historical numerical parity still needs original inputs.",
+    "partial": "Runnable subset, with unreproduced report sections listed.",
+    "reconstruction": "Explicit design based on incomplete linked report evidence.",
+    "blocked": "Insufficient experiment definition; no guessed command is executable."
+  },
+  "reports": [
+    {
+      "id": "may_classification_transfer",
+      "source": "docs/analysis/EXPERIMENT_SUMMARY.md",
+      "coverage": "partial",
+      "limitations": [
+        "The summary omits full args.json for several runs; missing settings use the explicitly listed current trainer values.",
+        "Incomplete/superseded May runs and submodel training cannot reproduce historical weights without original args/manifests.",
+        "Original split manifests must be supplied; the runner does not resplit data."
+      ],
+      "steps": [
+        {
+          "id": "plain3",
+          "module": "pipelines.train.train_supervised",
+          "args": [
+            "--manifest",
+            "{plain3_manifest}",
+            "--output-root",
+            "{output}/plain3",
+            "--experiment-name",
+            "plain3",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--epochs",
+            "80",
+            "--batch-size",
+            "32",
+            "--num-workers",
+            "0",
+            "--lr",
+            "5e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "12",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--pretrained",
+            "true",
+            "--label-smoothing",
+            "0.1",
+            "--amp",
+            "true",
+            "--monitor",
+            "macro_f1",
+            "--use-class-weights"
+          ],
+          "inputs": [
+            "plain3_manifest"
+          ],
+          "artifacts": [
+            "{output}/plain3/*/metrics/history.csv",
+            "{output}/plain3/*/checkpoints/best.pt"
+          ]
+        },
+        {
+          "id": "plain7",
+          "module": "pipelines.train.train_supervised",
+          "args": [
+            "--manifest",
+            "{plain7_manifest}",
+            "--output-root",
+            "{output}/plain7",
+            "--experiment-name",
+            "plain7",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--epochs",
+            "25",
+            "--batch-size",
+            "32",
+            "--num-workers",
+            "0",
+            "--lr",
+            "3e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "12",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--pretrained",
+            "true",
+            "--label-smoothing",
+            "0.1",
+            "--amp",
+            "true",
+            "--monitor",
+            "macro_f1",
+            "--no-strong-aug"
+          ],
+          "inputs": [
+            "plain7_manifest"
+          ],
+          "artifacts": [
+            "{output}/plain7/*/metrics/history.csv",
+            "{output}/plain7/*/checkpoints/best.pt"
+          ]
+        },
+        {
+          "id": "plain10",
+          "module": "pipelines.train.train_supervised",
+          "args": [
+            "--manifest",
+            "{plain10_manifest}",
+            "--output-root",
+            "{output}/plain10",
+            "--experiment-name",
+            "plain10",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--epochs",
+            "80",
+            "--batch-size",
+            "32",
+            "--num-workers",
+            "0",
+            "--lr",
+            "5e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "12",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--pretrained",
+            "true",
+            "--label-smoothing",
+            "0.1",
+            "--amp",
+            "true",
+            "--monitor",
+            "macro_f1"
+          ],
+          "inputs": [
+            "plain10_manifest"
+          ],
+          "artifacts": [
+            "{output}/plain10/*/metrics/history.csv",
+            "{output}/plain10/*/checkpoints/best.pt"
+          ]
+        },
+        {
+          "id": "may_supcon7",
+          "module": "pipelines.train.train_metric",
+          "args": [
+            "--manifest",
+            "{may_supcon7_manifest}",
+            "--output-root",
+            "{output}/may_supcon7",
+            "--experiment-name",
+            "may_supcon7",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--epochs",
+            "80",
+            "--batch-size",
+            "16",
+            "--num-workers",
+            "0",
+            "--lr",
+            "3e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "12",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--loss-name",
+            "supcon",
+            "--temperature",
+            "0.07",
+            "--embedding-dim",
+            "128"
+          ],
+          "inputs": [
+            "may_supcon7_manifest"
+          ],
+          "artifacts": [
+            "{output}/may_supcon7/*/metrics/history.csv",
+            "{output}/may_supcon7/*/checkpoints/best.pt"
+          ],
+          "exports": {
+            "trained_checkpoint": "{output}/may_supcon7/*/checkpoints/best.pt"
+          }
+        },
+        {
+          "id": "may_supcon7_closed",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--checkpoint",
+            "{trained_checkpoint}",
+            "--manifest",
+            "{may_supcon7_manifest}",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "projection",
+            "--expected-classes",
+            "7",
+            "--methods",
+            "cosine",
+            "--output-dir",
+            "{output}/may_supcon7_closed"
+          ],
+          "inputs": [
+            "may_supcon7_manifest"
+          ],
+          "artifacts": [
+            "{output}/may_supcon7_closed/results.csv",
+            "{output}/may_supcon7_closed/protocol.json"
+          ]
+        },
+        {
+          "id": "supcon7_transfer",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/supcon7_transfer",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "projection",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{may_supcon7_checkpoint}",
+            "--manifest",
+            "{legacy3_manifest}",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--methods",
+            "cosine",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy3_manifest",
+            "may_supcon7_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/supcon7_transfer/results.csv",
+            "{output}/supcon7_transfer/summary.csv",
+            "{output}/supcon7_transfer/predictions.csv",
+            "{output}/supcon7_transfer/membership.csv",
+            "{output}/supcon7_transfer/per_class.csv",
+            "{output}/supcon7_transfer/protocol.json",
+            "{output}/supcon7_transfer/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{legacy7_checkpoint}",
+            "--manifest",
+            "{legacy3_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--methods",
+            "cosine",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy3_manifest",
+            "legacy7_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/legacy_backbone/results.csv",
+            "{output}/legacy_backbone/summary.csv",
+            "{output}/legacy_backbone/predictions.csv",
+            "{output}/legacy_backbone/membership.csv",
+            "{output}/legacy_backbone/per_class.csv",
+            "{output}/legacy_backbone/protocol.json",
+            "{output}/legacy_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "projection",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{legacy7_checkpoint}",
+            "--manifest",
+            "{legacy3_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--methods",
+            "cosine",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy3_manifest",
+            "legacy7_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/legacy_projection/results.csv",
+            "{output}/legacy_projection/summary.csv",
+            "{output}/legacy_projection/predictions.csv",
+            "{output}/legacy_projection/membership.csv",
+            "{output}/legacy_projection/per_class.csv",
+            "{output}/legacy_projection/protocol.json",
+            "{output}/legacy_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "two_stage",
+          "module": "two_stage.predict_two_stage",
+          "args": [
+            "--main-checkpoint",
+            "{plain10_checkpoint}",
+            "--manifest",
+            "{plain10_manifest}",
+            "--groups-json",
+            "two_stage/confusion_groups_noris_osstem.json",
+            "--submodel-root",
+            "{submodel_root}",
+            "--output",
+            "{output}/two_stage/predictions.csv",
+            "--summary-output",
+            "{output}/two_stage/summary.json"
+          ],
+          "inputs": [
+            "plain10_checkpoint",
+            "plain10_manifest",
+            "submodel_root"
+          ],
+          "artifacts": [
+            "{output}/two_stage/predictions.csv",
+            "{output}/two_stage/summary.json"
+          ]
+        },
+        {
+          "id": "two_stage_metrics",
+          "module": "two_stage.evaluate_two_stage",
+          "args": [
+            "--predictions",
+            "{output}/two_stage/predictions.csv",
+            "--output-dir",
+            "{output}/two_stage"
+          ],
+          "inputs": [],
+          "artifacts": [
+            "{output}/two_stage/two_stage_metrics.json"
+          ]
+        },
+        {
+          "id": "legacy_metric_twostage",
+          "module": "pipelines.eval.evaluate_3label_twostage_metric_from_7label",
+          "args": [
+            "--checkpoint",
+            "{legacy7_checkpoint}",
+            "--manifest",
+            "{legacy3_manifest}",
+            "--use-existing-manifest",
+            "--output-root",
+            "{output}/legacy_metric_twostage",
+            "--experiment-name",
+            "legacy_metric_twostage",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--k",
+            "7",
+            "--stage1-feature",
+            "projection",
+            "--stage2-feature",
+            "backbone"
+          ],
+          "inputs": [
+            "legacy7_checkpoint",
+            "legacy3_manifest"
+          ],
+          "artifacts": [
+            "{output}/legacy_metric_twostage/*/metrics/test_twostage_metrics.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "presentation_summary",
+      "source": "docs/analysis/PRESENTATION_SUMMARY.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Derived summary of May experiments; see may_classification_transfer. The separate May-26 fine-tuning report and args.json are absent."
+      ],
+      "steps": [],
+      "blocked": [
+        "Restore the May-26 RESULT_ANALYSIS.md and args.json before reconstructing its training configuration."
+      ]
+    },
+    {
+      "id": "umap_comparison",
+      "source": "docs/analysis/TSNE_UMAP_COMPARISON.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Uses saved embedding features, not t-SNE coordinates. Nine original feature/CSV pairs are required for numerical comparison."
+      ],
+      "steps": [
+        {
+          "id": "umap",
+          "module": "pipelines.report.reproduce_umap",
+          "args": [
+            "--source",
+            "{tsne_outputs}",
+            "--output-dir",
+            "{output}/umap"
+          ],
+          "inputs": [
+            "tsne_outputs"
+          ],
+          "artifacts": [
+            "{output}/umap/index.json",
+            "{output}/umap/**/umap_*.csv"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metric_diagnosis_training",
+      "source": "docs/reports/METRIC_DIAGNOSIS_CURRENT_RESULTS.md",
+      "coverage": "partial",
+      "limitations": [
+        "The snapshot records SupCon only through epoch 3; running 10 epochs is completion of that protocol, not reproduction of the interrupted runtime.",
+        "The reused 54-epoch FullFT checkpoint has no complete training configuration locally.",
+        "Per-epoch test values are diagnostic only; checkpoint selection uses validation."
+      ],
+      "steps": [
+        {
+          "id": "closedft10",
+          "module": "pipelines.train.train_supervised",
+          "args": [
+            "--manifest",
+            "{closed27_manifest}",
+            "--output-root",
+            "{output}/closedft10",
+            "--experiment-name",
+            "closedft10",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--epochs",
+            "10",
+            "--batch-size",
+            "32",
+            "--num-workers",
+            "0",
+            "--lr",
+            "5e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "11",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--pretrained",
+            "true",
+            "--label-smoothing",
+            "0.1",
+            "--amp",
+            "true",
+            "--monitor",
+            "macro_f1"
+          ],
+          "inputs": [
+            "closed27_manifest"
+          ],
+          "artifacts": [
+            "{output}/closedft10/*/metrics/history.csv",
+            "{output}/closedft10/*/checkpoints/best.pt"
+          ]
+        },
+        {
+          "id": "closed_supcon10",
+          "module": "pipelines.train.train_metric",
+          "args": [
+            "--manifest",
+            "{closed27_manifest}",
+            "--output-root",
+            "{output}/closed_supcon10",
+            "--experiment-name",
+            "closed_supcon10",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--epochs",
+            "10",
+            "--batch-size",
+            "16",
+            "--num-workers",
+            "0",
+            "--lr",
+            "3e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "11",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--loss-name",
+            "supcon",
+            "--temperature",
+            "0.07",
+            "--embedding-dim",
+            "128"
+          ],
+          "inputs": [
+            "closed27_manifest"
+          ],
+          "artifacts": [
+            "{output}/closed_supcon10/*/metrics/history.csv",
+            "{output}/closed_supcon10/*/checkpoints/best.pt"
+          ]
+        },
+        {
+          "id": "full_supcon10",
+          "module": "pipelines.train.train_metric",
+          "args": [
+            "--manifest",
+            "{full42_manifest}",
+            "--output-root",
+            "{output}/full_supcon10",
+            "--experiment-name",
+            "full_supcon10",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--epochs",
+            "10",
+            "--batch-size",
+            "16",
+            "--num-workers",
+            "0",
+            "--lr",
+            "3e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "11",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--loss-name",
+            "supcon",
+            "--temperature",
+            "0.07",
+            "--embedding-dim",
+            "128"
+          ],
+          "inputs": [
+            "full42_manifest"
+          ],
+          "artifacts": [
+            "{output}/full_supcon10/*/metrics/history.csv",
+            "{output}/full_supcon10/*/checkpoints/best.pt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "metric_diagnosis_gt27",
+      "source": "docs/reports/METRIC_DIAGNOSIS_FINAL_REPORT.md",
+      "coverage": "blocked",
+      "limitations": [
+        "The final report actually covers GT27: 189 support and 52 query images; it is not the planned 120/180-row study."
+      ],
+      "steps": [],
+      "blocked": [
+        "Raw model specs, checkpoint identity, and the exact GT27 support/query assignment are missing; do not substitute the canonical diagnosis evaluator."
+      ]
+    },
+    {
+      "id": "vit42_local_prototypes",
+      "source": "docs/reports/vit42ft_local_metric_20260806/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Raw 1024-D pre-logit backbone; original 42-class training overlap is unknown.",
+        "Use the original 12-label set, not an invented 11-label subset.",
+        "Attention/t-SNE images and original manifest identity are not validated by these metric recipes."
+      ],
+      "steps": [
+        {
+          "id": "labels3",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/labels3",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{vit42_checkpoint}",
+            "--manifest",
+            "{local3_manifest}",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "local3_manifest",
+            "vit42_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/labels3/results.csv",
+            "{output}/labels3/summary.csv",
+            "{output}/labels3/predictions.csv",
+            "{output}/labels3/membership.csv",
+            "{output}/labels3/per_class.csv",
+            "{output}/labels3/protocol.json",
+            "{output}/labels3/REPORT.md"
+          ]
+        },
+        {
+          "id": "labels7",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/labels7",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{vit42_checkpoint}",
+            "--manifest",
+            "{local7_manifest}",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "7"
+          ],
+          "inputs": [
+            "local7_manifest",
+            "vit42_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/labels7/results.csv",
+            "{output}/labels7/summary.csv",
+            "{output}/labels7/predictions.csv",
+            "{output}/labels7/membership.csv",
+            "{output}/labels7/per_class.csv",
+            "{output}/labels7/protocol.json",
+            "{output}/labels7/REPORT.md"
+          ]
+        },
+        {
+          "id": "labels12",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/labels12",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{vit42_checkpoint}",
+            "--manifest",
+            "{local12_manifest}",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "12"
+          ],
+          "inputs": [
+            "local12_manifest",
+            "vit42_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/labels12/results.csv",
+            "{output}/labels12/summary.csv",
+            "{output}/labels12/predictions.csv",
+            "{output}/labels12/membership.csv",
+            "{output}/labels12/per_class.csv",
+            "{output}/labels12/protocol.json",
+            "{output}/labels12/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vit42_local_four_distances",
+      "source": "docs/reports/vit42ft_local_mean_4dist_20260806/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Raw 1024-D pre-logit backbone; original 42-class training overlap is unknown.",
+        "Use the original 12-label set, not an invented 11-label subset.",
+        "Attention/t-SNE images and original manifest identity are not validated by these metric recipes."
+      ],
+      "steps": [
+        {
+          "id": "labels3",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/labels3",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{vit42_checkpoint}",
+            "--manifest",
+            "{local3_manifest}",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "local3_manifest",
+            "vit42_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/labels3/results.csv",
+            "{output}/labels3/summary.csv",
+            "{output}/labels3/predictions.csv",
+            "{output}/labels3/membership.csv",
+            "{output}/labels3/per_class.csv",
+            "{output}/labels3/protocol.json",
+            "{output}/labels3/REPORT.md"
+          ]
+        },
+        {
+          "id": "labels7",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/labels7",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{vit42_checkpoint}",
+            "--manifest",
+            "{local7_manifest}",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--expected-classes",
+            "7"
+          ],
+          "inputs": [
+            "local7_manifest",
+            "vit42_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/labels7/results.csv",
+            "{output}/labels7/summary.csv",
+            "{output}/labels7/predictions.csv",
+            "{output}/labels7/membership.csv",
+            "{output}/labels7/per_class.csv",
+            "{output}/labels7/protocol.json",
+            "{output}/labels7/REPORT.md"
+          ]
+        },
+        {
+          "id": "labels12",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/labels12",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{vit42_checkpoint}",
+            "--manifest",
+            "{local12_manifest}",
+            "--model-name",
+            "vit_large_patch16_224.augreg_in21k_ft_in1k",
+            "--expected-classes",
+            "12"
+          ],
+          "inputs": [
+            "local12_manifest",
+            "vit42_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/labels12/results.csv",
+            "{output}/labels12/summary.csv",
+            "{output}/labels12/predictions.csv",
+            "{output}/labels12/membership.csv",
+            "{output}/labels12/per_class.csv",
+            "{output}/labels12/protocol.json",
+            "{output}/labels12/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cropped_ce7_to3",
+      "source": "docs/reports/vit7ce_to_3label_mahalanobis_20260806/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Requires the original epoch-11 CE checkpoint selected by minimum validation loss; current CE trainer selects macro-F1 and must not replace it silently.",
+        "Reports all test rows plus exact-duplicate-free test sensitivity."
+      ],
+      "steps": [
+        {
+          "id": "backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/backbone",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{ce7_checkpoint}",
+            "--manifest",
+            "{fresh3_manifest}",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "ce7_checkpoint",
+            "fresh3_manifest"
+          ],
+          "artifacts": [
+            "{output}/backbone/results.csv",
+            "{output}/backbone/summary.csv",
+            "{output}/backbone/predictions.csv",
+            "{output}/backbone/membership.csv",
+            "{output}/backbone/per_class.csv",
+            "{output}/backbone/protocol.json",
+            "{output}/backbone/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fresh_supcon7_to3",
+      "source": "docs/reports/vit7supcon_to_3label_mahalanobis_20260807/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Training recipe recovered from saved args.json; a new run does not guarantee identical historical weights.",
+        "Exact train/test duplicates remain visible in both the original and duplicate-free metric rows."
+      ],
+      "steps": [
+        {
+          "id": "supcon7",
+          "module": "pipelines.train.train_metric",
+          "args": [
+            "--manifest",
+            "{fresh7_manifest}",
+            "--output-root",
+            "{output}/supcon7",
+            "--experiment-name",
+            "supcon7",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--epochs",
+            "30",
+            "--batch-size",
+            "16",
+            "--num-workers",
+            "0",
+            "--lr",
+            "3e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "31",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--loss-name",
+            "supcon",
+            "--temperature",
+            "0.07",
+            "--embedding-dim",
+            "128"
+          ],
+          "inputs": [
+            "fresh7_manifest"
+          ],
+          "artifacts": [
+            "{output}/supcon7/*/metrics/history.csv",
+            "{output}/supcon7/*/checkpoints/best.pt"
+          ],
+          "exports": {
+            "trained_checkpoint": "{output}/supcon7/*/checkpoints/best.pt"
+          }
+        },
+        {
+          "id": "backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{trained_checkpoint}",
+            "--manifest",
+            "{fresh3_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--source-manifest",
+            "{fresh7_manifest}",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh3_manifest",
+            "fresh7_manifest"
+          ],
+          "artifacts": [
+            "{output}/backbone/results.csv",
+            "{output}/backbone/summary.csv",
+            "{output}/backbone/predictions.csv",
+            "{output}/backbone/membership.csv",
+            "{output}/backbone/per_class.csv",
+            "{output}/backbone/protocol.json",
+            "{output}/backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "projection",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{trained_checkpoint}",
+            "--manifest",
+            "{fresh3_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--source-manifest",
+            "{fresh7_manifest}",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh3_manifest",
+            "fresh7_manifest"
+          ],
+          "artifacts": [
+            "{output}/projection/results.csv",
+            "{output}/projection/summary.csv",
+            "{output}/projection/predictions.csv",
+            "{output}/projection/membership.csv",
+            "{output}/projection/per_class.csv",
+            "{output}/projection/protocol.json",
+            "{output}/projection/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legacy_supcon7_to3",
+      "source": "docs/reports/legacy_7to3_reproduction_20260807/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Requires the original legacy checkpoint and filename-prefix reconstructed manifest; do not replace with fresh cropped data."
+      ],
+      "steps": [
+        {
+          "id": "backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{legacy7_checkpoint}",
+            "--manifest",
+            "{legacy3_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy3_manifest",
+            "legacy7_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/backbone/results.csv",
+            "{output}/backbone/summary.csv",
+            "{output}/backbone/predictions.csv",
+            "{output}/backbone/membership.csv",
+            "{output}/backbone/per_class.csv",
+            "{output}/backbone/protocol.json",
+            "{output}/backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "projection",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{legacy7_checkpoint}",
+            "--manifest",
+            "{legacy3_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy3_manifest",
+            "legacy7_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/projection/results.csv",
+            "{output}/projection/summary.csv",
+            "{output}/projection/predictions.csv",
+            "{output}/projection/membership.csv",
+            "{output}/projection/per_class.csv",
+            "{output}/projection/protocol.json",
+            "{output}/projection/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mahalanobis_improvement",
+      "source": "docs/reports/mahalanobis_improvement_20260813/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Each condition selects its method using its own validation Macro-F1, then evaluates test.",
+        "Caches must retain the original order, normalization, paths, labels and checkpoint identity."
+      ],
+      "steps": [
+        {
+          "id": "fresh_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/fresh_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--cache",
+            "{fresh_backbone_cache}",
+            "--select-on-valid",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/fresh_backbone/results.csv",
+            "{output}/fresh_backbone/summary.csv",
+            "{output}/fresh_backbone/predictions.csv",
+            "{output}/fresh_backbone/membership.csv",
+            "{output}/fresh_backbone/per_class.csv",
+            "{output}/fresh_backbone/protocol.json",
+            "{output}/fresh_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "fresh_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/fresh_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--cache",
+            "{fresh_projection_cache}",
+            "--select-on-valid",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/fresh_projection/results.csv",
+            "{output}/fresh_projection/summary.csv",
+            "{output}/fresh_projection/predictions.csv",
+            "{output}/fresh_projection/membership.csv",
+            "{output}/fresh_projection/per_class.csv",
+            "{output}/fresh_projection/protocol.json",
+            "{output}/fresh_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--cache",
+            "{legacy_backbone_cache}",
+            "--select-on-valid",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/legacy_backbone/results.csv",
+            "{output}/legacy_backbone/summary.csv",
+            "{output}/legacy_backbone/predictions.csv",
+            "{output}/legacy_backbone/membership.csv",
+            "{output}/legacy_backbone/per_class.csv",
+            "{output}/legacy_backbone/protocol.json",
+            "{output}/legacy_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--cache",
+            "{legacy_projection_cache}",
+            "--select-on-valid",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/legacy_projection/results.csv",
+            "{output}/legacy_projection/summary.csv",
+            "{output}/legacy_projection/predictions.csv",
+            "{output}/legacy_projection/membership.csv",
+            "{output}/legacy_projection/per_class.csv",
+            "{output}/legacy_projection/protocol.json",
+            "{output}/legacy_projection/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prototype_only_10shot",
+      "source": "docs/reports/mahalanobis_10shot_prototype_20260814/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Only prototypes use 10 images per class; covariance uses all target-train and validation selects the method. This is not strict 10-shot.",
+        "Sampling uses original row order for compatibility with the historical 10-shot experiment."
+      ],
+      "steps": [
+        {
+          "id": "prototype10",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/prototype10",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{fresh_backbone_cache}",
+            "--select-on-valid",
+            "--exact-shots",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/prototype10/results.csv",
+            "{output}/prototype10/summary.csv",
+            "{output}/prototype10/predictions.csv",
+            "{output}/prototype10/membership.csv",
+            "{output}/prototype10/per_class.csv",
+            "{output}/prototype10/protocol.json",
+            "{output}/prototype10/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "strict_3label_10shot",
+      "source": "docs/reports/mahalanobis_strict_10shot_20260814/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Both covariance and prototypes use the same 10 support images per class; methods are fixed without target-validation selection."
+      ],
+      "steps": [
+        {
+          "id": "strict10",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/strict10",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{fresh_backbone_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "euclidean",
+            "manhattan",
+            "cosine",
+            "pooled_ledoit_wolf",
+            "rda_0.75_logdet_1",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/strict10/results.csv",
+            "{output}/strict10/summary.csv",
+            "{output}/strict10/predictions.csv",
+            "{output}/strict10/membership.csv",
+            "{output}/strict10/per_class.csv",
+            "{output}/strict10/protocol.json",
+            "{output}/strict10/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "supcon6_to5_strict10",
+      "source": "docs/reports/vit6supcon_to_5label_strict10_20260814/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Original data counts: source 676/88/84, target 121/14/17. Reported model selected at epoch 20; new training may select another epoch."
+      ],
+      "steps": [
+        {
+          "id": "supcon6",
+          "module": "pipelines.train.train_metric",
+          "args": [
+            "--manifest",
+            "{source6_manifest}",
+            "--output-root",
+            "{output}/supcon6",
+            "--experiment-name",
+            "supcon6",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--epochs",
+            "30",
+            "--batch-size",
+            "16",
+            "--num-workers",
+            "0",
+            "--lr",
+            "3e-5",
+            "--seed",
+            "42",
+            "--patience",
+            "31",
+            "--image-size",
+            "224",
+            "--weight-decay",
+            "0.05",
+            "--dropout",
+            "0.1",
+            "--drop-path-rate",
+            "0.1",
+            "--loss-name",
+            "supcon",
+            "--temperature",
+            "0.07",
+            "--embedding-dim",
+            "128"
+          ],
+          "inputs": [
+            "source6_manifest"
+          ],
+          "artifacts": [
+            "{output}/supcon6/*/metrics/history.csv",
+            "{output}/supcon6/*/checkpoints/best.pt"
+          ],
+          "exports": {
+            "trained_checkpoint": "{output}/supcon6/*/checkpoints/best.pt"
+          }
+        },
+        {
+          "id": "strict10",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/strict10",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--checkpoint",
+            "{trained_checkpoint}",
+            "--manifest",
+            "{target5_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--source-manifest",
+            "{source6_manifest}",
+            "--covariance",
+            "support",
+            "--methods",
+            "euclidean",
+            "manhattan",
+            "cosine",
+            "pooled_ledoit_wolf",
+            "rda_0.75_logdet_1",
+            "--expected-classes",
+            "5"
+          ],
+          "inputs": [
+            "source6_manifest",
+            "target5_manifest"
+          ],
+          "artifacts": [
+            "{output}/strict10/results.csv",
+            "{output}/strict10/summary.csv",
+            "{output}/strict10/predictions.csv",
+            "{output}/strict10/membership.csv",
+            "{output}/strict10/per_class.csv",
+            "{output}/strict10/protocol.json",
+            "{output}/strict10/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "target5_episodic5",
+      "source": "docs/reports/vit6supcon_to_5label_strict10_20260814/episodic_all_target_5shot/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Pool train/valid/test in that order: 152 images, 25 support, 127 query per seed. Seeds overlap each other. Patient independence is unverified.",
+        "The linked source train-to-test and source 5-shot reports are absent; source_closed_auxiliary provides protocol reconstruction only."
+      ],
+      "steps": [
+        {
+          "id": "episodes",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/episodes",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "episodic",
+            "--policies",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--checkpoint",
+            "{supcon6_checkpoint}",
+            "--manifest",
+            "{target5_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--source-manifest",
+            "{source6_manifest}",
+            "--covariance",
+            "support",
+            "--methods",
+            "euclidean",
+            "manhattan",
+            "cosine",
+            "pooled_ledoit_wolf",
+            "rda_0.75_logdet_1",
+            "--expected-classes",
+            "5"
+          ],
+          "inputs": [
+            "source6_manifest",
+            "supcon6_checkpoint",
+            "target5_manifest"
+          ],
+          "artifacts": [
+            "{output}/episodes/results.csv",
+            "{output}/episodes/summary.csv",
+            "{output}/episodes/predictions.csv",
+            "{output}/episodes/membership.csv",
+            "{output}/episodes/per_class.csv",
+            "{output}/episodes/protocol.json",
+            "{output}/episodes/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "source_closed_auxiliary",
+      "source": "docs/reports/vit6supcon_to_5label_strict10_20260814/episodic_all_target_5shot/REPORT.md",
+      "coverage": "reconstruction",
+      "limitations": [
+        "Linked source reports are absent. The directory name all_source_6shot is inconsistent with the text describing five shots; this recipe explicitly uses five.",
+        "Closed train-to-test metrics are the test rows; validation rows are auxiliary."
+      ],
+      "steps": [
+        {
+          "id": "closed_train_test",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/closed_train_test",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{supcon6_checkpoint}",
+            "--manifest",
+            "{source6_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--expected-classes",
+            "6"
+          ],
+          "inputs": [
+            "source6_manifest",
+            "supcon6_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/closed_train_test/results.csv",
+            "{output}/closed_train_test/summary.csv",
+            "{output}/closed_train_test/predictions.csv",
+            "{output}/closed_train_test/membership.csv",
+            "{output}/closed_train_test/per_class.csv",
+            "{output}/closed_train_test/protocol.json",
+            "{output}/closed_train_test/REPORT.md"
+          ]
+        },
+        {
+          "id": "closed5",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/closed5",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "episodic",
+            "--policies",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--checkpoint",
+            "{supcon6_checkpoint}",
+            "--manifest",
+            "{source6_manifest}",
+            "--model-name",
+            "vit_small_patch16_224.augreg_in21k_ft_in1k",
+            "--covariance",
+            "support",
+            "--methods",
+            "euclidean",
+            "manhattan",
+            "cosine",
+            "pooled_ledoit_wolf",
+            "rda_0.75_logdet_1",
+            "--expected-classes",
+            "6"
+          ],
+          "inputs": [
+            "source6_manifest",
+            "supcon6_checkpoint"
+          ],
+          "artifacts": [
+            "{output}/closed5/results.csv",
+            "{output}/closed5/summary.csv",
+            "{output}/closed5/predictions.csv",
+            "{output}/closed5/membership.csv",
+            "{output}/closed5/per_class.csv",
+            "{output}/closed5/protocol.json",
+            "{output}/closed5/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mahalanobis_method_selection",
+      "source": "docs/reports/mahalanobis_method_selection_20260816/REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Select a single method by mean validation Macro-F1 across the four conditions; includes historical strict-membership parity checking.",
+        "Historical expected checks may fail if inputs or library versions differ; a failing parity check is not converted into success."
+      ],
+      "steps": [
+        {
+          "id": "selection",
+          "module": "tools.validate_mahalanobis_methods",
+          "args": [
+            "--cache",
+            "fresh_backbone={fresh_backbone_cache}",
+            "--cache",
+            "fresh_projection={fresh_projection_cache}",
+            "--cache",
+            "legacy_backbone={legacy_backbone_cache}",
+            "--cache",
+            "legacy_projection={legacy_projection_cache}",
+            "--strict-cache",
+            "{strict5_cache}",
+            "--strict-episodes",
+            "{historical_strict5_episodes}",
+            "--output-dir",
+            "{output}/selection"
+          ],
+          "inputs": [
+            "fresh_backbone_cache",
+            "fresh_projection_cache",
+            "historical_strict5_episodes",
+            "legacy_backbone_cache",
+            "legacy_projection_cache",
+            "strict5_cache"
+          ],
+          "artifacts": [
+            "{output}/selection/REPORT.md",
+            "{output}/selection/validation.json"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mahalanobis_spectrum",
+      "source": "docs/reports/MAHALANOBIS_SPECTRUM_VALIDATION_FINAL_REPORT.md",
+      "coverage": "protocol",
+      "limitations": [
+        "Five methods × five conditions × six seeds = 150 query/test metric rows.",
+        "This reruns the numerical experiments; historical code-review/QA logs and old SUCCESS.json are not newly validated."
+      ],
+      "steps": [
+        {
+          "id": "fresh_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/fresh_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{fresh_backbone_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/fresh_backbone/results.csv",
+            "{output}/fresh_backbone/summary.csv",
+            "{output}/fresh_backbone/predictions.csv",
+            "{output}/fresh_backbone/membership.csv",
+            "{output}/fresh_backbone/per_class.csv",
+            "{output}/fresh_backbone/protocol.json",
+            "{output}/fresh_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "fresh_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/fresh_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{fresh_projection_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/fresh_projection/results.csv",
+            "{output}/fresh_projection/summary.csv",
+            "{output}/fresh_projection/predictions.csv",
+            "{output}/fresh_projection/membership.csv",
+            "{output}/fresh_projection/per_class.csv",
+            "{output}/fresh_projection/protocol.json",
+            "{output}/fresh_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{legacy_backbone_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/legacy_backbone/results.csv",
+            "{output}/legacy_backbone/summary.csv",
+            "{output}/legacy_backbone/predictions.csv",
+            "{output}/legacy_backbone/membership.csv",
+            "{output}/legacy_backbone/per_class.csv",
+            "{output}/legacy_backbone/protocol.json",
+            "{output}/legacy_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{legacy_projection_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/legacy_projection/results.csv",
+            "{output}/legacy_projection/summary.csv",
+            "{output}/legacy_projection/predictions.csv",
+            "{output}/legacy_projection/membership.csv",
+            "{output}/legacy_projection/per_class.csv",
+            "{output}/legacy_projection/protocol.json",
+            "{output}/legacy_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "strict5",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/strict5",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "episodic",
+            "--policies",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{strict5_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "5"
+          ],
+          "inputs": [
+            "strict5_cache"
+          ],
+          "artifacts": [
+            "{output}/strict5/results.csv",
+            "{output}/strict5/summary.csv",
+            "{output}/strict5/predictions.csv",
+            "{output}/strict5/membership.csv",
+            "{output}/strict5/per_class.csv",
+            "{output}/strict5/protocol.json",
+            "{output}/strict5/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mahalanobis_spectrum_validation",
+      "source": "docs/reports/mahalanobis_spectrum_validation_20260816/VALIDATION.md",
+      "coverage": "partial",
+      "limitations": [
+        "Companion numerical validation: same 150 cells as mahalanobis_spectrum. Historical audit signatures and previous automatic-search parity require the archived implementation."
+      ],
+      "steps": [
+        {
+          "id": "fresh_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/fresh_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{fresh_backbone_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/fresh_backbone/results.csv",
+            "{output}/fresh_backbone/summary.csv",
+            "{output}/fresh_backbone/predictions.csv",
+            "{output}/fresh_backbone/membership.csv",
+            "{output}/fresh_backbone/per_class.csv",
+            "{output}/fresh_backbone/protocol.json",
+            "{output}/fresh_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "fresh_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/fresh_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{fresh_projection_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "fresh_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/fresh_projection/results.csv",
+            "{output}/fresh_projection/summary.csv",
+            "{output}/fresh_projection/predictions.csv",
+            "{output}/fresh_projection/membership.csv",
+            "{output}/fresh_projection/per_class.csv",
+            "{output}/fresh_projection/protocol.json",
+            "{output}/fresh_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_backbone",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{legacy_backbone_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/legacy_backbone/results.csv",
+            "{output}/legacy_backbone/summary.csv",
+            "{output}/legacy_backbone/predictions.csv",
+            "{output}/legacy_backbone/membership.csv",
+            "{output}/legacy_backbone/per_class.csv",
+            "{output}/legacy_backbone/protocol.json",
+            "{output}/legacy_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "legacy_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/legacy_projection",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "strict",
+            "--policies",
+            "ss",
+            "--shots",
+            "10",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{legacy_projection_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "legacy_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/legacy_projection/results.csv",
+            "{output}/legacy_projection/summary.csv",
+            "{output}/legacy_projection/predictions.csv",
+            "{output}/legacy_projection/membership.csv",
+            "{output}/legacy_projection/per_class.csv",
+            "{output}/legacy_projection/protocol.json",
+            "{output}/legacy_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "strict5",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/strict5",
+            "--normalization",
+            "l2",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "episodic",
+            "--policies",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "42",
+            "--cache",
+            "{strict5_cache}",
+            "--covariance",
+            "support",
+            "--methods",
+            "pooled_ledoit_wolf",
+            "fractional_0.5",
+            "fractional_0.75",
+            "centered_angular_0.5",
+            "centered_angular_0.75",
+            "--expected-classes",
+            "5"
+          ],
+          "inputs": [
+            "strict5_cache"
+          ],
+          "artifacts": [
+            "{output}/strict5/results.csv",
+            "{output}/strict5/summary.csv",
+            "{output}/strict5/predictions.csv",
+            "{output}/strict5/membership.csv",
+            "{output}/strict5/per_class.csv",
+            "{output}/strict5/protocol.json",
+            "{output}/strict5/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uncropped7_to3",
+      "source": "docs/reports/full_uncropped_7to3_metric/report/REPORT.md",
+      "coverage": "partial",
+      "limitations": [
+        "Primary 36 test cells use original group-disjoint manifests and representation caches.",
+        "15-epoch historical training used different CE/SupCon/Triplet selection rules; original training implementation/checkpoints are required.",
+        "Group-balanced sensitivity and attention/t-SNE figures are not reproduced by the primary metric recipe."
+      ],
+      "steps": [
+        {
+          "id": "base",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/base",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_base_cache}",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_base_cache"
+          ],
+          "artifacts": [
+            "{output}/base/results.csv",
+            "{output}/base/summary.csv",
+            "{output}/base/predictions.csv",
+            "{output}/base/membership.csv",
+            "{output}/base/per_class.csv",
+            "{output}/base/protocol.json",
+            "{output}/base/REPORT.md"
+          ]
+        },
+        {
+          "id": "ce",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/ce",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_ce_cache}",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_ce_cache"
+          ],
+          "artifacts": [
+            "{output}/ce/results.csv",
+            "{output}/ce/summary.csv",
+            "{output}/ce/predictions.csv",
+            "{output}/ce/membership.csv",
+            "{output}/ce/per_class.csv",
+            "{output}/ce/protocol.json",
+            "{output}/ce/REPORT.md"
+          ]
+        },
+        {
+          "id": "supcon_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/supcon_backbone",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_supcon_backbone_cache}",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_supcon_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/supcon_backbone/results.csv",
+            "{output}/supcon_backbone/summary.csv",
+            "{output}/supcon_backbone/predictions.csv",
+            "{output}/supcon_backbone/membership.csv",
+            "{output}/supcon_backbone/per_class.csv",
+            "{output}/supcon_backbone/protocol.json",
+            "{output}/supcon_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "supcon_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/supcon_projection",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_supcon_projection_cache}",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_supcon_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/supcon_projection/results.csv",
+            "{output}/supcon_projection/summary.csv",
+            "{output}/supcon_projection/predictions.csv",
+            "{output}/supcon_projection/membership.csv",
+            "{output}/supcon_projection/per_class.csv",
+            "{output}/supcon_projection/protocol.json",
+            "{output}/supcon_projection/REPORT.md"
+          ]
+        },
+        {
+          "id": "triplet_backbone",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/triplet_backbone",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_triplet_backbone_cache}",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_triplet_backbone_cache"
+          ],
+          "artifacts": [
+            "{output}/triplet_backbone/results.csv",
+            "{output}/triplet_backbone/summary.csv",
+            "{output}/triplet_backbone/predictions.csv",
+            "{output}/triplet_backbone/membership.csv",
+            "{output}/triplet_backbone/per_class.csv",
+            "{output}/triplet_backbone/protocol.json",
+            "{output}/triplet_backbone/REPORT.md"
+          ]
+        },
+        {
+          "id": "triplet_projection",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/triplet_projection",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_triplet_projection_cache}",
+            "--methods",
+            "euclidean",
+            "cosine",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_triplet_projection_cache"
+          ],
+          "artifacts": [
+            "{output}/triplet_projection/results.csv",
+            "{output}/triplet_projection/summary.csv",
+            "{output}/triplet_projection/predictions.csv",
+            "{output}/triplet_projection/membership.csv",
+            "{output}/triplet_projection/per_class.csv",
+            "{output}/triplet_projection/protocol.json",
+            "{output}/triplet_projection/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "uncropped_mahalanobis_addendum",
+      "source": "docs/reports/full_uncropped_7to3_metric/mahalanobis_addendum_20260807/REPORT_TABLE.md",
+      "coverage": "protocol",
+      "limitations": [
+        "The CE uncropped Mahalanobis cells were pending in the source report; they remain unreported.",
+        "Covariance uses all 1,839 target support images even when GT or SS supplies the prototypes."
+      ],
+      "steps": [
+        {
+          "id": "base",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/base",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "gt",
+            "mean",
+            "ss",
+            "--shots",
+            "5",
+            "--seeds",
+            "2026",
+            "--cache",
+            "{uncropped_base_cache}",
+            "--sampling-order",
+            "path",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "uncropped_base_cache"
+          ],
+          "artifacts": [
+            "{output}/base/results.csv",
+            "{output}/base/summary.csv",
+            "{output}/base/predictions.csv",
+            "{output}/base/membership.csv",
+            "{output}/base/per_class.csv",
+            "{output}/base/protocol.json",
+            "{output}/base/REPORT.md"
+          ]
+        },
+        {
+          "id": "cropped_ce",
+          "module": "pipelines.eval.reproduce_gallery",
+          "args": [
+            "--output-dir",
+            "{output}/cropped_ce",
+            "--normalization",
+            "none",
+            "--embedding",
+            "backbone",
+            "--protocol",
+            "gallery",
+            "--policies",
+            "mean",
+            "--shots",
+            "5",
+            "--seeds",
+            "42",
+            "--checkpoint",
+            "{ce7_checkpoint}",
+            "--manifest",
+            "{fresh3_manifest}",
+            "--model-name",
+            "vit_base_patch16_224",
+            "--expected-classes",
+            "3"
+          ],
+          "inputs": [
+            "ce7_checkpoint",
+            "fresh3_manifest"
+          ],
+          "artifacts": [
+            "{output}/cropped_ce/results.csv",
+            "{output}/cropped_ce/summary.csv",
+            "{output}/cropped_ce/predictions.csv",
+            "{output}/cropped_ce/membership.csv",
+            "{output}/cropped_ce/per_class.csv",
+            "{output}/cropped_ce/protocol.json",
+            "{output}/cropped_ce/REPORT.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "server_oas_gallery",
+      "source": "docs/reports/mahalanobis_professor_20261006/report.md",
+      "coverage": "blocked",
+      "limitations": [
+        "42 labels = 27 seen + 15 unseen; labeled support includes unseen classes. K-means 5 is five centers, not five-shot.",
+        "The preserved September-8 Docker source is not proven identical to the September-28 execution.",
+        "Restored September-8 evaluate.py fits covariance on closed train, unlike the reported September-28 closed+open gallery fit."
+      ],
+      "steps": [],
+      "blocked": [
+        "Restore the September-28 galcov.sh, evaluator, grid config, checkpoint lineage and gallery/query manifests. Centering, normalization, candidate classes and rejection settings are not fully recorded."
+      ]
+    },
+    {
+      "id": "server_backbone_comparison",
+      "source": "implant_experiment_summary_table.md",
+      "coverage": "blocked",
+      "limitations": [
+        "The September-8 backbone source/configs are restored under legacy/ai_hub_pipeline_20260908; identity with the September-18/19 runs is unverified.",
+        "Per-run configs, Band settings, exact 27/42 splits and model states remain required."
+      ],
+      "steps": [],
+      "blocked": [
+        "September-8 model definitions and default training configs are restored. Recover the September-18/19/20 run-specific config overrides, Band masks, exact split manifests, checkpoints and summary.json, and verify the executed source revision. Band-ViT-Large has no completed summary."
+      ]
+    },
+    {
+      "id": "vlm_generation_snapshot",
+      "source": "docs/vlm/VLM_3LABEL_APPLY_STATUS.md",
+      "coverage": "blocked",
+      "limitations": [
+        "This is a 62/2,075-record processing snapshot, not a completed accuracy experiment."
+      ],
+      "steps": [],
+      "blocked": [
+        "Historical deployment/model version, original request parameters and response records are required for snapshot replay. Regenerating VLM outputs would be a new run."
+      ]
+    }
+  ],
+  "input_names": [
+    "ce7_checkpoint",
+    "closed27_manifest",
+    "fresh3_manifest",
+    "fresh7_manifest",
+    "fresh_backbone_cache",
+    "fresh_projection_cache",
+    "full42_manifest",
+    "historical_strict5_episodes",
+    "legacy3_manifest",
+    "legacy7_checkpoint",
+    "legacy_backbone_cache",
+    "legacy_projection_cache",
+    "local12_manifest",
+    "local3_manifest",
+    "local7_manifest",
+    "may_supcon7_checkpoint",
+    "may_supcon7_manifest",
+    "plain10_checkpoint",
+    "plain10_manifest",
+    "plain3_manifest",
+    "plain7_manifest",
+    "source6_manifest",
+    "strict5_cache",
+    "submodel_root",
+    "supcon6_checkpoint",
+    "target5_manifest",
+    "tsne_outputs",
+    "uncropped_base_cache",
+    "uncropped_ce_cache",
+    "uncropped_supcon_backbone_cache",
+    "uncropped_supcon_projection_cache",
+    "uncropped_triplet_backbone_cache",
+    "uncropped_triplet_projection_cache",
+    "vit42_checkpoint"
+  ]
+}

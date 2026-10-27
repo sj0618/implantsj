@@ -1,0 +1,79 @@
+# =============================================================
+# Stage 1. Backbone 학습 (노션 1번)
+#
+# 재사용 가능한 백본 4종을 만든다. 산출물은 다른 스테이지가 끌어다 쓴다.
+#   vit          일반 ViT
+#   band-vit     ViT + band-attention prior loss (band 영역에 집중하도록 유도)
+#   dinov2       일반 DINOv2
+#   band-dinov2  DINOv2 + band-attention prior loss (band-vit와 동일 방식)
+#   ※ cnn 백본은 현재 제외
+#
+# 드라이버: src/run_backbone.py
+# =============================================================
+extends: base.yaml
+stage: backbone
+device: auto
+
+# ---- 실험 프로토콜 ----
+# closed27_open15 : 백본도 27클래스로만 학습 (open 15는 백본에 노출 금지 — leakage 방지)
+# full42          : 42클래스 전부 학습
+# 명령줄에서 PROTOCOL=full42 로 덮어쓸 수 있다.
+protocol: closed27_open15
+
+# ---- 그리드는 의무가 아니다 ----
+# 여러 개를 나열하면 전 조합을 순회하고, 하나만 적으면 그 하나만 돈다.
+# 리스트를 벗겨 스칼라로 적어도 된다:  backbone: vit
+# yaml을 고치지 않고 이번 실행만 좁히려면 (셸에서):
+#   SET="grid.backbone=vit grid.finetune_mode=partial" bash finetune_backbones.sh
+grid:
+  # base.yaml backbones 레지스트리의 이름.
+  # 더 큰 모델을 쓰려면 -large / -giant 항목을 넣으면 된다. 예:
+  #   backbone: [vit-large, band-vit-large, dinov2-large, band-dinov2-large]
+  # 크기 비교 실험이면 base와 large를 함께 나열해도 된다.
+  # 실행 전 점검: python src/check_backbones.py --config configs/01_backbone.yaml
+  backbone: [vit, band-vit, dinov2, band-dinov2]
+  # full    : 전체 파라미터 finetuning
+  # partial : 마지막 n개 block + norm/head만 학습, 나머지 frozen
+  #           (large 이상은 full이 비싸므로 partial 위주로 돌리는 것을 권장)
+  finetune_mode: [full, partial]
+
+partial:
+  trainable_blocks: 4        # partial일 때 학습할 마지막 block 수
+                             # base=12 blocks, large=24 blocks 기준으로 조정
+
+data:
+  # Stage 0-a(run_prepare_data.py)가 만든 manifest. path,label,split,mask_path
+  # band-* 백본은 mask_path 컬럼이 채워져 있어야 한다.
+  closed_manifest: data/manifest_closed27.csv
+  full_manifest: data/manifest_full42.csv
+  band_mask_column: mask_path
+
+# band-* 백본 전용 (vit/dinov2에는 적용되지 않음)
+band:
+  alpha: 4.0                 # band prior 강도 (prior = 1 + alpha*band_mask)
+  loss_weight: 0.5           # CE 대비 band loss 비중 (0이면 일반 학습과 동일)
+  attention_blocks: 6        # attention을 걸 마지막 block 수
+
+train:
+  epochs: 50
+  batch_size: 32             # large는 8~16, giant는 2~4로 낮출 것
+  lr: 1.0e-4                 # 큰 모델일수록 낮게 (large 권장 5e-5)
+  # ※ DINOv2는 이 값이 높다. 자기지도 특징이라 full finetuning에서 쉽게 무너진다.
+  #   1300장/9클래스 3 epoch 실측: vit full=0.62 / dinov2 full=0.15 (macro_f1).
+  #   lr 1e-5로 낮추면 0.15 → 0.22로 나아지지만 여전히 낮았다.
+  #   DINOv2는 partial(마지막 n block)이 안정적이고, 충분한 epoch가 필요하다.
+  #   백본별로 다른 lr을 쓰려면 SET="train.lr=1e-5 grid.backbone=dinov2" 로 따로 돌린다.
+  weight_decay: 0.05
+  label_smoothing: 0.1
+  # 클래스(또는 feature 값)별 빈도의 역수를 loss 가중치로.
+  # 이미지가 적은 클래스가 loss에서 밀리는 걸 막는다 (불균형 데이터용).
+  use_class_weights: false
+  patience: 12
+  num_workers: 4
+  seed: 42
+  # 활성값을 저장하지 않고 재계산해 GPU 메모리를 크게 줄인다 (속도 20~30% 손해).
+  # large/giant 백본에서 OOM이 나면 켤 것.
+  grad_checkpointing: false
+
+output_subdir: backbone
+# 체크포인트 저장 위치: <paths.checkpoints_dir>/backbones/<backbone>_<mode>_<protocol>.pt

@@ -1,0 +1,81 @@
+# =============================================================
+# Stage 2b. Embedding clustering — full42 프로토콜 (노션 <2>)
+# metric learning 없이(embedding_loss: none) 백본 임베딩을 그대로 써서
+# 42클래스 train으로 prototype을 만들고 test를 분류.
+# 옵션 설명은 03_metric_grid.yaml과 동일 (같은 드라이버 src/run_metric.py).
+# =============================================================
+extends: base.yaml
+stage: metric_learning
+protocol: full42
+device: auto
+
+# ---- 그리드는 의무가 아니다 ----
+# 하나만 적으면 그 하나만 돈다 (리스트를 벗겨 스칼라로 적어도 됨: backbone: dinov2).
+# yaml을 고치지 않고 이번 실행만 좁히려면:
+#   SET="grid.backbone=dinov2" bash run_clustering_full42.sh
+grid:
+  backbone: [dinov2, band-dinov2, vit, band-vit]
+  embedding_loss: [none]           # full42는 metric 학습 없이 clustering만
+
+data:
+  full_manifest: data/manifest_full42.csv   # 42클래스 path,label,split
+
+train:                             # none이라 학습엔 안 쓰이지만 배치/시드 등은 공유
+  epochs: 1
+  batch_size: 32
+  embedding_dim: 128
+  num_workers: 4
+  seed: 42
+
+eval:
+  prototype:
+    # mean / ss / medoid / kmeans_multi / reference(대표 이미지)
+    methods: [mean, kmeans_multi]  # clustering 방식: 평균 / 클래스별 k-means
+    ss_count: 5
+    kmeans_clusters: 3
+    # reference 전용 — 클래스별 대표 이미지 폴더 (<root>/<클래스>/*.jpg)
+    # 대표 이미지가 없는 클래스는 갤러리 평균으로 자동 대체되고 로그에 남는다.
+    reference_dir: data/reference
+    reference_reduce: mean       # mean(여러 장을 평균) | each(각 장을 별개 prototype으로)
+    reference_extensions: [.jpg] # 확장자 제한 (null이면 jpg/png 모두)
+    # 대표 이미지가 학습/평가 데이터와 바이트 단위로 같은지 검사한다.
+    # 같으면 prototype이 정답을 미리 본 셈이라 기본적으로 실행을 중단한다.
+    reference_audit: true
+    reference_audit_strict: true   # false면 경고만 하고 계속
+    # cosine 거리를 쓸 때 prototype을 구면 평균으로 만든다 (정규화→평균→재정규화).  ★추가실험
+    # 산술평균은 노름이 큰 샘플이 방향을 독점하는데, cosine은 방향만 보므로 이게 더 맞다.
+    # 켜면 cosine 조합에 _spherical 태그가 붙은 결과가 따로 나온다 (기존 결과는 그대로).
+    cosine_spherical_mean: false
+  distances: [cosine, euclidean, mahalanobis]
+  mahalanobis:
+    covariance: ledoit_wolf        # ledoit_wolf | oas | diagonal | class_balanced | rda
+    rda: {class_weight: 0.75, logdet_weight: 1.0}
+  spectral:
+    alpha: 0.5
+  transform:
+    mode: none                     # none | l2norm | pca
+    pca_dim: 64
+    pca_balanced_fit: false
+  openset:
+    mode: none                     # full42는 unknown이 없으므로 보통 none
+    value: null
+    percentile: 95
+  duplicate_free: false
+  embedding_source: backbone
+
+  # ---- 시각화 (임베딩이 어떻게 배치됐는지 확인) ----
+  # 조합(prototype × distance)마다 eval/visualization/ 에 저장:
+  #   embedding_<reducer>_<tag>.png  임베딩 산점도 (▲=open 클래스, ★=prototype)
+  #   embedding_<reducer>_<tag>.csv  2D 좌표 (직접 다시 그릴 때)
+  #   score_distribution_<tag>.png   정답/오답 score 분포 (threshold 근거)
+  visualize:
+    enabled: true
+    reducer: tsne          # tsne(기본) | umap(umap-learn 필요) | none
+    show_prototypes: true  # prototype을 ★로 함께 표시
+    max_samples: 2000      # t-SNE는 샘플이 많으면 느리다 (클래스 비율 유지하며 표본)
+    pca_dim: 50            # 축소 전 PCA 차원 (0이면 생략)
+    perplexity: 30.0       # tsne
+    n_neighbors: 15        # umap
+    min_dist: 0.1          # umap
+
+output_subdir: clustering

@@ -1,0 +1,156 @@
+# =============================================================
+# Stage 2. Metric learning grid — closed27_open15 프로토콜 (노션 <1>)
+#
+# 임베딩 학습은 closed 27클래스로만 (leakage 방지) →
+# 갤러리 = closed 27 train + open 15 support → 42-way prototype 분류.
+#
+# 노션 4개 축 + 팀원이 추가로 시도한 방법들을 "옵션"으로 넣었다.
+# 각 옵션의 선택지는 바로 아래 주석에 전부 나열되어 있다.
+# 드라이버: src/run_metric.py
+# =============================================================
+extends: base.yaml
+stage: metric_learning
+protocol: closed27_open15
+device: auto
+
+# ---- [축1] backbone × [축2] embedding finetuning ----
+# ---- 그리드는 의무가 아니다 ----
+# 여러 개를 나열하면 전 조합을 순회하고, 하나만 적으면 그 하나만 돈다.
+# 리스트를 벗겨 스칼라로 적어도 된다:  backbone: vit
+# yaml을 고치지 않고 이번 실행만 좁히려면 (셸에서):
+#   SET="grid.backbone=vit grid.embedding_loss=supcon" bash run_metric_grid.sh
+grid:
+  # base.yaml backbones 레지스트리의 이름
+  backbone: [dinov2, band-dinov2, vit, band-vit]
+  # supcon           : two-view P×K + SupCon
+  # triplet          : batch-hard Triplet
+  # arcface          : margin softmax (얼굴인식 방식)
+  # covaware_supcon  : SupCon + episodic 공분산 인식 loss
+  #                    (Mahalanobis 거리에서 잘 분리되는 임베딩을 직접 학습) ★추가실험
+  # none             : 학습 없이 백본 임베딩 그대로
+  embedding_loss: [supcon, triplet, arcface, covaware_supcon, none]
+
+data:
+  # manifest CSV: path,label,split (train/valid/test)
+  closed_manifest: data/manifest_closed27.csv   # 임베딩 학습 + closed 평가
+  open_manifest: data/manifest_open15.csv       # train=갤러리 등록 support, test=query
+
+train:
+  epochs: 80
+  batch_size: 32
+  samples_per_class: 2        # P×K 배치의 K (supcon/triplet)
+  lr: 3.0e-5
+  weight_decay: 0.05
+  embedding_dim: 128
+  temperature: 0.07           # supcon
+  triplet_margin: 0.2         # batch-hard triplet
+  arcface: {s: 30.0, m: 0.5}  # arcface margin softmax
+  patience: 12
+  num_workers: 4
+  seed: 42
+
+  # covaware_supcon 전용 (embedding_loss에 covaware_supcon이 없으면 무시됨)
+  covaware:
+    episodes_per_epoch: 20
+    support_shots: 5          # episode당 클래스별 support 장수
+    query_shots: 5            # episode당 클래스별 query 장수
+    covariance_mode: legacy   # legacy | pooled_diagonal | pooled_full
+    covariance_weight: 0.75   # legacy: pooled ↔ 클래스별 분산 블렌딩 (0=pooled만)
+    covariance_shrinkage: 0.1 # pooled_full 전용
+    logdet_weight: 1.0
+    beta: 1.0e-3              # 분산 하한 (수치 안정)
+    loss_weight: 1.0          # SupCon 대비 공분산 loss 비중
+    loss_embedding: backbone  # backbone | projection
+
+eval:
+  # ---- [축3] prototype (분류/판정) ----
+  prototype:
+    # mean         클래스 전체 평균
+    # ss           support n장 랜덤 평균 (class-balanced 효과)
+    # medoid       거리 합이 최소인 실제 샘플
+    # kmeans_multi 클래스별 k-means 다중 prototype (최소거리 판정)   ★추가실험
+    # reference    따로 준비한 대표 이미지(GT)의 임베딩을 prototype으로   ★추가실험
+    methods: [mean, ss]
+    ss_count: 5
+    kmeans_clusters: 3
+    # reference 전용 — 클래스별 대표 이미지 폴더 (<root>/<클래스>/*.jpg)
+    # 대표 이미지가 없는 클래스는 갤러리 평균으로 자동 대체되고 로그에 남는다.
+    reference_dir: data/reference
+    reference_reduce: mean       # mean(여러 장을 평균) | each(각 장을 별개 prototype으로)
+    reference_extensions: [.jpg] # 확장자 제한 (null이면 jpg/png 모두)
+    # 대표 이미지가 학습/평가 데이터와 바이트 단위로 같은지 검사한다.
+    # 같으면 prototype이 정답을 미리 본 셈이라 기본적으로 실행을 중단한다.
+    reference_audit: true
+    reference_audit_strict: true   # false면 경고만 하고 계속
+    # cosine 거리를 쓸 때 prototype을 구면 평균으로 만든다 (정규화→평균→재정규화).  ★추가실험
+    # 산술평균은 노름이 큰 샘플이 방향을 독점하는데, cosine은 방향만 보므로 이게 더 맞다.
+    # 켜면 cosine 조합에 _spherical 태그가 붙은 결과가 따로 나온다 (기존 결과는 그대로).
+    cosine_spherical_mean: false
+
+  # ---- [축4] 거리 ----
+  # cosine / euclidean / mahalanobis
+  # fractional        고유값 스펙트럼 가중 거리                      ★추가실험
+  # centered_angular  전역 중심 제거 + 스펙트럼 가중 코사인          ★추가실험
+  distances: [cosine, euclidean, mahalanobis]
+
+  # mahalanobis 공분산 추정 (closed train 임베딩으로만 fit — leakage 방지)
+  mahalanobis:
+    # ledoit_wolf(기본) | oas | diagonal | class_balanced | rda
+    #   rda = pooled ↔ 클래스별 공분산 블렌딩 + logdet 보정          ★추가실험
+    covariance: ledoit_wolf
+    rda:
+      class_weight: 0.75      # 0=pooled만, 1=클래스별 공분산만
+      logdet_weight: 1.0
+
+  # fractional / centered_angular 전용
+  spectral:
+    alpha: 0.5                # 0.5 / 0.75 권장
+
+  # ---- 임베딩 변환 (거리 계산 전) ----                             ★추가실험
+  transform:
+    mode: none                # none | l2norm | pca
+    pca_dim: 64               # pca일 때 차원 (32/64/128/256)
+    pca_balanced_fit: false   # 클래스별 샘플 수를 맞춰 PCA fit
+
+  # ---- open-set 판정 ----                                          ★추가실험
+  # none      임계 없음 (항상 최근접 클래스로 판정)
+  # threshold score가 임계를 넘으면 unknown — Fuse의 open-set gate 실험용
+  openset:
+    mode: none
+    value: null               # 명시 임계값. null이면 percentile로 자동 결정
+    percentile: 95
+
+  # train과 파일 내용(sha256)이 같은 query를 제외한 지표도 산출       ★추가실험
+  duplicate_free: false
+
+  # ---- open-set 거부 성능 (threshold와 무관) ----                  ★추가실험
+  # 임계를 정하지 않고 순위만으로 "학습에 없던 클래스를 걸러낼 수 있는가"를 잰다.
+  #   auroc        unknown 점수가 known보다 높게 나올 확률 (1.0 = 완벽)
+  #   fpr_at_95tpr unknown을 95% 잡을 때 known을 잘못 버리는 비율 (낮을수록 좋음)
+  # 거부 점수 5종을 함께 비교한다 — 무엇으로 판정하느냐가 성능을 크게 가른다:
+  #   min_dist(최근접 거리) margin(1·2등 차) dist_ent(엔트로피)
+  #   logit_msp(최대확률)   logit_ent
+  # closed27_open15에서만 계산된다 (open 클래스가 있어야 known/unknown이 갈린다).
+  reject_metrics:
+    enabled: false
+    scores: [min_dist, margin, dist_ent]
+    temperature: 1.0             # 거리 → 확률 변환 온도 (dist_ent/logit_* 에 영향)
+
+  embedding_source: projection   # projection | backbone (none 학습이면 자동 backbone)
+
+  # ---- 시각화 (임베딩이 어떻게 배치됐는지 확인) ----
+  # 조합(prototype × distance)마다 eval/visualization/ 에 저장:
+  #   embedding_<reducer>_<tag>.png  임베딩 산점도 (▲=open 클래스, ★=prototype)
+  #   embedding_<reducer>_<tag>.csv  2D 좌표 (직접 다시 그릴 때)
+  #   score_distribution_<tag>.png   정답/오답 score 분포 (threshold 근거)
+  visualize:
+    enabled: true
+    reducer: tsne          # tsne(기본) | umap(umap-learn 필요) | none
+    show_prototypes: true  # prototype을 ★로 함께 표시
+    max_samples: 2000      # t-SNE는 샘플이 많으면 느리다 (클래스 비율 유지하며 표본)
+    pca_dim: 50            # 축소 전 PCA 차원 (0이면 생략)
+    perplexity: 30.0       # tsne
+    n_neighbors: 15        # umap
+    min_dist: 0.1          # umap
+
+output_subdir: metric

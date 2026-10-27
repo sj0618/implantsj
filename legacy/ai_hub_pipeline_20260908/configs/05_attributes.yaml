@@ -1,0 +1,126 @@
+# =============================================================
+# Stage 4. Attributes — feature별 모델 + spec table 매칭 (노션 5번)
+#
+# 각 feature마다 모델을 만들어 학습하고, 예측을 spec table(클래스 → 13 feature)과
+# 비교해 최종 클래스를 정한다. 최종 결과는 항상 [N, C] 점수로 나오므로
+# Stage 5에서 metric / classifier 브랜치와 합칠 수 있다.
+#
+# 드라이버: src/run_attributes.py
+# =============================================================
+extends: base.yaml
+stage: attributes
+device: auto
+
+# closed27_open15 : 27클래스만 학습 (leakage 방지) / full42 : 42클래스 전부
+protocol: closed27_open15
+
+# ---- 백본 (노션: <1> CNN backbone, <2> DINOv2 backbone) ----
+# base.yaml의 backbones 레지스트리에 cnn을 추가로 정의한다(deep merge).
+backbones:
+  cnn:
+    timm: convnext_tiny.fb_in22k_ft_in1k
+    checkpoint: null
+    image_size: 224
+
+# ---- 그리드는 의무가 아니다 ----
+# 여러 개를 나열하면 전 조합을 순회하고, 하나만 적으면 그 하나만 돈다.
+# 리스트를 벗겨 스칼라로 적어도 된다:  backbone: cnn
+# yaml을 고치지 않고 이번 실행만 좁히려면 (셸에서):
+#   SET="grid.backbone=cnn" bash train_attributes.sh
+grid:
+  backbone: [cnn, dinov2]      # 둘 다 돌려 비교. cnn만 하려면 [cnn]
+
+data:
+  # manifest CSV: path,label,split
+  closed_manifest: data/manifest_closed27.csv
+  full_manifest: data/manifest_full42.csv
+
+# ---- spec table ----
+spec:
+  csv: configs/spec_table.csv       # 원본 표(임플란트 라벨링) 형식 그대로 읽는다
+  #
+  # [클래스 매칭] 표의 dataset_label 열에 데이터셋 폴더명을 직접 적으면 그 값이
+  # 최우선으로 쓰인다 (폐쇄망 대비 수동 등록). 여러 폴더명은 ';'로 구분.
+  # 비워두면 Company+Name → Name 순으로 자동 매칭한다.
+  # 매칭 상태 점검: python src/check_spec_table.py --config configs/05_attributes.yaml
+  #
+  # 정답이 없는 칸으로 볼 표기 → 해당 칸은 학습/평가에서 제외(-1)
+  unknown_values: ["확인 불가", "확인불가", "unknown", "n/a", "-", "?"]
+  # 값 수정은 configs/spec_table.csv 를 직접 고치는 것이 원칙이다.
+  # (어떤 값이 같은 값인지는 담당자만 판단할 수 있으므로 코드가 임의로 통합하지 않는다)
+  # 아래는 CSV를 고칠 수 없는 예외 상황에서만 쓰는 임시 매핑. 기본은 비워 둔다.
+  value_aliases: {}
+  # 값이 1종뿐인 feature는 분류에 정보가 없으므로 자동 제외 (예: Body_Type)
+  drop_constant: true
+  label_aliases: null               # 표 밖에서 매핑할 때 {폴더명: 표의 Name}
+
+# ---- 11개 feature 각각의 사용 여부 ----
+#   train       : 이 feature의 독립 모델을 학습할지
+#   use_in_fuse : 최종 클래스 점수를 낼 때 이 feature를 반영할지
+# 학습만 하고 최종 반영에서 빼는 것도 가능하다.
+# ※ 제외한 컬럼: Name(= 라벨 그 자체), Body_Type(모든 클래스가 Threaded로 동일)
+features:
+  Company:       {train: true,  use_in_fuse: true}
+  System:        {train: true,  use_in_fuse: true}
+  Connection_1:  {train: true,  use_in_fuse: true}
+  Connection_2:  {train: true,  use_in_fuse: true}
+  Flange:        {train: true,  use_in_fuse: true}
+  Collar:        {train: true,  use_in_fuse: true}
+  Microthread:   {train: true,  use_in_fuse: true}
+  Body_Shape:    {train: true,  use_in_fuse: true}
+  Thread_Shape:  {train: true,  use_in_fuse: true}
+  Apex_Shape:    {train: true,  use_in_fuse: true}
+  Apex_Hole:     {train: true,  use_in_fuse: true}
+
+# ---- 실행 단위 ----
+# train.mode 가 separate 면 feature마다 모델이 하나씩 따로 존재하고, shared 면 백본 하나에
+# feature마다 head 가 붙는다(아래 train 블록). 여기서는 이번 실행에서 다룰 feature 를 정한다.
+run:
+  # all         : 위 features에서 train:true인 것 전부를 한 번에 학습
+  # [System, Flange] 처럼 목록: 그 feature만 학습 → 나눠서 여러 번 돌릴 수 있다
+  features: all
+  # 이미 학습된 체크포인트가 있으면 다시 학습하지 않고 불러와 추론만 한다.
+  # (폐쇄망에서 며칠에 걸쳐 나눠 돌린 뒤 마지막에 모아서 fuse할 때 필요)
+  skip_existing: true
+
+train:
+  # separate : feature마다 백본+head 를 통째로 하나씩 (독립 모델, 간섭 없음, feature 수만큼 학습)
+  # shared   : 백본 1개 + feature마다 head (multi-head, 학습 1회, 표현 공유)
+  # 둘 다 비교하려면 두 번 실행한다. 출력 폴더 이름에 mode 가 붙어 서로 덮어쓰지 않는다.
+  mode: separate
+  epochs: 60
+  batch_size: 32
+  lr: 5.0e-5
+  weight_decay: 0.05
+  label_smoothing: 0.1
+  # 클래스(또는 feature 값)별 빈도의 역수를 loss 가중치로.
+  # 이미지가 적은 클래스가 loss에서 밀리는 걸 막는다 (불균형 데이터용).
+  use_class_weights: false
+  patience: 12
+  num_workers: 4
+  seed: 42
+
+# ---- 최종 점수 산출 ----
+fuse:
+  # learned   : feature별 가중치 w_f를 valid에서 자동 학습
+  #             score(c) = Σ_f w_f · P_f(spec[c,f] | x)
+  # min_match : 사용자가 정한 n개 이상의 feature가 일치해야 그 라벨로 인정.
+  #             n 미만이면 __unknown__ 판정 (점수 자체는 계속 나온다)
+  mode: learned
+  learn_epochs: 300          # learned: 가중치 학습 스텝
+  learn_lr: 0.05
+  min_match: 8               # min_match: 최소 일치 feature 수
+  top_k: 2                   # predictions.csv에 남길 상위 후보 수
+
+# ---- 시각화 (결과 폴더의 visualization/ 에 자동 저장) ----
+#   performance  feature별 정확도/macro-F1 막대 — 어떤 feature가 약한지
+#   weights      learned 모드에서 학습된 feature 가중치
+#   confusions   feature별 혼동행렬을 한 장에 격자로
+#   match        일치 feature 수 분포 (정답 vs 오답) — min_match 기준 근거
+#   score        최종 클래스 점수 분포 (정답 vs 오답)
+#   final        spec table 매칭 후 최종 클래스 혼동행렬
+visualize:
+  enabled: true
+  which: [performance, weights, confusions, match, score, final]
+
+output_subdir: attributes
