@@ -1620,11 +1620,7 @@
             "{output}/strict10/REPORT.md"
           ]
         }
-      ],
-      "historical_reference": {
-        "pooled_ledoit_wolf_test_accuracy_mean": 0.6961,
-        "pooled_ledoit_wolf_test_macro_f1_mean": 0.596
-      }
+      ]
     },
     {
       "id": "target5_episodic5",
@@ -1692,11 +1688,7 @@
             "{output}/episodes/REPORT.md"
           ]
         }
-      ],
-      "historical_reference": {
-        "pooled_ledoit_wolf_query_accuracy_mean": 0.6798,
-        "pooled_ledoit_wolf_query_macro_f1_mean": 0.633
-      }
+      ]
     },
     {
       "id": "source_closed_auxiliary",

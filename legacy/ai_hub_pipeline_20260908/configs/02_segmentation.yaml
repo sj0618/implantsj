@@ -1,0 +1,83 @@
+# =============================================================
+# Stage 0. Segmentation 파이프라인 전체 설정
+#
+# 흐름:
+#   sample  : train data에서 finetuning용 이미지 n장 샘플링 (클래스별 라운드로빈)
+#   sam1    : 순정 SAM(vit_h)으로 초기 마스크 자동 생성 + 임플란트 형태 필터
+#   (수동)  : 잘 생성된 마스크를 사람이 선별 → image:mask 1:1 폴더 구성
+#   split   : (이미지, 마스크) 쌍을 train/val/test 7:2:1 분할
+#   train   : SAM2(hiera-tiny) encoder frozen + Adapter + U-Net decoder 파인튜닝
+#   predict : 파인튜닝 모델로 전체 데이터(42클래스) 마스크 예측 + 후처리
+#   band    : 예측 마스크에서 band(고리) 영역 추출 → band-vit/band-dinov2 입력
+# =============================================================
+extends: base.yaml
+stage: segmentation
+
+# ---- ① 샘플링 (sample_finetune_data.py) ----
+sample:
+  src_dir: data/datas/train          # 원본 train 데이터 (클래스별 폴더)
+  dst_dir: seg_data/finetune_sample  # 샘플 저장 위치
+  n: 1000                            # 뽑을 장수
+  exts: [.jpg]
+  seed: 42
+
+# ---- ② SAM1 초기 마스크 생성 (generate_sam1_masks.py) ----
+sam1:
+  image_dir: seg_data/finetune_sample
+  output_mask_dir: seg_data/sam1_masks
+  checkpoint: checkpoints/sam/sam_vit_h_4b8939.pth
+  model_type: vit_h
+  generator:                         # SamAutomaticMaskGenerator 설정
+    points_per_side: 64
+    pred_iou_thresh: 0.80
+    stability_score_thresh: 0.80
+    crop_n_layers: 1
+    crop_n_points_downscale_factor: 2
+    min_mask_region_area: 100
+  filter:                            # 임플란트 형태 필터
+    min_area_ratio: 0.10
+    max_area_ratio: 0.97
+    min_aspect_ratio: 1.5
+    min_box_h_ratio: 0.3
+
+# ---- ③ 수동 선별 후 폴더 (여기를 사람이 채움: images/<cls>/, masks/<cls>/) ----
+# ---- ④ 7:2:1 분할 (split_seg_dataset.py) ----
+split:
+  src_dir: seg_data/seg_dataset_new  # 수동 선별 완료된 image:mask 1:1 폴더
+  out_dir: seg_data/seg_dataset_split
+  ratios: {train: 0.7, val: 0.2, test: 0.1}
+  seed: 42
+
+# ---- ⑤ SAM2+Adapter+U-Net 파인튜닝 (train_sam2_adapter.py) ----
+sam2_train:
+  dataset_dir: seg_data/seg_dataset_split
+  save_path: checkpoints/best_sam2.1_tiny_adapter_unet.pth
+  sam2_config: configs/sam2.1/sam2.1_hiera_t.yaml   # sam2 패키지 내부 경로
+  sam2_checkpoint: checkpoints/sam2/sam2.1_hiera_tiny.pt
+  image_size: 512
+  batch_size: 2
+  epochs: 50
+  lr: 1.0e-4
+  weight_decay: 1.0e-4
+  adapter_channels: 256
+
+# ---- ⑥ 전체 데이터 마스크 예측 (predict_masks.py) ----
+predict:
+  image_dir: data/datas              # AI Hub 원본 전체 (42클래스)
+  save_dir: seg_data/seg_masks_train # *_pred.png 저장
+  threshold: 0.5
+  postprocess:
+    close_kernel: 4                  # closing으로 끊긴 부분 연결
+    fill_holes: true                 # 내부 구멍 채우기
+    largest_only: true               # 최대 덩어리만 남기기
+
+# ---- ⑦ band 마스크 추출 (make_band_masks.py) ----
+# <stem>_band.png 로 저장한다. manifest 연결은 Stage 0-a가 맡으므로
+# 여기서는 그림만 만든다 — 끝나면 prepare_data.sh를 다시 돌릴 것.
+band:
+  mask_root: seg_data/seg_masks_train   # ⑥ 예측 마스크 폴더
+  source_suffix: _pred.png
+  out_root: data/masks                  # ← 00_data.yaml의 band.mask_root와 같아야 한다
+  size: 224                             # 출력 마스크 크기
+  outer: 10                             # 바깥쪽 팽창 반경 (band 두께)
+  inner: 10                             # 안쪽 침식 반경

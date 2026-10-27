@@ -31,8 +31,8 @@ def load_catalog(path=CATALOG):
     if len(ids) != len(set(ids)):
         raise ValueError("Duplicate report IDs")
     for report in catalog["reports"]:
-        if not (ROOT / report["source"]).is_file():
-            raise ValueError(f"Report missing: {report['source']}")
+        if not report.get("source"):
+            raise ValueError(f"Report reference missing: {report['id']}")
         for step in report["steps"]:
             if not (ROOT / (step["module"].replace(".", "/") + ".py")).is_file():
                 raise ValueError(f"Module missing: {step['module']}")

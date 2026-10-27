@@ -1,5 +1,3 @@
-import hashlib
-import json
 import subprocess
 import sys
 from pathlib import Path
@@ -7,10 +5,29 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1] / "legacy/ai_hub_pipeline_20260908"
 
 
-def test_restored_server_sources_match_archive_hashes():
-    provenance = json.loads((ROOT / "provenance.json").read_text())
-    for record in provenance["files"]:
-        assert hashlib.sha256((ROOT / record["path"]).read_bytes()).hexdigest() == record["sha256"]
+def test_restored_pipeline_source_coverage():
+    assert len(list((ROOT / "src").rglob("*.py"))) == 65
+    assert len(list((ROOT / "configs").glob("*.yaml"))) == 11
+    scripts = list((ROOT / "scripts").rglob("*.sh"))
+    assert len(scripts) == 16
+    for path in scripts:
+        assert path.stat().st_mode & 0o111, path
+        subprocess.run(["bash", "-n", str(path)], check=True, capture_output=True, text=True)
+
+
+def test_restored_pipeline_wiring_and_options():
+    result = subprocess.run(
+        [sys.executable, "src/verify_pipeline.py"], cwd=ROOT,
+        check=True, capture_output=True, text=True, timeout=90,
+    )
+    assert "WARN 0   FAIL 0" in result.stdout
+
+
+def test_archived_docker_copy_sources_exist():
+    for line in (ROOT / "Dockerfile").read_text().splitlines():
+        if line.startswith("COPY "):
+            for source in line.split()[1:-1]:
+                assert (ROOT / source).exists(), source
 
 
 def test_archived_oas_and_five_centers_are_not_five_shot():

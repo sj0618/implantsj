@@ -1,0 +1,52 @@
+# =============================================================
+# Stage 3-<1>. Classifier — band-vit 방식 (band_vit 패키지)
+# band 부분에 attention 가중치를 두는 방식(KL prior loss).
+# alpha/lambda/block sweep 후 최적값으로 최종 분류모델 제작.
+# 드라이버: src/run_band_vit.py
+# =============================================================
+extends: base.yaml
+stage: classifier
+method: band-vit
+device: auto
+
+# closed27_open15 : 27클래스만 학습 (leakage 방지) / full42 : 42클래스 전부
+# PROTOCOL=full42 bash train_band_vit.sh 로 전환
+protocol: closed27_open15
+
+# base.yaml backbones 레지스트리 이름을 적으면 Stage 1에서 만든 백본을 초기 weight로 쓴다.
+# (band-vit 백본은 이미 band에 주목하도록 학습돼 있으므로 자연스러운 출발점)
+# timm 이름을 직접 적어도 되고, 그때는 pretrained로 시작한다.
+backbone: band-vit                   # 또는 vit / band-dinov2 / vit_base_patch16_224
+
+data:
+  # Stage 0-a가 만든 manifest 하나를 split별로 나눠 쓴다(드라이버가 자동 분리).
+  # band-vit은 mask_path 컬럼이 채워져 있어야 한다.
+  closed_manifest: data/manifest_closed27.csv
+  full_manifest: data/manifest_full42.csv
+  band_mask_column: mask_path
+
+# ---- sweep은 의무가 아니다 ----
+# 여러 개를 나열하면 전 조합(3x3x2=18)을 순회하고, 하나만 적으면 그 하나만 돈다.
+# 리스트를 벗겨 스칼라로 적어도 된다:  alpha: 8
+# yaml을 고치지 않고 이번 실행만 좁히려면 (셸에서):
+#   SET="sweep.alpha=8 sweep.lambda=0.8 sweep.block=6" bash train_band_vit.sh
+#
+# 값의 스케일은 코드가 정한다: prior = 1 + alpha * band_mask (src/band_vit/losses.py).
+# alpha 가 1 이하면 band 패치 가중치가 2배도 안 돼 prior 가 거의 균일하다. 그래서 격자는
+# 이 저장소에서 실제로 돌았던 값에 맞춘다:
+#   alpha  4 = 코드 기본값(01_backbone.yaml band.alpha, --band-alpha)
+#          8 = implantsj legacy 최고 성능 ckpt (vit_band_6b_lam0.8: band_alpha=8.0)
+#         16 = implant_ny 실행 (runs/band_vit_11label: band_alpha=16.0)
+#   lambda 0.5 = 01_backbone.yaml band.loss_weight / 0.8 = legacy 최고 / 0.95 = implant_ny 실행
+#   block  6 = 기본값·legacy 최고 / 12 = 전 block (implant_ny 의 16 은 base 12 block 으로 클램프된다)
+sweep:
+  alpha: [4, 8, 16]                  # band attention prior 강도 (--band-alpha), prior = 1 + alpha*mask
+  lambda: [0.5, 0.8, 0.95]           # band loss 가중치 (--band-loss-weight), CE 대비 비중
+  block: [6, 12]                     # attention을 걸 마지막 N개 block (--band-attention-blocks); 12 = 전부
+
+# test 시각화: attention map + gradient rollout 저장 개수 (-1=전부, 0=끄기)
+viz:
+  attention_samples: 20
+  rollout_samples: 20
+
+output_subdir: classifier/band_vit

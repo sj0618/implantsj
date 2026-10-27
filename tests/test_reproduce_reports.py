@@ -25,6 +25,19 @@ def test_every_report_is_catalogued_and_cli_flags_exist():
             assert {a for a in step["args"] if a.startswith("--")} <= flags
 
 
+def test_report_documents_are_not_runtime_dependencies(tmp_path, monkeypatch):
+    monkeypatch.setattr(runner, "ROOT", tmp_path)
+    (tmp_path / "evaluate.py").write_text("pass\n")
+    catalog = {"reports": [{"id": "private_report", "source": "private/REPORT.md",
+                            "steps": [{"module": "evaluate", "artifacts": ["metrics.json"]}]}]}
+    path = tmp_path / "catalog.json"
+    path.write_text(json.dumps(catalog))
+    assert runner.load_catalog(path) == catalog
+    (tmp_path / "evaluate.py").unlink()
+    with pytest.raises(ValueError, match="Module missing"):
+        runner.load_catalog(path)
+
+
 def minimal_plan(tmp_path):
     return [{"id": "example", "source": "README.md", "coverage": "protocol", "limitations": [],
              "blocked": [], "missing_inputs": [], "steps": [
