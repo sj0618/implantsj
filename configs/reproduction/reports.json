@@ -1628,7 +1628,7 @@
       "coverage": "protocol",
       "limitations": [
         "Pool train/valid/test in that order: 152 images, 25 support, 127 query per seed. Seeds overlap each other. Patient independence is unverified.",
-        "The linked source train-to-test and source 5-shot reports are absent; source_closed_auxiliary provides protocol reconstruction only."
+        "The linked source reports are catalogued as source_closed_train_test (train-to-test) and source_closed_auxiliary (source 5-shot)."
       ],
       "steps": [
         {
@@ -1691,12 +1691,12 @@
       ]
     },
     {
-      "id": "source_closed_auxiliary",
-      "source": "docs/reports/vit6supcon_to_5label_strict10_20260814/episodic_all_target_5shot/REPORT.md",
+      "id": "source_closed_train_test",
+      "source": "docs/reports/vit6supcon_to_5label_strict10_20260814/episodic_source_train_to_test/REPORT.md",
       "coverage": "reconstruction",
       "limitations": [
-        "Linked source reports are absent. The directory name all_source_6shot is inconsistent with the text describing five shots; this recipe explicitly uses five.",
-        "Closed train-to-test metrics are the test rows; validation rows are auxiliary."
+        "Closed train-to-test metrics are the test rows; validation rows are auxiliary.",
+        "The report also lists fixed RDA lambda=0.75 + logdet (its main closed result); this step uses the evaluator's default --methods (euclidean, manhattan, cosine, pooled_ledoit_wolf) and does not produce that row."
       ],
       "steps": [
         {
@@ -1739,7 +1739,19 @@
             "{output}/closed_train_test/protocol.json",
             "{output}/closed_train_test/REPORT.md"
           ]
-        },
+        }
+      ],
+      "blocked": []
+    },
+    {
+      "id": "source_closed_auxiliary",
+      "source": "docs/reports/vit6supcon_to_5label_strict10_20260814/episodic_all_source_6shot/REPORT.md",
+      "coverage": "reconstruction",
+      "limitations": [
+        "The directory name all_source_6shot is inconsistent with the report, which uses 5 support images per class (support seeds 0, 1, 2, 3, 4, 42); this recipe uses five.",
+        "Auxiliary comparison under the open 5-shot condition; the closed main result is source_closed_train_test."
+      ],
+      "steps": [
         {
           "id": "closed5",
           "module": "pipelines.eval.reproduce_gallery",
@@ -1794,7 +1806,8 @@
             "{output}/closed5/REPORT.md"
           ]
         }
-      ]
+      ],
+      "blocked": []
     },
     {
       "id": "mahalanobis_method_selection",
@@ -2749,6 +2762,126 @@
       "steps": [],
       "blocked": [
         "Historical deployment/model version, original request parameters and response records are required for snapshot replay. Regenerating VLM outputs would be a new run."
+      ]
+    },
+    {
+      "id": "experiment_ledger_20260807",
+      "source": "docs/reports/EXPERIMENT_LEDGER_20260807.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Ledger summarising experiments preserved up to 2026-08-07. Rows backed by a separate report are catalogued under that report's entry."
+      ],
+      "steps": [],
+      "blocked": [
+        "Not a single experiment definition; no command is generated. Rows without a separate report have no recorded command."
+      ]
+    },
+    {
+      "id": "gt27_independent_baseline",
+      "source": "docs/reports/INDEPENDENT_EXPERIMENT_BASELINE_AND_GT27.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Checkpoint baseline and GT27 Euclidean/Cosine comparison tables; overlaps metric_diagnosis_gt27."
+      ],
+      "steps": [],
+      "blocked": [
+        "Checkpoint files, their training configs and the exact GT27 support/query assignment are not in the repository."
+      ]
+    },
+    {
+      "id": "closed_network_20260912",
+      "source": "docs/reports/closed_network_experiment_results_2026-09-12.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Values were read from remote screens of /home/ubuntu/aihub_run/outputs and transcribed; server files were not copied."
+      ],
+      "steps": [],
+      "blocked": [
+        "Server run configs, checkpoints and result files were not transferred to this repository. Grid summary CSVs and split manifests are also missing."
+      ]
+    },
+    {
+      "id": "embedding_quantization_20260915",
+      "source": "docs/reports/embedding_quantization_20260915/REPORT.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Post-hoc uniform/non-uniform quantization of strict 5-label 5-shot embeddings; separate from Track B."
+      ],
+      "steps": [],
+      "blocked": [
+        "The quantization script, cached embeddings and per-seed outputs are not in the repository."
+      ]
+    },
+    {
+      "id": "embedding_continuous_20260915",
+      "source": "docs/reports/embedding_quantization_20260915/CONTINUOUS_REPORT.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Continuous coordinate transforms (no quantization) on the same strict 5-label 5-shot embeddings as embedding_quantization_20260915."
+      ],
+      "steps": [],
+      "blocked": [
+        "The transform script, cached embeddings and per-seed outputs are not in the repository."
+      ]
+    },
+    {
+      "id": "fewshot_track_b",
+      "source": "docs/reports/fewshot_trackB/REPORT.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Track B pilot: 15 unseen classes, 5 group holdouts x 200 episodes per split, K=1/3/5/10."
+      ],
+      "steps": [],
+      "blocked": [
+        "The few-shot training/evaluation script, split files and outputs/fewshot results are not in the repository."
+      ]
+    },
+    {
+      "id": "followup_status_20260928",
+      "source": "docs/reports/followup_20260928_status.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Execution-status snapshot at 2026-09-28 23:16 KST; running or queued items are not results."
+      ],
+      "steps": [],
+      "blocked": [
+        "Status record, not an experiment definition; no command is generated."
+      ]
+    },
+    {
+      "id": "professor_report_20260928",
+      "source": "docs/reports/professor_report_20260928/report.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Draft report marked in progress in its header; built from server metric/backbone caches and screen transcriptions."
+      ],
+      "steps": [],
+      "blocked": [
+        "Server metric and backbone caches are not available locally. Server run configs, checkpoints and result files were not transferred to this repository."
+      ]
+    },
+    {
+      "id": "remote_experiments_20260929",
+      "source": "docs/reports/remote_experiments_20260929.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Summary of remote experiments as last seen on 2026-09-29; the remote session was disconnected when it was written."
+      ],
+      "steps": [],
+      "blocked": [
+        "Remote code (/home/ubuntu/implant_pipeline_new) is not in this repository. Server run configs, checkpoints and result files were not transferred to this repository."
+      ]
+    },
+    {
+      "id": "server_results_20261001",
+      "source": "docs/reports/server_results_20261001.md",
+      "coverage": "blocked",
+      "limitations": [
+        "Values read from remote screens on 2026-10-01 07:58-08:25 KST; several tables show the last visible grid row, not the best one."
+      ],
+      "steps": [],
+      "blocked": [
+        "Server run configs, checkpoints and result files were not transferred to this repository. See server_oas_gallery for the September-28 galcov blocker."
       ]
     }
   ],

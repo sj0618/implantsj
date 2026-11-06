@@ -1,6 +1,6 @@
 # 재현 실행 설정
 
-- `reports.json`: 24개 항목, 57개 단계의 모듈·인자·필수 입력·산출물.
+- `reports.json`: 35개 항목, 57개 단계의 모듈·인자·필수 입력·산출물.
 - `inputs.example.json`: manifest·checkpoint·cache·표본 배정 파일 경로 예시.
 - 실제 경로는 Git 제외 파일 `inputs.local.json`에 필요한 항목만 넣는다.
 - 원문·과거 점수는 업로드하지 않는다. `source`는 로컬 보고서의 출처 식별자다.
