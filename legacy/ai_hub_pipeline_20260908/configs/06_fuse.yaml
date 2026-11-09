@@ -1,0 +1,132 @@
+# =============================================================
+# Stage 5. Fuse — 3브랜치 융합 (노션 6번)
+#
+# metric / classifier / attributes 가 각각 낸 [N, C] 점수를 합쳐 최종 분류한다.
+#   → System ID 또는 __unknown__
+#
+# 실행 전에 각 브랜치를 돌려 scores CSV를 만들어 둘 것.
+# 드라이버: src/run_fuse.py
+# =============================================================
+extends: base.yaml
+stage: fuse
+
+# ---- 결합할 브랜치 ----
+# run 에 그 브랜치의 결과 폴더를 적으면 valid/test 점수 파일을 알아서 찾는다.
+#   run: outputs/metric/<tag>                        결과 폴더
+#   run: outputs/metric/<tag>/train/checkpoints/best.pt   체크포인트를 줘도 됨
+# 특정 파일을 직접 지정하고 싶으면 run 대신 scores 를 쓴다(아래 주석 참고).
+# 우선순위: CLI 인자 > scores(파일 직접 지정) > run(폴더에서 탐색).
+# scores 를 쓸 때는 valid와 test를 **둘 다** 적어야 한다 — 한쪽만 적으면 중단된다.
+# (같은 파일을 둘 다에 쓰면 test로 가중치·임계값을 학습하게 되어 성능이 부풀려진다)
+#
+# higher_is_better: 점수 방향. metric은 거리라 false → 코드가 부호를 뒤집는다.
+# 브랜치를 빼고 싶으면 그 항목을 통째로 지우거나 enabled: false 로 두면 된다.
+# (브랜치를 하나 빼고 합치는 것 자체가 "그 브랜치가 기여하는가"를 보는 실험이다)
+#
+# ※ fuse는 체크포인트가 아니라 각 브랜치가 평가하며 남긴 scores CSV를 읽는다.
+#   각 브랜치를 먼저 평가해 두어야 한다.
+#
+# ⚠ 브랜치마다 다루는 이미지가 다르면 **교집합만** 평가된다.
+#   예: attributes가 spec table에 붙는 클래스만 다루면 그 부분집합에서만 정확도가 나온다.
+#   이때 수치는 더 쉬운(또는 다른) 표본에서 잰 값이라 브랜치 구성이 다른 실행끼리
+#   직접 비교하면 안 된다. 실행 로그가 공통 장수와 함께 경고를 남긴다.
+branches:
+  metric:
+    enabled: true                  # false면 이 브랜치를 빼고 결합한다
+    higher_is_better: false        # 거리 (작을수록 가까움)
+    run: outputs/metric/closed27_open15_dinov2_supcon
+    # metric은 prototype×distance 조합이 여러 개다.
+    # 비워두면 그 run의 eval/summary.csv에서 가장 좋은 조합을 자동으로 고른다.
+    variant: null                  # 예: mean_cosine, ss_mahalanobis
+
+  classifier:
+    enabled: true
+    higher_is_better: true         # softmax 확률
+    run: outputs/classifier/band_vit/closed27_open15_a8_l0.8_b6   # <protocol>_a<alpha>_l<lambda>_b<block>
+
+  attributes:
+    enabled: true
+    higher_is_better: true         # feature 매칭 점수
+    run: outputs/attributes/closed27_open15_cnn_separate   # <protocol>_<backbone>_<train.mode>
+
+  # 파일을 직접 지정하려면 run 대신 이렇게 쓴다 (scores가 run보다 우선):
+  #   scores:
+  #     valid: outputs/metric/<tag>/eval/scores_valid_mean_cosine.csv
+  #     test:  outputs/metric/<tag>/eval/scores_test_mean_cosine.csv
+  # 각 브랜치는 valid·test 점수를 자동으로 남기므로 따로 만들 필요는 없다.
+
+# ---- 정답 라벨 (평가용) ----
+# path,label 컬럼이 있는 CSV면 무엇이든 됨 (manifest 또는 브랜치 predictions.csv)
+# closed27_open15에서는 closed+open을 합친 manifest_full42.csv를 쓴다
+# (query가 closed test + open test이므로 두 라벨 집합이 모두 필요).
+labels:
+  valid: data/manifest_full42.csv
+  test: data/manifest_full42.csv
+
+# ---- 스케일 통일 ----
+# 브랜치마다 점수 단위가 다르므로(거리 vs 확률) 결합 전에 행별로 맞춘다.
+#   softmax : 확률로 변환 (기본). temperature가 작을수록 1등에 몰아준다
+#   minmax  : 행별 0~1
+#   rank    : 행별 순위 0~1 (분포 모양에 둔감)
+#   none    : 원값 그대로
+normalize:
+  method: softmax
+  temperature: 1.0
+
+# ---- 브랜치 가중치 ----
+#   learned : valid에서 자동 학습 (기본)
+#   manual  : 아래 manual 값을 그대로 사용
+weights:
+  mode: learned
+  learn_epochs: 400
+  learn_lr: 0.05
+  manual:                          # mode: manual 일 때만 사용
+    metric: 0.5
+    classifier: 0.3
+    attributes: 0.2
+
+# ---- open-set gate (노션 규칙) ----
+# metric이 open 클래스로 판정한 샘플은 classifier/attributes를 반영하지 않고
+# metric 결과만으로 최종 판정한다.
+# open_manifest를 주면 그 라벨들을 open 클래스로 본다. 둘 다 비우면 gate 없음.
+openset:
+  open_manifest: data/manifest_open15.csv
+  open_classes: null               # 또는 [클래스1, 클래스2, ...] 직접 나열
+
+# ---- threshold: 몇 점 이상이어야 그 클래스로 확정할지 ----
+#   auto   : valid에서 자동 결정 (기본) — 정답/오답 점수 분포가 가장 잘 갈리는 지점
+#   manual : value에 적은 값을 사용
+#   none   : 임계 없음 (항상 최고 점수 클래스로 판정, reject 안 함)
+# 기준 미만이면 __unknown__ 으로 빠진다 (= open-set reject).
+threshold:
+  mode: auto
+  value: 0.5                       # mode: manual 일 때만 사용
+  # auto가 지나치게 많이 걸러내지 않도록 하는 상한 (0.2 = 최대 20%까지만 reject).
+  # null이면 상한 없이 분리가 가장 잘 되는 지점을 그대로 쓴다.
+  max_reject_rate: 0.2
+
+# ---- 평가 방식 ----
+# top1: 최종 1개가 정답이어야 맞음 (기본)
+# top2: 점수 상위 2개 중 하나라도 정답이면 맞음
+# 둘 다 보려면 [1, 2] 로 둔다.
+evaluation:
+  top_k: [1]
+
+# ---- open-set 거부 성능 (threshold와 무관한 지표) ----
+# 최종 점수만으로 open 클래스를 걸러낼 수 있는지 AUROC/FPR@95로 잰다.
+# threshold를 어디 두든 무관하므로 설정끼리 비교하기 좋다.
+reject_metrics:
+  enabled: false
+  scores: [min_dist, margin, dist_ent]
+
+# ---- 시각화 (outputs/fuse/visualization/ 에 자동 저장) ----
+#   weights     브랜치 가중치 (무엇에 의존하기로 했는지)
+#   comparison  브랜치 단독 vs 결합 vs gate 적용 후 정확도 — fuse의 실익
+#   openset     closed/open 클래스별 정확도 (gate 전후 비교)
+#   score       최종 점수 분포 + threshold 선 (정답 vs 오답)
+#   confusion   최종 클래스 혼동행렬
+visualize:
+  enabled: true
+  which: [weights, comparison, openset, score, confusion]
+
+output_subdir: fuse

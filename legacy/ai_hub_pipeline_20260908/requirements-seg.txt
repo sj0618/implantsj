@@ -1,0 +1,8 @@
+# segmentation 스택 (Stage 0, masked-vit 런타임). torch 설치 뒤 build isolation 을 끄고 설치한다:
+#   pip install --no-build-isolation -r requirements-seg.txt
+# sam2 의 pyproject 가 빌드 의존성으로 torch 를 요구해 isolation 을 켜면 CPU torch 를 따로 받는다.
+# git 커밋은 implant_ny/requirements-sam2.txt 에서 실제로 돌던 버전에 고정한다.
+hydra-core>=1.3.2
+iopath>=0.1.10
+SAM-2 @ git+https://github.com/facebookresearch/sam2.git@2b90b9f5ceec907a1c18123530e92e794ad901a4
+segment_anything @ git+https://github.com/facebookresearch/segment-anything.git@dca509fe793f601edb92606367a655c15ac00fdf

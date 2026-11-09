@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+norecursedirs = ["legacy", "docs", ".git", ".pytest_cache", "__pycache__"]
+addopts = "-ra"

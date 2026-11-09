@@ -20,7 +20,7 @@ from evaluate_3label_metric_from_7label import (
     load_stage1_metric_model,
     prototype_predict,
 )
-from src.data import label_mapping
+from src.data import label_mapping, load_manifest
 from src.metrics import compute_metrics, save_confusion_matrix, save_metrics_json, save_predictions
 
 
@@ -139,6 +139,7 @@ def main() -> None:
     parser.add_argument("--checkpoint", default="/workspace/data_1_2/outputs_two_stage_metric/stage1/best_stage1.pth")
     parser.add_argument("--data-root", default="/workspace/implant_python_only_final/data/3label")
     parser.add_argument("--manifest", default="/workspace/implant_python_only_final/data/manifests/3label.csv")
+    parser.add_argument("--use-existing-manifest", action="store_true", help="Read the supplied split without rebuilding it.")
     parser.add_argument("--output-root", default="/workspace/implant_python_only_final/outputs")
     parser.add_argument("--experiment-name", default="twostage_metric_7label_to_3label")
     parser.add_argument("--model-name", default=None)
@@ -159,7 +160,7 @@ def main() -> None:
         raise RuntimeError("CUDA is not available. Pass --allow-cpu only for debugging.")
 
     manifest = Path(args.manifest)
-    df = build_3label_manifest(Path(args.data_root), manifest)
+    df = load_manifest(manifest) if args.use_existing_manifest else build_3label_manifest(Path(args.data_root), manifest)
     class_to_idx, _ = label_mapping(df)
     groups = DEFAULT_GROUPS if args.groups_json is None else json.loads(Path(args.groups_json).read_text(encoding="utf-8"))
 

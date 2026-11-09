@@ -7,6 +7,7 @@
 
 - [시작 가이드](usage/QUICKSTART.md): Docker 반입, 실행 메뉴, 설정, 문제 해결
 - [실험 가이드](usage/EXPERIMENT_GUIDE.md): 학습·평가 명령과 결과 비교
+- [보고서 재현 실행기](../tools/README.md): 실행 설정, 입력, 검증 범위
 - [명령 예시 출력](usage/USAGE.py): `python3 docs/usage/USAGE.py`
 - [폐쇄망 데이터 구조](analysis/CLOSED_NETWORK_DATASET_LAYOUT.md)
 - [데이터 구조 변경 검토](analysis/MODELS_DATASET_VIT_CHANGE_GUIDE.md)

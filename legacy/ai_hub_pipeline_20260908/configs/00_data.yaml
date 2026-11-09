@@ -1,0 +1,86 @@
+# =============================================================
+# Stage 0-a. 데이터 준비 — 파이프라인의 입구
+#
+# 데이터셋 폴더를 훑어 manifest CSV를 만든다. 이후 모든 스테이지가 이 파일들을 쓴다.
+# 파이프라인에서 가장 먼저 실행할 것.
+#
+# 드라이버: src/run_prepare_data.py
+# =============================================================
+extends: base.yaml
+stage: data
+
+source:
+  # 데이터셋 루트. 아래 두 구조 중 하나면 된다.
+  #   class_folder        <root>/<클래스>/*.jpg
+  #   split_class_folder  <root>/{train,valid,test}/<클래스>/*.jpg
+  root: data/datas
+  layout: auto                 # auto | class_folder | split_class_folder
+
+split:
+  # 폴더에 이미 train/valid/test가 있으면 그대로 쓴다.
+  keep_existing: true
+  # 없거나 keep_existing: false 면 아래 비율로 나눈다.
+  # 클래스마다 각 split에 최소 1장은 들어가게 보장한다.
+  train: 8
+  valid: 1
+  test: 1
+  seed: 42
+
+band:
+  # Stage 0의 06_make_band_masks.sh 산출물 폴더 (band 고리 마스크).
+  # 있으면 mask_path 컬럼을 채운다 — band-* 백본과 band-vit이 이 컬럼을 쓴다.
+  # 아직 없으면 그대로 둬도 된다. Stage 0을 돌린 뒤 이 스크립트를 다시 실행하면 채워진다.
+  mask_root: data/masks
+  suffix: _band.png
+
+openset:
+  # closed27_open15 프로토콜에서 open-set으로 쓸 클래스.
+  # 실제 데이터셋에서 어떤 클래스가 open이 될지는 정해져 있으므로 여기에 그대로 적는다.
+  # 아래 주석을 풀고 데이터셋 폴더명을 한 줄에 하나씩 채우면 된다.
+  #
+  # 폴더명과 표기가 조금 달라도(대소문자·공백·구분자·앞 일련번호) 알아서 맞춰주고,
+  # 못 찾는 이름이 있으면 비슷한 후보를 보여주며 중단한다.
+  # 채운 뒤 확인:  python src/check_open_labels.py --config configs/00_data.yaml
+  labels:
+    # - 28_Warantec_Explant
+    # - 29_Warantec_Internal
+    # - 30_Cybermed_Core1
+    # - 31_Straumann_BoneLevel
+    # - 32_Straumann_StandardPlus
+    # - 33_Straumann_TissueLevel
+    # - 34_Zimmer_TSV
+    # - 35_Zimmer_SwissPlus
+    # - 36_Dentsply_Astra
+    # - 37_Dentsply_Xive
+    # - 38_Biomet_3i
+    # - 39_BEGO_Semados
+    # - 40_BioHorizons_External
+    # - 41_BioHorizons_Internal
+    # - 42_Bicon_Integra-CP
+
+  count: 15                    # 검산용 — 지정 개수와 다르면 경고
+
+  # 목록을 아직 모를 때만 임시로 자동 선정. 명시해야 동작한다.
+  # (비워두면 labels 없이는 실행되지 않는다 — 엉뚱한 클래스가 open이 되는 사고를 막는다)
+  auto: null                   # null | rarest(이미지 적은 순) | random
+  seed: 42
+
+# ---- K-fold 교차검증 (옵션) ----
+# train+valid를 k번 다르게 나눈 manifest를 추가로 만든다.
+# test는 fold마다 동일하게 유지해 최종 평가 기준을 고정한다.
+# 각 스테이지 yaml의 manifest 경로를 fold 파일로 바꿔 k번 돌리면 된다.
+kfold:
+  enabled: false
+  k: 5
+  seed: 42
+  subdir: folds            # data/folds/manifest_closed27_fold01.csv ...
+  full: true               # 42클래스에 대해 만들지
+  closed: true             # closed 클래스에 대해 만들지
+
+# 만들어질 파일 이름. 다른 스테이지의 yaml이 이 이름을 참조하므로
+# 바꾸려면 함께 바꿔야 한다.
+outputs:
+  full: manifest_full42.csv        # 42클래스 전체
+  closed: manifest_closed27.csv    # open을 제외한 클래스
+  open: manifest_open15.csv        # open으로 뺀 클래스
+  labels_json: manifest_labels.json

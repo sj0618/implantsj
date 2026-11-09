@@ -1,0 +1,96 @@
+# =============================================================
+# base.yaml — 모든 스테이지 설정이 공유하는 공통 설정
+# 각 스테이지 yaml의 `extends: base.yaml`로 상속됨
+# =============================================================
+
+# 실제로 코드가 읽는 경로만 둔다. 여기 없는 것은 해당 스테이지 yaml에 있다:
+#   band mask 위치 → 00_data.yaml 의 band.mask_root (= 02_segmentation.yaml 의 band.out_root)
+#   spec table     → 05_attributes.yaml 의 spec.csv (configs/spec_table.csv)
+paths:
+  data_dir: data                     # manifest CSV가 만들어지는 곳
+  output_dir: outputs                # 로그/지표/시각화
+  checkpoints_dir: checkpoints       # 백본 등 체크포인트
+
+# ---- 학습 종료 시 임베딩 저장 (모든 스테이지 공통, src/embeddings.py) ----
+# 모든 학습(.pt)마다 data.full_manifest(없으면 closed+open manifest)의 전체 이미지에 대해
+# backbone / head 임베딩을 <run_dir>/embeddings/*.npz 로 남긴다 (paths·labels·partition·SHA-256 동봉).
+# Stage 2 재평가·Stage 5 fuse·사후분석(t-SNE, Mahalanobis, few-shot)은 이 파일만 있으면 재학습 없이 돈다.
+embeddings:
+  enabled: true
+  batch_size: 64
+  num_workers: null      # null이면 train.num_workers
+  input_mode: original   # masked-vit 전용: original(원본 픽셀) | band(SAM2 band crop, 느림)
+# ---- 백본 레지스트리 ----
+# Stage 1(src/run_backbone.py)이 만든 백본을 다른 스테이지가 여기 경로로 끌어다 쓴다.
+# band-* 는 band 영역에 attention을 집중시키는 prior loss로 학습된 백본.
+# checkpoint가 null이면 timm pretrained로 시작 (Stage 1 실행 전 상태).
+# Stage 1 완료 후 checkpoints/backbones/index_<protocol>.json 의 경로를 채워 넣을 것.
+#
+# 모델 크기는 timm 이름만 바꾸면 된다. 아래에 base/large 항목을 미리 정의해 뒀으니
+# grid에서 원하는 이름을 고르면 되고, 다른 크기를 쓰려면 timm 이름을 교체하면 된다.
+# 크기 후보 (검증: python src/check_backbones.py):
+#   ViT     vit_small_patch16_224.augreg_in21k_ft_in1k     22M
+#           vit_base_patch16_224.augreg2_in21k_ft_in1k     86M
+#           vit_large_patch16_224.augreg_in21k_ft_in1k    304M
+#   DINOv2  vit_small_patch14_dinov2.lvd142m               22M
+#           vit_base_patch14_dinov2.lvd142m                86M
+#           vit_large_patch14_dinov2.lvd142m              304M
+#           vit_giant_patch14_dinov2.lvd142m             1.1B
+# ※ large 이상은 batch_size를 줄이고 grad_checkpointing: true 를 켤 것.
+backbones:
+  # ---- base (기본) ----
+  vit:
+    timm: vit_base_patch16_224.augreg2_in21k_ft_in1k
+    checkpoint: null      # checkpoints/backbones/vit_full_closed27_open15.pt
+    image_size: 224
+  band-vit:
+    timm: vit_base_patch16_224.augreg2_in21k_ft_in1k
+    checkpoint: null      # checkpoints/backbones/band-vit_full_closed27_open15.pt
+    image_size: 224
+  dinov2:
+    timm: vit_base_patch14_dinov2.lvd142m
+    checkpoint: null      # checkpoints/backbones/dinov2_full_closed27_open15.pt
+    image_size: 224
+  band-dinov2:
+    timm: vit_base_patch14_dinov2.lvd142m
+    checkpoint: null      # checkpoints/backbones/band-dinov2_full_closed27_open15.pt
+    image_size: 224
+
+  # ---- large (grid에 이름을 넣으면 그대로 학습/사용됨) ----
+  vit-large:
+    timm: vit_large_patch16_224.augreg_in21k_ft_in1k
+    checkpoint: null
+    image_size: 224
+  band-vit-large:
+    timm: vit_large_patch16_224.augreg_in21k_ft_in1k
+    checkpoint: null
+    image_size: 224
+  dinov2-large:
+    timm: vit_large_patch14_dinov2.lvd142m
+    checkpoint: null
+    image_size: 224
+  band-dinov2-large:
+    timm: vit_large_patch14_dinov2.lvd142m
+    checkpoint: null
+    image_size: 224
+
+  # ---- giant (DINOv2만 제공. 메모리 매우 큼) ----
+  dinov2-giant:
+    timm: vit_giant_patch14_dinov2.lvd142m
+    checkpoint: null
+    image_size: 224
+  band-dinov2-giant:
+    timm: vit_giant_patch14_dinov2.lvd142m
+    checkpoint: null
+    image_size: 224
+
+# closed27_open15 : 27클래스만 train, 15클래스는 open-set test (data leakage 방지)
+# full42          : 42클래스 전부 train
+protocol: closed27_open15
+
+train:
+  epochs: 50
+  batch_size: 32
+  lr: 1.0e-4
+  seed: 42
+  num_workers: 4

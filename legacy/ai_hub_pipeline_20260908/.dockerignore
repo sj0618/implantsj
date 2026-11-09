@@ -1,0 +1,26 @@
+# Restored build context; include the original Dockerfile's COPY sources only.
+*
+!Dockerfile
+!requirements.txt
+!requirements-seg.txt
+!src/
+!src/**
+!configs/
+!configs/**
+!scripts/
+!scripts/**
+!docker/
+!docker/**
+!tests/
+!tests/**
+!docs/
+!docs/**
+!weights/
+!weights/**
+**/__pycache__/
+**/*.py[cod]
+**/.DS_Store
+**/.env
+**/.env.*
+**/*.pem
+**/*.key

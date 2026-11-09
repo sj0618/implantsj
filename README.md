@@ -12,6 +12,8 @@
 - 모델 목록: [`configs/backbones.txt`](configs/backbones.txt)
 - 반입·실행 절차: [시작 가이드](docs/usage/QUICKSTART.md)
 - 전체 문서: [문서 목차](docs/README.md)
+- 보고서별 재현: [실행기 README](tools/README.md), `python3 tools/run.py reproduce list`
+- Docker 원본 전체 코드: [서버 파이프라인 README](legacy/ai_hub_pipeline_20260908/README.md)
 
 ## 코드 구조
 

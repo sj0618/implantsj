@@ -1,0 +1,57 @@
+# =============================================================
+# Stage 3-<2>. Classifier — masked-vit 방식
+#              (masked_vit 패키지: 학습 + 원본이미지 평가 통합)
+# SAM2 seg 모델로 런타임에 band만 남기고 중앙/배경을 가린 crop으로 학습.
+# test는 원본 이미지(input-mode original)로 수행 —
+# 가리고 학습한 모델이 원본에서도 band에 집중하는지 focus_gain으로 검증.
+# 드라이버: src/run_masked_vit.py
+# =============================================================
+extends: base.yaml
+stage: classifier
+method: masked-vit
+device: auto
+
+# closed27_open15 : 27클래스만 학습 (leakage 방지) / full42 : 42클래스 전부
+protocol: closed27_open15
+
+# base.yaml backbones 레지스트리 이름 또는 timm 이름
+backbone: vit                        # masked-vit은 마스킹으로 band를 강제하므로 일반 vit
+
+data:
+  # Stage 0-a가 만든 manifest 하나를 split별로 나눠 쓴다(드라이버가 자동 분리).
+  # band는 SAM2로 런타임 생성하므로 mask_path 컬럼은 필요 없다.
+  closed_manifest: data/manifest_closed27.csv
+  full_manifest: data/manifest_full42.csv
+
+# 런타임 segmentation (Stage 0에서 만든 파인튜닝 모델 사용)
+sam:
+  sam2_config: configs/sam2.1/sam2.1_hiera_t.yaml   # sam2 패키지 내부 경로
+  sam2_checkpoint: checkpoints/sam2/sam2.1_hiera_tiny.pt
+  model_checkpoint: checkpoints/best_sam2.1_tiny_adapter_unet.pth
+  input_size: 512
+  threshold: 0.5
+
+band:
+  outer_radius: 15                   # dilate 반경 (band 두께 바깥쪽)
+  inner_radius: 15                   # erode 반경 (band 두께 안쪽)
+  # SAM2가 마스크를 못 뽑는 이미지가 가끔 나온다. 이 비율까지는 그 이미지를 빼고 진행한다.
+  # 0(기본)이면 하나라도 실패하면 중단 — 데이터가 조용히 빠지는 걸 원치 않을 때.
+  # 실패 목록은 항상 preprocessing/band_preprocessing_report.csv 에 남는다.
+  max_failure_rate: 0.0
+
+# valid 평가 — Stage 5 fuse가 브랜치 가중치/임계값을 학습할 때 쓰는 점수.
+# 끄면 fuse의 weights.mode=learned / threshold.mode=auto 를 쓸 수 없다
+# (test로 학습하면 test 성능이 부풀려지므로 fuse가 test를 대신 쓰지 않는다).
+eval_valid: true
+
+# test 입력 변형: original(원본 픽셀, 핵심 실험) / band(학습 분포, 비교 기준)
+# 각 모드마다 attention 평가 + gradient rollout 시각화 수행
+# original 하나만 보려면 `test_variants: original` 처럼 적어도 된다
+test_variants: [original, band]
+
+# test 시각화: attention map + gradient rollout 저장 개수 (-1=전부, 0=끄기)
+viz:
+  attention_samples: 20
+  rollout_samples: 20
+
+output_subdir: classifier/masked_vit

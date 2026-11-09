@@ -1,0 +1,57 @@
+# =============================================================
+# Stage 2c. Few-shot target adaptation — 별개 실험
+#
+# 질문: "새 임플란트 시스템을 몇 장만 등록해도 인식되는가?"
+# 클래스마다 support를 1/5/10장만 뽑아 prototype을 만들고 나머지를 query로 평가.
+# support 뽑기를 여러 seed로 반복해 평균±표준편차 보고 (재현성 검증).
+#
+# 재학습 없음 — 이미 학습된 metric 체크포인트나 백본을 그대로 쓴다.
+# 드라이버: src/run_metric_fewshot.py
+# =============================================================
+extends: base.yaml
+stage: metric_fewshot
+device: auto
+
+# 비교할 모델들. checkpoint를 비우면 백본 임베딩 그대로 평가(baseline).
+# Stage 2 그리드에서 좋았던 조합의 best.pt 경로를 채워 넣는다.
+models:
+  - name: baseline_dinov2
+    backbone: dinov2
+    checkpoint: null
+  - name: supcon_dinov2
+    backbone: dinov2
+    checkpoint: null   # outputs/metric/closed27_open15_dinov2_supcon/train/checkpoints/best.pt
+
+data:
+  # 등록 대상(주로 open 15클래스) manifest. 아래 split들을 한 풀로 합쳐
+  # support/query를 나눈다.
+  target_manifest: data/manifest_open15.csv
+  target_splits: [train, test]
+
+fewshot:
+  shots: [1, 5, 10]                # 클래스당 등록 장수
+  seeds: [42, 43, 44]              # support 뽑기 반복 (평균±표준편차)
+
+train:                             # 학습은 하지 않지만 배치/임베딩 차원은 필요
+  batch_size: 32
+  embedding_dim: 128
+  num_workers: 4
+
+eval:                              # 옵션 의미는 03_metric_grid.yaml과 동일
+  prototype:
+    methods: [mean]
+    ss_count: 5
+    kmeans_clusters: 3
+  distances: [cosine, euclidean, mahalanobis]
+  mahalanobis:
+    covariance: ledoit_wolf        # ledoit_wolf | oas | diagonal | class_balanced | rda
+    rda: {class_weight: 0.75, logdet_weight: 1.0}
+  spectral:
+    alpha: 0.5
+  transform:
+    mode: none                     # none | l2norm | pca
+    pca_dim: 64
+    pca_balanced_fit: false
+  embedding_source: projection
+
+output_subdir: metric_fewshot

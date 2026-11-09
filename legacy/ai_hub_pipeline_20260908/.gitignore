@@ -1,0 +1,7 @@
+/data/
+/outputs/
+/checkpoints/
+/seg_data/
+/weights/*
+!/weights/.gitkeep
+/configs/spec_table.csv

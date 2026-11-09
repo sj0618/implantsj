@@ -1,0 +1,50 @@
+0,Company,Name,System,Connection(1),Conection(2),Flange,Collar,Microthread,Body Shape,Body Type,Thread Shape,Apex Shape,Apex Hole,GT data,changed
+1,Osstem,GSII,Bone Level,Internal,HEX,Parallel,Yes,Yes,Non-tapered,Threaded,V-shaped,Flat,No,3,
+2,Osstem,GSIII,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,V-shaped,Rounded,No,3,
+3,Osstem,SSII,Tissue Level,Internal,OCTA,Convergent,Yes,No,Non-tapered,Threaded,V-shaped,Flat,No,19,
+4,Osstem,TSIII,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Flat,No,12,Body:Non-tapered→Tapered body
+5,Osstem,USII,Bone Level,External,HEX,Convergent,No,No,Tapered apex,Threaded,V-shaped,Flat,No,30,
+6,Osstem,SSIII,Tissue Level,Internal,OCTA,Convergent,Yes,No,Tapered body,Threaded,V-shaped,Flat,No,21,Body:Non-tapered→Tapered body
+7,Osstem,USIII,Bone Level,External,HEX,Convergent,No,No,Tapered body,Threaded,V-shaped,Flat,No,27,Body:Non-tapered→Tapered body
+8,Dentium,Implantium,Bone Level,Internal,HEX,Convergent,No,No,Tapered apex,Threaded,V-shaped,Flat,No,12,
+9,Dentium,SuperLine,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Flat,No,18,
+10,Dentium,SimpleLine,Tissue Level,Internal,OCTA,Convergent,Yes,No,Tapered apex,Threaded,V-shaped,Flat,No,6,System:Bone Level→Tissue Level ; Conn2:HEX→OCTA
+11,NeoBiotech,ISI,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,Buttress,Rounded,No,3,
+12,NeoBiotech,ISII,Bone Level,Internal,HEX,Parallel,No,No,Tapered apex,Threaded,V-shaped,Rounded,No,15,
+13,NeoBiotech,ISIII,Bone Level,Internal,HEX,Parallel,Yes,No,Tapered body,Threaded,V-shaped,Rounded,No,12,
+14,NeoBiotech,EB,Bone Level,External,HEX,Parallel,No,Yes,Tapered body,Threaded,Buttress,Rounded,No,3,
+15,Shinhung,Luna1,Bone Level,Internal,HEX,Parallel,No,Yes,Tapered body,Threaded,V-shaped,Flat,No,3,
+16,DIO,SM_Submerged,Bone Level,Internal,SIX-LOBE,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,0,
+17,DIO,SM,Tissue Level,Internal,SIX-LOBE,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,0,
+18,DIO,UF,Bone Level,Internal,HEX,Parallel,No,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,0,
+19,DIO,UF2,Bone Level,Internal,HEX,Parallel,No,Yes,Tapered apex,Threaded,V-shaped,Rounded,No,0,
+20,Megagen,AnyRidge,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Rounded,No,9,
+21,Megagen,ExFeel_Internal,Tissue Level,Internal,OCTA,Convergent,Yes,Yes,Non-tapered,Threaded,Reverse buttress,Flat,No,3,Collar:No→Yes
+22,Megagen,ExFeel_External,Bone Level,External,HEX,Parallel,No,Yes,Non-tapered,Threaded,V-shaped,Flat,No,3,
+23,Megagen,AnyOne_External,Bone Level,External,HEX,Convergent,No,No,Tapered apex,Threaded,V-shaped,Flat,No,6,
+24,Megagen,AnyOne_Internal,Bone Level,Internal,HEX,Parallel,No,No,Tapered apex,Threaded,V-shaped,Flat,No,9,Collar:Yes→No
+25,Dentis,SClean_Tapered,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,0,
+26,Cowellmedi,Atlas_Internal,Tissue Level,Internal,OCTA,Convergent,Yes,Yes,Non-tapered,Threaded,Reverse buttress,Rounded,No,3,
+27,Cowellmedi,Atlas_External,Bone Level,External,HEX,Convergent,Yes,Yes,Non-tapered,Threaded,Reverse buttress,Rounded,No,3,
+28,Warantec,Explant,Bone Level,External,HEX,Convergent,No,Yes,Tapered body,Threaded,V-shaped,Rounded,No,0,
+29,Warantec,Internal,Bone Level,Internal,OCTA,Convergent,Yes,Yes,Tapered body,Threaded,V-shaped,Rounded,No,0,
+30,Cybermed,Core1,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,V-shaped,Flat,No,0,
+31,Straumann,TS_Standard,Tissue Level,Internal,OCTA,Convergent,Yes,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,3,Collar:No→Yes
+32,Straumann,TS_StandardPlus,Tissue Level,Internal,OCTA,Parallel,Yes,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,0,Collar:No→Yes
+33,Straumann,BoneLevel,Bone Level,Internal,CROSSFIT,Parallel,No,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,3,Conn2:HEX→CROSSFIT
+34,NobelBiocare(Shinhung),Branemark,Bone Level,External,HEX,Parallel,Yes,No,Non-tapered,Threaded,V-shaped,Flat,No,0,Micro:Yes→No ; Collar:No→Yes
+35,NobelBiocare(Shinhung),ReplaceSelect,Bone Level,Internal,TRI-LOBE,Parallel,Yes,No,Tapered apex,Threaded,Buttress,Rounded,No,0,Collar:No→Yes
+36,Dentsply,Astra,Bone Level,Internal,DOUBLE-HEX,Convergent,Yes,Yes,Non-tapered,Threaded,V-shaped,Flat,No,0,Conn2:HEX→DOUBLE-HEX
+37,Dentsply,Xive,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,3,Collar:No→Yes
+38,Zimmer,SwissPlus,Tissue Level,Internal,OCTA,Convergent,Yes,Yes,Tapered body,Threaded,Reverse buttress,Rounded,No,6,Collar:No→Yes
+39,Zimmer,ScrewVent,Tissue Level,Internal,HEX,Parallel,Yes,No,Non-tapered,Threaded,V-shaped,Flat,Yes,0,Collar:No→Yes
+40,Zimmer,TSV,Bone Level,Internal,HEX,Parallel,Yes,No,Tapered body,Threaded,V-shaped,Rounded,Yes,0,Collar:No→Yes
+41,Biomet,3i,Bone Level,External,HEX,Parallel,No,Yes,Non-tapered,Threaded,V-shaped,Flat,No,0,
+42,BioHorizons,External,Bone Level,External,HEX,Parallel,No,Yes,Tapered apex,Threaded,Square,Flat,No,3,Thread:V-shaped→Square
+43,BEGO,Semados RS/RSX,Bone Level,Internal,HEX,Parallel,Yes,Yes,Tapered body,Threaded,V-shaped,Rounded,No,,
+44,Bicon,Integra-CP,Bone Level,Internal,No anti-rotational,Parallel,No,No,Tapered apex,Plateau-fin,N/A,Rounded,No,,BType:Threaded→Plateau-fin ; Thread:V-shaped→N/A
+45,Straumann,Standard Plus,Tissue Level,Internal,OCTA,Parallel,Yes,No,Non-tapered,Threaded,Reverse buttress,Rounded,No,,
+46,Dentsply,Ankylos,Bone Level,Internal,HEX,Parallel,No,No,Tapered apex,Threaded,V-shaped,Rounded,No,,
+47,Warantec,IT,Bone Level,Internal,OCTA,Convergent,Yes,Yes,Tapered body,Threaded,Square,Rounded,No,,Thread:V-shaped→Square
+48,Warantec,IU,Bone Level,Internal,HEX,Parallel,No,No,Tapered body,Threaded,Square,Rounded,No,,
+49,Shinhung,Stella,Tissue Level,Internal,OCTA,Convergent,Yes,No,Tapered apex,Threaded,V-shaped,Flat,No,,
